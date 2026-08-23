@@ -20,6 +20,9 @@ what you want and the matching skill activates, or invoke one by name with
 | `childrens-book-publishing` | Picture books, early readers, middle-grade. |
 | `cartoon-production` | Animated series — kids and adult lanes. |
 | `news-broadcast-company` | News shows, AI anchors, multi-platform media network. |
+| `social-media-growth` | Posting calendars, hooks, reels, hashtags, analytics across IG/TikTok/FB/X/YouTube/Moltbook. |
+| `merch-print-on-demand` | Apparel, posters, tie-in products; POD store setup and drops. |
+| `courses-and-coaching` | Courses, coaching programs, and workshops — high-margin recurring income. |
 
 ## How skills load
 
