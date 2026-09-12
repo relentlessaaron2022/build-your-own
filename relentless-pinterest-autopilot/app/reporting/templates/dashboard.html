@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Relentless Pinterest Autopilot</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; background: #0f0f1a; color: #f5f0e6; margin: 0; padding: 24px; }
+  h1 { color: #16c79a; }
+  h2 { color: #d4af37; border-bottom: 1px solid #333; padding-bottom: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .card { background: #1a1a2e; border-radius: 8px; padding: 16px; }
+  .card .value { font-size: 28px; font-weight: bold; color: #fff; }
+  .card .label { font-size: 13px; color: #999; text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #2a2a3e; font-size: 14px; }
+  th { color: #999; font-weight: normal; text-transform: uppercase; font-size: 11px; }
+  .section { margin-bottom: 40px; }
+  .pill { display: inline-block; background: #2a2a3e; color: #16c79a; padding: 2px 10px; border-radius: 12px; font-size: 12px; margin: 2px; }
+  .error { color: #ff6b6b; }
+  footer { color: #555; font-size: 12px; margin-top: 40px; }
+</style>
+</head>
+<body>
+  <h1>Relentless Pinterest Autopilot</h1>
+
+  <div class="section">
+    <h2>Today</h2>
+    <div class="grid">
+      <div class="card"><div class="value">{{ today.pins_published }}</div><div class="label">Pins Published</div></div>
+      <div class="card"><div class="value">{{ today.impressions }}</div><div class="label">Impressions</div></div>
+      <div class="card"><div class="value">{{ today.clicks }}</div><div class="label">Clicks</div></div>
+      <div class="card"><div class="value">{{ today.saves }}</div><div class="label">Saves</div></div>
+      <div class="card"><div class="value">{{ today.conversions }}</div><div class="label">Conversions</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Last 7 Days</h2>
+    <table>
+      <tr><th>Top Pins</th><th>Clicks</th></tr>
+      {% for headline, clicks in last7.top_pins %}<tr><td>{{ headline }}</td><td>{{ clicks }}</td></tr>{% endfor %}
+    </table>
+    <table>
+      <tr><th>Lowest Performers</th><th>Clicks</th></tr>
+      {% for headline, clicks in last7.lowest_performers %}<tr><td>{{ headline }}</td><td>{{ clicks }}</td></tr>{% endfor %}
+    </table>
+    <table>
+      <tr><th>Top Keywords</th><th>Clicks</th></tr>
+      {% for kw, clicks in last7.top_keywords %}<tr><td>{{ kw }}</td><td>{{ clicks }}</td></tr>{% endfor %}
+    </table>
+    <table>
+      <tr><th>Top Boards</th><th>Saves</th></tr>
+      {% for board, saves in last7.top_boards %}<tr><td>{{ board }}</td><td>{{ saves }}</td></tr>{% endfor %}
+    </table>
+    <table>
+      <tr><th>Best Landing Pages</th><th>Clicks</th></tr>
+      {% for url, clicks in last7.best_landing_pages %}<tr><td>{{ url }}</td><td>{{ clicks }}</td></tr>{% endfor %}
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Operational Status</h2>
+    <p>Queue: <span class="pill">{{ ops.queue_count }} pins queued</span></p>
+
+    <p>Active campaigns:</p>
+    {% for c in ops.active_campaigns %}<span class="pill">{{ c }}</span>{% endfor %}
+
+    <p>Winner concepts:</p>
+    {% for w in ops.winner_concepts %}<span class="pill">{{ w }}</span>{% endfor %}
+
+    <table>
+      <tr><th>Scheduled Pins</th><th>Scheduled At</th></tr>
+      {% for pin_id, scheduled_at in ops.scheduled_pins %}<tr><td>Pin #{{ pin_id }}</td><td>{{ scheduled_at }}</td></tr>{% endfor %}
+    </table>
+
+    <table>
+      <tr><th class="error">Failed Pins</th><th>Error</th></tr>
+      {% for pin_id, error in ops.failed_pins %}<tr><td>Pin #{{ pin_id }}</td><td class="error">{{ error }}</td></tr>{% endfor %}
+    </table>
+  </div>
+
+  <footer>Generated {{ generated_at }}</footer>
+</body>
+</html>

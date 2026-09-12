@@ -1,0 +1,90 @@
+{
+  "relentless_aaron": {
+    "display_name": "Relentless Aaron",
+    "site_id": "relentlessaaron",
+    "logo": "assets/logos/relentless_aaron_logo.png",
+    "colors": {
+      "primary": "#0B0B0B",
+      "secondary": "#D4AF37",
+      "accent": "#FFFFFF",
+      "background": "#111111"
+    },
+    "typography": {
+      "headline_font": "DejaVuSans-Bold.ttf",
+      "body_font": "DejaVuSans.ttf"
+    },
+    "approved_ctas": [
+      "Read More",
+      "Get the Full Story",
+      "Save This For Later",
+      "Learn More",
+      "See How"
+    ],
+    "banned_phrases": [
+      "guaranteed",
+      "get rich quick",
+      "miracle",
+      "click here now"
+    ]
+  },
+  "prompt_mastery": {
+    "display_name": "Prompt Mastery Studio",
+    "site_id": "relentlessaaron",
+    "logo": "assets/logos/prompt_mastery_logo.png",
+    "colors": {
+      "primary": "#1A1A2E",
+      "secondary": "#16C79A",
+      "accent": "#FFFFFF",
+      "background": "#0F0F1A"
+    },
+    "typography": {
+      "headline_font": "DejaVuSans-Bold.ttf",
+      "body_font": "DejaVuSans.ttf"
+    },
+    "approved_ctas": [
+      "Get the Prompts",
+      "Save This Pin",
+      "Start Free",
+      "Grab the Guide",
+      "See the Prompts"
+    ],
+    "banned_phrases": [
+      "guaranteed",
+      "get rich quick",
+      "miracle",
+      "click here now",
+      "AI will replace you"
+    ]
+  },
+  "webfilmbooks": {
+    "display_name": "WebFilmBooks",
+    "site_id": "webfilmbooks",
+    "logo": "assets/logos/webfilmbooks_logo.png",
+    "colors": {
+      "primary": "#2B2118",
+      "secondary": "#C9A227",
+      "accent": "#F5F0E6",
+      "background": "#1C1710"
+    },
+    "typography": {
+      "headline_font": "DejaVuSans-Bold.ttf",
+      "body_font": "DejaVuSans.ttf"
+    },
+    "approved_ctas": [
+      "Read the Story",
+      "Discover the Book",
+      "Save for Later",
+      "Start Reading"
+    ],
+    "banned_phrases": [
+      "guaranteed",
+      "get rich quick",
+      "miracle",
+      "click here now"
+    ]
+  },
+  "domain_mappings": {
+    "relentlessaaron.net": "relentless_aaron",
+    "webfilmbooks.com": "webfilmbooks"
+  }
+}
