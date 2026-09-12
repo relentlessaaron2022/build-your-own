@@ -125,12 +125,53 @@ self-contained Python project (its own `pyproject.toml`, `.venv`,
   saved to `reports/`.
 
 **Testing**
-- 23 automated tests (`pytest tests/`), all passing, covering headline
+- 46 automated tests (`pytest tests/`), all passing, covering headline
   generation, keyword generation, the duplicate-detection fix
   specifically (including a regression test for the average-hash bug
   described above), creative rendering, all 5 QC failure modes, the full
   campaign-generation-to-queued-pin pipeline, UTM injection, and
   credential-missing error paths.
+
+## Post-Review Hardening
+
+An automated code review (Qodo) on the PR surfaced 16 real bugs across
+concurrency, correctness, and reliability -- all verified and fixed, each
+with a regression test:
+
+- A fresh-install crash (a newly created campaign was never committed
+  before a second session looked it up).
+- The queue silently running dry after the first ~25-pin batch (repeated
+  generation cycles reused identical inputs and collided on fingerprint
+  forever) -- generation now rotates through the full keyword-angle pool
+  and loops batches until the queue target is met.
+- Two double-publish risks: concurrent publish invocations could both
+  claim the same pin (fixed with an atomic claim-before-call transition),
+  and an ambiguous timeout/5xx could retry a create_pin that had actually
+  already succeeded (fixed by reconciling against the board via the
+  pin's unique UTM-tagged link before ever retrying).
+- Analytics double-counting (overlapping ingestion windows inserted a
+  fresh row every run; now upserted per pin+day) and the winner/loser
+  benchmark summing all-time history instead of a rolling window.
+- QC-failed and permanently-failed concepts being dead ends (nothing ever
+  reprocessed them, and their own fingerprint blocked recreating them) --
+  each failure now spawns one genuinely different replacement concept.
+- A packaging gap that would break every non-editable install (only the
+  top-level `app` package, and no dashboard template, were included in a
+  built wheel -- editable dev installs masked this).
+- Several smaller reliability/validation gaps: OAuth-refresh network
+  errors escaping the typed retry path, sitemap-index handling that could
+  loop or store sitemap documents as content, malformed WordPress/LLM
+  responses aborting their callers instead of falling back, a hardcoded
+  publish-slot size that ignored `DAILY_PIN_TARGET`, and `pinterest
+  publish-test` bypassing the `pause` kill switch.
+
+Separately, while wiring up real Pinterest credentials, live testing
+surfaced one more: `pinterest_credentials_present` and the client's
+`_ensure_credentials` both required a client id/secret even when a
+standalone access token (which Pinterest's developer portal can issue
+directly, before an app has a secret at all under "trial access") was
+already sufficient for Bearer-token API calls. Fixed and covered by a
+regression test.
 
 ## Currently Building / Partially Done
 
@@ -170,13 +211,25 @@ away, not a code problem.
 To reach "publish one real test pin" and beyond:
 
 1. **Pinterest**: create an app at
-   [developers.pinterest.com](https://developers.pinterest.com), complete
-   the OAuth flow once to get a refresh token, then set in `.env`:
-   - `PINTEREST_CLIENT_ID`
-   - `PINTEREST_CLIENT_SECRET`
-   - `PINTEREST_REFRESH_TOKEN`
-   - (`PINTEREST_ACCESS_TOKEN` is optional -- the client refreshes it
-     automatically from the refresh token)
+   [developers.pinterest.com](https://developers.pinterest.com). Two
+   paths, both supported:
+   - **Full OAuth (recommended for continuous operation)**: complete the
+     OAuth flow once to get a refresh token, then set `PINTEREST_CLIENT_ID`,
+     `PINTEREST_CLIENT_SECRET`, and `PINTEREST_REFRESH_TOKEN` in `.env`.
+     The client refreshes the access token from this automatically,
+     indefinitely.
+   - **Standalone access token (works immediately, including under
+     Pinterest's "trial access pending" state where the app secret isn't
+     issued yet)**: the developer portal's "Generate Access Tokens" panel
+     can hand out a token directly. Set only `PINTEREST_ACCESS_TOKEN` in
+     `.env` -- no client id/secret needed for this path, since every /v5
+     call is plain Bearer auth. The catch: this stops working once the
+     token expires (no refresh path without client id/secret), and a
+     trial-scoped token's listed permissions may be **read-only**
+     (`pins:read`, `boards:read`, `user_accounts:read`, ...) -- enough for
+     `pinterest status` / `sync-boards` to prove connectivity, but a real
+     `publish-test` needs write scopes, which likely requires Pinterest
+     granting the app standard (non-trial) API access first.
 
 Optional, both degrade gracefully to built-in heuristics when absent:
 

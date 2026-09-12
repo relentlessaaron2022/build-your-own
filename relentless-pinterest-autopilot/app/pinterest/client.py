@@ -67,12 +67,23 @@ class PinterestClient:
     # -- auth -----------------------------------------------------------
 
     def _ensure_credentials(self) -> None:
+        if self._access_token:
+            # Every /v5 call is plain Bearer-token auth -- a standalone
+            # access token (e.g. the one-click token Pinterest's
+            # developer portal can generate before an app has a secret,
+            # "trial access") is enough on its own. Client id/secret are
+            # only needed to exchange a refresh token for a *new* access
+            # token once this one expires, which is a later problem, not
+            # a reason to refuse to make calls right now.
+            return
         if not settings.pinterest_client_id or not settings.pinterest_client_secret:
             raise CredentialsMissingError(
-                "PINTEREST_CLIENT_ID / PINTEREST_CLIENT_SECRET are not set. "
-                "Create an app at https://developers.pinterest.com and populate .env."
+                "No PINTEREST_ACCESS_TOKEN configured, and PINTEREST_CLIENT_ID / "
+                "PINTEREST_CLIENT_SECRET are not set (needed to exchange "
+                "PINTEREST_REFRESH_TOKEN for one). Create an app at "
+                "https://developers.pinterest.com and populate .env."
             )
-        if not settings.pinterest_refresh_token and not self._access_token:
+        if not settings.pinterest_refresh_token:
             raise CredentialsMissingError(
                 "No PINTEREST_ACCESS_TOKEN or PINTEREST_REFRESH_TOKEN configured. "
                 "Complete the OAuth flow once to obtain a refresh token."
@@ -88,18 +99,29 @@ class PinterestClient:
         basic = base64.b64encode(
             f"{settings.pinterest_client_id}:{settings.pinterest_client_secret}".encode()
         ).decode()
-        resp = requests.post(
-            TOKEN_URL,
-            headers={
-                "Authorization": f"Basic {basic}",
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            data={
-                "grant_type": "refresh_token",
-                "refresh_token": settings.pinterest_refresh_token,
-            },
-            timeout=DEFAULT_TIMEOUT,
-        )
+        try:
+            resp = requests.post(
+                TOKEN_URL,
+                headers={
+                    "Authorization": f"Basic {basic}",
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                data={
+                    "grant_type": "refresh_token",
+                    "refresh_token": settings.pinterest_refresh_token,
+                },
+                timeout=DEFAULT_TIMEOUT,
+            )
+        except requests.RequestException as exc:
+            # A network failure here must surface as the same typed,
+            # retryable error publish_job already knows how to schedule a
+            # backoff for -- otherwise it escapes as a raw requests
+            # exception, skipping retry_count/scheduled_at bookkeeping
+            # entirely and aborting the publish run instead of retrying.
+            raise TransientAPIError(f"Network error refreshing Pinterest access token: {exc}") from exc
+
+        if resp.status_code >= 500:
+            raise TransientAPIError(f"Pinterest token endpoint returned {resp.status_code}: {resp.text}")
         if resp.status_code >= 400:
             raise PinterestAPIError(f"Failed to refresh Pinterest access token: {resp.status_code} {resp.text}")
         data = resp.json()
@@ -203,6 +225,25 @@ class PinterestClient:
 
     def get_pin(self, pin_id: str) -> dict:
         return self._request("GET", f"/pins/{pin_id}")
+
+    def list_board_pins(self, board_id: str, page_size: int = 25) -> list[dict]:
+        return self._request("GET", f"/boards/{board_id}/pins", params={"page_size": page_size}).get(
+            "items", []
+        )
+
+    def find_pin_by_link(self, board_id: str, link: str) -> str | None:
+        """Reconciliation for ambiguous create_pin outcomes: a timeout or
+        5xx doesn't tell us whether Pinterest actually created the pin
+        before failing to respond. Every pin's destination link carries a
+        `utm_content=pin_<local_id>` tag unique to that one local Pin row
+        (see app.utm), so an exact link match here reliably identifies
+        "this specific pin already exists" rather than any pin merely
+        pointing at a similar URL. Callers should check this before
+        retrying create_pin after a transient failure."""
+        for p in self.list_board_pins(board_id):
+            if p.get("link") == link:
+                return p.get("id")
+        return None
 
     def get_pin_analytics(
         self,

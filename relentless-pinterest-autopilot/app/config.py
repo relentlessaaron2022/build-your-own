@@ -76,6 +76,19 @@ class Settings:
 
     @property
     def pinterest_credentials_present(self) -> bool:
+        """True once there's enough to make an authenticated call.
+
+        A standalone access token is sufficient by itself -- every
+        Pinterest /v5 call is plain Bearer-token auth, so nothing else is
+        needed to use one right now. This matters in practice: Pinterest's
+        developer portal can hand out a one-click, scope-limited access
+        token before an app has been granted a client secret at all
+        ("trial access pending"), and that token is real and usable.
+        Client id + secret are only needed to exchange a refresh token for
+        a *new* access token later, once the current one expires.
+        """
+        if self.pinterest_access_token:
+            return True
         return bool(self.pinterest_client_id and self.pinterest_client_secret and self.pinterest_refresh_token)
 
     @property

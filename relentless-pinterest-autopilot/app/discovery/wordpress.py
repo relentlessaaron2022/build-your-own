@@ -46,34 +46,49 @@ def fetch_wordpress_posts(
         logger.info("WordPress REST API returned non-JSON for %s: %s", base_url, exc)
         return []
 
+    if not isinstance(posts, list):
+        # A 200 response that isn't a post list (a WP error object, a
+        # plugin's differently-shaped REST override, ...) -- treat like
+        # "not WordPress" so the orchestrator falls back to RSS/sitemap.
+        logger.info("WordPress REST API returned an unexpected shape for %s: %r", base_url, type(posts))
+        return []
+
     results = []
     for post in posts:
-        title = _strip_html(post.get("title", {}).get("rendered", ""))
-        excerpt = _strip_html(post.get("excerpt", {}).get("rendered", ""))
-        image_url = ""
-        embedded = post.get("_embedded", {})
-        media = embedded.get("wp:featuredmedia")
-        if media and isinstance(media, list):
-            image_url = media[0].get("source_url", "")
-
-        categories = []
-        terms = embedded.get("wp:term", [])
-        for group in terms:
-            for term in group:
-                if term.get("taxonomy") == "category":
-                    categories.append(term.get("name", ""))
-
-        results.append(
-            {
-                "url": post.get("link", ""),
-                "title": title,
-                "body_excerpt": excerpt,
-                "image_url": image_url,
-                "publish_date": _parse_date(post.get("date_gmt")),
-                "category": categories[0] if categories else "",
-            }
-        )
+        try:
+            results.append(_normalize_post(post))
+        except (AttributeError, TypeError) as exc:
+            # One malformed entry shouldn't abort discovery for the whole
+            # site -- normalization assumes a well-formed WP post shape
+            # (nested dicts with string fields); skip anything that isn't.
+            logger.warning("Skipping malformed WordPress post entry from %s: %s", base_url, exc)
     return results
+
+
+def _normalize_post(post: dict) -> dict[str, Any]:
+    title = _strip_html(post.get("title", {}).get("rendered", ""))
+    excerpt = _strip_html(post.get("excerpt", {}).get("rendered", ""))
+    image_url = ""
+    embedded = post.get("_embedded", {})
+    media = embedded.get("wp:featuredmedia")
+    if media and isinstance(media, list):
+        image_url = media[0].get("source_url", "")
+
+    categories = []
+    terms = embedded.get("wp:term", [])
+    for group in terms:
+        for term in group:
+            if term.get("taxonomy") == "category":
+                categories.append(term.get("name", ""))
+
+    return {
+        "url": post.get("link", ""),
+        "title": title,
+        "body_excerpt": excerpt,
+        "image_url": image_url,
+        "publish_date": _parse_date(post.get("date_gmt")),
+        "category": categories[0] if categories else "",
+    }
 
 
 def _strip_html(value: str) -> str:

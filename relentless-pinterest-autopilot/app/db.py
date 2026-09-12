@@ -19,6 +19,7 @@ from sqlalchemy import (
     Integer,
     String,
     Text,
+    UniqueConstraint,
     create_engine,
 )
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker
@@ -101,7 +102,7 @@ class PinConcept(Base):
     board_id: Mapped[str] = mapped_column(String(120), default="")
     status: Mapped[str] = mapped_column(
         String(40), default="draft"
-    )  # draft|ready|regenerate|scheduled|published|failed|winner|deprioritized
+    )  # draft|ready|rejected|scheduled|published|failed|winner|winner_recycled|deprioritized
     headline_family: Mapped[str] = mapped_column(String(60), default="list")
     fingerprint: Mapped[str] = mapped_column(String(64), default="", index=True)
     parent_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey("pin_concepts.id"), nullable=True)
@@ -127,7 +128,7 @@ class Pin(Base):
     published_at: Mapped[Optional[dt.datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
     status: Mapped[str] = mapped_column(
         String(40), default="queued"
-    )  # queued|scheduled|publishing|published|failed|regenerate
+    )  # queued|scheduled|publishing|published|failed
     retry_count: Mapped[int] = mapped_column(Integer, default=0)
     last_error: Mapped[str] = mapped_column(Text, default="")
     created_at: Mapped[dt.datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
@@ -139,6 +140,7 @@ class Pin(Base):
 
 class PinMetric(Base):
     __tablename__ = "pin_metrics"
+    __table_args__ = (UniqueConstraint("pin_id", "date", name="uq_pin_metrics_pin_id_date"),)
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     pin_id: Mapped[int] = mapped_column(ForeignKey("pins.id"))
@@ -150,6 +152,11 @@ class PinMetric(Base):
     ctr: Mapped[float] = mapped_column(Float, default=0.0)
     conversions: Mapped[int] = mapped_column(Integer, default=0)
     revenue: Mapped[float] = mapped_column(Float, default=0.0)
+    # One row per (pin, calendar day) -- see uq_pin_metrics_pin_id_date. This
+    # is a non-overlapping daily bucket, not an ingestion timestamp: ingest
+    # runs upsert the row for the day a metric actually covers, so re-running
+    # ingestion (or a wide lookback window catching Pinterest's own late
+    # revisions to recent days) never double-counts.
     date: Mapped[dt.date] = mapped_column(DateTime(timezone=True), default=utcnow)
 
     pin: Mapped["Pin"] = relationship(back_populates="metrics")

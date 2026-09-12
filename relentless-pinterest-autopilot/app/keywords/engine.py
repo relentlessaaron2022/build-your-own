@@ -97,12 +97,34 @@ def _llm_keywords(topic: str, seed_keywords: list[str] | None = None) -> dict | 
         resp.raise_for_status()
         content = resp.json()["choices"][0]["message"]["content"]
         data = json.loads(content)
-        if not data.get("primary") or not data.get("secondary"):
+        if not _is_valid_keyword_payload(data):
+            logger.warning("LLM keyword response had an unexpected shape, falling back to heuristic: %r", data)
             return None
         return data
     except Exception as exc:  # noqa: BLE001 - any failure here should fall back, never crash
         logger.warning("LLM keyword generation failed, falling back to heuristic: %s", exc)
         return None
+
+
+def _is_valid_keyword_payload(data) -> bool:
+    """Checking only truthiness of data.get("primary")/("secondary") lets
+    a syntactically valid but wrong-shaped response (e.g. "primary" as a
+    number, "secondary" as a string or dict instead of a list) through the
+    LLM path -- it then fails deep in campaign generation (list slicing,
+    string normalization) instead of at this fallback boundary. Verify
+    the actual types the rest of the pipeline assumes.
+    """
+    if not isinstance(data, dict):
+        return False
+    if not isinstance(data.get("primary"), str) or not data["primary"].strip():
+        return False
+    for key in ("secondary", "long_tail", "intent_angles"):
+        value = data.get(key)
+        if value is None:
+            continue  # optional; heuristic-shaped defaults fill gaps elsewhere
+        if not isinstance(value, list) or not all(isinstance(item, str) and item.strip() for item in value):
+            return False
+    return bool(data.get("secondary"))
 
 
 def generate_keywords(topic: str, seed_keywords: list[str] | None = None) -> dict:

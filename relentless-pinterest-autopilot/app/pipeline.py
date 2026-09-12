@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from sqlalchemy import select
 
+from app.campaign import spawn_replacement_concept
 from app.config import brand_key_for_url, brand_for_key
 from app.creative.provider import get_default_provider
 from app.db import Campaign, Pin, PinConcept, get_session
@@ -77,7 +78,8 @@ def materialize_concept(concept_id: int, check_network: bool = False) -> Pin | N
         )
 
         if not result.passed:
-            concept.status = "regenerate"
+            concept.status = "rejected"
+            spawn_replacement_concept(session, concept)
             session.commit()
             logger.warning("Concept %s failed QC: %s", concept_id, "; ".join(result.failures))
             return None

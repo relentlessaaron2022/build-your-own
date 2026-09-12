@@ -14,6 +14,7 @@ os.environ["DATABASE_URL"] = f"sqlite:///{_TMP_DB_DIR}/test.db"
 os.environ["PINTEREST_CLIENT_ID"] = ""
 os.environ["PINTEREST_CLIENT_SECRET"] = ""
 os.environ["PINTEREST_REFRESH_TOKEN"] = ""
+os.environ["PINTEREST_ACCESS_TOKEN"] = ""
 os.environ["OPENAI_API_KEY"] = ""
 
 import pytest  # noqa: E402

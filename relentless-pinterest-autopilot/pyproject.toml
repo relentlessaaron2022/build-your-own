@@ -21,5 +21,8 @@ dependencies = [
 [project.scripts]
 pinterest = "app.cli:cli"
 
-[tool.setuptools]
-packages = ["app"]
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+"app.reporting" = ["templates/*.html"]

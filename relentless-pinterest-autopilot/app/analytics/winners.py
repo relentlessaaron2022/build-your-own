@@ -10,6 +10,7 @@ history is kept (nothing is deleted).
 """
 from __future__ import annotations
 
+import datetime as dt
 import statistics
 from dataclasses import dataclass
 
@@ -23,6 +24,7 @@ logger = get_logger(__name__)
 MIN_IMPRESSIONS_FOR_JUDGMENT = 500
 WINNER_MULTIPLIER = 1.5
 LOSER_MULTIPLIER = 0.5
+BENCHMARK_WINDOW_DAYS = 30  # "rolling" per the spec -- not all-time history
 
 
 @dataclass
@@ -35,7 +37,14 @@ class PinPerformance:
     conversions: int
 
 
-def _aggregate_pin_performance(session) -> list[PinPerformance]:
+def _aggregate_pin_performance(session, window_days: int = BENCHMARK_WINDOW_DAYS) -> list[PinPerformance]:
+    """Sum each pin's metrics over the last `window_days` only. Summing
+    all-time history (the previous behavior) contradicts "rolling account
+    benchmark": an account's early, unrepresentative performance would
+    permanently drag on today's median instead of the benchmark tracking
+    recent reality, and old pins would keep looking better/worse forever
+    as more days silently accumulate into their lifetime totals."""
+    since = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=window_days)
     rows = session.execute(
         select(
             Pin.id,
@@ -46,7 +55,7 @@ def _aggregate_pin_performance(session) -> list[PinPerformance]:
             func.sum(PinMetric.conversions),
         )
         .join(PinMetric, PinMetric.pin_id == Pin.id)
-        .where(Pin.status == "published")
+        .where(Pin.status == "published", PinMetric.date >= since)
         .group_by(Pin.id)
     ).all()
 

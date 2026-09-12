@@ -57,8 +57,12 @@ def status():
 
     click.echo("\n== Pinterest credentials ==")
     if not settings.pinterest_credentials_present:
-        click.echo("NOT CONFIGURED. Set PINTEREST_CLIENT_ID, PINTEREST_CLIENT_SECRET, "
-                    "and PINTEREST_REFRESH_TOKEN in .env.")
+        click.echo(
+            "NOT CONFIGURED. Either set PINTEREST_ACCESS_TOKEN alone (e.g. the token "
+            "Pinterest's developer portal can generate directly, even before an app has "
+            "a secret under 'trial access'), or set PINTEREST_CLIENT_ID, "
+            "PINTEREST_CLIENT_SECRET, and PINTEREST_REFRESH_TOKEN for the full OAuth flow."
+        )
     else:
         from app.pinterest.client import PinterestAPIError, PinterestClient
 
