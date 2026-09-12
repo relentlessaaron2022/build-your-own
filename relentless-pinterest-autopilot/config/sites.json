@@ -1,0 +1,26 @@
+{
+  "sites": [
+    {
+      "id": "relentlessaaron",
+      "name": "Relentless Aaron",
+      "base_url": "https://relentlessaaron.net",
+      "discovery": {
+        "wordpress_api": true,
+        "rss": true,
+        "sitemap": true
+      },
+      "brand_key": "relentless_aaron"
+    },
+    {
+      "id": "webfilmbooks",
+      "name": "WebFilmBooks",
+      "base_url": "https://webfilmbooks.com",
+      "discovery": {
+        "wordpress_api": true,
+        "rss": true,
+        "sitemap": true
+      },
+      "brand_key": "webfilmbooks"
+    }
+  ]
+}

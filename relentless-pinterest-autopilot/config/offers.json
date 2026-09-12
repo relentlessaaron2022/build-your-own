@@ -1,0 +1,24 @@
+{
+  "offers": [
+    {
+      "id": "prompt_mastery_studio",
+      "name": "Prompt Mastery Studio",
+      "site_id": "relentlessaaron",
+      "landing_url": "https://relentlessaaron.net/prompt-mastery-studio",
+      "category": "ai_prompts",
+      "brand_key": "prompt_mastery",
+      "active": true,
+      "seed_keywords": [
+        "ChatGPT prompts for entrepreneurs",
+        "AI prompts for small business",
+        "AI productivity prompts",
+        "AI marketing prompts",
+        "prompt engineering for beginners",
+        "ChatGPT tips",
+        "AI tools for entrepreneurs"
+      ],
+      "utm_campaign": "prompt_mastery"
+    }
+  ],
+  "note": "Additional Relentless Aaron digital products and landing pages should be appended here as they launch. Nothing in this file is read as hardcoded by the app -- it is loaded at runtime."
+}

@@ -1,0 +1,15 @@
+{
+  "boards": [
+    {"name": "AI Prompts & ChatGPT", "pinterest_board_id": null, "category": "ai_prompts"},
+    {"name": "AI for Entrepreneurs", "pinterest_board_id": null, "category": "ai_prompts"},
+    {"name": "Small Business Marketing", "pinterest_board_id": null, "category": "marketing"},
+    {"name": "Website Design for Small Business", "pinterest_board_id": null, "category": "web_design"},
+    {"name": "Creator Business & Publishing", "pinterest_board_id": null, "category": "publishing"},
+    {"name": "Digital Products", "pinterest_board_id": null, "category": "digital_products"},
+    {"name": "Business Automation", "pinterest_board_id": null, "category": "automation"},
+    {"name": "Author Marketing", "pinterest_board_id": null, "category": "publishing"},
+    {"name": "Content Creation", "pinterest_board_id": null, "category": "marketing"},
+    {"name": "Entrepreneurship", "pinterest_board_id": null, "category": "marketing"}
+  ],
+  "note": "pinterest_board_id is populated by `pinterest sync-boards` once Pinterest OAuth credentials are available. Boards without a matching name on the connected Pinterest account can optionally be created via the API."
+}
