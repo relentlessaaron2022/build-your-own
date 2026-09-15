@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WEBFILMBOOKS &mdash; Web. Film. Books. Atlanta Multimedia House</title>
+<meta name="description" content="WebFilmBooks.com LLC is an Atlanta multimedia production house. Websites and AI branding, film and video production, and book publishing, under one roof. Founded by Relentless Aaron, 200+ novels published.">
+<meta name="theme-color" content="#0A0806">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230A0806'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23FFC24B'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WEBFILMBOOKS &mdash; Web. Film. Books.">
+<meta property="og:description" content="Atlanta multimedia house. Websites, film, and books under one roof. Where creativity meets profitability.">
+<meta property="og:url" content="https://webfilmbooks.com/">
+<meta property="og:site_name" content="WebFilmBooks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WEBFILMBOOKS &mdash; Web. Film. Books.">
+<meta name="twitter:description" content="Atlanta multimedia house. Websites, film, and books under one roof.">
+<style>
+  :root{
+    --bg:#0A0806; --bg2:#120D08; --panel:#171009;
+    --gold:#FFC24B; --amber:#FF8A00; --crimson:#E23A2E;
+    --ink:#F6EFE3; --mute:#B9AC97; --faint:#7C7263;
+    --line:rgba(255,194,75,.14);
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  canvas#embers{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.85}
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{position:relative;z-index:2}
+  .container{max-width:1160px;margin:0 auto;padding:0 26px}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:linear-gradient(180deg,rgba(10,8,6,.92),rgba(10,8,6,.62));border-bottom:1px solid var(--line)}
+  .nav .container{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.14em;font-size:15px}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold),var(--crimson));box-shadow:0 0 14px var(--amber)}
+  .brand b{color:var(--gold)} .brand span{color:var(--ink)}
+  nav.links{display:flex;gap:22px;align-items:center}
+  nav.links a{font-size:13.5px;letter-spacing:.06em;color:var(--mute);transition:color .2s}
+  nav.links a:hover{color:var(--gold)}
+  .cta-btn{display:inline-block;padding:11px 20px;border-radius:999px;font-weight:700;font-size:13.5px;letter-spacing:.03em;
+    color:#1a1206;background:linear-gradient(135deg,var(--gold),var(--amber));box-shadow:0 6px 22px rgba(255,138,0,.28);transition:transform .15s,box-shadow .2s}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,138,0,.42)}
+  .cta-green{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:999px;font-weight:800;font-size:12px;
+    letter-spacing:.05em;color:#06210f;background:linear-gradient(135deg,#39E67B,#12C55E);white-space:nowrap;
+    box-shadow:0 0 0 1px rgba(57,230,123,.5),0 6px 20px rgba(34,197,94,.35);animation:greenpulse 2.6s infinite;transition:transform .15s}
+  .cta-green:hover{transform:translateY(-2px)}
+  .cta-green .gdot{width:6px;height:6px;border-radius:50%;background:#06210f;opacity:.75}
+  @keyframes greenpulse{0%,100%{box-shadow:0 0 0 1px rgba(57,230,123,.5),0 6px 20px rgba(34,197,94,.28)}
+    50%{box-shadow:0 0 0 1px rgba(57,230,123,.85),0 8px 30px rgba(34,197,94,.6)}}
+  .navtoggle{display:none;background:none;border:0;color:var(--gold);font-size:24px;cursor:pointer}
+
+  /* HERO */
+  .hero{position:relative;padding:118px 0 96px;text-align:center}
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+    border:1px solid var(--line);border-radius:999px;padding:8px 17px;margin-bottom:34px;background:rgba(255,194,75,.04)}
+  .kicker .pulse{width:7px;height:7px;border-radius:50%;background:var(--crimson);box-shadow:0 0 10px var(--crimson);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-family:var(--sans);font-weight:800;letter-spacing:-.02em;line-height:.94;
+    font-size:clamp(52px,10vw,132px);margin-bottom:8px}
+  .hero h1 .w{color:var(--gold)} .hero h1 .f{color:var(--amber)} .hero h1 .b{color:var(--crimson)}
+  .hero h1 .sep{color:var(--faint);font-weight:300}
+  .hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(21px,3vw,30px);color:var(--ink);margin:22px 0 10px}
+  .hero .lede{max-width:660px;margin:18px auto 40px;color:var(--mute);font-size:17px}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .ghost-btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:.02em;
+    color:var(--ink);border:1px solid var(--line);background:rgba(255,255,255,.02);transition:border-color .2s,transform .15s}
+  .ghost-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .big-btn{padding:14px 30px;font-size:14.5px}
+
+  /* PRESS STRIP */
+  .press{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;margin-top:46px;background:rgba(0,0,0,.25)}
+  .press .container{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 34px}
+  .press .lbl{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint);width:100%;text-align:center;margin-bottom:4px}
+  .press b{font-family:var(--serif);font-size:16px;color:var(--mute);letter-spacing:.02em;white-space:nowrap}
+
+  /* SECTION SHELL */
+  section{position:relative;padding:92px 0}
+  .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+  .h2{font-size:clamp(30px,4.6vw,46px);font-weight:800;letter-spacing:-.01em;line-height:1.05}
+  .h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold)}
+  .sec-lede{color:var(--mute);max-width:600px;margin-top:16px;font-size:16.5px}
+
+  /* PILLARS */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+  .pillar{position:relative;border:1px solid var(--line);border-radius:18px;padding:34px 28px 30px;overflow:hidden;
+    background:linear-gradient(180deg,var(--panel),rgba(10,8,6,.4));transition:transform .25s,border-color .25s}
+  .pillar:hover{transform:translateY(-6px);border-color:rgba(255,194,75,.42)}
+  .pillar .num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--faint)}
+  .pillar h3{font-size:30px;font-weight:800;letter-spacing:.02em;margin:6px 0 4px}
+  .pillar.w h3{color:var(--gold)} .pillar.f h3{color:var(--amber)} .pillar.b h3{color:var(--crimson)}
+  .pillar .tag{font-family:var(--serif);font-style:italic;color:var(--mute);font-size:15px;margin-bottom:18px}
+  .pillar ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .pillar li{font-size:14px;color:var(--ink);padding-left:20px;position:relative;opacity:.9}
+  .pillar li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--amber))}
+  .pillar .edge{position:absolute;top:0;left:0;right:0;height:3px}
+  .pillar.w .edge{background:linear-gradient(90deg,var(--gold),transparent)}
+  .pillar.f .edge{background:linear-gradient(90deg,var(--amber),transparent)}
+  .pillar.b .edge{background:linear-gradient(90deg,var(--crimson),transparent)}
+
+  /* FOUNDER */
+  .founder{background:linear-gradient(180deg,rgba(18,13,8,.7),rgba(10,8,6,0))}
+  .founder-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:54px;align-items:center;margin-top:12px}
+  .portrait{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;
+    background:radial-gradient(120% 90% at 50% 0%,#241a10,#0c0906)}
+  .portrait-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 30%}
+  .portrait-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:34px 18px 15px;font-family:var(--serif);
+    font-style:italic;font-size:18px;color:var(--ink);background:linear-gradient(180deg,transparent,rgba(10,8,6,.94))}
+  .portrait .inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px}
+  .portrait .mono{font-family:var(--serif);font-style:italic;font-size:64px;color:var(--gold);line-height:1;text-shadow:0 0 40px rgba(255,138,0,.4)}
+  .portrait .cap{margin-top:16px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+  .portrait .ph{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:11px;color:var(--faint);letter-spacing:.1em}
+  .founder h2 em{color:var(--gold)}
+  .founder p{color:var(--mute);margin-top:16px;font-size:16px}
+  .founder p b{color:var(--ink);font-weight:600}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+  .stat{border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center;background:rgba(0,0,0,.25)}
+  .stat .n{font-size:26px;font-weight:800;color:var(--gold);line-height:1}
+  .stat .l{font-size:11px;color:var(--mute);margin-top:7px;letter-spacing:.04em}
+
+  /* WORK */
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+  .work{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1/1;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:22px;transition:transform .25s,border-color .25s}
+  .work:hover{transform:translateY(-5px);border-color:rgba(255,194,75,.4)}
+  .work::before{content:"";position:absolute;inset:0;z-index:0;opacity:.9}
+  .work.a::before{background:radial-gradient(120% 100% at 20% 10%,#3a2410,#0c0906)}
+  .work.b::before{background:radial-gradient(120% 100% at 80% 10%,#3a140f,#0c0906)}
+  .work.c::before{background:radial-gradient(120% 100% at 50% 0%,#2a2410,#0c0906)}
+  .work.d::before{background:radial-gradient(120% 100% at 30% 90%,#331a0a,#0c0906)}
+  .work.e::before{background:radial-gradient(120% 100% at 70% 90%,#2a1010,#0c0906)}
+  .work.f::before{background:radial-gradient(120% 100% at 50% 50%,#241c10,#0c0906)}
+  .work>*{position:relative;z-index:1}
+  .work .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+  .work .t{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--ink)}
+  .work .art{position:absolute;top:8%;left:0;right:0;bottom:30%;display:flex;align-items:center;justify-content:center;z-index:1}
+  .work .art svg{width:62%;height:100%;max-width:148px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.45))}
+  .work::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,4,0) 46%,rgba(8,6,4,.82));z-index:2}
+  .work>.k,.work>.t{z-index:3}
+
+  /* QUOTE */
+  .quote{text-align:center}
+  .quote blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(24px,3.6vw,38px);line-height:1.3;max-width:900px;margin:0 auto;color:var(--ink)}
+  .quote blockquote span{color:var(--gold)}
+  .quote .by{margin-top:26px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+
+  /* CTA */
+  .final{text-align:center;background:radial-gradient(90% 130% at 50% 0%,rgba(255,138,0,.10),transparent)}
+  .final h2{font-size:clamp(34px,5.4vw,58px);font-weight:800;letter-spacing:-.01em;line-height:1.02}
+  .final h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold)}
+  .final p{color:var(--mute);max-width:560px;margin:18px auto 34px;font-size:17px}
+  .intake{max-width:560px;margin:0 auto 26px;text-align:left}
+  .field-row{display:flex;gap:12px;margin-bottom:12px}
+  .field-row .fld{flex:1;min-width:0}
+  .fld{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:12px;color:var(--ink);
+    font-family:var(--sans);font-size:15px;padding:13px 15px;margin-bottom:12px;transition:border-color .2s;outline:none}
+  .fld::placeholder{color:var(--faint)}
+  .fld:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,194,75,.10)}
+  select.fld{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);
+    background-position:calc(100% - 20px) 20px,calc(100% - 14px) 20px;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+  select.fld option{background:var(--bg2);color:var(--ink)}
+  textarea.fld{resize:vertical;min-height:96px}
+  .intake .cta-btn{width:100%;text-align:center;border:0;cursor:pointer;margin-top:4px}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+  .form-note{margin-top:14px;text-align:center;font-size:14px;min-height:20px}
+  .form-note.ok{color:var(--gold)} .form-note.err{color:var(--crimson)}
+  .contact-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+  .contact-chip{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;border:1px solid var(--line);
+    color:var(--ink);font-size:14.5px;background:rgba(0,0,0,.25);transition:border-color .2s}
+  .contact-chip:hover{border-color:var(--gold)}
+  .contact-chip b{color:var(--gold);font-weight:600}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:44px 0 54px;margin-top:20px}
+  footer .container{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+  footer .fb{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.12em;color:var(--gold)}
+  footer .fnav{display:flex;gap:22px;flex-wrap:wrap}
+  footer .fnav a{font-size:13px;color:var(--mute)} footer .fnav a:hover{color:var(--gold)}
+  footer .fine{width:100%;text-align:center;color:var(--faint);font-size:12px;margin-top:22px;letter-spacing:.03em}
+
+  @media(max-width:880px){
+    nav.links{display:none}
+    .nav .container>.cta-btn{display:none}
+    .navtoggle{display:block}
+    .pillars{grid-template-columns:1fr}
+    .founder-grid{grid-template-columns:1fr;gap:34px}
+    .portrait{max-width:340px;margin:0 auto}
+    .work-grid{grid-template-columns:1fr 1fr}
+    .stats{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:520px){
+    .container{padding:0 20px}
+    .work-grid{grid-template-columns:1fr}
+    .hero{padding:74px 0 70px}
+    .hero h1{font-size:clamp(44px,15vw,72px);line-height:.98}
+    .kicker{letter-spacing:.14em;font-size:10.5px;padding:8px 14px;text-align:center;
+      max-width:100%;flex-wrap:wrap;justify-content:center;line-height:1.5}
+    .hero h1{overflow-wrap:break-word}
+    .press b{font-size:14px;white-space:normal}
+    .field-row{flex-direction:column;gap:0}
+    .stats{grid-template-columns:repeat(2,1fr)}
+  }
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  /* mobile dropdown menu */
+  .mobile-menu{display:none;flex-direction:column;gap:2px;padding:10px 26px 18px;border-bottom:1px solid var(--line);
+    background:rgba(10,8,6,.97)}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{padding:12px 4px;font-size:16px;color:var(--ink);border-bottom:1px solid rgba(255,194,75,.07)}
+  .mobile-menu a.green{color:#39E67B;font-weight:800}
+  .mobile-menu a:last-child{border-bottom:0;color:var(--gold);font-weight:700}
+</style>
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+<canvas id="embers"></canvas>
+<div class="grain"></div>
+
+<div class="wrap">
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="#top"><span class="dot"></span><b>WEB</b><span>FILM</span><b>BOOKS</b></a>
+      <nav class="links">
+        <a href="#pillars">What We Do</a>
+        <a href="#founder">The Founder</a>
+        <a href="#work">The Work</a>
+        <a href="https://webfilmbooks.com/blog/" target="_top">Blog</a>
+        <a class="cta-green" href="webfilmbooks-web-design.html"><span class="gdot"></span>WEB DESIGN DEPT</a>
+      </nav>
+      <a class="cta-btn" href="#contact">Start a Project</a>
+      <button class="navtoggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#pillars">What We Do</a>
+      <a href="#founder">The Founder</a>
+      <a href="#work">The Work</a>
+      <a href="https://webfilmbooks.com/blog/" target="_top">Blog</a>
+      <a class="green" href="webfilmbooks-web-design.html">Web Design Dept</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact">Start a Project</a>
+    </div>
+  </header>
+
+  <a id="top"></a>
+  <section class="hero">
+    <div class="container">
+      <div class="kicker"><span class="pulse"></span> Atlanta Multimedia Production House</div>
+      <h1><span class="w">WEB</span><span class="sep">.</span> <span class="f">FILM</span><span class="sep">.</span> <span class="b">BOOKS</span><span class="sep">.</span></h1>
+      <div class="sub">Where creativity meets profitability.</div>
+      <p class="lede">One house for the three things that build a brand and a legacy: the sites that sell, the films that move people, and the books that outlive us all. Powered by expert craft and AI.</p>
+      <section class="wfb-brands">
+<style>
+.wfb-brands{padding:16px 0 10px;margin-bottom:38px;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.wfb-brands .wb-eb{text-align:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#FFC24B;margin:0 0 15px;font-weight:600}
+.wfb-brands + .hero-actions{margin-top:10px}
+.wfb-brands .wb-row{display:flex;flex-wrap:wrap;justify-content:center;gap:13px 15px}
+.wfb-brands .wb-badge{width:86px;height:86px;border-radius:50%;border:1px solid rgba(255,194,75,.28);display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;transition:border-color .25s,transform .25s}
+.wfb-brands .wb-badge:hover{border-color:#FFC24B;transform:translateY(-2px)}
+.wfb-brands .wb-badge>span{font-size:10.5px;line-height:1.12;font-weight:600;color:#F6EFE3}
+.wfb-brands .wb-badge.serif>span{font-family:Georgia,'Times New Roman',serif;font-weight:700}
+.wfb-brands .sm{font-size:9px}.wfb-brands .gu{font-size:7.5px;letter-spacing:.06em;color:#FFC24B}
+@media(max-width:560px){.wfb-brands .wb-badge{width:74px;height:74px;padding:6px}.wfb-brands .wb-badge>span{font-size:9.5px}}
+</style>
+<p class="wb-eb">Brands Worked With</p>
+<div class="wb-row">
+<div class="wb-badge serif"><span class="sm">St. Martin&#8217;s<br>Press</span></div>
+<div class="wb-badge serif"><span class="sm">Simon &amp;<br>Schuster</span></div>
+<div class="wb-badge"><span class="sm">50 CENT<br><span class="gu">G-UNIT</span></span></div>
+<div class="wb-badge"><span>Starbucks</span></div>
+<div class="wb-badge"><span>McDonald&#8217;s</span></div>
+<div class="wb-badge serif"><span>Dr. Dennis<br>Kimbro</span></div>
+</div>
+</section>
+<div class="hero-actions">
+        <a class="cta-btn big-btn" href="#contact">Start a Project</a>
+        <a class="ghost-btn big-btn" href="#work">See the Work</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="press">
+    <div class="container">
+      <div class="lbl">As Featured On</div>
+      <b>ABC World News Tonight</b><b>Good Morning America</b><b>The New York Times</b><b>TIME</b><b>VIBE</b><b>NPR</b><b>New York Daily News</b>
+    </div>
+  </div>
+
+  <section id="pillars">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">Three Divisions. One Vision.</div>
+        <h2 class="h2">The name is the <em>promise</em>.</h2>
+        <p class="sec-lede">WebFilmBooks.com LLC is a full multimedia house. Whatever your story needs to reach the world, we build it in-house.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar w reveal"><div class="edge"></div>
+          <div class="num">i.</div><h3>WEB</h3>
+          <div class="tag">Sites, brands & AI marketing</div>
+          <ul>
+            <li>Websites that convert</li>
+            <li>Luxury branding & identity</li>
+            <li>AI-powered marketing visuals</li>
+            <li>Social & content strategy</li>
+            <li>Credit repair consulting</li>
+          </ul>
+        </div>
+        <div class="pillar f reveal"><div class="edge"></div>
+          <div class="num">ii.</div><h3>FILM</h3>
+          <div class="tag">Camera, edit & production</div>
+          <ul>
+            <li>Documentaries & short films</li>
+            <li>TV commercials & web series</li>
+            <li>Podcasts & video editing</li>
+            <li>Event & DVD production</li>
+            <li>Television production</li>
+          </ul>
+        </div>
+        <div class="pillar b reveal"><div class="edge"></div>
+          <div class="num">iii.</div><h3>BOOKS</h3>
+          <div class="tag">Write, publish & mentor</div>
+          <ul>
+            <li>Ghostwriting & book development</li>
+            <li>Self & indie publishing</li>
+            <li>Author mentorship</li>
+            <li>Catalog & rights strategy</li>
+            <li>200+ novels of experience</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="founder" class="founder">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">The Founder</div>
+        <h2 class="h2">The most <em>relentless</em> voice in the room.</h2>
+      </div>
+      <div class="founder-grid">
+        <div class="portrait reveal">
+          <img class="portrait-img" src="https://webfilmbooks.com/wp-content/uploads/2025/04/out-0-67.jpg" alt="Relentless Aaron, founder of WebFilmBooks" loading="lazy">
+          <div class="portrait-cap">Relentless Aaron</div>
+        </div>
+        <div class="reveal">
+          <p>Born <b>DeWitt Gilmore</b> in 1965 and raised in Mount Vernon, New York, <b>Relentless Aaron</b> turned a six-year prison sentence into a purpose. Behind bars he wrote dozens of novels from street-level truth. On release he self-published and sold <b>over 200,000 books by hand</b> before signing a landmark 14-book deal with St. Martin's Press.</p>
+          <p>He went on to write for billionaire rapper <b>50 Cent</b> under the G-Unit Books imprint at Simon & Schuster, published standouts like <b>Push</b>, <b>The Last Kingpin</b>, and <b>Extra Marital Affairs</b>, launched The Superstar Magazine, and built a multimedia empire through WebFilmBooks. Today he blends storytelling with AI, design, and mentorship.</p>
+          <div class="stats">
+            <div class="stat"><div class="n">200+</div><div class="l">Novels published</div></div>
+            <div class="stat"><div class="n">200K</div><div class="l">Books sold by hand</div></div>
+            <div class="stat"><div class="n">14</div><div class="l">Book St. Martin's deal</div></div>
+            <div class="stat"><div class="n">7+</div><div class="l">National features</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">The Work</div>
+        <h2 class="h2">Stories told across <em>every</em> medium.</h2>
+        <p class="sec-lede">A snapshot of what the house produces. Real project reels drop in here.</p>
+      </div>
+      <div class="work-grid">
+        <div class="work a reveal">
+          <div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#FFC24B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+            <circle cx="41" cy="41" r="13" fill="#160f07"/><circle cx="68" cy="41" r="13" fill="#160f07"/>
+            <rect x="26" y="54" width="55" height="34" rx="5" fill="#160f07"/>
+            <path d="M81 64 L98 55 V87 L81 78 Z" fill="#160f07"/>
+            <circle cx="41" cy="41" r="4" fill="#FF8A00" stroke="none"/><circle cx="68" cy="41" r="4" fill="#FF8A00" stroke="none"/>
+          </svg></div>
+          <div class="k">Film</div><div class="t">Documentary Feature</div></div>
+        <div class="work b reveal">
+          <div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#FFC24B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="24" y="30" width="72" height="58" rx="6" fill="#160f07"/><path d="M24 45 H96"/>
+            <circle cx="34" cy="37" r="2.4" fill="#FFC24B" stroke="none"/><circle cx="42" cy="37" r="2.4" fill="#FFC24B" stroke="none"/>
+            <polyline points="35,77 50,64 60,71 80,50" stroke="#FF8A00"/><path d="M71 50 H80 V59" stroke="#FF8A00"/>
+          </svg></div>
+          <div class="k">Web</div><div class="t">Brand Transformation</div></div>
+        <div class="work c reveal">
+          <div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#FFC24B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M60 42 C50 34 36 34 28 38 V86 C36 82 50 82 60 88 C70 82 84 82 92 86 V38 C84 34 70 34 60 42 Z" fill="#160f07"/>
+            <path d="M60 42 V88"/>
+            <path d="M60 20 l3.2 7.4 8 1 -5.9 5.4 1.6 8 -6.9 -4 -6.9 4 1.6 -8 -5.9 -5.4 8 -1 Z" fill="#FF8A00" stroke="none"/>
+          </svg></div>
+          <div class="k">Books</div><div class="t">Bestselling Novel Launch</div></div>
+        <div class="work d reveal">
+          <div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#FFC24B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M43 30 C28 39 26 64 41 86" stroke="#FFC24B"/><path d="M77 30 C92 39 94 64 79 86" stroke="#FFC24B"/>
+            <path d="M60 40 l4 9 10 1 -7.6 6.8 2.2 10 -8.6 -5.2 -8.6 5.2 2.2 -10 -7.6 -6.8 10 -1 Z" fill="#FF8A00" stroke="none"/>
+            <path d="M41 86 H79"/>
+          </svg></div>
+          <div class="k">Film</div><div class="t">Award-Winning Short</div></div>
+        <div class="work e reveal">
+          <div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#FFC24B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M60 24 C74 34 78 54 74 72 H46 C42 54 46 34 60 24 Z" fill="#160f07"/>
+            <circle cx="60" cy="48" r="7" fill="#FF8A00" stroke="none"/>
+            <path d="M46 65 L33 74 L45 74 Z" fill="#160f07"/><path d="M74 65 L87 74 L75 74 Z" fill="#160f07"/>
+            <path d="M52 78 C54 90 66 90 68 78" stroke="#FF8A00"/>
+          </svg></div>
+          <div class="k">Web</div><div class="t">AI Marketing Campaign</div></div>
+        <div class="work f reveal">
+          <div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#FFC24B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="50" y="26" width="20" height="40" rx="10" fill="#160f07"/>
+            <path d="M38 54 a22 22 0 0 0 44 0"/><path d="M60 76 V88 M50 88 H70"/>
+            <path d="M28 46 C24 52 24 60 28 66" stroke="#FF8A00"/><path d="M92 46 C96 52 96 60 92 66" stroke="#FF8A00"/>
+          </svg></div>
+          <div class="k">Media</div><div class="t">Podcast &amp; Series</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="container reveal">
+      <blockquote>We build the sites that sell, the films that move people, and the books that <span>outlive us all</span>. One house. One standard.</blockquote>
+      <div class="by">The WebFilmBooks Promise</div>
+    </div>
+  </section>
+
+  <section id="contact" class="final">
+    <div class="container reveal">
+      <h2>Transform your vision <em>into reality</em>.</h2>
+      <p>Tell us what you're building. Web, film, book, or all three, the house is open.</p>
+
+      <form id="intake" class="intake" novalidate>
+        <input type="text" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+        <div class="field-row">
+          <input class="fld" type="text" name="name" placeholder="Your name" required>
+          <input class="fld" type="email" name="email" placeholder="Your email" required>
+        </div>
+        <div class="field-row">
+          <select class="fld" name="project_type" required aria-label="What do you need">
+            <option value="" disabled selected>What do you need?</option>
+            <option>Web / branding / AI marketing</option>
+            <option>Film / video / production</option>
+            <option>Book / publishing / ghostwriting</option>
+            <option>All three / not sure yet</option>
+          </select>
+          <input class="fld" type="tel" name="phone" placeholder="Phone (optional)">
+        </div>
+        <textarea class="fld" name="message" rows="4" placeholder="Tell us about the project, timeline, and budget." required></textarea>
+        <button class="cta-btn big-btn" type="submit" id="intake-btn">Send Project Inquiry</button>
+        <div class="form-note" id="form-note"></div>
+      </form>
+
+      <div class="contact-row">
+        <a class="contact-chip" href="mailto:relentlessaaron2007@gmail.com">Email <b>relentlessaaron2007@gmail.com</b></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="fb"><span style="width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold),var(--crimson));display:inline-block"></span> WEBFILMBOOKS</div>
+      <nav class="fnav">
+        <a href="#pillars">What We Do</a>
+        <a href="#founder">The Founder</a>
+        <a href="#work">The Work</a>
+        <a href="https://webfilmbooks.com/blog/" target="_top">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="fine">WebFilmBooks.com LLC &middot; Atlanta, Georgia &middot; Creativity Meets Profitability</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var c=document.getElementById('embers'),x=c.getContext('2d'),W,H,ps=[];
+  function size(){W=c.width=innerWidth;H=c.height=innerHeight}
+  function mk(){return{x:Math.random()*W,y:H+Math.random()*H*0.4,r:Math.random()*2.2+0.6,
+    s:Math.random()*0.7+0.25,d:Math.random()*0.6-0.3,l:Math.random()}}
+  function init(){ps=[];for(var i=0;i<70;i++){var p=mk();p.y=Math.random()*H;ps.push(p)}}
+  size();init();addEventListener('resize',function(){size();init()});
+  function tick(){
+    x.clearRect(0,0,W,H);
+    for(var i=0;i<ps.length;i++){var p=ps[i];
+      p.y-=p.s;p.x+=p.d;p.l+=0.01;
+      if(p.y<-10){ps[i]=mk()}
+      var a=0.5+Math.sin(p.l)*0.4;
+      var g=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);
+      g.addColorStop(0,'rgba(255,180,70,'+a+')');
+      g.addColorStop(1,'rgba(226,58,46,0)');
+      x.fillStyle=g;x.beginPath();x.arc(p.x,p.y,p.r*3,0,6.28);x.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.12});
+    reveals.forEach(function(el){io.observe(el)});
+    setTimeout(function(){reveals.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in')})},400);
+  } else { reveals.forEach(function(el){el.classList.add('in')}); }
+
+  var tog=document.querySelector('.navtoggle'),mm=document.getElementById('mobile-menu');
+  if(tog&&mm){
+    tog.addEventListener('click',function(){
+      var open=mm.classList.toggle('open');
+      tog.setAttribute('aria-expanded',open?'true':'false');
+      tog.innerHTML=open?'&times;':'&#9776;';
+    });
+    mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
+      mm.classList.remove('open');tog.setAttribute('aria-expanded','false');tog.innerHTML='&#9776;';
+    })});
+  }
+
+  var f=document.getElementById('intake');
+  if(f){f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var note=document.getElementById('form-note'),btn=document.getElementById('intake-btn');
+    if(f.botcheck.value){return}
+    if(!f.name.value||!f.email.value||!f.project_type.value||!f.message.value){
+      note.className='form-note err';note.textContent='Please fill in your name, email, project type, and message.';return}
+    btn.textContent='Sending...';btn.style.opacity=.7;note.textContent='';note.className='form-note';
+    var data={access_key:'37db299f-661c-4e74-9a60-c0a3c0ff29f4',
+      subject:'New WebFilmBooks Project Inquiry',from_name:'WebFilmBooks Site',
+      name:f.name.value,email:f.email.value,phone:f.phone.value,
+      project_type:f.project_type.value,message:f.message.value};
+    fetch('https://api.web3forms.com/submit',{method:'POST',
+      headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json()}).then(function(j){
+        if(j.success){f.reset();note.className='form-note ok';note.textContent='Got it. We will reach out shortly. Thank you.';btn.textContent='Sent';}
+        else{note.className='form-note err';note.textContent='Something went wrong. Email relentlessaaron2007@gmail.com directly.';btn.textContent='Send Project Inquiry';btn.style.opacity=1;}
+      }).catch(function(){
+        note.className='form-note err';note.textContent='Network error. Email relentlessaaron2007@gmail.com directly.';btn.textContent='Send Project Inquiry';btn.style.opacity=1;});
+  });}
+})();
+</script>
+</body>
+</html>
