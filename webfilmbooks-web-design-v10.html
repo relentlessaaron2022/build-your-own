@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- webfilmbooks-web-design-v10 -->
+<title>Web Design Department &mdash; WEBFILMBOOKS | Sites from $199</title>
+<meta name="description" content="Professional websites from $199. Start for as little as $99 down. See 23 sample designs and the full price sheet from the WebFilmBooks Web Design Department, Atlanta.">
+<meta name="theme-color" content="#0A0806">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230A0806'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%2339E67B'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Web Design Department &mdash; Sites from $199">
+<meta property="og:description" content="Professional websites from $199. Start for as little as $99 down. 23 sample designs + full pricing.">
+<meta property="og:url" content="https://webfilmbooks.com/web-design/">
+<style>
+  :root{
+    --bg:#0A0806; --bg2:#120D08; --panel:#171009;
+    --gold:#FFC24B; --amber:#FF8A00; --crimson:#E23A2E; --green:#39E67B; --green2:#12C55E;
+    --ink:#F6EFE3; --mute:#B9AC97; --faint:#7C7263;
+    --line:rgba(255,194,75,.14);
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  canvas#embers{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.85}
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{position:relative;z-index:2}
+  .container{max-width:1160px;margin:0 auto;padding:0 26px}
+
+  header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:linear-gradient(180deg,rgba(10,8,6,.92),rgba(10,8,6,.62));border-bottom:1px solid var(--line)}
+  .nav .container{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.14em;font-size:15px;flex-shrink:0}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold),var(--crimson));box-shadow:0 0 14px var(--amber)}
+  .brand b{color:var(--gold)} .brand span{color:var(--ink)}
+  nav.links{display:flex;gap:24px;align-items:center;margin-left:auto}
+  nav.links a{font-size:13.5px;letter-spacing:.06em;color:var(--mute);transition:color .2s;white-space:nowrap}
+  nav.links a:hover{color:var(--gold)}
+  .cta-green{display:inline-flex;align-items:center;gap:7px;padding:10px 17px;border-radius:999px;font-weight:800;font-size:12.5px;
+    letter-spacing:.05em;color:#06210f;background:linear-gradient(135deg,var(--green),var(--green2));white-space:nowrap;
+    box-shadow:0 0 0 1px rgba(57,230,123,.5),0 6px 20px rgba(34,197,94,.35);animation:greenpulse 2.6s infinite;transition:transform .15s}
+  .cta-green:hover{transform:translateY(-2px)}
+  .cta-green .gdot{width:7px;height:7px;border-radius:50%;background:#06210f;opacity:.75}
+  @keyframes greenpulse{0%,100%{box-shadow:0 0 0 1px rgba(57,230,123,.5),0 6px 20px rgba(34,197,94,.28)}
+    50%{box-shadow:0 0 0 1px rgba(57,230,123,.85),0 8px 30px rgba(34,197,94,.6)}}
+  .cta-btn{display:inline-block;padding:11px 20px;border-radius:999px;font-weight:700;font-size:13.5px;letter-spacing:.03em;
+    color:#1a1206;background:linear-gradient(135deg,var(--gold),var(--amber));box-shadow:0 6px 22px rgba(255,138,0,.28);transition:transform .15s,box-shadow .2s}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,138,0,.42)}
+  .navtoggle{display:none;background:none;border:0;color:var(--gold);font-size:24px;cursor:pointer}
+  .mobile-menu{display:none;flex-direction:column;gap:2px;padding:10px 26px 18px;border-bottom:1px solid var(--line);background:rgba(10,8,6,.97)}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{padding:12px 4px;font-size:16px;color:var(--ink);border-bottom:1px solid rgba(255,194,75,.07)}
+  .mobile-menu a.green{color:var(--green);font-weight:800}
+  .mobile-menu a:last-child{border-bottom:0;color:var(--gold);font-weight:700}
+
+  .hero{position:relative;padding:96px 0 60px;text-align:center}
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--green);
+    border:1px solid rgba(57,230,123,.35);border-radius:999px;padding:8px 17px;margin-bottom:28px;background:rgba(57,230,123,.05);max-width:100%;flex-wrap:wrap;justify-content:center}
+  .kicker .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-weight:800;letter-spacing:-.02em;line-height:1;font-size:clamp(42px,7.6vw,84px);margin-bottom:14px}
+  .hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--green)}
+  .hero .lede{max-width:640px;margin:6px auto 12px;color:var(--mute);font-size:18px}
+  .price-flag{display:inline-flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;align-items:center;margin:22px auto 30px}
+  .price-flag .pf{font-size:15px;color:var(--ink)} .price-flag .pf b{color:var(--green);font-weight:800}
+  .price-flag .sep{color:var(--faint)}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .ghost-btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:600;font-size:14px;color:var(--ink);
+    border:1px solid var(--line);background:rgba(255,255,255,.02);transition:border-color .2s,transform .15s}
+  .ghost-btn:hover{border-color:var(--green);transform:translateY(-2px)}
+  .green-btn{display:inline-block;padding:15px 30px;border-radius:999px;font-weight:800;font-size:15px;letter-spacing:.02em;color:#06210f;
+    background:linear-gradient(135deg,var(--green),var(--green2));box-shadow:0 8px 26px rgba(34,197,94,.4);transition:transform .15s,box-shadow .2s}
+  .green-btn:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(34,197,94,.55)}
+
+  section{position:relative;padding:70px 0}
+  .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--green);margin-bottom:12px;text-align:center}
+  .h2{font-size:clamp(28px,4.4vw,42px);font-weight:800;letter-spacing:-.01em;line-height:1.05;text-align:center}
+  .h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold)}
+  .sec-lede{color:var(--mute);max-width:600px;margin:14px auto 0;font-size:16px;text-align:center}
+
+  /* SAMPLES */
+  .samples-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
+  .sample{display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0c0906;position:relative;
+    transition:transform .22s,border-color .22s,box-shadow .22s}
+  .sample:hover{transform:translateY(-6px);border-color:rgba(57,230,123,.55);box-shadow:0 16px 36px rgba(0,0,0,.5)}
+  .sample .chrome{height:24px;display:flex;align-items:center;gap:5px;padding:0 9px;background:#17110a;border-bottom:1px solid var(--line)}
+  .sample .dot{width:7px;height:7px;border-radius:50%}
+  .sample .url{margin-left:6px;flex:1;min-width:0;font-size:8.5px;color:var(--faint);background:#0c0906;border:1px solid var(--line);
+    border-radius:20px;padding:2px 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sample .view{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden}
+  .sample .meta{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-top:1px solid var(--line)}
+  .sample .meta .cat{font-size:11.5px;color:var(--mute);letter-spacing:.03em}
+  .sample .meta .go{font-size:11.5px;font-weight:800;color:var(--green);display:inline-flex;align-items:center;gap:4px}
+
+  /* mini-site mockups */
+  .mini{position:absolute;inset:0;display:flex;flex-direction:column;font-family:var(--sans)}
+  .mini.light{background:#f6f4f0;color:#1c2128}
+  .mini.dark{background:#12141b;color:#eef1f6}
+  .m-nav{display:flex;align-items:center;justify-content:space-between;padding:7px 11px}
+  .m-logo{font-weight:800;font-size:9.5px;letter-spacing:.01em}
+  .m-links{display:flex;gap:6px}
+  .m-links i{display:inline-block;width:10px;height:2px;border-radius:2px;background:currentColor;opacity:.35}
+  .m-btn{display:inline-block;font-size:7.5px;font-weight:800;padding:4px 9px;border-radius:6px;color:#fff;letter-spacing:.02em}
+  .m-h1{font-weight:800;letter-spacing:-.015em;line-height:1.04}
+  .m-p{opacity:.62;line-height:1.35;font-size:7.5px;margin-top:4px}
+  .m-pad{padding:4px 11px 0}
+  .m-pad .m-h1{font-size:15px}
+  .m-band{margin-top:auto;height:34%;width:100%}
+  .m-split{display:flex;gap:9px;padding:6px 11px;align-items:center;flex:1}
+  .m-col{flex:1}
+  .m-col .m-h1{font-size:12px}
+  .m-img{flex:1;align-self:stretch;border-radius:6px;min-height:40px}
+  .m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:5px 11px 10px}
+  .m-thumb{aspect-ratio:1;border-radius:5px}
+  .m-center{align-items:center;justify-content:center;text-align:center;gap:7px;padding:10px}
+  .m-badge{width:22px;height:22px;border-radius:7px}
+  .m-center .m-logo{font-size:13px}
+  .m-center .m-h1{font-size:11px;max-width:80%}
+
+  /* PRICING */
+  .pricing{background:linear-gradient(180deg,rgba(18,13,8,.6),rgba(10,8,6,0))}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;align-items:stretch}
+  .tier{border:1px solid var(--line);border-radius:18px;padding:30px 26px;background:linear-gradient(180deg,var(--panel),rgba(10,8,6,.4));
+    position:relative;display:flex;flex-direction:column}
+  .tier.pop{border-color:rgba(57,230,123,.55);box-shadow:0 0 0 1px rgba(57,230,123,.22),0 18px 44px rgba(0,0,0,.45)}
+  .tier .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--green),var(--green2));
+    color:#06210f;font-size:11px;font-weight:800;letter-spacing:.08em;padding:5px 15px;border-radius:999px;white-space:nowrap}
+  .tier h3{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .tier.pop h3{color:var(--green)}
+  .tier .price{font-size:46px;font-weight:800;margin:12px 0 2px;line-height:1}
+  .tier .price small{font-size:16px;color:var(--mute);font-weight:600;letter-spacing:.01em}
+  .tier .who{color:var(--mute);font-size:14px;font-family:var(--serif);font-style:italic;margin:6px 0 18px}
+  .tier ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;flex:1}
+  .tier li{font-size:13.5px;padding-left:22px;position:relative;color:var(--ink)}
+  .tier li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:800}
+  .tier .pick{text-align:center;padding:13px;border-radius:12px;font-weight:800;font-size:14px;border:1px solid var(--line);
+    color:var(--ink);transition:border-color .2s,background .2s}
+  .tier .pick:hover{border-color:var(--green)}
+  .tier.pop .pick{color:#06210f;background:linear-gradient(135deg,var(--green),var(--green2));border:0;box-shadow:0 8px 24px rgba(34,197,94,.35)}
+  .downpay{margin-top:30px;text-align:center;border:1px dashed rgba(57,230,123,.45);border-radius:16px;padding:20px 18px;background:rgba(57,230,123,.05)}
+  .downpay .big{font-size:clamp(20px,3vw,28px);font-weight:800}
+  .downpay .big b{color:var(--green)}
+  .downpay p{color:var(--mute);font-size:14px;margin-top:8px}
+  .fineprint{text-align:center;color:var(--faint);font-size:12.5px;margin-top:18px;max-width:680px;margin-left:auto;margin-right:auto}
+
+  /* ORDER FORM */
+  .order{text-align:center;background:radial-gradient(90% 130% at 50% 0%,rgba(57,230,123,.10),transparent)}
+  .order h2{font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-.01em;line-height:1.03;text-align:center}
+  .order h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--green)}
+  .order p{color:var(--mute);max-width:540px;margin:16px auto 30px;font-size:17px}
+  .intake{max-width:560px;margin:0 auto 22px;text-align:left}
+  .field-row{display:flex;gap:12px;margin-bottom:12px}
+  .field-row .fld{flex:1;min-width:0}
+  .fld{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:12px;color:var(--ink);
+    font-family:var(--sans);font-size:15px;padding:13px 15px;margin-bottom:12px;transition:border-color .2s;outline:none}
+  .fld::placeholder{color:var(--faint)}
+  .fld:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(57,230,123,.12)}
+  select.fld{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:linear-gradient(45deg,transparent 50%,var(--green) 50%),linear-gradient(135deg,var(--green) 50%,transparent 50%);
+    background-position:calc(100% - 20px) 20px,calc(100% - 14px) 20px;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+  select.fld option{background:var(--bg2);color:var(--ink)}
+  textarea.fld{resize:vertical;min-height:92px}
+  .intake .green-btn{width:100%;text-align:center;border:0;cursor:pointer;margin-top:4px}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+  .form-note{margin-top:14px;text-align:center;font-size:14px;min-height:20px}
+  .form-note.ok{color:var(--green)} .form-note.err{color:var(--crimson)}
+  .contact-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+  .contact-chip{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;border:1px solid var(--line);
+    color:var(--ink);font-size:14.5px;background:rgba(0,0,0,.25);transition:border-color .2s}
+  .contact-chip:hover{border-color:var(--green)} .contact-chip b{color:var(--green);font-weight:600}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 50px;margin-top:20px}
+  footer .container{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+  footer .fb{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.12em;color:var(--gold)}
+  footer .fnav{display:flex;gap:22px;flex-wrap:wrap}
+  footer .fnav a{font-size:13px;color:var(--mute)} footer .fnav a:hover{color:var(--gold)}
+  footer .fine{width:100%;text-align:center;color:var(--faint);font-size:12px;margin-top:22px}
+
+  @media(max-width:980px){ .samples-grid{grid-template-columns:repeat(3,1fr)} }
+  @media(max-width:880px){
+    nav.links{display:none}
+    .navtoggle{display:block}
+    .tiers{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}
+    .tier.pop{order:-1}
+  }
+  @media(max-width:720px){ .samples-grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:520px){
+    .container{padding:0 18px}
+    .samples-grid{grid-template-columns:1fr 1fr;gap:12px}
+    .field-row{flex-direction:column;gap:0}
+    .hero{padding:64px 0 44px}
+  }
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .sample{cursor:pointer}
+  /* preview modal */
+  .pv{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(4,3,2,.85);backdrop-filter:blur(6px)}
+  .pv.open{display:flex}
+  .pv-modal{width:min(1040px,100%);max-height:90vh;display:flex;flex-direction:column;border-radius:16px;overflow:hidden;border:1px solid rgba(57,230,123,.45);background:#0c0906;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+  .pv-head{display:flex;align-items:center;gap:10px;padding:11px 14px;background:#17110a;border-bottom:1px solid var(--line)}
+  .pv-head .pv-d{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .pv-url{flex:1;min-width:0;text-align:center;font-size:12px;color:var(--faint);background:#0c0906;border:1px solid var(--line);border-radius:20px;padding:5px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pv-x{background:none;border:0;color:var(--mute);font-size:24px;line-height:1;cursor:pointer;padding:0 4px}
+  .pv-x:hover{color:var(--ink)}
+  .pv-body{overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;flex:1}
+  .pv-foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:13px 16px;background:#17110a;border-top:1px solid var(--line)}
+  .pv-foot .pv-cat{font-size:13px;color:var(--mute);letter-spacing:.03em}
+  .pv-foot .pv-buy{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .pv-foot .pv-price{font-size:13px;color:var(--mute)} .pv-foot .pv-price b{color:var(--green)}
+  .sample .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;background:#0c0906}
+  .pv-body img{display:block;width:100%;height:auto}
+  #premium{border-top:1px solid rgba(255,194,75,.16);background:linear-gradient(180deg,rgba(255,194,75,.05),transparent 42%)}
+  #premium .sample{border-color:rgba(255,194,75,.24)}
+  #premium .sample:hover{border-color:rgba(255,194,75,.6);box-shadow:0 16px 38px rgba(0,0,0,.5)}
+  #premium .sample .meta .go{color:var(--gold)}
+  .prem-pill{display:inline-block;margin:0 0 14px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#1a1206;background:linear-gradient(135deg,var(--gold),var(--amber));padding:6px 15px;border-radius:999px;font-weight:800}
+.sample .shot{object-position:center center}
+.pv-body{background:#0c0906}
+</style>
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+<canvas id="embers"></canvas>
+<div class="grain"></div>
+
+<div class="wrap">
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="https://webfilmbooks.com/" target="_top"><span class="dot"></span><b>WEB</b><span>FILM</span><b>BOOKS</b></a>
+      <nav class="links">
+        <a href="https://webfilmbooks.com/" target="_top">Home</a>
+        <a href="#samples">Samples</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://webfilmbooks.com/blog/" target="_top">Blog</a>
+        <a class="cta-green" href="#top"><span class="gdot"></span>WEB DESIGN DEPT</a>
+        <a class="cta-btn" href="#order">Get Started</a>
+      </nav>
+      <button class="navtoggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="https://webfilmbooks.com/" target="_top">Home</a>
+      <a href="#samples">Samples</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://webfilmbooks.com/blog/" target="_top">Blog</a>
+      <a class="green" href="#top">Web Design Dept</a>
+      <a href="#order">Get Started</a>
+    </div>
+  </header>
+
+  <a id="top"></a>
+  <section class="hero">
+    <div class="container">
+      <div class="kicker"><span class="pulse"></span> WebFilmBooks &middot; Web Design Department</div>
+      <h1>A website that works<br><em>as hard as you do</em>.</h1>
+      <p class="lede">Clean, custom, mobile-ready sites built by the WebFilmBooks house. Browse 23 real design styles below, then pick your plan.</p>
+      <div class="price-flag">
+        <span class="pf">Sites from <b>$199</b></span>
+        <span class="sep">&bull;</span>
+        <span class="pf">Start for as little as <b>$99 down</b></span>
+        <span class="sep">&bull;</span>
+        <span class="pf">Live in days, not months</span>
+      </div>
+      <div class="hero-actions">
+        <a class="green-btn" href="#pricing">See Pricing</a>
+        <a class="ghost-btn" href="#samples">Browse the Work</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="samples">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">Recent Work</div>
+        <h2 class="h2">Real designs, <em>built to convert</em>.</h2>
+        <p class="sec-lede">A look at sites we've designed for local businesses. Tap any one to see the full page, then grab the same look from $199.</p>
+      </div>
+      <div class="samples-grid" id="grid"></div>
+      <noscript><p class="sec-lede" style="margin-top:30px"><a class="green-btn" href="#pricing">See the full price sheet</a></p></noscript>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">The Price Sheet</div>
+        <h2 class="h2">Simple pricing. <em>No surprises.</em></h2>
+        <p class="sec-lede">Pick a plan or let us recommend one. Every build is mobile-ready and made to convert.</p>
+      </div>
+      <div class="tiers reveal">
+        <div class="tier">
+          <h3>Starter</h3>
+          <div class="price">$199</div>
+          <div class="who">Get online, fast.</div>
+          <ul>
+            <li>Professional one-page site</li>
+            <li>Mobile + tablet ready</li>
+            <li>Contact form to your inbox</li>
+            <li>Your logo, colors, and photos</li>
+            <li>Live in 3 to 5 days</li>
+            <li style="margin-top:9px;padding-top:11px;border-top:1px solid var(--line)">Site Maintenance <b style="color:#39E67B">$50</b> / month</li>
+          </ul>
+          <a class="pick" href="#order">Start for $99 down</a>
+        </div>
+        <div class="tier pop">
+          <div class="badge">MOST POPULAR</div>
+          <h3>Business</h3>
+          <div class="price">$499</div>
+          <div class="who">A full site that wins customers.</div>
+          <ul>
+            <li>Up to 5 custom pages</li>
+            <li>Everything in Starter</li>
+            <li>Photo gallery or portfolio</li>
+            <li>Booking or lead-capture form</li>
+            <li>Basic SEO + Google Maps</li>
+            <li>Social links + reviews</li>
+            <li style="margin-top:9px;padding-top:11px;border-top:1px solid var(--line)">Site Maintenance <b style="color:#39E67B">$100</b> / month</li>
+          </ul>
+          <a class="pick" href="#order">Start for $99 down</a>
+        </div>
+        <div class="tier">
+          <h3>Premium</h3>
+          <div class="price">$999<small> +</small></div>
+          <div class="who">Custom, store, AI-enhanced.</div>
+          <ul>
+            <li>Unlimited pages</li>
+            <li>Online store + payments</li>
+            <li>AI branding + copywriting</li>
+            <li>Advanced SEO setup</li>
+            <li>Priority support</li>
+            <li style="margin-top:9px;padding-top:11px;border-top:1px solid var(--line)">Site Maintenance <b style="color:#39E67B">$250+</b> / month</li>
+          </ul>
+          <a class="pick" href="#order">Start for $99 down</a>
+        </div>
+      </div>
+      <div class="downpay reveal">
+        <div class="big">Start for as little as <b>$99 down</b>.</div>
+        <p>Put down $99 to kick off your build. Pay the balance when your site goes live and you love it.</p>
+      </div>
+      <p class="fineprint">Prices are starting points and cover design and build. Domain and hosting can be added or handled on your own account. Ask about payment plans on Business and Premium.</p>
+    </div>
+  </section>
+
+  <section id="order" class="order">
+    <div class="container reveal">
+      <h2>Let's build <em>yours</em>.</h2>
+      <p>Tell us about your business. We'll reply with a recommended plan and next steps, usually same day.</p>
+      <form id="intake" class="intake" novalidate>
+        <input type="text" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+        <div class="field-row">
+          <input class="fld" type="text" name="name" placeholder="Your name" required>
+          <input class="fld" type="email" name="email" placeholder="Your email" required>
+        </div>
+        <div class="field-row">
+          <select class="fld" name="plan" required aria-label="Which plan">
+            <option value="" disabled selected>Which plan interests you?</option>
+            <option>Starter &ndash; $199</option>
+            <option>Business &ndash; $499</option>
+            <option>Premium &ndash; $999+</option>
+            <option>Not sure yet, recommend one</option>
+          </select>
+          <input class="fld" type="tel" name="phone" placeholder="Phone (optional)">
+        </div>
+        <input class="fld" type="text" name="business" placeholder="Business name + what you do">
+        <textarea class="fld" name="message" rows="3" placeholder="Anything you want on the site? A site you like the look of?"></textarea>
+        <button class="green-btn" type="submit" id="intake-btn">Get My Website Started</button>
+        <div class="form-note" id="form-note"></div>
+      </form>
+      <div class="contact-row">
+        <a class="contact-chip" href="mailto:relentlessaaron2007@gmail.com">Email <b>relentlessaaron2007@gmail.com</b></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="fb"><span style="width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold),var(--crimson));display:inline-block"></span> WEBFILMBOOKS</div>
+      <nav class="fnav">
+        <a href="https://webfilmbooks.com/" target="_top">Home</a>
+        <a href="#samples">Samples</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://webfilmbooks.com/blog/" target="_top">Blog</a>
+        <a href="#order">Get Started</a>
+      </nav>
+      <div class="fine">WebFilmBooks.com LLC &middot; Web Design Department &middot; Atlanta, Georgia</div>
+    </div>
+  </footer>
+</div>
+
+<div class="pv" id="pv" role="dialog" aria-modal="true" aria-label="Design preview" aria-hidden="true">
+  <div class="pv-modal">
+    <div class="pv-head">
+      <span class="pv-d" style="background:#ff5f56"></span><span class="pv-d" style="background:#ffbd2e"></span><span class="pv-d" style="background:#27c93f"></span>
+      <span class="pv-url" id="pv-url"></span>
+      <button class="pv-x" id="pv-x" aria-label="Close preview">&times;</button>
+    </div>
+    <div class="pv-body" id="pv-body"></div>
+    <div class="pv-foot">
+      <span class="pv-cat" id="pv-cat"></span>
+      <span class="pv-buy">
+        <span class="pv-price">This design from <b>$199</b> &middot; $99 down</span>
+        <a class="green-btn" id="pv-get" href="#pricing" style="padding:12px 22px;font-size:14px">Get this design &rarr;</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var c=document.getElementById('embers'),x=c.getContext('2d'),W,H,ps=[];
+  function size(){W=c.width=innerWidth;H=c.height=innerHeight}
+  function mk(){return{x:Math.random()*W,y:H+Math.random()*H*0.4,r:Math.random()*2.2+0.6,s:Math.random()*0.7+0.25,d:Math.random()*0.6-0.3,l:Math.random()}}
+  function init(){ps=[];for(var i=0;i<64;i++){var p=mk();p.y=Math.random()*H;ps.push(p)}}
+  size();init();addEventListener('resize',function(){size();init()});
+  function tick(){x.clearRect(0,0,W,H);
+    for(var i=0;i<ps.length;i++){var p=ps[i];p.y-=p.s;p.x+=p.d;p.l+=0.01;if(p.y<-10){ps[i]=mk()}
+      var a=0.5+Math.sin(p.l)*0.4;var g=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);
+      g.addColorStop(0,'rgba(255,180,70,'+a+')');g.addColorStop(1,'rgba(226,58,46,0)');
+      x.fillStyle=g;x.beginPath();x.arc(p.x,p.y,p.r*3,0,6.28);x.fill();}
+    requestAnimationFrame(tick);}
+  tick();
+
+  var S=[
+    {n:'Bella Cucina',d:'bellacucina.com',c:'Restaurant',t:'Handmade pasta, made fresh daily.',b:'Reserve a Table',a:'#E0533D',k:'hero',l:1},
+    {n:'FadeKings',d:'fadekings.com',c:'Barber Shop',t:'Sharp cuts. No waiting.',b:'Book a Chair',a:'#F5B301',k:'split',l:0},
+    {n:'Sterling & Cole',d:'sterlingcole.com',c:'Law Firm',t:'Justice, done right.',b:'Free Consult',a:'#3B82F6',k:'hero',l:1},
+    {n:'Peachtree Homes',d:'peachtreehomes.com',c:'Real Estate',t:'Find your Atlanta home.',b:'View Listings',a:'#2FA36B',k:'grid',l:1},
+    {n:'IronForge',d:'ironforgegym.com',c:'Fitness Gym',t:'Stronger every day.',b:'Free Trial',a:'#E23A2E',k:'hero',l:0},
+    {n:'Lena Vaughn',d:'lenavaughn.com',c:'Photographer',t:'Moments, kept forever.',b:'Portfolio',a:'#C084FC',k:'grid',l:0},
+    {n:'Grace Chapel',d:'gracechapelatl.com',c:'Church',t:'All are welcome here.',b:'Plan a Visit',a:'#6D8FE0',k:'card',l:1},
+    {n:'Sugar & Flour',d:'sugarandflour.com',c:'Bakery',t:'Baked with love, daily.',b:'Order Cakes',a:'#EC6EA0',k:'hero',l:1},
+    {n:'ProDrive Auto',d:'prodriveauto.com',c:'Auto Repair',t:'Repairs you can trust.',b:'Book Service',a:'#38BDF8',k:'split',l:0},
+    {n:'Lush Spa',d:'lushspa.com',c:'Salon & Spa',t:'Relax. Refresh. Renew.',b:'Book Now',a:'#14B8A6',k:'card',l:1},
+    {n:'Open Hands',d:'openhands.org',c:'Nonprofit',t:'Give hope. Change lives.',b:'Donate',a:'#F59E0B',k:'hero',l:1},
+    {n:'DJ Nova',d:'djnova.live',c:'DJ / Music',t:'The night starts here.',b:'Book DJ Nova',a:'#A855F7',k:'card',l:0},
+    {n:'Vela Boutique',d:'velaboutique.com',c:'Boutique',t:'Style that speaks.',b:'Shop New In',a:'#DB2777',k:'grid',l:1},
+    {n:'Bright Smile',d:'brightsmileatl.com',c:'Dentist',t:'Smiles made simple.',b:'New Patient',a:'#22B8CF',k:'hero',l:1},
+    {n:'GreenLeaf Lawn',d:'greenleaflawn.com',c:'Landscaping',t:'Lawns worth showing off.',b:'Get a Quote',a:'#4CAF50',k:'split',l:1},
+    {n:'Ember Coffee',d:'embercoffee.co',c:'Coffee Shop',t:'Roasted for the bold.',b:'See Menu',a:'#F97316',k:'hero',l:0},
+    {n:'Everly Events',d:'everlyevents.com',c:'Wedding Planner',t:'Your day, perfected.',b:'Start Planning',a:'#E879A6',k:'card',l:1},
+    {n:'Apex Training',d:'apexpt.fit',c:'Personal Trainer',t:'Your goals. My mission.',b:'Free Session',a:'#EAB308',k:'split',l:0},
+    {n:'PureShine',d:'pureshineclean.com',c:'Cleaning Service',t:'Spotless, every time.',b:'Get a Quote',a:'#06B6D4',k:'hero',l:1},
+    {n:'Inkwell Tattoo',d:'inkwelltattoo.com',c:'Tattoo Studio',t:'Art that lasts forever.',b:'Book a Session',a:'#10B981',k:'grid',l:0}
+  ];
+  function tint(a,o){return a+o;}
+  function navBar(s){return '<div class="m-nav"><span class="m-logo" style="color:'+s.a+'">'+s.n+'</span>'+
+    '<span class="m-links"><i></i><i></i><i></i></span></div>';}
+  function render(s){
+    var cls='mini '+(s.l?'light':'dark');
+    if(s.k==='hero'){
+      return '<div class="'+cls+'">'+navBar(s)+
+        '<div class="m-pad"><div class="m-h1">'+s.t+'</div>'+
+        '<div class="m-p">Trusted locally. Book online in seconds.</div>'+
+        '<span class="m-btn" style="background:'+s.a+';margin-top:7px">'+s.b+'</span></div>'+
+        '<div class="m-band" style="background:linear-gradient(120deg,'+tint(s.a,'40')+','+tint(s.a,'0d')+')"></div></div>';
+    }
+    if(s.k==='split'){
+      return '<div class="'+cls+'">'+navBar(s)+
+        '<div class="m-split"><div class="m-col"><div class="m-h1">'+s.t+'</div>'+
+        '<span class="m-btn" style="background:'+s.a+';margin-top:8px">'+s.b+'</span></div>'+
+        '<div class="m-img" style="background:linear-gradient(135deg,'+s.a+','+tint(s.a,'55')+')"></div></div></div>';
+    }
+    if(s.k==='grid'){
+      var th='';for(var i=0;i<6;i++){var op=['','bb','88','66','aa','44'][i];
+        th+='<div class="m-thumb" style="background:linear-gradient(135deg,'+tint(s.a,op||'ff')+','+tint(s.a,'22')+')"></div>';}
+      return '<div class="'+cls+'">'+navBar(s)+
+        '<div class="m-pad" style="padding-bottom:2px"><div class="m-h1" style="font-size:11px">'+s.t+'</div></div>'+
+        '<div class="m-grid">'+th+'</div></div>';
+    }
+    return '<div class="'+cls+' m-nav-wrap" style="display:flex;flex-direction:column">'+navBar(s)+
+      '<div class="m-center" style="flex:1;display:flex;flex-direction:column">'+
+      '<div class="m-badge" style="background:'+s.a+'"></div>'+
+      '<div class="m-logo" style="color:'+s.a+'">'+s.n+'</div>'+
+      '<div class="m-h1">'+s.t+'</div>'+
+      '<span class="m-btn" style="background:'+s.a+'">'+s.b+'</span></div></div>';
+  }
+  var P=[
+    {n:'Top Class Pet Salon',c:'Pet Salon',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/225.jpg'},
+    {n:'Pawpurrazzi',c:'Pet Grooming',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/210.jpg'},
+    {n:'Grooming Boutique',c:'Pet Grooming',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/204.jpg'},
+    {n:'Firstclass Barber',c:'Barber Shop',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/203.jpg'},
+    {n:'Del Mar Barber Shop',c:'Barber Shop',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/209.jpg'},
+    {n:'Faded Dreamz',c:'Barbershop',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/211.jpg'},
+    {n:'5 Liner',c:'Tattoo Studio',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/205.jpg'},
+    {n:'Tattoo Gallery',c:'Tattoo Studio',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/207.jpg'},
+    {n:'Big Dawg\'s',c:'Tattoo Studio',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/213.jpg'},
+    {n:'La Vida Loca',c:'Tattoo Studio',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/216.jpg'},
+    {n:'LoneStar Auto',c:'Auto Repair',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/208.jpg'},
+    {n:'Platinum Auto Detail',c:'Auto Detailing',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/212.jpg'},
+    {n:'Leo\'s Mobile Mechanic',c:'Mobile Mechanic',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/214.jpg'},
+    {n:'956 Towing & Recovery',c:'Towing & Recovery',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/206.jpg'},
+    {n:'Gruas Mora',c:'Towing',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/222.jpg'},
+    {n:'Affordable Keys Plus',c:'Locksmith',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/202.jpg'},
+    {n:'Barretts',c:'Upholstery',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/201.jpg'},
+    {n:'Stady\'s Appliance',c:'Appliance Repair',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/218.jpg'},
+    {n:'Arbortex',c:'Tree Service',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/219.jpg'},
+    {n:'Boardwalk on Elm',c:'Restaurant',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/217.jpg'},
+    {n:'Hibachi Kingdom',c:'Hibachi Restaurant',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/223.jpg'},
+    {n:'Salinas Catering',c:'Catering',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/220.jpg'},
+    {n:'La Chilanga',c:'Mexican Restaurant',img:'https://bruce-mockup-gallery-webfilmbooks.relentless-a-2737.chatgpt.site/mockups/221.jpg'}
+  ];
+  var grid=document.getElementById('grid'),html='';
+  for(var j=0;j<P.length;j++){var q=P[j];
+    html+='<div class="sample reveal" role="button" tabindex="0" data-i="'+j+'" aria-label="Preview the '+q.c+' website design">'+
+      '<div class="chrome"><span class="dot" style="background:#ff5f56"></span><span class="dot" style="background:#ffbd2e"></span>'+
+      '<span class="dot" style="background:#27c93f"></span><span class="url">'+q.n+'</span></div>'+
+      '<div class="view"><img class="shot" src="'+q.img+'" alt="'+q.n+' website design" loading="lazy"></div>'+
+      '<div class="meta"><span class="cat">'+q.c+'</span><span class="go">Preview &rarr;</span></div></div>';
+  }
+  grid.innerHTML=html;
+
+  // ---- full prototype (shown large in the preview popup) ----
+  function proto(s){
+    var L=s.l, a=s.a;
+    var bg=L?'#ffffff':'#12141b', fg=L?'#1b2027':'#eef1f6', mut=L?'#5b6570':'#a6adba',
+        card=L?'#f6f7f9':'#1b1f28', line=L?'#e7e9ee':'#2a2f3a', on=(/^#(F|E|A|9)/i.test(a))?'#141007':'#ffffff';
+    var feats=[['Quality first','Every detail handled with real craft.'],
+               ['Fast and reliable','On time, on budget, no surprises.'],
+               ['Local and trusted','Proudly serving the community.']];
+    var fh=feats.map(function(f){return '<div style="background:'+card+';border:1px solid '+line+';border-radius:12px;padding:22px">'+
+      '<div style="width:34px;height:34px;border-radius:9px;background:'+a+';margin-bottom:12px"></div>'+
+      '<div style="font-weight:700;font-size:16px;margin-bottom:6px">'+f[0]+'</div>'+
+      '<div style="color:'+mut+';font-size:14px;line-height:1.5">'+f[1]+'</div></div>';}).join('');
+    var thumbs=['cc','99','66','aa'].map(function(o){return '<div style="aspect-ratio:1;border-radius:10px;background:linear-gradient(135deg,'+a+o+','+a+'22)"></div>';}).join('');
+    var btn='<span style="display:inline-block;background:'+a+';color:'+on+';font-weight:800;padding:13px 26px;border-radius:10px;font-size:15px">'+s.b+'</span>';
+    return '<div style="font-family:var(--sans);background:'+bg+';color:'+fg+'">'+
+      '<header style="display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid '+line+'">'+
+        '<div style="font-weight:800;font-size:20px;color:'+a+'">'+s.n+'</div>'+
+        '<nav style="display:flex;gap:20px;font-size:14px;color:'+mut+'"><span>Home</span><span>About</span><span>Services</span><span>Contact</span></nav>'+
+        '<span style="background:'+a+';color:'+on+';font-weight:700;font-size:13px;padding:9px 16px;border-radius:8px">'+s.b+'</span></header>'+
+      '<section style="padding:56px 28px;text-align:center;background:linear-gradient(180deg,'+a+'14,transparent)">'+
+        '<div style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:'+a+';margin-bottom:14px">'+s.c+'</div>'+
+        '<h1 style="font-size:40px;font-weight:800;line-height:1.06;max-width:720px;margin:0 auto 14px">'+s.t+'</h1>'+
+        '<p style="color:'+mut+';max-width:520px;margin:0 auto 22px;font-size:16px;line-height:1.6">Trusted by locals for quality you can count on. Book online in seconds and feel the difference.</p>'+btn+'</section>'+
+      '<div style="height:220px;background:linear-gradient(135deg,'+a+','+a+'66)"></div>'+
+      '<section style="padding:48px 28px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px">'+fh+'</section>'+
+      '<section style="padding:0 28px 48px"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">'+thumbs+'</div></section>'+
+      '<section style="padding:46px 28px;text-align:center;background:'+card+'">'+
+        '<div style="font-family:var(--serif);font-style:italic;font-size:22px;max-width:640px;margin:0 auto;line-height:1.4">"Absolutely the best experience. Professional, fast, and the results speak for themselves."</div>'+
+        '<div style="margin-top:14px;color:'+mut+';font-size:12px;letter-spacing:.1em">A HAPPY CUSTOMER</div></section>'+
+      '<section style="padding:52px 28px;text-align:center;background:linear-gradient(180deg,transparent,'+a+'14)">'+
+        '<h2 style="font-size:28px;font-weight:800;margin-bottom:14px">Ready to get started?</h2>'+btn+'</section>'+
+      '<footer style="padding:20px 28px;border-top:1px solid '+line+';color:'+mut+';font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">'+
+        '<span style="font-weight:800;color:'+a+'">'+s.n+'</span><span>'+s.d+'</span></footer></div>';
+  }
+
+  var pvReturn=null;
+  var pv=document.getElementById('pv'),pvBody=document.getElementById('pv-body'),pvUrl=document.getElementById('pv-url'),pvCat=document.getElementById('pv-cat');
+  function openPv(i){pvReturn=document.activeElement;var s=S[i];pvUrl.textContent=s.d;pvCat.textContent=s.c+' · sample design';
+    pvBody.innerHTML=proto(s);pvBody.scrollTop=0;pv.classList.add('open');pv.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';try{document.getElementById('pv-x').focus();}catch(e){}}
+  function closePv(){pv.classList.remove('open');pv.setAttribute('aria-hidden','true');document.body.style.overflow='';try{if(pvReturn&&pvReturn.focus)pvReturn.focus();}catch(e){}}
+  grid.addEventListener('click',function(e){var el=e.target.closest('.sample');if(el)openImg(+el.getAttribute('data-i'));});
+  grid.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')){var el=e.target.closest('.sample');if(el){e.preventDefault();openImg(+el.getAttribute('data-i'));}}});
+  document.getElementById('pv-x').addEventListener('click',closePv);
+  document.getElementById('pv-get').addEventListener('click',function(){closePv();var p=document.getElementById('pricing');if(p)setTimeout(function(){p.scrollIntoView({behavior:'smooth'});},50);});
+  pv.addEventListener('click',function(e){if(e.target===pv)closePv();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&pv.classList.contains('open'))closePv();});
+
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.1});
+    reveals.forEach(function(el){io.observe(el)});
+    setTimeout(function(){reveals.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in')})},400);
+  } else { reveals.forEach(function(el){el.classList.add('in')}); }
+
+  var tog=document.querySelector('.navtoggle'),mm=document.getElementById('mobile-menu');
+  if(tog&&mm){
+    tog.addEventListener('click',function(){var open=mm.classList.toggle('open');
+      tog.setAttribute('aria-expanded',open?'true':'false');tog.innerHTML=open?'&times;':'&#9776;';});
+    mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
+      mm.classList.remove('open');tog.setAttribute('aria-expanded','false');tog.innerHTML='&#9776;';});});
+  }
+
+  var f=document.getElementById('intake');
+  if(f){f.addEventListener('submit',function(ev){ev.preventDefault();
+    var note=document.getElementById('form-note'),btn=document.getElementById('intake-btn');
+    if(f.botcheck.value){return}
+    if(!f.name.value||!f.email.value||!f.plan.value){note.className='form-note err';note.textContent='Please add your name, email, and a plan.';return}
+    btn.textContent='Sending...';btn.style.opacity=.7;note.textContent='';note.className='form-note';
+    var data={access_key:'37db299f-661c-4e74-9a60-c0a3c0ff29f4',subject:'New Web Design Order Inquiry',from_name:'WebFilmBooks Web Design',
+      name:f.name.value,email:f.email.value,phone:f.phone.value,plan:f.plan.value,business:f.business.value,message:f.message.value};
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json()}).then(function(j){
+        if(j.success){f.reset();note.className='form-note ok';note.textContent='Got it. We will reach out today with your plan. Thank you.';btn.textContent='Sent';}
+        else{note.className='form-note err';note.textContent='Something went wrong. Email relentlessaaron2007@gmail.com directly.';btn.textContent='Get My Website Started';btn.style.opacity=1;}
+      }).catch(function(){note.className='form-note err';note.textContent='Network error. Email relentlessaaron2007@gmail.com directly.';btn.textContent='Get My Website Started';btn.style.opacity=1;});
+  });}
+  function openImg(j){pvReturn=document.activeElement;var q=P[j];pvUrl.textContent=q.n;pvCat.textContent=q.c+' \u00b7 sample design';
+    pvBody.innerHTML='<img src="'+q.img+'" alt="'+q.n+' full website design">';pvBody.scrollTop=0;pv.classList.add('open');pv.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';try{document.getElementById('pv-x').focus();}catch(e){}}
+})();
+</script>
+
+<!-- ===== v10 dynamic enhancement layer (additive) ===== -->
+<style>
+.samples-grid{perspective:1100px}
+.sample{transform-style:preserve-3d;will-change:transform}
+/* neon glow on hover — matches the reference mockup's edge-light */
+.sample:hover{box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 0 1px rgba(57,230,123,.6),0 0 30px rgba(57,230,123,.38),0 0 70px rgba(57,230,123,.15)}
+#premium .sample:hover{box-shadow:0 16px 38px rgba(0,0,0,.5),0 0 0 1px rgba(255,194,75,.62),0 0 30px rgba(255,194,75,.34),0 0 70px rgba(255,194,75,.15)}
+/* shine sweep across the screenshot on hover */
+.sample .view::after{content:"";position:absolute;top:0;left:-60%;width:55%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);
+  transform:skewX(-18deg);opacity:0;transition:opacity .2s;pointer-events:none;z-index:3}
+.sample:hover .view::after{opacity:1;animation:v10shine .9s ease}
+@keyframes v10shine{0%{left:-60%}100%{left:120%}}
+@media (prefers-reduced-motion:no-preference){
+  /* hero staggered entrance */
+  .v10hero .kicker,.v10hero h1,.v10hero .lede,.v10hero .price-flag,.v10hero .hero-actions{
+    opacity:0;transform:translateY(28px);animation:v10rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .v10hero h1{animation-delay:.10s}
+  .v10hero .lede{animation-delay:.24s}
+  .v10hero .price-flag{animation-delay:.38s}
+  .v10hero .hero-actions{animation-delay:.52s}
+  @keyframes v10rise{to{opacity:1;transform:none}}
+  /* animated gradient sweep on the italic hero line */
+  .hero h1 em{background:linear-gradient(100deg,#39E67B 0%,#39E67B 36%,#EAFBE9 50%,#39E67B 64%,#39E67B 100%);
+    background-size:230% 100%;-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;animation:v10sweep 5.5s linear infinite}
+  @keyframes v10sweep{to{background-position:-230% 0}}
+  /* gentle float on the primary hero button */
+  .hero-actions .green-btn{animation:v10float 3.4s ease-in-out infinite}
+  @keyframes v10float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+}
+</style>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var hero = document.querySelector('.hero'); if(hero) hero.classList.add('v10hero');
+  if(reduce) return;
+  // 3D tilt on sample cards (premium device-mockup feel)
+  function bindTilt(){
+    document.querySelectorAll('.sample').forEach(function(card){
+      if(card._v10) return; card._v10=1;
+      card.addEventListener('mousemove',function(e){
+        var r=card.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+        card.style.transform='translateY(-6px) rotateX('+(-py*6).toFixed(2)+'deg) rotateY('+(px*8).toFixed(2)+'deg)';
+      });
+      card.addEventListener('mouseleave',function(){card.style.transform='';});
+    });
+  }
+  // cards are injected by the page's own script; bind now and shortly after
+  bindTilt(); setTimeout(bindTilt,300); setTimeout(bindTilt,1200);
+})();
+</script>
+</body>
+</html>
