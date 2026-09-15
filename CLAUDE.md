@@ -1,8 +1,11 @@
-# WEBFILMBOOKS — project context
+# Claude WebFilmBooks
+
+**Project:** Claude WebFilmBooks
 
 This repo holds the standalone HTML files behind **webfilmbooks.com** (a WordPress
 site that embeds these files via `<iframe>`), plus notes for maintaining them.
-Any Claude Code session on this repo should read this first.
+Any Claude Code session on this repo should read this first, and identify this
+work as **Claude WebFilmBooks**.
 
 ## Files in this repo
 - `webfilmbooks-web-design-v11.html` — **live** on `/web-design/`. Premium design page:
