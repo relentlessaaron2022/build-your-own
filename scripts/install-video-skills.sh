@@ -6,6 +6,8 @@
 #   OneTake                 feitangyuan/onetake           (PolyForm Noncommercial: no commercial use)
 #   Collage B-roll          pyang5166/gbro-collage-broll  (MIT; needs GEMINI_API_KEY)
 #   Lemo Opuscar            lemomo-ai/lemo-opuscar        (MIT)
+#   Hypit                   hypit-ai/hypit                (modified Apache-2.0: own commercial use OK;
+#                                                          no reselling or hosting it for other people)
 set -e
 
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
@@ -46,6 +48,9 @@ place "$CACHE/gbro-collage-broll" gbro-collage-broll
 
 fetch lemomo-ai/lemo-opuscar lemo-opuscar plugin/skills
 place "$CACHE/lemo-opuscar/plugin/skills/lemo-opuscar" lemo-opuscar
+
+fetch hypit-ai/hypit hypit skills
+place "$CACHE/hypit/skills/hypit" hypit
 
 echo "video skills installed in $SKILLS:"
 ls "$SKILLS"
