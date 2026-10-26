@@ -1,0 +1,40 @@
+Keep the Lights On — Ep. 1 "$1,625"
+
+Picture
+- All characters, props, backgrounds, title cards and film damage drawn in code (Canvas 2D).
+- Style: "1930s Rubber Hose Cartoon" from Lemo-Opuscar (github.com/lemomo-ai/lemo-opuscar, MIT).
+  toon.js and chars.js are copied unchanged from its rubber-hose demo; film.js, bg.js and mix.py are adapted from it (MIT notice applies).
+
+Music (original composition, rendered from samples; music/score.py)
+- Samples (CC0): Karoryfer Samples / sfzinstruments, VS Chamber Orchestra: Community Edition (Versilian Studios), Versilian Community Sample Library (Versilian Studios)
+  Instruments used: upright bass, muted trumpet, clarinet, trombone, suspended cymbal, snare, xylophone, vibraphone, woodblock.
+
+Sound effects
+- All foley synthesised in code (mix.py, Lemo-Opuscar core/audio/sfx.py).
+
+Fonts
+- IM Fell English SC (Igino Marini), SIL Open Font License 1.1 — fonts/OFL-imfellenglishsc.txt
+
+Licence for the code copied or adapted from Lemo-Opuscar:
+
+MIT License
+
+Copyright (c) 2026 LemoLab
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
