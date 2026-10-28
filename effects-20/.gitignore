@@ -1,0 +1,6 @@
+frames/
+masks/
+out/
+mix.wav
+voice.wav
+events.json

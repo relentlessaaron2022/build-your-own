@@ -1,0 +1,7 @@
+20 Effects — Relentless Aaron
+
+Footage and voice: the original clip (Relentless Aaron), including its CapCut end card.
+Effects: all 20 drawn in code (Canvas 2D, main.js). Rendered with the Lemo-Opuscar render tools (github.com/lemomo-ai/lemo-opuscar, MIT).
+Person masks: MediaPipe Selfie Segmentation (Google, Apache-2.0).
+Sound effects: synthesised in code (mix.py, Lemo-Opuscar core/audio/sfx.py).
+Fonts (SIL Open Font License 1.1, licences in fonts/): Anton (Vernon Adams), Inter (The Inter Project Authors), JetBrains Mono (JetBrains).
