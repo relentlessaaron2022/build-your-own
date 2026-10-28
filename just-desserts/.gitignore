@@ -1,0 +1,6 @@
+out/
+mix.wav
+events.json
+vo/*.wav
+vo/.cache/
+vo/words.json
