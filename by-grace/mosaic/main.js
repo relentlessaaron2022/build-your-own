@@ -90,7 +90,7 @@ function render(t) {
     const p = paintP(t, i); if (p <= 0) continue;
     const [x, y] = tileXY(i);
     ctx.save(); ctx.translate(x, y); ctx.scale(K, K);
-    if (p >= 1) ctx.drawImage(SPR[i].cv, SPR[i].x0, SPR[i].y0); else drawList(ctx, TL[i], p);
+    if (p >= 1) ctx.drawImage(SPR[i].cv, SPR[i].x0, SPR[i].y0); else drawList(ctx, TL[i], 1 - Math.pow(1 - p, 1.7));   // the wash arrives quickly, details take their time
     ctx.restore();
     const nt = i === 0 ? 10.2 : SLOT[i][0] + SLOT[i][1] * .78;
     hand(NOTES[i], x + 6, y + TH * K + 9, seg(t, nt, nt + .9));
