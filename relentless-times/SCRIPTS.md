@@ -29,16 +29,16 @@ This is Relentless Times.
 | Time | Shows | Strap tab · headline | Source |
 |---|---|---|---|
 | 0:00.0 | Spy cut-paper title: ONE MORNING / IN THE BRONX | — | — |
-| 0:03.2 | Name card: JAVITS FRIMPONG — 15 · came to New York from Ghana in 2025 | ON THE RECORD · BRONX TEEN, 15, SHOT AND KILLED | GOTHAMIST · ABC7 |
-| 0:07.1 | Pen & wash sketch (street); note “E. 171st St · Crotona Park · Oct 29”; SKETCH tag | ON THE RECORD · SHOT NEAR E. 171ST ST & CROTONA PLACE | NYPD VIA NBC NEW YORK · ABC7 |
-| 0:18.5 | Big type: 3 TEENS SOUGHT — Black clothing, surgical masks · last seen running into Crotona Park; stamp NO ARREST | ON THE RECORD · POLICE SEEK THREE MASKED TEENAGERS | NYPD VIA ABC7 · AMNY |
-| 0:31.6 | Family-account card (THOMAS FRIMPONG · FATHER): His son reported bullying. Two students were suspended for a week. He believes the shooting was retaliation. | FAMILY ACCOUNT · FATHER SAYS SON HAD REPORTED BULLYING | NBC NEW YORK · HOT97 |
-| 0:42.2 | Big type: NO MOTIVE CONFIRMED — Not known whether Javits was the intended target | ON THE RECORD · NO MOTIVE ESTABLISHED | NYPD VIA GOTHAMIST |
-| 0:46.8 | Open questions: What did the school document, and when? / Who saw the three teenagers? / What evidence connects anyone to the shot? | OPEN QUESTIONS · WHAT THE RECORD STILL HAS TO SHOW | NYPD |
-| 0:56.6 | Commentary type: ANSWERS FOR A FATHER. FACTS FOR THE PUBLIC. | COMMENTARY · RELENTLESS TIMES | — |
-| 1:04.3 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
+| 0:03.6 | Name card: JAVITS FRIMPONG — 15 · came to New York from Ghana in 2025 | ON THE RECORD · BRONX TEEN, 15, SHOT AND KILLED | GOTHAMIST · ABC7 |
+| 0:07.5 | Pen & wash sketch (street); note “E. 171st St · Crotona Park · Oct 29”; SKETCH tag | ON THE RECORD · SHOT NEAR E. 171ST ST & CROTONA PLACE | NYPD VIA NBC NEW YORK · ABC7 |
+| 0:18.9 | Big type: 3 TEENS SOUGHT — Black clothing, surgical masks · last seen running into Crotona Park; stamp NO ARREST | ON THE RECORD · POLICE SEEK THREE MASKED TEENAGERS | NYPD VIA ABC7 · AMNY |
+| 0:32.0 | Family-account card (THOMAS FRIMPONG · FATHER): His son reported bullying. Two students were suspended for a week. He believes the shooting was retaliation. | FAMILY ACCOUNT · FATHER SAYS SON HAD REPORTED BULLYING | NBC NEW YORK · HOT97 |
+| 0:42.6 | Big type: NO MOTIVE CONFIRMED — Not known whether Javits was the intended target | ON THE RECORD · NO MOTIVE ESTABLISHED | NYPD VIA GOTHAMIST |
+| 0:47.2 | Open questions: What did the school document, and when? / Who saw the three teenagers? / What evidence connects anyone to the shot? | OPEN QUESTIONS · WHAT THE RECORD STILL HAS TO SHOW | NYPD |
+| 0:57.0 | Commentary type: ANSWERS FOR A FATHER. FACTS FOR THE PUBLIC. | COMMENTARY · RELENTLESS TIMES | — |
+| 1:04.7 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
 
-Length ≈ 1:08.2.
+Length ≈ 1:08.6.
 
 ### Source notes
 
@@ -81,16 +81,16 @@ This is Relentless Times.
 | Time | Shows | Strap tab · headline | Source |
 |---|---|---|---|
 | 0:00.0 | Spy cut-paper title: COBEE, / AGE FOUR | — | — |
-| 0:03.2 | Name card: COBEE COOKS — 4 years old · some reports spell his name Colby | ON THE RECORD · BOY, 4, FOUND DEAD IN SOUTHWEST ATLANTA | WSB-TV |
-| 0:05.6 | Pen & wash sketch (townhomes); note “Cardinal Drive · SW Atlanta”; SKETCH tag | ON THE RECORD · FOUND DURING A WELFARE CHECK ON CARDINAL DRIVE | WSB-TV, OCT 30 2026 |
-| 0:18.9 | Big type: HOMICIDE — Cause: multiple blunt-force injuries | ON THE RECORD · DEATH RULED A HOMICIDE | WSB-TV, OCT 28 & 30 2026 |
-| 0:26.4 | List: Jasmaine Smoak, 32 — murder, first-degree cruelty to children, aggravated assault / Jasmine Jenkins — party to the crime of murder and first-degree cruelty to children; stamp ALLEGATIONS | CHARGED · TWO WOMEN CHARGED WITH MURDER | WSB-TV ARREST WARRANTS |
-| 0:36.2 | Family-account card (ANDREA & BRIAN COOKS · GRANDPARENTS): The father called CPS and police when he saw bruises. They say DFCS found nothing amiss. | FAMILY ACCOUNT · GRANDPARENTS SAY FATHER REPORTED BRUISES | WSB-TV, OCT 29 2026 |
-| 0:51.9 | Big type: NOT CONFIRMED — No agency statement on any earlier report | ON THE RECORD · NO AGENCY HAS CONFIRMED AN EARLIER REPORT | WSB-TV |
-| 0:58.1 | Open questions: What was reported, and when? / Who looked into it? / What did they find? | OPEN QUESTIONS · WHAT THE RECORDS STILL HAVE TO SHOW | — |
-| 1:08.4 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
+| 0:03.6 | Name card: COBEE COOKS — 4 years old · some reports spell his name Colby | ON THE RECORD · BOY, 4, FOUND DEAD IN SOUTHWEST ATLANTA | WSB-TV |
+| 0:06.0 | Pen & wash sketch (townhomes); note “Cardinal Drive · SW Atlanta”; SKETCH tag | ON THE RECORD · FOUND DURING A WELFARE CHECK ON CARDINAL DRIVE | WSB-TV, OCT 30 2026 |
+| 0:19.3 | Big type: HOMICIDE — Cause: multiple blunt-force injuries | ON THE RECORD · DEATH RULED A HOMICIDE | WSB-TV, OCT 28 & 30 2026 |
+| 0:26.8 | List: Jasmaine Smoak, 32 — murder, first-degree cruelty to children, aggravated assault / Jasmine Jenkins — party to the crime of murder and first-degree cruelty to children; stamp ALLEGATIONS | CHARGED · TWO WOMEN CHARGED WITH MURDER | WSB-TV ARREST WARRANTS |
+| 0:36.6 | Family-account card (ANDREA & BRIAN COOKS · GRANDPARENTS): The father called CPS and police when he saw bruises. They say DFCS found nothing amiss. | FAMILY ACCOUNT · GRANDPARENTS SAY FATHER REPORTED BRUISES | WSB-TV, OCT 29 2026 |
+| 0:52.3 | Big type: NOT CONFIRMED — No agency statement on any earlier report | ON THE RECORD · NO AGENCY HAS CONFIRMED AN EARLIER REPORT | WSB-TV |
+| 0:58.5 | Open questions: What was reported, and when? / Who looked into it? / What did they find? | OPEN QUESTIONS · WHAT THE RECORDS STILL HAVE TO SHOW | — |
+| 1:08.8 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
 
-Length ≈ 1:12.3.
+Length ≈ 1:12.7.
 
 ### Source notes
 
@@ -133,16 +133,16 @@ This is Relentless Times.
 | Time | Shows | Strap tab · headline | Source |
 |---|---|---|---|
 | 0:00.0 | Spy cut-paper title: SHE CAME / BACK | — | — |
-| 0:03.2 | Pen & wash sketch (apartments); note “NE 14th Ave · Miami-Dade · Oct 28”; SKETCH tag | ON THE RECORD · TWO DEAD IN NORTHEAST MIAMI-DADE APARTMENT | CBS MIAMI · NBC 6 |
-| 0:07.2 | Big type: 7 P.M. — Apartment complex near NE 14th Avenue | ON THE RECORD · DEPUTIES CALLED JUST AFTER 7 P.M. | CBS MIAMI |
-| 0:18.3 | List: Denis Del Carmen Polo Fuentes, 57 — the victim / Franky Paba, 64 — shot her, then himself, investigators say | ON THE RECORD · INVESTIGATORS: HE SHOT HER, THEN HIMSELF | NBC 6 · CBS MIAMI |
-| 0:31.7 | Family-account card (PABA’S SISTER · A COUSIN): Separated for about two months. A cousin says she begged him to let the women leave. | FAMILY ACCOUNT · FAMILY: THE COUPLE HAD SEPARATED | LOCAL 10 · NBC 6 |
-| 0:42.2 | Open questions: Were there earlier threats? / Earlier calls for help? / Did anyone know? | OPEN QUESTIONS · WHAT THE RECORD STILL HAS TO SHOW | — |
-| 0:48.8 | Name card: DENIS DEL CARMEN POLO FUENTES — 57 · more than the last minutes of her life | COMMENTARY · RELENTLESS TIMES | — |
-| 0:53.5 | Hotline card: NATIONAL DOMESTIC VIOLENCE HOTLINE 1-800-799-7233 | HELP · NATIONAL DOMESTIC VIOLENCE HOTLINE | — |
-| 1:04.2 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
+| 0:03.6 | Pen & wash sketch (apartments); note “NE 14th Ave · Miami-Dade · Oct 28”; SKETCH tag | ON THE RECORD · TWO DEAD IN NORTHEAST MIAMI-DADE APARTMENT | CBS MIAMI · NBC 6 |
+| 0:07.6 | Big type: 7 P.M. — Apartment complex near NE 14th Avenue | ON THE RECORD · DEPUTIES CALLED JUST AFTER 7 P.M. | CBS MIAMI |
+| 0:18.7 | List: Denis Del Carmen Polo Fuentes, 57 — the victim / Franky Paba, 64 — shot her, then himself, investigators say | ON THE RECORD · INVESTIGATORS: HE SHOT HER, THEN HIMSELF | NBC 6 · CBS MIAMI |
+| 0:32.1 | Family-account card (PABA’S SISTER · A COUSIN): Separated for about two months. A cousin says she begged him to let the women leave. | FAMILY ACCOUNT · FAMILY: THE COUPLE HAD SEPARATED | LOCAL 10 · NBC 6 |
+| 0:42.6 | Open questions: Were there earlier threats? / Earlier calls for help? / Did anyone know? | OPEN QUESTIONS · WHAT THE RECORD STILL HAS TO SHOW | — |
+| 0:49.2 | Name card: DENIS DEL CARMEN POLO FUENTES — 57 · more than the last minutes of her life | COMMENTARY · RELENTLESS TIMES | — |
+| 0:53.9 | Hotline card: NATIONAL DOMESTIC VIOLENCE HOTLINE 1-800-799-7233 | HELP · NATIONAL DOMESTIC VIOLENCE HOTLINE | — |
+| 1:04.6 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
 
-Length ≈ 1:08.1.
+Length ≈ 1:08.5.
 
 ### Source notes
 
@@ -185,16 +185,16 @@ This is Relentless Times.
 | Time | Shows | Strap tab · headline | Source |
 |---|---|---|---|
 | 0:00.0 | Spy cut-paper title: THREE / BY MORNING | — | — |
-| 0:03.2 | Big type: 3 — separate homicide investigations in one morning | ON THE RECORD · THREE HOMICIDES IN ONE MORNING | FOX 5 DC · DC NEWS NOW |
-| 0:08.5 | Pen & wash sketch (houses); note “51st Terrace · College Park · 4:15 a.m.”; SKETCH tag | ON THE RECORD · 4:15 A.M. · COLLEGE PARK | PGPD VIA SMNEWSNET |
-| 0:18.0 | Pen & wash sketch (road); note “Belle Haven Dr · Landover · 5:15 a.m.”; SKETCH tag | ON THE RECORD · ABOUT 5:15 A.M. · LANDOVER | PGPD VIA BALTIMORE SUN |
-| 0:24.5 | Pen & wash sketch (park); note “Langley-Hampshire Neighborhood Park”; SKETCH tag | ON THE RECORD · LATER · LANGLEY-HAMPSHIRE PARK | PGPD VIA WUSA9 |
-| 0:34.6 | List: The three cases are not believed to be connected / Believed to be isolated, but not random / No arrests announced | ON THE RECORD · POLICE: UNRELATED, NOT RANDOM | FOX 5 DC · DC NEWS NOW |
-| 0:40.9 | Big type: −33% — homicides, compared with this time last year | CONTEXT · HOMICIDES DOWN 33% FROM LAST YEAR | FOX 5 DC |
-| 0:47.4 | Commentary type: A FALLING NUMBER. THREE FAMILIES. | COMMENTARY · RELENTLESS TIMES | — |
-| 0:53.0 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
+| 0:03.6 | Big type: 3 — separate homicide investigations in one morning | ON THE RECORD · THREE HOMICIDES IN ONE MORNING | FOX 5 DC · DC NEWS NOW |
+| 0:08.9 | Pen & wash sketch (houses); note “51st Terrace · College Park · 4:15 a.m.”; SKETCH tag | ON THE RECORD · 4:15 A.M. · COLLEGE PARK | PGPD VIA SMNEWSNET |
+| 0:18.4 | Pen & wash sketch (road); note “Belle Haven Dr · Landover · 5:15 a.m.”; SKETCH tag | ON THE RECORD · ABOUT 5:15 A.M. · LANDOVER | PGPD VIA BALTIMORE SUN |
+| 0:24.9 | Pen & wash sketch (park); note “Langley-Hampshire Neighborhood Park”; SKETCH tag | ON THE RECORD · LATER · LANGLEY-HAMPSHIRE PARK | PGPD VIA WUSA9 |
+| 0:35.0 | List: The three cases are not believed to be connected / Believed to be isolated, but not random / No arrests announced | ON THE RECORD · POLICE: UNRELATED, NOT RANDOM | FOX 5 DC · DC NEWS NOW |
+| 0:41.3 | Big type: −33% — homicides, compared with this time last year | CONTEXT · HOMICIDES DOWN 33% FROM LAST YEAR | FOX 5 DC |
+| 0:47.8 | Commentary type: A FALLING NUMBER. THREE FAMILIES. | COMMENTARY · RELENTLESS TIMES | — |
+| 0:53.4 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
 
-Length ≈ 0:56.9.
+Length ≈ 0:57.3.
 
 ### Source notes
 
@@ -235,15 +235,15 @@ This is Relentless Times.
 | Time | Shows | Strap tab · headline | Source |
 |---|---|---|---|
 | 0:00.0 | Spy cut-paper title: THREE / SCHOOLS | — | — |
-| 0:03.2 | Pen & wash sketch (corner); note “Cleveland Ave & Macon Dr · Atlanta”; SKETCH tag | ON THE RECORD · MAN SHOT AND KILLED NEAR CLEVELAND AVENUE | WSB-TV · ATLANTA NEWS FIRST |
-| 0:07.8 | Name card: DARRYL CALLAWAY — 56 · shot near Cleveland Ave & Macon Dr | ON THE RECORD · DARRYL CALLAWAY, 56, SHOT AND KILLED | WSB-TV |
-| 0:21.4 | Big type: DRIVER DETAINED — After a short chase and a crash · not publicly identified; stamp NOT A CONVICTION | ON THE RECORD · DRIVER DETAINED AFTER CHASE AND CRASH | WSB-TV |
-| 0:34.7 | Pen & wash sketch (school); note “Lockdown · three elementary schools”; SKETCH tag | ON THE RECORD · THREE ELEMENTARY SCHOOLS LOCKED DOWN | ATLANTA PUBLIC SCHOOLS VIA WSB-TV |
-| 0:45.2 | List: Lockdown lifted; students and staff safe / Some bus routes changed / School police guided students walking home | ON THE RECORD · DISMISSAL CHANGED AROUND THE SCENE | WSB-TV |
-| 0:51.1 | Commentary type: A MAN IS DEAD. A FAMILY GRIEVES. SCHOOLS WAIT. | COMMENTARY · RELENTLESS TIMES | — |
-| 0:59.5 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
+| 0:03.6 | Pen & wash sketch (corner); note “Cleveland Ave & Macon Dr · Atlanta”; SKETCH tag | ON THE RECORD · MAN SHOT AND KILLED NEAR CLEVELAND AVENUE | WSB-TV · ATLANTA NEWS FIRST |
+| 0:08.2 | Name card: DARRYL CALLAWAY — 56 · shot near Cleveland Ave & Macon Dr | ON THE RECORD · DARRYL CALLAWAY, 56, SHOT AND KILLED | WSB-TV |
+| 0:21.8 | Big type: DRIVER DETAINED — After a short chase and a crash · not publicly identified; stamp NOT A CONVICTION | ON THE RECORD · DRIVER DETAINED AFTER CHASE AND CRASH | WSB-TV |
+| 0:35.1 | Pen & wash sketch (school); note “Lockdown · three elementary schools”; SKETCH tag | ON THE RECORD · THREE ELEMENTARY SCHOOLS LOCKED DOWN | ATLANTA PUBLIC SCHOOLS VIA WSB-TV |
+| 0:45.6 | List: Lockdown lifted; students and staff safe / Some bus routes changed / School police guided students walking home | ON THE RECORD · DISMISSAL CHANGED AROUND THE SCENE | WSB-TV |
+| 0:51.5 | Commentary type: A MAN IS DEAD. A FAMILY GRIEVES. SCHOOLS WAIT. | COMMENTARY · RELENTLESS TIMES | — |
+| 0:59.9 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
 
-Length ≈ 1:03.4.
+Length ≈ 1:03.8.
 
 ### Source notes
 

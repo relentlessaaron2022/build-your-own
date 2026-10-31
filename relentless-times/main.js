@@ -27,7 +27,7 @@ function wrap(s, font, maxW) { const out = []; let line = ''; for (const w of s.
 
 // ———————— timeline from the voice ————————
 const DURS = await (await fetch(`vo/${KEY}/dur.json`)).json();
-const TITLE = 3.2, GAP = .45;
+const TITLE = 3.6, GAP = .45;
 let cur = TITLE; const LINES = S.lines.map((l, i) => { const id = 'l' + String(i).padStart(2, '0'), d = DURS[id]; const o = { ...l, id, t0: cur, d }; cur += d + GAP; return o; });
 LINES.forEach((l, i) => { l.t1 = i < LINES.length - 1 ? LINES[i + 1].t0 : l.t0 + l.d + 2.2; });
 const DUR = LINES[LINES.length - 1].t1;
@@ -212,7 +212,7 @@ function titleCard(t) {
   cutLetters(b, 60, 1100, sb, SPY.lemon, SPY.red, 2, seg(t, .45, .95), 't1');
   grainSpy();
   ctx.globalAlpha = 1; text('RELENTLESS TIMES · ' + S.date, 60, 1300, F.mono(26), SPY.lemon, 'left', 4, 'credit'); text(S.place, 60, 1350, F.mono(26), SPY.cream, 'left', 4, 'credit2'); ctx.globalAlpha = 1;
-  const pk = eio(seg(t, 2.5, 3.1)); plate(lerp(540, 880, pk), lerp(330, 140, pk), lerp(.9, .36, pk));
+  const pk = eio(seg(t, 2.9, 3.5)); plate(lerp(540, 880, pk), lerp(330, 140, pk), lerp(.9, .36, pk));
 }
 function signoff(L, t) {
   ctx.fillStyle = SPY.black; ctx.fillRect(0, 0, W, H);
@@ -221,7 +221,7 @@ function signoff(L, t) {
   cutLetters('RELENTLESS', 60, 900, fit('RELENTLESS', 220, 960), SPY.lemon, SPY.black, 6, seg(t, L.t0 + .3, L.t0 + .9), 's1');
   cutLetters('TIMES.', 60, 1110, 220, SPY.cream, SPY.red, 7, seg(t, L.t0 + .7, L.t0 + 1.1), 's2');
   grainSpy(); plate(880, 140, .36);
-  ctx.globalAlpha = eo(seg(t, L.t0 + .2, L.t0 + .4)); text('Voice: AI narration · Sources in the caption', 60, 1300, F.mono(22), SPY.cream, 'left', 2, 'so3'); ctx.globalAlpha = 1;
+  ctx.globalAlpha = eo(seg(t, L.t0 + .2, L.t0 + .4)); text('AI voice · Sources in the caption', 60, 1300, F.mono(22), SPY.cream, 'left', 2, 'so3'); ctx.globalAlpha = 1;
 }
 const SCN = { sketch: sceneSketch, name: sceneName, big: sceneBig, claim: sceneClaim, questions: sceneQuestions, list: sceneList, commentary: sceneCommentary, hotline: sceneHotline, signoff };
 function render(t) {
@@ -236,7 +236,7 @@ const EV = [];
 LINES.forEach(l => { EV.push({ t: l.t0, type: 'vo', id: l.id, story: KEY }); EV.push({ t: l.t0, type: 'cut' }); if (l.scene.type === 'sketch') EV.push({ t: l.t0, type: 'pen', d: 1.6 });
   if (l.scene.stamp) EV.push({ t: l.t0 + (l.scene.type === 'list' ? 1.6 : 1.4), type: 'stamp' }); });
 for (let i = 0; i < S.title[0].length + S.title[1].length; i++) EV.push({ t: i < S.title[0].length ? .15 + i * .75 / S.title[0].length : .45 + (i - S.title[0].length) * .5 / S.title[1].length, type: 'slap', soft: 1 });
-EV.push({ t: 2.5, type: 'whoosh' });
+EV.push({ t: 2.9, type: 'whoosh' });
 window.CUES = LINES.map(l => ({ t0: l.t0, t1: Math.min(l.t1 - .05, l.t0 + Math.max(1.8, l.d + .6)), text: l.text }));
 await document.fonts.ready; for (const f of [F.b8(40), F.b6(40), F.mono(20), F.hand(40)]) await document.fonts.load(f);
 window.EV = EV; window.DUR = DUR; window.render = render; window.TEXTS = t => { render(t); return TX.slice(); }; window.READY = true;

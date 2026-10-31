@@ -1,7 +1,7 @@
 // doc.mjs — write SCRIPTS.md: monologues, timed visual plans and source notes, from the same data the videos use.
 import fs from 'fs'; import { STORIES } from '../stories.js';
 const SRC = JSON.parse(fs.readFileSync(new URL('./sources.json', import.meta.url)));
-const TITLE = 3.2, GAP = .45, fmt = s => `${Math.floor(s / 60)}:${String((s % 60).toFixed(1)).padStart(4, '0')}`;
+const TITLE = 3.6, GAP = .45, fmt = s => `${Math.floor(s / 60)}:${String((s % 60).toFixed(1)).padStart(4, '0')}`;
 const DESC = sc => ({ sketch: () => `Pen & wash sketch (${sc.place}); note “${sc.note}”; SKETCH tag`, name: () => `Name card: ${sc.name} — ${sc.caption}`, big: () => `Big type: ${sc.big.join(' ')} — ${sc.small}${sc.stamp ? `; stamp ${sc.stamp}` : ''}`,
   claim: () => `Family-account card (${sc.who}): ${sc.lines.join(' ')}`, questions: () => `Open questions: ${sc.items.join(' / ')}`, list: () => `List: ${sc.items.join(' / ')}${sc.stamp ? `; stamp ${sc.stamp}` : ''}`,
   commentary: () => `Commentary type: ${sc.lines.join(' ')}`, hotline: () => `Hotline card: ${sc.label} ${sc.number}`, signoff: () => 'Spy cut-paper sign-off: THIS IS RELENTLESS TIMES' })[sc.type]();
