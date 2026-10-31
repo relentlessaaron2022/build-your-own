@@ -1,0 +1,11 @@
+By Grace: two watercolor films (Mosaic, The Window)
+
+Made in code with the Watercolor Brush style of the Lemo-Opuscar library
+(github.com/lemomo-ai/lemo-opuscar): stroke engine engine.js and the paper generator, adapted.
+All paintings are drawn procedurally; no images, footage or music are used.
+
+Fonts
+- Caveat (Mosaic hand notes): Impallari Type, SIL Open Font License 1.1 (mosaic/fonts/LICENSE-caveat.txt)
+
+Rendering: headless Chromium (Playwright), ffmpeg.
+The films are silent by design; the music you place under them is yours to license.
