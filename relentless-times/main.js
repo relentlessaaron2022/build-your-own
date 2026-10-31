@@ -28,7 +28,7 @@ function wrap(s, font, maxW) { const out = []; let line = ''; for (const w of s.
 // ———————— timeline from the voice ————————
 const DURS = await (await fetch(`vo/${KEY}/dur.json`)).json();
 const TITLE = 3.6, GAP = .45;
-let cur = TITLE; const LINES = S.lines.map((l, i) => { const id = 'l' + String(i).padStart(2, '0'), d = DURS[id]; const o = { ...l, id, t0: cur, d }; cur += d + GAP; return o; });
+let cur = TITLE; const LINES = S.lines.map((l, i) => { const id = 'l' + String(i).padStart(2, '0'), d = DURS[id]; const o = { ...l, id, t0: cur, d }; cur += d + GAP + (l.hold || 0); return o; });
 LINES.forEach((l, i) => { l.t1 = i < LINES.length - 1 ? LINES[i + 1].t0 : l.t0 + l.d + 2.2; });
 const DUR = LINES[LINES.length - 1].t1;
 
@@ -155,7 +155,7 @@ function sceneName(L, t) {
   const words = n.split(' '), lines = words.length > 2 ? [words.slice(0, 2).join(' '), words.slice(2).join(' ')] : [n];
   ctx.fillStyle = C.gold; ctx.fillRect(60, 560, 80 * eo(seg(t, L.t0 + .2, L.t0 + .6)), 5);
   lines.forEach((s, i) => push(t, L.t0 + .3 + i * .25, s, 54, 760 + i * 170, F.b8(fit(s, 150, 960, 2)), i === lines.length - 1 ? C.lemon : C.paper, 'nm' + i, 160));
-  const k = eo(seg(t, L.t0 + .9, L.t0 + 1.2)); ctx.globalAlpha = k; wrap(L.scene.caption, F.b6(42), 940).forEach((s, i) => text(s, 60, 760 + lines.length * 170 + 10 + i * 54, F.b6(42), C.grey, 'left', 1, 'cap' + i)); ctx.globalAlpha = 1;
+  const k = eo(seg(t, L.t0 + .5, L.t0 + .8)); ctx.globalAlpha = k; wrap(L.scene.caption, F.b6(42), 940).forEach((s, i) => text(s, 60, 760 + lines.length * 170 + 10 + i * 54, F.b6(42), C.grey, 'left', 1, 'cap' + i)); ctx.globalAlpha = 1;
 }
 function sceneBig(L, t) {
   cardBase(L, t); const sc = L.scene; eyebrow(t, L.t0, sc.eyebrow);

@@ -9,7 +9,7 @@ let md = '# Relentless Times — five one-minute reports\n\nOriginal monologues,
 for (const [k, s] of Object.entries(STORIES)) {
   const dur = JSON.parse(fs.readFileSync(new URL(`../vo/${k}/dur.json`, import.meta.url))); let t = TITLE;
   md += `\n---\n\n## ${s.title.join(' ')} · ${s.place} · ${s.date}\n\n### Monologue\n\n${s.lines.map(l => l.text).join('\n\n')}\n\n### Timed visual plan\n\n| Time | Shows | Strap tab · headline | Source |\n|---|---|---|---|\n| 0:00.0 | Spy cut-paper title: ${s.title.join(' / ')} | — | — |\n`;
-  s.lines.forEach((l, i) => { const d = dur['l' + String(i).padStart(2, '0')]; md += `| ${fmt(t)} | ${DESC(l.scene)} | ${l.tab ? `${l.tab} · ${l.hl}` : '—'} | ${l.src || '—'} |\n`; t += d + GAP; });
+  s.lines.forEach((l, i) => { const d = dur['l' + String(i).padStart(2, '0')]; md += `| ${fmt(t)} | ${DESC(l.scene)} | ${l.tab ? `${l.tab} · ${l.hl}` : '—'} | ${l.src || '—'} |\n`; t += d + GAP + (l.hold || 0); });
   md += `\nLength ≈ ${fmt(t + 1.75)}.\n\n### Source notes\n\n${SRC[k].sources.map(([a, u]) => `- [${a}](${u})`).join('\n')}\n\nVerification:\n${SRC[k].notes.map(n => `- ${n}`).join('\n')}\n`;
 }
 fs.writeFileSync(new URL('../SCRIPTS.md', import.meta.url), md); console.log('SCRIPTS.md', md.length, 'chars');

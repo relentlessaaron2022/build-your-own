@@ -30,7 +30,7 @@ export const STORIES = {
     title: ['COBEE,', 'AGE FOUR'], place: 'ATLANTA, GEORGIA', date: 'OCT 2026',
     lines: [
       { say: 'Cobee Cooks was four years old.', text: 'Cobee Cooks was 4 years old.',
-        scene: { type: 'name', name: 'COBEE COOKS', caption: '4 years old · some reports spell his name Colby' }, tab: 'ON THE RECORD', hl: 'BOY, 4, FOUND DEAD IN SOUTHWEST ATLANTA', sub: 'ATLANTA POLICE · WELFARE CHECK', src: 'WSB-TV' },
+        scene: { type: 'name', name: 'COBEE COOKS', caption: 'Age 4 · also reported as Colby' }, hold: 1.8, tab: 'ON THE RECORD', hl: 'BOY, 4, FOUND DEAD IN SOUTHWEST ATLANTA', sub: 'ATLANTA POLICE · WELFARE CHECK', src: 'WSB-TV' },
       { say: 'Atlanta police found him during a welfare check at a townhome on Cardinal Drive. Arrest warrants obtained by WSB say his body was in a closet, under a pile of clothes.',
         text: 'Atlanta police found him during a welfare check at a townhome on Cardinal Drive. Arrest warrants obtained by WSB say his body was in a closet, under a pile of clothes.',
         scene: { type: 'sketch', place: 'townhomes', note: 'Cardinal Drive · SW Atlanta' }, tab: 'ON THE RECORD', hl: 'FOUND DURING A WELFARE CHECK ON CARDINAL DRIVE', sub: 'PER ARREST WARRANTS OBTAINED BY WSB-TV', src: 'WSB-TV, OCT 30 2026' },

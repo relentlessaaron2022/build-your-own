@@ -81,16 +81,16 @@ This is Relentless Times.
 | Time | Shows | Strap tab · headline | Source |
 |---|---|---|---|
 | 0:00.0 | Spy cut-paper title: COBEE, / AGE FOUR | — | — |
-| 0:03.6 | Name card: COBEE COOKS — 4 years old · some reports spell his name Colby | ON THE RECORD · BOY, 4, FOUND DEAD IN SOUTHWEST ATLANTA | WSB-TV |
-| 0:06.0 | Pen & wash sketch (townhomes); note “Cardinal Drive · SW Atlanta”; SKETCH tag | ON THE RECORD · FOUND DURING A WELFARE CHECK ON CARDINAL DRIVE | WSB-TV, OCT 30 2026 |
-| 0:19.3 | Big type: HOMICIDE — Cause: multiple blunt-force injuries | ON THE RECORD · DEATH RULED A HOMICIDE | WSB-TV, OCT 28 & 30 2026 |
-| 0:26.8 | List: Jasmaine Smoak, 32 — murder, first-degree cruelty to children, aggravated assault / Jasmine Jenkins — party to the crime of murder and first-degree cruelty to children; stamp ALLEGATIONS | CHARGED · TWO WOMEN CHARGED WITH MURDER | WSB-TV ARREST WARRANTS |
-| 0:36.6 | Family-account card (ANDREA & BRIAN COOKS · GRANDPARENTS): The father called CPS and police when he saw bruises. They say DFCS found nothing amiss. | FAMILY ACCOUNT · GRANDPARENTS SAY FATHER REPORTED BRUISES | WSB-TV, OCT 29 2026 |
-| 0:52.3 | Big type: NOT CONFIRMED — No agency statement on any earlier report | ON THE RECORD · NO AGENCY HAS CONFIRMED AN EARLIER REPORT | WSB-TV |
-| 0:58.5 | Open questions: What was reported, and when? / Who looked into it? / What did they find? | OPEN QUESTIONS · WHAT THE RECORDS STILL HAVE TO SHOW | — |
-| 1:08.8 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
+| 0:03.6 | Name card: COBEE COOKS — Age 4 · also reported as Colby | ON THE RECORD · BOY, 4, FOUND DEAD IN SOUTHWEST ATLANTA | WSB-TV |
+| 0:07.8 | Pen & wash sketch (townhomes); note “Cardinal Drive · SW Atlanta”; SKETCH tag | ON THE RECORD · FOUND DURING A WELFARE CHECK ON CARDINAL DRIVE | WSB-TV, OCT 30 2026 |
+| 0:21.1 | Big type: HOMICIDE — Cause: multiple blunt-force injuries | ON THE RECORD · DEATH RULED A HOMICIDE | WSB-TV, OCT 28 & 30 2026 |
+| 0:28.6 | List: Jasmaine Smoak, 32 — murder, first-degree cruelty to children, aggravated assault / Jasmine Jenkins — party to the crime of murder and first-degree cruelty to children; stamp ALLEGATIONS | CHARGED · TWO WOMEN CHARGED WITH MURDER | WSB-TV ARREST WARRANTS |
+| 0:38.4 | Family-account card (ANDREA & BRIAN COOKS · GRANDPARENTS): The father called CPS and police when he saw bruises. They say DFCS found nothing amiss. | FAMILY ACCOUNT · GRANDPARENTS SAY FATHER REPORTED BRUISES | WSB-TV, OCT 29 2026 |
+| 0:54.1 | Big type: NOT CONFIRMED — No agency statement on any earlier report | ON THE RECORD · NO AGENCY HAS CONFIRMED AN EARLIER REPORT | WSB-TV |
+| 1:00.3 | Open questions: What was reported, and when? / Who looked into it? / What did they find? | OPEN QUESTIONS · WHAT THE RECORDS STILL HAVE TO SHOW | — |
+| 1:10.6 | Spy cut-paper sign-off: THIS IS RELENTLESS TIMES | — | — |
 
-Length ≈ 1:12.7.
+Length ≈ 1:14.5.
 
 ### Source notes
 
