@@ -1,0 +1,7 @@
+{
+ "slug": "relentless-times", "en": "Relentless Times", "cn": "无情时代",
+ "based_on": "news-package", "borrows": ["urban-sketch", "spy-titles"], "size": "1080x1920",
+ "library_version": "413a6bd", "created": "2026-10-31",
+ "line": "A vertical investigative news package drawn by hand: pen & wash sketches, cut-paper silhouettes, a spy-title cold open, sourced facts, no music.",
+ "line_cn": "手绘的竖屏调查新闻包装：钢笔淡彩速写、剪纸剪影、间谍片头式开场、有出处的事实，无配乐。"
+}
