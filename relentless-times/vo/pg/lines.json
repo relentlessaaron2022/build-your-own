@@ -1,0 +1,58 @@
+[
+ {
+  "id": "l00",
+  "text": "Three men. One morning. Three separate homicide investigations.",
+  "asr": "Three men. One morning. Three separate homicide investigations.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l01",
+  "text": "At four-fifteen a.m., twenty-six-year-old Jose Edin Hernandez Vasquez was found stabbed inside a home in College Park.",
+  "asr": "At 4:15 a.m., 26-year-old Jose Edin Hernandez Vasquez was found stabbed inside a home in College Park.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l02",
+  "text": "Around five-fifteen, a man was found shot in the road on Belle Haven Drive in Landover.",
+  "asr": "Around 5:15, a man was found shot in the road on Belle Haven Drive in Landover.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l03",
+  "text": "Later, a landscaping worker found a man believed to be in his twenties, with upper-body trauma, in the woods at Langley-Hampshire Neighborhood Park.",
+  "asr": "Later, a landscaping worker found a man believed to be in his 20s, with upper-body trauma, in the woods at Langley-Hampshire Neighborhood Park.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l04",
+  "text": "Police say the cases appear unrelated, and not random. No arrests have been announced.",
+  "asr": "Police say the cases appear unrelated, and not random. No arrests have been announced.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l05",
+  "text": "And this: the police chief says homicides are down thirty-three percent from this time last year.",
+  "asr": "And this: the police chief says homicides are down 33 percent from this time last year.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l06",
+  "text": "Both are true. A falling number. And three families whose worst day it was.",
+  "asr": "Both are true. A falling number. And three families whose worst day it was.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l07",
+  "text": "This is Relentless Times.",
+  "asr": "This is Relentless Times.",
+  "voice": "am_michael",
+  "speed": 0.96
+ }
+]

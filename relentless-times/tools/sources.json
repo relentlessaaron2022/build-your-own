@@ -1,0 +1,34 @@
+{
+ "bronx": {"sources": [
+  ["Gothamist — 15-year-old Bronx boy fatally shot", "https://gothamist.com/news/15-year-old-boy-shot-and-killed-thursday-morning-in-the-bronx-nypd-said"],
+  ["NBC New York — Bullying may be tied to 15-year-old's death, father says", "https://www.nbcnewyork.com/bronx/school-bullying-may-be-tied-to-15-year-olds-nyc-shooting-death-father-says/6565190/"],
+  ["ABC7 New York — 3 teens sought", "https://abc7ny.com/post/teen-shot-walking-school-bronx-police-search-masked-suspect/19994893/"],
+  ["amNY — Police seek teen killers", "https://www.amny.com/news/bronx-teen-killers-boy-shot-dead-10292026/"],
+  ["Hot97 — student fatally shot", "https://www.hot97.com/news/15-year-old-student-fatally-shot-on-his-way-to-school-in-the-bronx/"]],
+  "notes": ["Police place the shooting near E. 171st St and Crotona Place (some outlets say Third Avenue); the script says 'near East 171st Street'.", "Police could not confirm he was walking to school; the script and title do not assert it.", "Father's account (two students suspended for a week; retaliation) is labeled FAMILY ACCOUNT; police have not confirmed a motive.", "As of Oct 30, 2026: no arrests; police seek three teens in black with surgical masks. Re-check before publishing."]},
+ "cobee": {"sources": [
+  ["WSB-TV — 4-year-old's body was found in closet under pile of clothes (Oct 30)", "https://www.wsbtv.com/news/local/4-year-olds-body-was-found-closet-under-pile-clothes/SCKKJQXNSVAL3NEPANCTW2PRTM/"],
+  ["WSB-TV — Grandparents of Cobee Cooks… say father called Child Protective Services (Oct 29)", "https://www.wsbtv.com/news/local/grandparents-4-year-old-found-dead-say-father-called-child-protective-services/D33LH4DLWRGFLCX5W6WV7FQXSE/"],
+  ["WSB-TV — Second woman arrested (Oct 29)", "https://www.wsbtv.com/news/local/second-woman-arrested-4-year-olds-death/IDJVNJK2RFDOFJUT2QHOTHT6YU/"],
+  ["WSB-TV — Cause of death released (Oct 28)", "https://www.wsbtv.com/news/local/atlanta/cause-death-released-4-year-old-found-dead-during-welfare-check/LXT6F4OEQJGWRO6T74OLQD4FNY/"],
+  ["FOX 5 Atlanta — Cause of death revealed", "https://www.fox5atlanta.com/news/cause-death-revealed-4-year-old-found-dead-sw-atlanta"]],
+  "notes": ["Name: WSB's family-sourced story spells 'Cobee'; other WSB and FOX 5 pages spell 'Colby'. The video uses Cobee and notes the other spelling.", "'Concealed' (handoff) is not in the sources; the script uses the warrants' wording: in a closet, under a pile of clothes.", "Grandparents' claim (father called CPS and police after seeing bruises; DFCS found nothing amiss) is the family's account to WSB; no agency has confirmed it.", "Charges: Smoak (32) murder, first-degree cruelty to children, aggravated assault; Jenkins party to the crime of murder and first-degree cruelty (per warrants, WSB). Spellings of the two women vary between outlets."]},
+ "miami": {"sources": [
+  ["CBS Miami — apparent murder-suicide (Oct 28)", "https://www.cbsnews.com/miami/news/northeast-miami-dade-apparent-murder-suicide-october-28-2026/"],
+  ["NBC 6 — Authorities identify man, woman", "https://www.nbcmiami.com/news/local/authorities-identify-man-woman-involved-in-murder-suicide-in-ne-miami-dade/3880221/"],
+  ["NBC 6 — Cousin says she witnessed murder-suicide", "https://www.nbcmiami.com/news/local/murder-suicide-witness-miami-dade/3880588/"],
+  ["Local 10 (Spanish) — couple separating", "https://www.local10.com/espanol/2026/10/29/familiar-pareja-casada-en-proceso-de-separacion-son-los-dos-muertos-tras-balacera-por-asesinato-suicidio-en-miami-dade/"]],
+  "notes": ["'Paba allowed her inside' (handoff) is not in the sources and is not used.", "Time: 'just after 7 p.m.' (handoff's 7:03 not found).", "Name spelling varies (Denis / Dennys / Denise); the voice is respelled 'Denise' to approximate the Spanish pronunciation; the screen uses the sheriff's 'Denis'.", "Separation (sister) and the cousin's account are labeled FAMILY ACCOUNT.", "Hotline: National Domestic Violence Hotline 1-800-799-7233, text START to 88788."]},
+ "pg": {"sources": [
+  ["Southern Maryland News Net — PGPD release, three homicides", "https://smnewsnet.com/archives/566316/police-investigating-three-separate-homicides-on-thursday-october-29th-2026-in-prince-georges-county/"],
+  ["FOX 5 DC — Three homicides within hours", "https://www.fox5dc.com/news/three-homicides-reported-prince-georges-county-within-hours"],
+  ["Baltimore Sun — Landover fatal shooting (Belle Haven Dr)", "https://www.baltimoresun.com/2026/10/29/landover-fatal-shooting-belle-haven/"],
+  ["WUSA9 — Man found dead in park behind elementary school", "https://www.wusa9.com/article/news/crime/prince-georges-county-homicide-in-neighborhood-park/65-95413e00-995f-4774-9019-f315dfe9cb06"],
+  ["DC News Now — 3 men killed", "https://www.dcnewsnow.com/news/local-news/maryland/prince-georges-county/pgcpd-three-men-killed/"]],
+  "notes": ["The handoff's 'eighteen-year-old' at the park is not supported: police describe a man believed to be in his 20s. Corrected.", "The handoff's 10:55 a.m. park time was not found; the script says 'later'.", "Police: not connected, isolated but not random; no arrests announced (preliminary).", "−33% is Chief George Nader's comparison with the same point last year (FOX 5 DC)."]},
+ "callaway": {"sources": [
+  ["WSB-TV — 1 shot, killed near Atlanta elementary school", "https://www.wsbtv.com/news/local/atlanta/1-shot-near-atlanta-elementary-school-how-students-get-home-changing/UFHHY22HABD2ZOJ2KEVWYK7J2Y/"],
+  ["Atlanta News First — brief lockdown", "https://www.atlantanewsfirst.com/2026/10/28/shooting-near-south-atlanta-elementary-school-prompts-brief-lockdown/"],
+  ["WSB Radio — 1 arrested in connection", "https://www.wsbradio.com/news/local/1-arrested-connection-deadly-atlanta-shooting/OIOY3XPVZ5BPJCWEGAJRJ3FFNI/"]],
+  "notes": ["Victim: Darryl Callaway, 56; about 1:30 p.m.; police say the shooting followed an argument.", "A driver was detained after a short chase and crash; WSB Radio later reported an arrest; the person has not been publicly identified. The script says 'detained' and that detention is not a conviction.", "'Hundreds of children' was removed: no source gives a count.", "Schools: Cleveland Avenue, Hutchinson, Humphries elementary; all students and staff safe; bus routes changed; school police guided walkers."]}
+}

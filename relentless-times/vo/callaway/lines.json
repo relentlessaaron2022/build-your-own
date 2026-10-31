@@ -1,0 +1,51 @@
+[
+ {
+  "id": "l00",
+  "text": "The shooting happened on a street corner. The fear reached three schools.",
+  "asr": "The shooting happened on a street corner. The fear reached three schools.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l01",
+  "text": "Just after one-thirty on the afternoon of October twenty-eighth, Atlanta police were called to Cleveland Avenue and Macon Drive. Fifty-six-year-old Darryl Callaway had been shot. He died.",
+  "asr": "Just after 1:30 on the afternoon of October 28, Atlanta police were called to Cleveland Avenue and Macon Drive. 56-year-old Darryl Callaway had been shot. He died.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l02",
+  "text": "Police say it followed an argument with another man. Officers found a vehicle; a short chase ended in a crash, and the driver was detained. Being detained is not being convicted.",
+  "asr": "Police say it followed an argument with another man. Officers found a vehicle; a short chase ended in a crash, and the driver was detained. Being detained is not being convicted.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l03",
+  "text": "Nearby, Cleveland Avenue, Hutchinson and Humphries elementary schools went into lockdown. Officials say every student and staff member was safe.",
+  "asr": "Nearby, Cleveland Avenue, Hutchinson and Humphries elementary schools went into lockdown. Officials say every student and staff member was safe.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l04",
+  "text": "Bus routes changed, and school police helped students who walk home stay clear of the scene.",
+  "asr": "Bus routes changed, and school police helped students who walk home stay clear of the scene.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l05",
+  "text": "A man is dead. A family is grieving. And children at three schools had their afternoon rearranged around gunfire.",
+  "asr": "A man is dead. A family is grieving. And children at three schools had their afternoon rearranged around gunfire.",
+  "voice": "am_michael",
+  "speed": 0.96
+ },
+ {
+  "id": "l06",
+  "text": "This is Relentless Times.",
+  "asr": "This is Relentless Times.",
+  "voice": "am_michael",
+  "speed": 0.96
+ }
+]

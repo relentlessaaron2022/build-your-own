@@ -1,0 +1,6 @@
+out/
+events_*.json
+mix_*.wav
+vo/*/*.wav
+vo/*/.cache/
+vo/*/words.json
