@@ -141,7 +141,7 @@ function shotTitle(t) {
   push(t, T.hook + .25, 'HER WINGS WERE', 112, 430, F.b8(220), C.white, 'ti0', 210);
   push(t, T.hook + .5, 'CLIPPED', 112, 650, F.b8(220), C.lemon, 'ti1', 210);
   const k = eo(seg(t, T.police, T.police + .35)); if (k > 0) { ctx.globalAlpha = k; ctx.fillStyle = C.lemon; ctx.fillRect(120, 712, 120 * k, 5);
-    text('Police: she used her travel perks to scam a 75-year-old.', 120, 780, F.b6(44), C.paper, 'left', 1, 'tsub1'); ctx.globalAlpha = 1; }
+    text('Police: she used travel perks to scam a 75-year-old.', 120, 780, F.b6(44), C.paper, 'left', 1, 'tsub1'); ctx.globalAlpha = 1; }
 }
 // ———————— 2 · the call ————————
 function shotCall(t) {
