@@ -1,0 +1,14 @@
+{
+ "look": "be-nice", "series": "Be Nice", "episode": 2, "title": "Hold the Gate",
+ "voice": "voice.m4a",
+ "script": "Be Nice. Episode two. Hold the gate. Every morning, Miss Lee waited at the gate for the kids on her street. She never said much. She just held it open. Years later, one of those kids came back and held it open for her. Kindness doesn't disappear. It waits for its turn to come back around. Be nice. See you tomorrow.",
+ "quote": "Kindness doesn't disappear. It waits for its turn to come back around.",
+ "scenes": [
+  {"media": "media/01-window.jpg", "motion": "in"},
+  {"media": "media/02-gate.jpg", "motion": "left"},
+  {"type": "text", "text": "She just held it open."},
+  {"media": "media/03-tree.jpg", "motion": "up"},
+  {"media": "media/04-sunrise.jpg", "motion": "out"}
+ ],
+ "cta": "Follow for Episode 3 tomorrow", "handle": "@relentless"
+}

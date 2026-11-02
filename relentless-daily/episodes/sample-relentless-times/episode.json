@@ -1,0 +1,21 @@
+{
+ "look": "relentless-times", "series": "Relentless Times", "episode": 0, "title": "The Ownership Lesson",
+ "voice": "voice.m4a",
+ "script": "Anthropic's IPO filing shows sixteen point three billion dollars in revenue in six months. But the real lesson is who owns it. Seven co-founders hold fifty point one percent of the vote. Thousands of employees hold stock. Wealth like this doesn't come from a paycheck. It comes from owning a piece of what you build. So ask yourself. What do you own?",
+ "quote": "Wealth like this doesn't come from a paycheck. It comes from owning a piece of what you build.",
+ "scenes": [
+  {"media": "media/01-revenue.jpg", "motion": "in"},
+  {"type": "stat", "value": "$16.3B", "label": "revenue in six months · Anthropic S-1"},
+  {"media": "media/02-vote.jpg", "motion": "out"},
+  {"media": "media/03-employees.jpg", "motion": "up"},
+  {"type": "text", "text": "What do you own?"}
+ ],
+ "straps": [
+  {"at": "Anthropic's IPO filing shows", "tab": "ON THE RECORD", "text": "$16.3B REVENUE IN SIX MONTHS", "src": "Anthropic S-1, SEC"},
+  {"at": "Seven co-founders hold", "tab": "ON THE RECORD", "text": "CO-FOUNDERS HOLD 50.1% OF THE VOTE", "src": "Anthropic S-1, SEC"},
+  {"at": "Thousands of employees", "tab": "ON THE RECORD", "text": "≈5,300 EMPLOYEES, MANY HOLD STOCK", "src": "Anthropic S-1, SEC"},
+  {"at": "So ask yourself", "tab": "COMMENTARY", "text": "WHAT DO YOU OWN?", "src": "Relentless Times"}
+ ],
+ "tagline": "This is Relentless Times.",
+ "cta": "Follow for the next story", "handle": "@relentless"
+}

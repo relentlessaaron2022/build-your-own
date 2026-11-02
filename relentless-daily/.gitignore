@@ -1,0 +1,7 @@
+episodes/*/out/
+episodes/*/_frames/
+episodes/*/_tts/
+episodes/*/events.json
+episodes/*/mix.wav
+episodes/*/voice.wav
+stills/

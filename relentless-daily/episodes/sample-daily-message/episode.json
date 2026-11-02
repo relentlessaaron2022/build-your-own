@@ -1,0 +1,14 @@
+{
+ "look": "daily-message", "series": "Daily Message", "episode": 12, "title": "Your Permission",
+ "voice": "voice.m4a",
+ "script": "Nobody is coming to save you. And that is not bad news. That is your permission. Permission to start before you feel ready. Permission to be bad at it on the first day. The candle doesn't wait for the whole room to go dark. It just burns. Start today. Small is still moving.",
+ "quote": "The candle doesn't wait for the whole room to go dark. It just burns.",
+ "scenes": [
+  {"media": "media/01-candle.jpg", "motion": "in"},
+  {"type": "text", "text": "Start before you feel ready."},
+  {"media": "media/02-mosaic.jpg", "motion": "out"},
+  {"type": "stat", "value": "Day 1", "label": "is the only day you need to win"},
+  {"media": "media/03-sunrise.jpg", "motion": "up"}
+ ],
+ "cta": "Follow for tomorrow's message", "handle": "@relentless"
+}
