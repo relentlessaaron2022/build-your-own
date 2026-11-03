@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import datetime as dt
 import math
+from zoneinfo import ZoneInfo
 
 from sqlalchemy import func, select, update
 
@@ -16,8 +17,10 @@ from app.analytics.ingest import ingest_analytics
 from app.analytics.winners import evaluate_winners_and_losers
 from app.campaign import ANGLES_PER_CAMPAIGN, CONCEPTS_PER_ANGLE, generate_campaign_concepts, spawn_replacement_concept
 from app.config import load_boards, load_offers, settings
-from app.db import Campaign, Pin, PinConcept, get_session
+from app.db import Campaign, Pin, PinConcept, SourceContent, get_session
 from app.discovery.orchestrator import run_discovery_all_sites
+from app.discovery.concepts import generate_discovered_concepts, materialize_discovered_concepts
+from app.discovery.social_sync import sync_social_accounts
 from app.logging_config import get_logger
 from app.optimizer.variations import run_optimization_cycle
 from app.pinterest.client import (
@@ -30,6 +33,7 @@ from app.pinterest.client import (
 )
 from app.pipeline import materialize_all_draft_concepts
 from app.queue_manager import needs_generation
+from app.publish_lock import single_publisher
 
 logger = get_logger(__name__)
 
@@ -61,7 +65,10 @@ def _get_or_create_offer_campaign(session, offer: dict) -> Campaign:
 
 def discovery_job() -> dict:
     logger.info("Running discovery_job")
-    return {"sites": run_discovery_all_sites()}
+    sites = run_discovery_all_sites()
+    social = sync_social_accounts()
+    return {"sites": sites, "social_accounts": social,
+            "errors": sum("error" in row for row in [*sites, *social])}
 
 
 def generation_job(force: bool = False) -> dict:
@@ -70,6 +77,11 @@ def generation_job(force: bool = False) -> dict:
         return {"skipped": True}
 
     logger.info("Running generation_job")
+
+    source_concepts = generate_discovered_concepts()
+    # Include discoveries as well as configured product offers. The original
+    # pipeline stored SourceContent but never consumed it in pin generation.
+    source_materialized = materialize_discovered_concepts()
 
     active_offers = [o for o in load_offers() if o.get("active", True)]
     results_by_offer: dict[str, dict] = {}
@@ -89,6 +101,8 @@ def generation_job(force: bool = False) -> dict:
         for offer in active_offers:
             with get_session() as session:
                 campaign = _get_or_create_offer_campaign(session, offer)
+                if campaign.status != "active":
+                    continue
                 campaign_id = campaign.id
                 existing_count = session.execute(
                     select(func.count(PinConcept.id)).where(PinConcept.campaign_id == campaign_id)
@@ -97,7 +111,10 @@ def generation_job(force: bool = False) -> dict:
             batch_offset = existing_count // BATCH_SIZE
             board_names = [
                 b["name"] for b in load_boards() if b.get("category") == offer.get("category")
-            ] or [b["name"] for b in load_boards()[:1]]
+            ]
+            if not board_names:
+                logger.warning("Offer %s has no boards in its category; generation skipped", offer["id"])
+                continue
 
             concepts = generate_campaign_concepts(
                 campaign_id=campaign_id,
@@ -129,6 +146,8 @@ def generation_job(force: bool = False) -> dict:
         "campaigns": list(results_by_offer.values()),
         "queue_needed_more": needs_generation(),
         "rounds_run": rounds_run,
+        "source_concepts_created": source_concepts,
+        "source_materialized": source_materialized,
     }
 
 
@@ -147,7 +166,7 @@ def publish_slot_size(daily_target: int | None = None) -> int:
     publish volume instead of a fixed number that used to publish twice
     the configured target every day."""
     daily_target = daily_target if daily_target is not None else settings.daily_pin_target
-    return max(1, math.ceil(daily_target / PUBLISH_SLOTS_PER_DAY))
+    return max(0, math.ceil(daily_target / PUBLISH_SLOTS_PER_DAY))
 
 
 def _claim_pin(session, pin_id: int) -> bool:
@@ -170,7 +189,28 @@ def _release_claim(session, pin_id: int, status: str = "queued") -> None:
     session.commit()
 
 
-def publish_job() -> dict:
+def _remaining_daily_budget(session) -> int:
+    now = dt.datetime.now(ZoneInfo(settings.scheduler_timezone))
+    start = now.replace(hour=0, minute=0, second=0, microsecond=0).astimezone(dt.timezone.utc)
+    used = session.scalar(select(func.count(Pin.id)).where(
+        ((Pin.status == "published") & (Pin.published_at >= start)) |
+        (Pin.status == "publishing")
+    ))
+    return max(0, settings.daily_pin_target - used)
+
+
+def _active_pin_query():
+    disabled_names = [f"{offer['name']} - Primary" for offer in load_offers() if not offer.get("active", True)]
+    return (select(Pin.id).join(PinConcept).join(Campaign)
+            .outerjoin(SourceContent, PinConcept.source_id == SourceContent.id)
+            .where(Campaign.status == "active")
+            .where(Campaign.name.not_in(disabled_names))
+            .where((PinConcept.source_id.is_(None)) | (SourceContent.status == "promoted"))
+            .where(Pin.status.in_(["queued", "scheduled"])))
+
+
+@single_publisher
+def publish_job(*, retry_only: bool = False) -> dict:
     if not state.publishing_enabled():
         logger.info("publish_job skipped: publishing is paused")
         return {"skipped": True, "reason": "paused"}
@@ -184,16 +224,25 @@ def publish_job() -> dict:
 
     with get_session() as session:
         now = dt.datetime.now(dt.timezone.utc)
+        budget = min(publish_slot_size(), _remaining_daily_budget(session))
+        if budget <= 0:
+            return {"skipped": True, "reason": "daily_limit"}
+        query = _active_pin_query()
+        if retry_only:
+            query = query.where(Pin.retry_count > 0)
         candidate_ids = session.execute(
-            select(Pin.id)
-            .where(Pin.status.in_(["queued", "scheduled"]))
+            query
             .where((Pin.scheduled_at.is_(None)) | (Pin.scheduled_at <= now))
             .order_by(Pin.created_at.asc())
-            .limit(publish_slot_size())
+            .limit(budget)
         ).scalars().all()
 
     for pin_id in candidate_ids:
+        if not state.publishing_enabled():
+            break
         with get_session() as session:
+            if _remaining_daily_budget(session) <= 0:
+                break
             if not _claim_pin(session, pin_id):
                 continue  # another worker claimed this pin first
 
@@ -211,7 +260,10 @@ def publish_job() -> dict:
 
             concept = pin.concept
             try:
-                response = client.create_pin(
+                # Every retry reconciles BEFORE writing, including after a failed
+                # reconciliation on the preceding attempt.
+                existing = client.find_pin_by_link(board_pinterest_id, pin.destination_url) if pin.retry_count else None
+                response = {"id": existing} if existing else client.create_pin(
                     board_id=board_pinterest_id,
                     title=concept.headline,
                     description=concept.description,
@@ -219,7 +271,9 @@ def publish_job() -> dict:
                     image_path=pin.image_path,
                     alt_text=concept.headline,
                 )
-                pin.pinterest_pin_id = response.get("id", "")
+                if not response.get("id"):
+                    raise TransientAPIError("Pinterest create response did not contain a pin ID")
+                pin.pinterest_pin_id = response["id"]
                 pin.status = "published"
                 pin.published_at = dt.datetime.now(dt.timezone.utc)
                 pin.last_error = ""
@@ -229,7 +283,11 @@ def publish_job() -> dict:
 
             except RateLimitError as exc:
                 logger.warning("Pinterest rate limit hit, stopping publish_job early: %s", exc)
-                _release_claim(session, pin_id, "queued")
+                pin.status = "scheduled"
+                pin.retry_count = max(1, pin.retry_count)
+                pin.scheduled_at = dt.datetime.now(dt.timezone.utc) + dt.timedelta(seconds=max(60, exc.retry_after))
+                pin.last_error = str(exc)
+                session.commit()
                 return {"skipped": False, "published": published, "failed": failed, "retried": retried, "rate_limited": True}
 
             except CredentialsMissingError as exc:
@@ -280,7 +338,8 @@ def publish_job() -> dict:
                 pin.status = "failed"
                 pin.last_error = str(exc)
                 concept.status = "rejected"
-                spawn_replacement_concept(session, concept)
+                if concept.source_id is None:
+                    spawn_replacement_concept(session, concept)
                 failed += 1
                 logger.error("Pin %s failed permanently: %s", pin.id, exc)
                 session.commit()
@@ -318,6 +377,7 @@ def weekly_strategy_job() -> dict:
     return {"report_path": str(path), **report}
 
 
+@single_publisher
 def publish_one_test_pin(concept_id: int | None = None) -> dict:
     """Phase 1 milestone helper: publish exactly one queued pin right now,
     bypassing the hourly cron schedule, for `pinterest publish-test`."""
@@ -341,7 +401,9 @@ def publish_one_test_pin(concept_id: int | None = None) -> dict:
 
     client = PinterestClient()
     with get_session() as session:
-        query = select(Pin.id).where(Pin.status.in_(["queued", "scheduled"]))
+        if _remaining_daily_budget(session) <= 0:
+            return {"success": False, "reason": "daily_limit"}
+        query = _active_pin_query().where(Pin.retry_count == 0)
         if concept_id is not None:
             query = query.where(Pin.concept_id == concept_id)
         pin_id = session.execute(query.order_by(Pin.created_at.asc()).limit(1)).scalar_one_or_none()
@@ -379,7 +441,12 @@ def publish_one_test_pin(concept_id: int | None = None) -> dict:
             session.commit()
             return {"success": False, "reason": "api_error", "detail": str(exc)}
 
-        pin.pinterest_pin_id = response.get("id", "")
+        if not response.get("id"):
+            pin.status = "failed"
+            pin.last_error = "Pinterest create response did not contain a pin ID; inspect the board before requeueing"
+            session.commit()
+            return {"success": False, "reason": "missing_pin_id"}
+        pin.pinterest_pin_id = response["id"]
         pin.status = "published"
         pin.published_at = dt.datetime.now(dt.timezone.utc)
         session.commit()

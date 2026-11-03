@@ -14,7 +14,7 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(os.getenv("AUTOPILOT_HOME", Path(__file__).resolve().parent.parent)).resolve()
 CONFIG_DIR = PROJECT_ROOT / "config"
 DATA_DIR = PROJECT_ROOT / "data"
 LOGS_DIR = PROJECT_ROOT / "logs"
@@ -69,6 +69,8 @@ class Settings:
     publishing_enabled: bool = field(default_factory=lambda: _env_bool("PUBLISHING_ENABLED", True))
     generation_enabled: bool = field(default_factory=lambda: _env_bool("GENERATION_ENABLED", True))
     auto_optimization_enabled: bool = field(default_factory=lambda: _env_bool("AUTO_OPTIMIZATION_ENABLED", True))
+
+    scheduler_timezone: str = field(default_factory=lambda: os.getenv("SCHEDULER_TIMEZONE", "America/New_York"))
 
     daily_pin_target: int = field(default_factory=lambda: _env_int("DAILY_PIN_TARGET", 5))
     min_queue_days: int = field(default_factory=lambda: _env_int("MIN_QUEUE_DAYS", 14))
@@ -149,3 +151,7 @@ def brand_key_for_url(url: str) -> str | None:
 
 for _dir in (DATA_DIR, LOGS_DIR, REPORTS_DIR, ASSETS_DIR / "generated"):
     _dir.mkdir(parents=True, exist_ok=True)
+
+
+def load_social_accounts() -> list[dict]:
+    return _load_json("social_accounts.json").get("accounts", [])

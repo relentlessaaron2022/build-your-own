@@ -79,7 +79,10 @@ def materialize_concept(concept_id: int, check_network: bool = False) -> Pin | N
 
         if not result.passed:
             concept.status = "rejected"
-            spawn_replacement_concept(session, concept)
+            # A source title is factual content, not a prompt for invented
+            # listicle variants. Keep a rejected source pin for human review.
+            if concept.source_id is None:
+                spawn_replacement_concept(session, concept)
             session.commit()
             logger.warning("Concept %s failed QC: %s", concept_id, "; ".join(result.failures))
             return None

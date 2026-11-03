@@ -1,0 +1,115 @@
+{
+  "accounts": [
+    {
+      "id": "facebook",
+      "platform": "facebook",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": "https://www.facebook.com/relentless.aaron/",
+      "token_env": "FACEBOOK_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "instagram_1",
+      "platform": "instagram",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": null,
+      "token_env": "INSTAGRAM_1_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "instagram_2",
+      "platform": "instagram",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": null,
+      "token_env": "INSTAGRAM_2_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "instagram_3",
+      "platform": "instagram",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": null,
+      "token_env": "INSTAGRAM_3_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "instagram_4",
+      "platform": "instagram",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": null,
+      "token_env": "INSTAGRAM_4_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "instagram_5",
+      "platform": "instagram",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": null,
+      "token_env": "INSTAGRAM_5_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "youtube",
+      "platform": "youtube",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": null,
+      "token_env": null,
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "threads",
+      "platform": "threads",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": null,
+      "token_env": "THREADS_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "tiktok",
+      "platform": "tiktok",
+      "display_name": "Relentless Aaron",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": null,
+      "token_env": "TIKTOK_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    },
+    {
+      "id": "instagram_mzpearlivy",
+      "platform": "instagram",
+      "display_name": "mzpearlivy",
+      "site_id": "relentlessaaron",
+      "account_id": null,
+      "profile_url": "https://www.instagram.com/mzpearlivy/",
+      "token_env": "INSTAGRAM_MZPEARLIVY_ACCESS_TOKEN",
+      "enabled": false,
+      "auto_approve": false
+    }
+  ],
+  "note": "Requested: Facebook, five Relentless Aaron Instagram accounts, YouTube, Threads, TikTok, plus @mzpearlivy. Confirm whether @mzpearlivy is already one of the five before enabling duplicate slots. Exact stable IDs and authorization remain required."
+}

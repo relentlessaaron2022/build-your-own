@@ -45,6 +45,18 @@ def resume():
 
 
 @cli.command()
+@click.option("--require-running", is_flag=True, help="Fail if the scheduler heartbeat is missing or stale.")
+def doctor(require_running: bool):
+    """Check local readiness without publishing or contacting Pinterest."""
+    from app.health import health_report
+
+    result = health_report()
+    click.echo(json.dumps(result, indent=2))
+    if not result["ready"] or (require_running and not result["scheduler_heartbeat_fresh"]):
+        raise SystemExit(1)
+
+
+@cli.command()
 def status():
     """Show kill-switch state, Pinterest connectivity, and queue depth."""
     from app.queue_manager import queue_status
@@ -146,6 +158,35 @@ def discover():
     from app.scheduler.jobs import discovery_job
 
     click.echo(json.dumps(discovery_job(), indent=2, default=str))
+
+
+@cli.command()
+def sync_social():
+    """Read posts from explicitly enabled, authorized social account connections."""
+    from app.db import init_db as initialize
+    from app.discovery.social_sync import sync_social_accounts
+
+    initialize()
+    results = sync_social_accounts()
+    click.echo(json.dumps(results, indent=2))
+    if any("error" in result for result in results):
+        raise SystemExit(1)
+
+
+@cli.command()
+@click.argument("export_path", type=click.Path(exists=True, dir_okay=False))
+@click.option("--site-id", default="relentlessaaron", show_default=True)
+def import_social(export_path: str, site_id: str):
+    """Import a normalized JSON export of your own social posts (no scraping)."""
+    from app.db import init_db as initialize
+    from app.discovery.social import import_social_export
+
+    initialize()
+    try:
+        result = import_social_export(export_path, site_id)
+    except (ValueError, TypeError, KeyError) as exc:
+        raise click.ClickException(str(exc)) from exc
+    click.echo(json.dumps(result, indent=2))
 
 
 @cli.command()

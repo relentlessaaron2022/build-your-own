@@ -15,6 +15,11 @@ publish_job can drain it below MIN_QUEUE_DAYS.
 """
 from __future__ import annotations
 
+import datetime as dt
+
+from app.config import settings
+from app.health import record_heartbeat, record_job_result
+
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
@@ -39,8 +44,10 @@ def _wrap(job_fn):
     def _run():
         try:
             result = job_fn()
+            record_job_result(job_fn.__name__, result)
             logger.info("%s completed: %s", job_fn.__name__, result)
         except Exception:  # noqa: BLE001 - a single bad job must never kill the scheduler
+            record_job_result(job_fn.__name__, failed=True)
             logger.exception("%s raised an unhandled exception", job_fn.__name__)
 
     _run.__name__ = job_fn.__name__
@@ -49,14 +56,18 @@ def _wrap(job_fn):
 
 def build_scheduler() -> BlockingScheduler:
     init_db()
-    scheduler = BlockingScheduler(timezone="UTC")
+    scheduler = BlockingScheduler(timezone=settings.scheduler_timezone, job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": 300})
 
+    scheduler.add_job(record_heartbeat, IntervalTrigger(seconds=30), id="heartbeat", next_run_time=dt.datetime.now(dt.timezone.utc))
+    def retry_job():
+        return publish_job(retry_only=True)
+    scheduler.add_job(_wrap(retry_job), IntervalTrigger(minutes=1), id="retry_job")
     scheduler.add_job(_wrap(discovery_job), IntervalTrigger(hours=6), id="discovery_job")
-    scheduler.add_job(_wrap(generation_job), IntervalTrigger(hours=6), id="generation_job")
-    scheduler.add_job(_wrap(publish_job), CronTrigger(hour=PUBLISH_HOURS, minute=0), id="publish_job")
-    scheduler.add_job(_wrap(analytics_job), CronTrigger(hour=6, minute=30), id="analytics_job")
-    scheduler.add_job(_wrap(optimization_job), CronTrigger(hour=7, minute=0), id="optimization_job")
-    scheduler.add_job(_wrap(weekly_strategy_job), CronTrigger(day_of_week="mon", hour=7, minute=30), id="weekly_strategy_job")
+    scheduler.add_job(_wrap(generation_job), IntervalTrigger(hours=6), id="generation_job", next_run_time=dt.datetime.now(dt.timezone.utc))
+    scheduler.add_job(_wrap(publish_job), CronTrigger(timezone=settings.scheduler_timezone, hour=PUBLISH_HOURS, minute=0), id="publish_job")
+    scheduler.add_job(_wrap(analytics_job), CronTrigger(timezone=settings.scheduler_timezone, hour=6, minute=30), id="analytics_job")
+    scheduler.add_job(_wrap(optimization_job), CronTrigger(timezone=settings.scheduler_timezone, hour=7, minute=0), id="optimization_job")
+    scheduler.add_job(_wrap(weekly_strategy_job), CronTrigger(timezone=settings.scheduler_timezone, day_of_week="fri", hour=17, minute=30), id="weekly_strategy_job")
 
     return scheduler
 

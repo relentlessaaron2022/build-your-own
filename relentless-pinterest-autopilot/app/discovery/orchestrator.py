@@ -48,12 +48,14 @@ def _get_or_create_campaign(session, site: dict) -> Campaign:
         select(Campaign).where(Campaign.name == name, Campaign.site == site["id"])
     ).scalar_one_or_none()
     if existing:
+        if existing.category == "evergreen_discovery":
+            existing.category = site.get("board_category", "publishing")
         return existing
     campaign = Campaign(
         name=name,
         site=site["id"],
         landing_url=site["base_url"],
-        category="evergreen_discovery",
+        category=site.get("board_category", "publishing"),
         objective="Drive Pinterest traffic to organically discovered evergreen content.",
         status="active",
     )
@@ -134,4 +136,11 @@ def run_discovery_for_site(site_id: str, threshold: float = 55.0) -> dict:
 
 
 def run_discovery_all_sites(threshold: float = 55.0) -> list[dict]:
-    return [run_discovery_for_site(site["id"], threshold=threshold) for site in load_sites()]
+    results = []
+    for site in load_sites():
+        try:
+            results.append(run_discovery_for_site(site["id"], threshold=threshold))
+        except Exception as exc:
+            logger.warning("Discovery failed for %s (%s)", site["id"], type(exc).__name__)
+            results.append({"site_id": site["id"], "error": type(exc).__name__})
+    return results

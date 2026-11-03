@@ -227,9 +227,21 @@ class PinterestClient:
         return self._request("GET", f"/pins/{pin_id}")
 
     def list_board_pins(self, board_id: str, page_size: int = 25) -> list[dict]:
-        return self._request("GET", f"/boards/{board_id}/pins", params={"page_size": page_size}).get(
-            "items", []
-        )
+        pins = []
+        bookmark = None
+        seen = set()
+        while True:
+            params = {"page_size": page_size}
+            if bookmark:
+                params["bookmark"] = bookmark
+            data = self._request("GET", f"/boards/{board_id}/pins", params=params)
+            pins.extend(data.get("items", []))
+            bookmark = data.get("bookmark")
+            if not bookmark:
+                return pins
+            if bookmark in seen:
+                raise PinterestAPIError("Pinterest returned a repeated board bookmark; reconciliation incomplete")
+            seen.add(bookmark)
 
     def find_pin_by_link(self, board_id: str, link: str) -> str | None:
         """Reconciliation for ambiguous create_pin outcomes: a timeout or

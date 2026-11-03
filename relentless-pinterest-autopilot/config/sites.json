@@ -9,7 +9,8 @@
         "rss": true,
         "sitemap": true
       },
-      "brand_key": "relentless_aaron"
+      "brand_key": "relentless_aaron",
+      "board_category": "publishing"
     },
     {
       "id": "webfilmbooks",
@@ -20,7 +21,8 @@
         "rss": true,
         "sitemap": true
       },
-      "brand_key": "webfilmbooks"
+      "brand_key": "webfilmbooks",
+      "board_category": "publishing"
     }
   ]
 }

@@ -74,3 +74,25 @@ Secrets and operational toggles live in `.env` (see `.env.example`).
 pip install -r requirements-dev.txt
 pytest tests/ -v
 ```
+
+
+## Operational repair (November 2026)
+
+See [OPERATIONS.md](OPERATIONS.md) for readiness checks, the Mac service,
+source imports, and the remaining authorization steps. A pull request or
+successful test run is not evidence that a live scheduler is publishing.
+
+Website discovery now feeds eligible posts into source-linked pin concepts,
+instead of only storing the posts while generation promotes a product offer.
+Social readers for Facebook Pages, Instagram professional accounts, YouTube,
+Threads, and TikTok are wired into discovery but remain disconnected until exact
+account IDs and authorized credentials are supplied. A normalized owner-provided
+JSON export is also supported.
+Use `pinterest import-social posts.json --site-id relentlessaaron`, then
+`pinterest generate`. See OPERATIONS.md for the export format and approval field.
+
+The scheduler uses `SCHEDULER_TIMEZONE` (default America/New_York), checks due
+retries every minute, generates a starting queue immediately, and writes a
+heartbeat every 30 seconds. Weekly reports run Friday at 5:30 p.m. in that zone.
+The publisher enforces the daily cap, campaign pauses, matching board categories,
+and a shared local publisher lock. Run only one scheduler on one host.
