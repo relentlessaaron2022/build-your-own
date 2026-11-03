@@ -1,0 +1,15 @@
+{
+  "sources": [
+    {
+      "id": "etsy_itsallbeyoutiful",
+      "platform": "etsy",
+      "display_name": "itsallbeYOUtiful",
+      "shop_url": "https://www.etsy.com/shop/itsallbeYOUtiful",
+      "shop_id": null,
+      "enabled": false,
+      "integration_status": "pending_listing_importer",
+      "setup_note": "Source registry only: the scheduler does not read this file yet. An Etsy API or owner-export listing importer and product/brand/board routing must be implemented and verified before activation. No listings, images, prices, or inventory have been imported."
+    }
+  ],
+  "note": "Commerce sources are separate from social accounts. Registration does not establish a working integration."
+}
