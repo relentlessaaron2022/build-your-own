@@ -7,15 +7,31 @@
       "output_directory": "dist",
       "build_command": null,
       "offer": "Sheet sets and Cool Comfort Bamboo Pillows",
-      "sales_pages": ["value.html", "colors.html", "gifts.html"],
+      "sales_pages": [
+        "value.html",
+        "colors.html",
+        "gifts.html",
+        "queen.html",
+        "king.html",
+        "guest-room.html",
+        "first-home.html",
+        "neutral-colors.html",
+        "bold-colors.html",
+        "everyday-refresh.html"
+      ],
       "planned_sales_page_count": 10,
-      "completed_sales_page_count": 3,
+      "completed_sales_page_count": 10,
       "order_method": "phone",
       "beacons_checkout": "deferred",
       "analytics": "not_connected",
-      "cloudflare": {"project_name": null, "url": null, "status": "not_connected"},
+      "cloudflare": {
+        "project_name": null,
+        "url": null,
+        "status": "not_connected"
+      },
       "existing_private_preview": "https://bamboo-sheets-sales-pages.relentless-a-2737.chatgpt.site",
-      "last_verified": "2026-11-03"
+      "last_verified": "2026-11-03",
+      "live_page_urls": []
     }
   ]
 }

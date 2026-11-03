@@ -10,13 +10,13 @@ Ten alternate landing pages for one product can remain in one project.
 
 | Site | Folder | Pages ready | Cloudflare state |
 | --- | --- | --- | --- |
-| Bamboo sheets | `sites/bamboo-sheets` | Value, colors, gifting | Not connected |
+| Bamboo sheets | `sites/bamboo-sheets` | Ten buyer-focused landing pages | Not connected |
 
 The existing Sites preview is separate from the GitHub source library. There
-are three completed sales pages, not ten. Phone ordering is preserved; Beacons
+are ten completed sales pages awaiting public Cloudflare deployment. Phone ordering is preserved; Beacons
 checkout is deferred. The additional generated teal-bedroom model image is
-included as `dist/assets/editorial-model-teal.webp`, but is not selected by the
-existing pages. No analytics collector is connected.
+included as `dist/assets/editorial-model-teal.webp` and used on the everyday-refresh
+page as a labeled illustrative lifestyle image. No analytics collector is connected.
 
 ## Publish a site through Cloudflare Pages
 
@@ -28,7 +28,7 @@ existing pages. No analytics collector is connected.
 4. Set the root directory to `microsites/sites/bamboo-sheets`.
 5. Select no framework, leave the build command empty, and set output directory
    to `dist`. The HTML is already generated and tracked.
-6. Deploy and verify all three pages and the call-to-order buttons. The actual
+6. Deploy and verify all ten pages and the call-to-order buttons. The actual
    Cloudflare URL is recorded in `registry.json` only after deployment succeeds.
 7. Optionally add a separately purchased custom domain. No domain is required
    to begin using the provider's Pages URL.

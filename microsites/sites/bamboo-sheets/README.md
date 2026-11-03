@@ -1,4 +1,4 @@
-# Bamboo sheets: three alternate sales pages
+# Bamboo sheets: ten alternate sales pages
 
 Built from the owner's existing Bamboo Solid 2000 Series site on November 3, 2026.
 
@@ -9,6 +9,13 @@ Built from the owner's existing Bamboo Solid 2000 Series site on November 3, 202
 | `dist/value.html` | Explain the six-piece set and listed price | BS-VALUE |
 | `dist/colors.html` | Help shoppers choose a room color | BS-COLOR |
 | `dist/gifts.html` | Help gift buyers choose size, color, and delivery timing | BS-GIFT |
+| `dist/queen.html` | Queen-size buying details | BS-QUEEN |
+| `dist/king.html` | King-size buying details | BS-KING |
+| `dist/guest-room.html` | Guest bedroom setup | BS-GUEST |
+| `dist/first-home.html` | First-home bedroom refresh | BS-HOME |
+| `dist/neutral-colors.html` | Neutral bedroom palettes | BS-NEUTRAL |
+| `dist/bold-colors.html` | Stronger bedroom colors | BS-BOLD |
+| `dist/everyday-refresh.html` | Everyday refresh with new model image | BS-REFRESH |
 | `dist/index.html` | Browse all three approaches | — |
 
 This is one portable static project. No subscriptions, paid APIs, or build dependencies are required. The original site is unchanged. The Sites preview is a separate private publication, not a deployment into the owner's GitHub or Cloudflare account.
@@ -53,4 +60,4 @@ For phone sales, ask callers which order code they saw and log actual paid order
 
 ## Verification
 
-JavaScript syntax, all internal links/assets, desktop and mobile overflow, all three pages' size/color controls, unavailable color previews, call attribution events, and blocked session storage behavior were checked. No payment processing or completed-sales measurement is implemented.
+JavaScript syntax, all internal links/assets, desktop and mobile overflow, all ten pages' size/color controls, unavailable color previews, call attribution events, and blocked session storage behavior were checked. No payment processing or completed-sales measurement is implemented.
