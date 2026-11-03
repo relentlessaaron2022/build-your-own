@@ -1,0 +1,65 @@
+{
+  "sites": [
+    {
+      "id": "bamboo-sheets",
+      "name": "Bamboo Solid 2000 Series",
+      "source_directory": "microsites/sites/bamboo-sheets",
+      "output_directory": "dist",
+      "build_command": null,
+      "offer": "Sheet sets and Cool Comfort Bamboo Pillows",
+      "sales_pages": [
+        "value.html",
+        "colors.html",
+        "gifts.html",
+        "queen.html",
+        "king.html",
+        "guest-room.html",
+        "first-home.html",
+        "neutral-colors.html",
+        "bold-colors.html",
+        "everyday-refresh.html"
+      ],
+      "planned_sales_page_count": 10,
+      "completed_sales_page_count": 10,
+      "order_method": "phone",
+      "beacons_checkout": "deferred",
+      "analytics": "not_connected",
+      "cloudflare": {
+        "project_name": null,
+        "url": null,
+        "status": "not_connected"
+      },
+      "existing_private_preview": "https://bamboo-sheets-sales-pages.relentless-a-2737.chatgpt.site",
+      "last_verified": "2026-11-03",
+      "live_page_urls": []
+    },
+    {
+      "id": "art-gallery",
+      "name": "Relentless Art Shop",
+      "source_directory": "microsites/sites/art-gallery",
+      "output_directory": "dist",
+      "build_command": null,
+      "offer": "Promote the owner's art gallery and its listed formats",
+      "sales_pages": [
+        "collection.html",
+        "wall-art.html",
+        "meaningful-gifts.html",
+        "phone-wallpapers.html",
+        "heritage.html"
+      ],
+      "planned_sales_page_count": 5,
+      "completed_sales_page_count": 5,
+      "order_method": "source_gallery",
+      "gallery_url": "https://relentlessaaron.net/gallery/",
+      "analytics": "not_connected",
+      "cloudflare": {
+        "project_name": null,
+        "url": null,
+        "status": "not_connected"
+      },
+      "live_page_urls": [],
+      "verification": "GitHub source checks; browser QA pending workspace recovery",
+      "last_verified": "2026-11-03"
+    }
+  ]
+}

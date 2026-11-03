@@ -1,0 +1,50 @@
+{
+  "source_url": "https://bamboo-solid-2000-series.relentless-a-2737.chatgpt.site",
+  "source_project_id": "appgprj_6ac94f68d3208191a0852d6920e990aa",
+  "extracted_at": "2026-11-03",
+  "sheet_price": 20,
+  "pillow_prices": {
+    "Queen": 40,
+    "King": 50
+  },
+  "phone": "+14043142100",
+  "sizes": {
+    "Queen": "60 \u00d7 80 in",
+    "King": "76 \u00d7 80 in"
+  },
+  "pieces": [
+    "1 fitted sheet",
+    "1 flat sheet",
+    "4 pillowcases"
+  ],
+  "colors": [
+    "Gold",
+    "Teal",
+    "Chocolate",
+    "White",
+    "Burgundy",
+    "Charcoal",
+    "Navy",
+    "Taupe",
+    "Sage",
+    "Burnt Orange",
+    "Blush",
+    "Black"
+  ],
+  "unverified": [
+    "Current prices and inventory",
+    "Fiber composition",
+    "Mattress pocket depth",
+    "Shipping charges and timing",
+    "Return policy",
+    "Checkout URL",
+    "Image rights provenance"
+  ],
+  "notes": [
+    "2000 Series is the product name, not a verified thread count.",
+    "Black had a charcoal image alias on the original; do not reproduce this as an exact black preview.",
+    "White reused a showcase photo; do not label it an exact white preview.",
+    "No access to historical traffic or sales was supplied."
+  ],
+  "source_commit": "7296cd6a9f2b0d0caa3ebde864ca8ae8229d5496"
+}

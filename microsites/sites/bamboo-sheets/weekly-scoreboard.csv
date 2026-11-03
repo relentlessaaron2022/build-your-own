@@ -1,0 +1,11 @@
+week_ending,variant,order_code,source,sessions,call_clicks,paid_orders,gross_revenue,refunds,product_cost,shipping_cost,traffic_spend,net_revenue,notes
+,value,BS-VALUE,,,,,,,,,,,,
+,colors,BS-COLOR,,,,,,,,,,,,
+,gifts,BS-GIFT,,,,,,,,,,,,
+,queen,BS-QUEEN,,,,,,,,,,,,
+,king,BS-KING,,,,,,,,,,,,
+,guest-room,BS-GUEST,,,,,,,,,,,,
+,first-home,BS-HOME,,,,,,,,,,,,
+,neutral-colors,BS-NEUTRAL,,,,,,,,,,,,
+,bold-colors,BS-BOLD,,,,,,,,,,,,
+,everyday-refresh,BS-REFRESH,,,,,,,,,,,,

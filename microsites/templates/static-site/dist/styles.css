@@ -1,0 +1,4 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f7f4ed; color: #203c35; font: 18px/1.6 system-ui, sans-serif; }
+main { max-width: 760px; margin: 12vh auto; padding: 24px; }
+h1 { font: 400 clamp(2.5rem, 7vw, 4rem)/1.1 Georgia, serif; }
