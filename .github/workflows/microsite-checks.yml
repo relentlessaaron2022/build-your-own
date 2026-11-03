@@ -14,4 +14,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check microsites/sites/art-gallery/dist/assets/gallery.js
+      - run: node microsites/sites/art-gallery/build.mjs
+      - run: git diff --exit-code -- microsites/sites/art-gallery/dist
       - run: python microsites/scripts/check_sites.py

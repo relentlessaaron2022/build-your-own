@@ -1,0 +1,1 @@
+(() => {'use strict';for(const link of document.querySelectorAll('[data-gallery]'))link.addEventListener('click',()=>{const detail={event:'gallery_outbound_click',page:document.body.dataset.page,destination:link.href};window.dataLayer=window.dataLayer||[];window.dataLayer.push(detail);window.dispatchEvent(new CustomEvent('relentless:analytics',{detail}));});})();

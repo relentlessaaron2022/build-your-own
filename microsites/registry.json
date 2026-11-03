@@ -32,6 +32,34 @@
       "existing_private_preview": "https://bamboo-sheets-sales-pages.relentless-a-2737.chatgpt.site",
       "last_verified": "2026-11-03",
       "live_page_urls": []
+    },
+    {
+      "id": "art-gallery",
+      "name": "Relentless Art Shop",
+      "source_directory": "microsites/sites/art-gallery",
+      "output_directory": "dist",
+      "build_command": null,
+      "offer": "Promote the owner's art gallery and its listed formats",
+      "sales_pages": [
+        "collection.html",
+        "wall-art.html",
+        "meaningful-gifts.html",
+        "phone-wallpapers.html",
+        "heritage.html"
+      ],
+      "planned_sales_page_count": 5,
+      "completed_sales_page_count": 5,
+      "order_method": "source_gallery",
+      "gallery_url": "https://relentlessaaron.net/gallery/",
+      "analytics": "not_connected",
+      "cloudflare": {
+        "project_name": null,
+        "url": null,
+        "status": "not_connected"
+      },
+      "live_page_urls": [],
+      "verification": "GitHub source checks; browser QA pending workspace recovery",
+      "last_verified": "2026-11-03"
     }
   ]
 }
