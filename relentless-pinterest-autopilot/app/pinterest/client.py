@@ -78,15 +78,14 @@ class PinterestClient:
             return
         if not settings.pinterest_client_id or not settings.pinterest_client_secret:
             raise CredentialsMissingError(
-                "No PINTEREST_ACCESS_TOKEN configured, and PINTEREST_CLIENT_ID / "
-                "PINTEREST_CLIENT_SECRET are not set (needed to exchange "
-                "PINTEREST_REFRESH_TOKEN for one). Create an app at "
-                "https://developers.pinterest.com and populate .env."
+                "No PINTEREST_ACCESS_TOKEN configured, and PINTEREST_APP_ID / "
+                "PINTEREST_APP_SECRET (or PINTEREST_CLIENT_ID / PINTEREST_CLIENT_SECRET) "
+                "are not set. Add the app id and secret to .env, then run `pinterest connect`."
             )
         if not settings.pinterest_refresh_token:
             raise CredentialsMissingError(
                 "No PINTEREST_ACCESS_TOKEN or PINTEREST_REFRESH_TOKEN configured. "
-                "Complete the OAuth flow once to obtain a refresh token."
+                "Run `pinterest connect` to sign in and store tokens in .env."
             )
 
     def _refresh_access_token(self) -> str:

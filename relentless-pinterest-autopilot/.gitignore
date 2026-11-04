@@ -13,6 +13,8 @@ venv/
 data/*.db
 data/*.db-journal
 data/state.json
+data/oauth-state.json
+data/connect-form-tokens.json
 data/publisher.lock
 data/scheduler-heartbeat.json
 data/job-*.json

@@ -44,4 +44,6 @@ def test_publish_one_test_pin_reports_missing_credentials():
     result = publish_one_test_pin()
     assert result["success"] is False
     assert result["reason"] == "missing_credentials"
-    assert "PINTEREST_CLIENT_ID" in result["required_env"]
+    required = " ".join(result["required_env"])
+    assert "PINTEREST_CLIENT_ID" in required
+    assert "PINTEREST_APP_ID" in required

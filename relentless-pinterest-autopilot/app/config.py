@@ -49,16 +49,41 @@ def _env_int(name: str, default: int) -> int:
         return default
 
 
+def _env_first(*names: str) -> str:
+    """Return the first non-blank environment variable among names."""
+    for name in names:
+        value = os.getenv(name)
+        if value is not None and value.strip():
+            return value.strip()
+    return ""
+
+
+def _env_str(name: str, default: str) -> str:
+    value = os.getenv(name)
+    if value is None or not value.strip():
+        return default
+    return value.strip()
+
+
 @dataclass
 class Settings:
     database_url: str = field(default_factory=lambda: os.getenv(
         "DATABASE_URL", f"sqlite:///{DATA_DIR / 'autopilot.db'}"
     ))
 
-    pinterest_client_id: str = field(default_factory=lambda: os.getenv("PINTEREST_CLIENT_ID", ""))
-    pinterest_client_secret: str = field(default_factory=lambda: os.getenv("PINTEREST_CLIENT_SECRET", ""))
-    pinterest_access_token: str = field(default_factory=lambda: os.getenv("PINTEREST_ACCESS_TOKEN", ""))
-    pinterest_refresh_token: str = field(default_factory=lambda: os.getenv("PINTEREST_REFRESH_TOKEN", ""))
+    # PINTEREST_APP_ID / PINTEREST_APP_SECRET match the Pinterest developer
+    # portal. PINTEREST_CLIENT_ID / PINTEREST_CLIENT_SECRET stay as aliases.
+    pinterest_client_id: str = field(default_factory=lambda: _env_first("PINTEREST_APP_ID", "PINTEREST_CLIENT_ID"))
+    pinterest_client_secret: str = field(default_factory=lambda: _env_first(
+        "PINTEREST_APP_SECRET", "PINTEREST_CLIENT_SECRET"
+    ))
+    pinterest_access_token: str = field(default_factory=lambda: _env_str("PINTEREST_ACCESS_TOKEN", ""))
+    pinterest_refresh_token: str = field(default_factory=lambda: _env_str("PINTEREST_REFRESH_TOKEN", ""))
+    # Exact default required for the Standard-access demo. Override only by
+    # setting PINTEREST_REDIRECT_URI to another http://localhost redirect.
+    pinterest_redirect_uri: str = field(default_factory=lambda: _env_str(
+        "PINTEREST_REDIRECT_URI", "http://localhost:8085/pinterest/callback"
+    ))
 
     openai_api_key: str = field(default_factory=lambda: os.getenv("OPENAI_API_KEY", ""))
 

@@ -70,10 +70,10 @@ def status():
     click.echo("\n== Pinterest credentials ==")
     if not settings.pinterest_credentials_present:
         click.echo(
-            "NOT CONFIGURED. Either set PINTEREST_ACCESS_TOKEN alone (e.g. the token "
-            "Pinterest's developer portal can generate directly, even before an app has "
-            "a secret under 'trial access'), or set PINTEREST_CLIENT_ID, "
-            "PINTEREST_CLIENT_SECRET, and PINTEREST_REFRESH_TOKEN for the full OAuth flow."
+            "NOT CONFIGURED. Set PINTEREST_APP_ID and PINTEREST_APP_SECRET in .env "
+            "(PINTEREST_CLIENT_ID and PINTEREST_CLIENT_SECRET also work), then run "
+            "`pinterest connect`. A standalone PINTEREST_ACCESS_TOKEN can call the API "
+            "until it expires, but it cannot refresh itself."
         )
     else:
         from app.pinterest.client import PinterestAPIError, PinterestClient
@@ -231,6 +231,25 @@ def run():
     from app.scheduler.runner import run_forever
 
     run_forever()
+
+
+@cli.command()
+@click.option("--no-browser", is_flag=True, help="Do not open a browser; print the local URL.")
+def connect(no_browser: bool):
+    """Start the local Pinterest OAuth demo.
+
+    Opens the Connect account page. The redirect URI is
+    http://localhost:8085/pinterest/callback unless PINTEREST_REDIRECT_URI is set.
+    Signing in does not publish a pin. A pin is sent only when you press
+    Create this pin now or Publish this scheduled pin now.
+    """
+    from app.pinterest.connect_server import run_connect_server
+    from app.pinterest.oauth import OAuthConfigError
+
+    try:
+        run_connect_server(open_browser=not no_browser)
+    except OAuthConfigError as exc:
+        raise click.ClickException(str(exc)) from exc
 
 
 @cli.command()

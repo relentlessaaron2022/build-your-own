@@ -11,9 +11,9 @@ From this project directory, create a virtual environment, activate it, install
 `pinterest init-db`. For a service, keep this checkout and its data directory on
 a persistent disk. Never commit `.env`, access tokens, databases, or logs.
 
-Populate Pinterest credentials locally using the developer app authorization
-flow. A standalone access token can prove connectivity, but it cannot refresh
-itself. Continuous operation needs the client ID, secret, and refresh token.
+Populate Pinterest credentials locally with `pinterest connect`, documented
+below. A standalone access token can prove connectivity, but it cannot refresh
+itself. Continuous operation needs the app id, secret, and refresh token.
 Having a token does not establish that it has permission to publish.
 
 1. `pinterest status` checks account connectivity without creating pins.
@@ -29,8 +29,76 @@ Having a token does not establish that it has permission to publish.
    on Pinterest. This is a real external write, not a dry run.
 8. Start `pinterest run` for continuous operation after verifying the pin.
 
-The full OAuth connection and real publishing test have not been performed in
-this repair environment, which has no configured Pinterest credentials.
+## Record the Pinterest Standard access demo
+
+Use this on the Mac that will appear in the recording. The Pinterest app is
+WEBFILMBOOKS Content Automation, app ID 1611009. It is on Trial access until
+Pinterest grants Standard access. This repository does not contain the app
+secret, and the commands below do not call Pinterest until you sign in and
+press a publish button.
+
+Register this redirect URI on the app. Pinterest allows `http` when the host
+is localhost. The value has to match character for character:
+
+```text
+http://localhost:8085/pinterest/callback
+```
+
+`PINTEREST_REDIRECT_URI` can replace that default. The replacement must still
+be `http://localhost` or `http://127.0.0.1`, including a port, and the same
+value must be saved on the Pinterest app. `pinterest connect` reads that
+variable and listens on its port. It binds to 127.0.0.1 only.
+
+From this project directory:
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e . -r requirements-dev.txt
+cp .env.example .env
+```
+
+Edit `.env` and set `PINTEREST_APP_ID=1611009` and `PINTEREST_APP_SECRET` to
+the secret shown in the developer portal. `PINTEREST_CLIENT_ID` and
+`PINTEREST_CLIENT_SECRET` are accepted aliases when the `APP_` variables are
+blank. Leave the access and refresh tokens blank; the connect command writes
+them. Do not commit `.env`, and do not open `.env` or print the secret while
+recording.
+
+Check the automated tests, then start the demo:
+
+```bash
+pytest tests/test_pinterest_oauth.py -v
+pinterest connect
+```
+
+If the `pinterest` command is not on your PATH, use `python -m app.cli connect`.
+Add `--no-browser` to print the URL without opening a browser. The page to
+record is http://localhost:8085/ . Stop the server with Ctrl+C.
+
+What the recording needs to show:
+
+1. The local page, including the redirect URI `http://localhost:8085/pinterest/callback`.
+2. A click on **Connect Pinterest account**. That opens Pinterest's own
+   sign-in and permission screen for WEBFILMBOOKS Content Automation. The
+   requested scopes are `boards:read`, `boards:write`, `pins:read`,
+   `pins:write`, and `user_accounts:read`. Approve them.
+3. The browser returning to the local page with the connected account
+   username. The access token and refresh token are stored in `.env` and are
+   not displayed. Connecting does not create a pin.
+4. One manual pin action on a board you choose:
+   - **Create this pin now** sends exactly one pin and shows its Pinterest id.
+   - **Schedule this pin** asks for a future time and saves the pin on this
+     Mac. The confirmation says nothing was sent to Pinterest. The background
+     worker does not publish these saved pins. **Publish this scheduled pin
+     now** is a second explicit click if you also want that saved pin sent.
+
+Do not start `pinterest run` during the recording. Publishing stays off until
+one of those buttons is pressed. `pinterest pause` blocks the two publish
+buttons; it does not block scheduling. After the video, `pinterest status`
+reads the connected account and still does not create a pin.
+
+The live sign-in has to be recorded on a machine that has the app secret.
+The test run here does not contact Pinterest.
 
 ## Social media and website content
 

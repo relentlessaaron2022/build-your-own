@@ -387,8 +387,8 @@ def publish_one_test_pin(concept_id: int | None = None) -> dict:
             "success": False,
             "reason": "missing_credentials",
             "required_env": [
-                "PINTEREST_CLIENT_ID",
-                "PINTEREST_CLIENT_SECRET",
+                "PINTEREST_APP_ID or PINTEREST_CLIENT_ID",
+                "PINTEREST_APP_SECRET or PINTEREST_CLIENT_SECRET",
                 "PINTEREST_REFRESH_TOKEN (or PINTEREST_ACCESS_TOKEN)",
             ],
         }

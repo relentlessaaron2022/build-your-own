@@ -11,10 +11,13 @@ sys.path.insert(0, str(PROJECT_ROOT))
 # and app.db creates its engine from that value at import time too.
 _TMP_DB_DIR = tempfile.mkdtemp(prefix="pinterest_autopilot_test_")
 os.environ["DATABASE_URL"] = f"sqlite:///{_TMP_DB_DIR}/test.db"
+os.environ["PINTEREST_APP_ID"] = ""
+os.environ["PINTEREST_APP_SECRET"] = ""
 os.environ["PINTEREST_CLIENT_ID"] = ""
 os.environ["PINTEREST_CLIENT_SECRET"] = ""
 os.environ["PINTEREST_REFRESH_TOKEN"] = ""
 os.environ["PINTEREST_ACCESS_TOKEN"] = ""
+os.environ["PINTEREST_REDIRECT_URI"] = ""
 os.environ["OPENAI_API_KEY"] = ""
 
 import pytest  # noqa: E402

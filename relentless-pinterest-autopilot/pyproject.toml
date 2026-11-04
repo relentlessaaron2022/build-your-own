@@ -26,3 +26,4 @@ include = ["app*"]
 
 [tool.setuptools.package-data]
 "app.reporting" = ["templates/*.html"]
+"app.pinterest" = ["templates/*.html"]
