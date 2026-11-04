@@ -1,0 +1,7 @@
+{
+  "name": "Manuscript",
+  "tagline": "Write books and screenplays in pieces. Shuffle the pieces. Ship the whole.",
+  "bundleId": "com.relentless.manuscript",
+  "icon": "book",
+  "window": { "width": 1320, "height": 860, "minWidth": 900, "minHeight": 560 }
+}

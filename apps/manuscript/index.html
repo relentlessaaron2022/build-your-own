@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'">
+<title>Manuscript</title>
+<link rel="stylesheet" href="../../kit/bama.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-app="manuscript">
+<div class="app" id="app">
+  <div class="titlebar">
+    <span class="brand">Manu<b>script</b></span>
+    <select class="select no-drag" id="projectPick" title="Switch project"></select>
+    <button class="btn sm" id="newProject">New project</button>
+    <span class="spacer"></span>
+    <div class="seg no-drag" id="views">
+      <button data-view="editor" class="active" title="Write (⌘1)">Write</button>
+      <button data-view="cork" title="Corkboard (⌘2)">Corkboard</button>
+      <button data-view="outline" title="Outline (⌘3)">Outline</button>
+      <button data-view="flow" title="Read the whole folder (⌘4)">Flow</button>
+    </div>
+    <button class="btn sm" id="focusBtn" title="Focus mode (⌘⇧F)">Focus</button>
+    <button class="btn sm primary" id="compileBtn">Compile</button>
+  </div>
+  <div class="body">
+    <aside class="sidebar" id="binderPane">
+      <div class="toolbar">
+        <button class="btn sm" id="addDoc" title="New document (⌘N)">＋ Doc</button>
+        <button class="btn sm" id="addFolder" title="New folder">＋ Folder</button>
+        <span class="spacer"></span>
+        <button class="btn sm ghost" id="delNode" title="Move to Trash">🗑</button>
+      </div>
+      <div class="scroll grow" id="binder"></div>
+      <div class="goal" id="goal"></div>
+    </aside>
+    <main class="main" id="stage"></main>
+    <aside class="inspector" id="inspector"></aside>
+  </div>
+  <div class="statusbar" id="status"></div>
+</div>
+<script src="../../kit/bama.js"></script>
+<script src="lib.js"></script>
+<script src="renderer.js"></script>
+</body>
+</html>

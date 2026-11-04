@@ -1,0 +1,47 @@
+.filetabs { display: flex; height: 34px; flex: none; border-bottom: 1px solid var(--line); background: var(--bg-2); overflow-x: auto; }
+.filetab { display: flex; align-items: center; gap: 6px; padding: 0 10px 0 12px; border-right: 1px solid var(--line); white-space: nowrap; color: var(--text-2); font-size: 12px; }
+.filetab.active { background: var(--panel); color: var(--text); box-shadow: inset 0 2px 0 var(--accent); }
+.filetab .x { width: 16px; height: 16px; border-radius: 4px; display: grid; place-items: center; color: var(--text-3); }
+.filetab .x:hover { background: var(--panel-2); color: var(--text); }
+.filetab.dirty .x::before { content: '●'; font-size: 10px; }
+.filetab.dirty .x { font-size: 0; }
+.editor-area { flex: 1; position: relative; min-height: 0; display: flex; flex-direction: column; }
+#editor, #diffEditor { position: absolute; inset: 0; z-index: 1; }
+#diffEditor { top: 42px; z-index: 3; isolation: isolate; }
+#welcome { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--panel); z-index: 2; max-width: none; }
+#welcome p { max-width: 440px; line-height: 1.6; }
+.kbar { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: min(640px, 90%); z-index: 4; display: flex; align-items: center; gap: 8px; padding: 8px; background: var(--panel); border: 1px solid var(--accent); border-radius: 10px; box-shadow: var(--shadow); }
+.diffbar { position: absolute; top: 0; left: 0; right: 0; height: 42px; z-index: 4; display: flex; align-items: center; gap: 10px; padding: 0 12px; background: var(--accent-soft); border-bottom: 1px solid var(--line); }
+
+.tree-row { display: flex; align-items: center; gap: 4px; padding: 3px 8px; white-space: nowrap; font-size: 12.5px; border-radius: 5px; margin: 0 4px; }
+.tree-row:hover { background: var(--panel-2); }
+.tree-row.active { background: var(--accent-soft); }
+.tree-row .tw { width: 12px; color: var(--text-3); font-size: 10px; text-align: center; flex: none; }
+.tree-row .nm { overflow: hidden; text-overflow: ellipsis; }
+.hit { padding: 4px 10px; font-size: 12px; border-bottom: 1px solid var(--line); }
+.hit:hover { background: var(--panel-2); }
+.hit .f { color: var(--text-3); font-size: 11px; }
+.hit code { font: 11.5px var(--mono); white-space: pre-wrap; word-break: break-all; }
+
+.runpanel { height: 230px; flex: none; border-top: 1px solid var(--line); display: flex; flex-direction: column; background: var(--bg-2); }
+.runout { flex: 1; margin: 0; overflow: auto; padding: 8px 12px; font: 12px/1.5 var(--mono); white-space: pre-wrap; word-break: break-all; color: var(--text); user-select: text; }
+
+.aipanel { width: 400px; flex: none; border-left: 1px solid var(--line); background: var(--bg-2); display: flex; flex-direction: column; min-height: 0; }
+.aipanel.closed { display: none; }
+#chat { padding: 10px 12px; display: flex; flex-direction: column; gap: 12px; }
+.msg { line-height: 1.55; user-select: text; }
+.msg.user { align-self: flex-end; background: var(--accent-soft); padding: 8px 11px; border-radius: 12px 12px 3px 12px; max-width: 92%; white-space: pre-wrap; }
+.msg.assistant p { margin: 0 0 8px; }
+.msg.assistant ul, .msg.assistant ol { margin: 0 0 8px; padding-left: 20px; }
+.msg.assistant code { font: 12px var(--mono); background: var(--panel-2); padding: 1px 4px; border-radius: 4px; }
+.msg.err { color: var(--bad); }
+.codeblock { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin: 6px 0 10px; background: var(--panel); }
+.codeblock .cbh { display: flex; align-items: center; gap: 4px; padding: 3px 6px 3px 10px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--text-3); }
+.codeblock pre { margin: 0; padding: 8px 10px; overflow: auto; font: 12px/1.5 var(--mono); max-height: 380px; }
+.composer { border-top: 1px solid var(--line); padding: 8px; display: flex; flex-direction: column; gap: 6px; }
+.composer .textarea { resize: none; }
+.chips { display: flex; gap: 4px; flex-wrap: wrap; }
+.thinking { color: var(--text-3); font-style: italic; }
+.qo-list { max-height: 50vh; overflow: auto; }
+.qo-list div { padding: 5px 8px; border-radius: 6px; font-size: 12.5px; }
+.qo-list div.sel { background: var(--accent-soft); }

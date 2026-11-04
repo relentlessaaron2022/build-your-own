@@ -1,0 +1,7 @@
+{
+  "name": "Cutroom",
+  "tagline": "Stitch clips, stills, and title cards into a finished film with music, transitions, and color.",
+  "bundleId": "com.relentless.cutroom",
+  "icon": "film",
+  "window": { "width": 1440, "height": 900, "minWidth": 1000, "minHeight": 640 }
+}

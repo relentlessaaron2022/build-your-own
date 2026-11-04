@@ -1,0 +1,9 @@
+{
+  "name": "Summon",
+  "tagline": "One keystroke to open, find, paste, and run anything on your Mac.",
+  "bundleId": "com.relentless.summon",
+  "icon": "bolt",
+  "keepAlive": true,
+  "hotkey": "Alt+Space",
+  "window": { "width": 720, "height": 480, "frameless": true, "transparent": false, "alwaysOnTop": true, "resizable": false, "minWidth": 560, "minHeight": 360 }
+}

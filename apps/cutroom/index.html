@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: file:; media-src 'self' blob: file:; style-src 'self' 'unsafe-inline'">
+<title>Cutroom</title>
+<link rel="stylesheet" href="../../kit/bama.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-app="cutroom">
+<div class="app">
+  <div class="titlebar">
+    <span class="brand">Cut<b>room</b></span>
+    <input class="input no-drag" id="projName" style="width:200px;height:24px" spellcheck="false">
+    <button class="btn sm" id="newBtn">New</button>
+    <button class="btn sm" id="openBtn">Open…</button>
+    <button class="btn sm" id="saveBtn">Save…</button>
+    <span class="spacer"></span>
+    <select class="select no-drag" id="preset" style="height:24px;font-size:12px"></select>
+    <button class="btn sm primary" id="exportBtn">Export film</button>
+  </div>
+  <div class="body">
+    <aside class="sidebar">
+      <div class="toolbar">
+        <button class="btn sm" id="importBtn">＋ Media</button>
+        <button class="btn sm" id="titleBtn">＋ Title card</button>
+        <button class="btn sm" id="musicBtn">♫ Music</button>
+      </div>
+      <div class="section-label">Media bin <span class="faint" style="text-transform:none;letter-spacing:0">· drop files here</span></div>
+      <div class="scroll grow" id="bin"></div>
+    </aside>
+    <main class="main">
+      <div class="viewer" id="viewer">
+        <video id="vid" playsinline></video>
+        <img id="img" alt="" class="hidden">
+        <canvas id="titleCanvas" class="hidden"></canvas>
+        <div class="viewer-empty" id="viewerEmpty">Import clips, then press <span class="kbd">Space</span> to play the cut.</div>
+      </div>
+      <div class="transport">
+        <button class="btn sm" id="playClip" title="Play selected clip">▶ Clip</button>
+        <button class="btn sm primary" id="playProg" title="Play the whole cut (Space)">▶ Program</button>
+        <button class="btn sm" id="stopBtn">■</button>
+        <span class="tc" id="tc">0:00.0 / 0:00.0</span>
+        <span class="spacer"></span>
+        <button class="btn sm" id="setIn" title="Set in point (I)">In</button>
+        <button class="btn sm" id="setOut" title="Set out point (O)">Out</button>
+        <button class="btn sm" id="splitBtn" title="Split clip at playhead (S)">Split</button>
+        <span class="faint" style="font-size:11px">Transitions and color render on export</span>
+      </div>
+      <div class="timeline" id="timeline">
+        <div class="tl-head">
+          <span class="faint">Timeline</span>
+          <span class="spacer"></span>
+          <span class="faint">Zoom</span>
+          <input type="range" id="zoom" min="10" max="200" value="60">
+        </div>
+        <div class="tl-scroll" id="tlScroll">
+          <div class="tl-inner" id="tlInner">
+            <div class="ruler" id="ruler"></div>
+            <div class="lane" id="laneV"></div>
+            <div class="lane music" id="laneM"></div>
+            <div class="playhead" id="playhead"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <aside class="inspector" id="inspector"></aside>
+  </div>
+  <div class="statusbar" id="status"></div>
+</div>
+<div class="render-sheet hidden" id="renderSheet">
+  <div class="modal">
+    <h4 id="renderStage">Rendering</h4>
+    <div class="bar big"><div id="renderBar"></div></div>
+    <div class="muted" id="renderNote"></div>
+    <div class="actions"><button class="btn" id="cancelRender">Cancel</button></div>
+  </div>
+</div>
+<script src="../../kit/bama.js"></script>
+<script src="lib.js"></script>
+<script src="renderer.js"></script>
+</body>
+</html>

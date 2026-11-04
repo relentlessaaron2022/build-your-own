@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'">
+<title>{{NAME}}</title>
+<link rel="stylesheet" href="../../kit/bama.css">
+</head>
+<body data-app="{{ID}}">
+<div class="app">
+  <div class="titlebar"><span class="brand">{{NAME}}</span><span class="spacer"></span><button class="btn sm primary" id="addBtn">＋ New item</button></div>
+  <div class="body">
+    <aside class="sidebar"><div class="section-label">Items</div><ul class="list scroll grow" id="list"></ul></aside>
+    <main class="main"><div class="scroll grow" style="padding:24px" id="detail"></div></main>
+  </div>
+  <div class="statusbar" id="status"></div>
+</div>
+<script src="../../kit/bama.js"></script>
+<script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "Forge",
+  "tagline": "A code editor with Claude built in. Ask about your code, or select it and say what to change.",
+  "bundleId": "com.relentless.forge",
+  "icon": "code",
+  "window": { "width": 1440, "height": 900, "minWidth": 960, "minHeight": 600 }
+}

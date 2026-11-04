@@ -1,0 +1,8 @@
+{
+  "name": "Relay",
+  "tagline": "Teach your Mac the boring parts once. Rename, sort, resize, launch, and type on a hotkey, a schedule, or when a file lands.",
+  "bundleId": "com.relentless.relay",
+  "icon": "flow",
+  "keepAlive": true,
+  "window": { "width": 1240, "height": 820, "minWidth": 900, "minHeight": 560 }
+}
