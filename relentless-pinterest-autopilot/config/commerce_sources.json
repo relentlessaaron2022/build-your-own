@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {
+      "id": "etsy_itsallbeyoutiful",
+      "platform": "etsy",
+      "display_name": "itsallbeYOUtiful",
+      "shop_url": "https://www.etsy.com/shop/itsallbeYOUtiful",
+      "shop_id": null,
+      "enabled": false,
+      "integration_status": "pending_listing_importer",
+      "setup_note": "Source registry only: the scheduler does not read this file yet. An Etsy API or owner-export listing importer and product/brand/board routing must be implemented and verified before activation. No listings, images, prices, or inventory have been imported."
+    },
+    {
+      "id": "beacons_gorelentless",
+      "platform": "beacons",
+      "display_name": "Go Relentless",
+      "source_url": "https://beacons.ai/gorelentless",
+      "source_type": "product_and_link_hub",
+      "enabled": false,
+      "integration_status": "pending_link_importer",
+      "use_for_bamboo_checkout": false,
+      "setup_note": "Source registry only: no links, offers, or prices have been imported. Implement and verify a supported link/catalog importer before activation. The user has deferred Beacons checkout on the bamboo pages."
+    }
+  ],
+  "note": "Commerce sources are separate from social accounts. Registration does not establish a working integration."
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>WEBFILMBOOKS Content Automation — Pinterest connect</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      background: #f4f1ee;
+      color: #1c1917;
+      line-height: 1.45;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+    h1 { font-size: 32px; line-height: 1.15; margin: 0 0 8px; }
+    h2 { font-size: 22px; margin: 0 0 12px; }
+    p, li { font-size: 18px; }
+    .card {
+      background: #fff;
+      border: 1px solid #e4ddd6;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 16px 0;
+    }
+    .uri {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 18px;
+      background: #fff6f7;
+      border: 1px solid #e60023;
+      border-radius: 10px;
+      padding: 12px 14px;
+      overflow-wrap: anywhere;
+    }
+    button, .button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      min-height: 52px;
+      padding: 12px 22px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #e60023;
+      color: #fff;
+    }
+    button.secondary { background: #fff; color: #1c1917; border: 2px solid #1c1917; }
+    label { display: block; font-weight: 700; margin: 14px 0 6px; }
+    input[type="text"], input[type="url"], input[type="datetime-local"], textarea, select {
+      width: 100%;
+      font-size: 18px;
+      padding: 10px 12px;
+      border: 1px solid #c9c1b8;
+      border-radius: 10px;
+      background: #fff;
+    }
+    textarea { min-height: 90px; }
+    .check { font-weight: 500; }
+    .banner { background: #e8f6ee; border: 1px solid #1f7a45; }
+    .error { background: #fff1f2; border: 1px solid #e60023; }
+    .muted { color: #57534e; }
+    ul.scopes { columns: 2; padding-left: 20px; }
+    code { font-size: 16px; }
+    img.avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+    .row { display: flex; gap: 16px; align-items: center; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+    a { color: #9f1239; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>WEBFILMBOOKS Content Automation</h1>
+  <p>Connect a Pinterest account, then create or schedule one pin. Nothing is published until you press a button.</p>
+
+  {% if banner %}
+  <section class="card banner"><p>{{ banner }}</p></section>
+  {% endif %}
+  {% if error %}
+  <section class="card error"><p>{{ error }}</p></section>
+  {% endif %}
+  {% if result and result.kind == "created" %}
+  <section class="card banner">
+    <h2>Pin created</h2>
+    <p>Pinterest pin <strong>{{ result.pin_id }}</strong> is on {{ result.board_name }}.</p>
+    {% if result.pin_url %}<p><a href="{{ result.pin_url }}">Open the pin on Pinterest</a></p>{% endif %}
+  </section>
+  {% elif result and result.kind == "scheduled" %}
+  <section class="card banner">
+    <h2>Pin scheduled</h2>
+    <p>Saved for {{ result.publish_at }} on {{ result.board_name }}. Nothing was sent to Pinterest.</p>
+  </section>
+  {% elif result and result.kind == "published_held" %}
+  <section class="card banner">
+    <h2>Scheduled pin published</h2>
+    <p>Pinterest pin <strong>{{ result.pin_id }}</strong> is on {{ result.board_name }}.</p>
+    {% if result.pin_url %}<p><a href="{{ result.pin_url }}">Open the pin on Pinterest</a></p>{% endif %}
+  </section>
+  {% endif %}
+
+  <section class="card">
+    <h2>1. Register this redirect URI</h2>
+    <p>In the Pinterest app, add this exact value. It is also sent in the sign-in request.</p>
+    <p class="uri">{{ redirect_uri }}</p>
+    <p>App ID: <strong>{{ app_id or "not set" }}</strong></p>
+    <p class="muted">The app secret stays in .env and is not shown here.</p>
+    <p>Requested permissions:</p>
+    <ul class="scopes">
+      {% for scope in scopes %}
+      <li><code>{{ scope }}</code></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>2. Connect Pinterest account</h2>
+    {% if not app_ready %}
+    <p>Add these to <code>.env</code>, then restart <code>pinterest connect</code>:</p>
+    <ul>
+      {% for name in missing %}
+      <li><code>{{ name }}</code>{% if name == "PINTEREST_APP_ID" %} (or <code>PINTEREST_CLIENT_ID</code>){% endif %}{% if name == "PINTEREST_APP_SECRET" %} (or <code>PINTEREST_CLIENT_SECRET</code>){% endif %}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>This opens Pinterest's sign-in and permission screen. It does not create a pin.</p>
+    <form method="post" action="/pinterest/login">
+      <input type="hidden" name="form_token" value="{{ connect_token }}">
+      <button type="submit">Connect Pinterest account</button>
+    </form>
+    {% endif %}
+    {% if account_error %}<p>{{ account_error }}</p>{% endif %}
+    {% if account %}
+    <div class="row">
+      {% if account.profile_image %}<img class="avatar" src="{{ account.profile_image }}" alt="">{% endif %}
+      <p>Connected as <strong>@{{ account.username or "unknown" }}</strong>
+        {% if account.account_type %}({{ account.account_type }}){% endif %}
+        {% if account.website_url %}<br><a href="{{ account.website_url }}">{{ account.website_url }}</a>{% endif %}
+      </p>
+    </div>
+    {% endif %}
+  </section>
+
+  {% if account and boards %}
+  <section class="card">
+    <h2>3. Create or schedule one pin</h2>
+    <p>Pick a board and press one button. Create sends that pin now. Schedule saves it on this Mac and does not send it.</p>
+    <form method="post" action="/pinterest/pin" enctype="multipart/form-data">
+      <input type="hidden" name="form_token" value="{{ pin_token }}">
+      <label for="board_id">Board</label>
+      <select id="board_id" name="board_id" required>
+        {% for board in boards %}
+        <option value="{{ board.id }}">{{ board.name }}</option>
+        {% endfor %}
+      </select>
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" maxlength="100" required>
+      <label for="description">Description</label>
+      <textarea id="description" name="description" maxlength="800"></textarea>
+      <label for="link">Destination link</label>
+      <input id="link" name="link" type="url" placeholder="https://" required>
+      <label class="check"><input type="checkbox" name="use_sample" value="yes" checked> Use a sample graphic (uncheck to upload your own image, ideally 1000 × 1500)</label>
+      <label for="image">Image file</label>
+      <input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp">
+      <label for="publish_at">Schedule time ({{ timezone_name }}), only used by Schedule this pin</label>
+      <input id="publish_at" name="publish_at" type="datetime-local">
+      <div class="actions">
+        <button type="submit" name="action" value="create">Create this pin now</button>
+        <button class="secondary" type="submit" name="action" value="schedule">Schedule this pin</button>
+      </div>
+    </form>
+  </section>
+  {% elif account %}
+  <section class="card">
+    <h2>3. Create or schedule one pin</h2>
+    <p>{{ boards_error or "This account has no boards yet. Create one on Pinterest, then reload this page." }}</p>
+  </section>
+  {% endif %}
+
+  {% if held_pins %}
+  <section class="card">
+    <h2>Scheduled on this Mac</h2>
+    <p>These pins have not been sent to Pinterest. The background worker will not publish them.</p>
+    {% for pin in held_pins %}
+    <article>
+      <p><strong>{{ pin.title }}</strong> on {{ pin.board_name }}{% if pin.publish_at %} at {{ pin.publish_at }}{% endif %}</p>
+      <form method="post" action="/pinterest/pin">
+        <input type="hidden" name="form_token" value="{{ pin.form_token }}">
+        <input type="hidden" name="local_id" value="{{ pin.local_id }}">
+        <button type="submit" name="action" value="publish_held">Publish this scheduled pin now</button>
+      </form>
+    </article>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <p class="muted">Tokens are written to the local .env file and are not shown on this page. Stop this server with Ctrl+C. Do not start <code>pinterest run</code> as part of this demo.</p>
+</main>
+</body>
+</html>
