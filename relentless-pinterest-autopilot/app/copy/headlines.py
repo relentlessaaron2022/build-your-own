@@ -8,6 +8,8 @@ template and which "lucky number" gets used.
 """
 from __future__ import annotations
 
+from app.config import brand_for_key
+
 HEADLINE_FAMILIES = ["list", "curiosity", "transformation", "problem_solution", "beginner"]
 
 _NUMBERS = [3, 5, 7, 9, 10, 12]
@@ -55,9 +57,16 @@ _SUBHEADLINES = [
 ]
 
 
-def generate_headline(topic: str, family: str, variant_seed: int = 0) -> dict:
+def generate_headline(topic: str, family: str, variant_seed: int = 0, brand_key: str | None = None) -> dict:
     if family not in HEADLINE_FAMILIES:
         family = "list"
+
+    brand = brand_for_key(brand_key) if brand_key else {}
+    templates = brand.get("headline_templates", {}).get(family)
+    if templates:
+        subheadlines = brand.get("subheadlines") or _SUBHEADLINES
+        return {"headline": templates[variant_seed % len(templates)].format(topic=topic, n=_NUMBERS[variant_seed % len(_NUMBERS)]),
+                "subheadline": subheadlines[variant_seed % len(subheadlines)], "family": family}
 
     n = _NUMBERS[variant_seed % len(_NUMBERS)]
     subheadline = _SUBHEADLINES[variant_seed % len(_SUBHEADLINES)]

@@ -25,8 +25,8 @@ logger = get_logger(__name__)
 VARIANTS_PER_WINNER = 5
 
 
-def _related_keyword(original_keyword: str, index: int) -> str:
-    variations = generate_keywords(original_keyword).get("secondary", [])
+def _related_keyword(original_keyword: str, index: int, brand_key: str | None = None) -> str:
+    variations = generate_keywords(original_keyword, brand_key=brand_key).get("secondary", [])
     if index < len(variations):
         return variations[index]
     return original_keyword
@@ -39,6 +39,9 @@ def generate_winner_variations(concept_id: int, count: int = VARIANTS_PER_WINNER
         if parent is None:
             raise ValueError(f"No pin concept with id={concept_id}")
 
+        from app.config import brand_key_for_url
+        brand_key = brand_key_for_url(parent.landing_url) or "relentless_aaron"
+
         existing_fingerprints = {
             row[0]
             for row in session.execute(
@@ -49,16 +52,12 @@ def generate_winner_variations(concept_id: int, count: int = VARIANTS_PER_WINNER
         for i in range(count):
             family = HEADLINE_FAMILIES[(HEADLINE_FAMILIES.index(parent.headline_family) + 1 + i) % len(HEADLINE_FAMILIES)]
             visual_style = VISUAL_STYLES[(VISUAL_STYLES.index(parent.visual_style) + 1 + i) % len(VISUAL_STYLES)]
-            keyword = _related_keyword(parent.keyword, i)
+            keyword = _related_keyword(parent.keyword, i, brand_key=brand_key)
 
             # Bias the variant_seed away from the parent's own seed so CTA/copy differ too.
             variant_seed = i + 17
 
-            headline_data = generate_headline(keyword, family, variant_seed=variant_seed)
-            brand_key = None
-            from app.config import brand_key_for_url
-
-            brand_key = brand_key_for_url(parent.landing_url) or "relentless_aaron"
+            headline_data = generate_headline(keyword, family, variant_seed=variant_seed, brand_key=brand_key)
             desc_data = generate_description(headline_data["headline"], keyword, brand_key, variant_seed=variant_seed)
 
             fingerprint = concept_fingerprint(

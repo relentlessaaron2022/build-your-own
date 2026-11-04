@@ -201,12 +201,16 @@ def _remaining_daily_budget(session) -> int:
 
 def _active_pin_query():
     disabled_names = [f"{offer['name']} - Primary" for offer in load_offers() if not offer.get("active", True)]
-    return (select(Pin.id).join(PinConcept).join(Campaign)
+    disabled_urls = [offer["landing_url"] for offer in load_offers() if not offer.get("active", True)]
+    query = (select(Pin.id).join(PinConcept).join(Campaign)
             .outerjoin(SourceContent, PinConcept.source_id == SourceContent.id)
             .where(Campaign.status == "active")
             .where(Campaign.name.not_in(disabled_names))
             .where((PinConcept.source_id.is_(None)) | (SourceContent.status == "promoted"))
             .where(Pin.status.in_(["queued", "scheduled"])))
+    for url in disabled_urls:
+        query = query.where(~Pin.destination_url.startswith(url, autoescape=True))
+    return query
 
 
 @single_publisher

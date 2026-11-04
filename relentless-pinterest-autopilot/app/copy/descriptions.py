@@ -41,8 +41,10 @@ def generate_description(
     approved_ctas = brand.get("approved_ctas") or ["Learn More"]
 
     keyword_line = f"{keyword.capitalize()}." if keyword else ""
-    value_line = _VALUE_LINES[variant_seed % len(_VALUE_LINES)]
-    template = _DESCRIPTION_TEMPLATES[variant_seed % len(_DESCRIPTION_TEMPLATES)]
+    value_lines = brand.get("value_lines") or _VALUE_LINES
+    templates = brand.get("description_templates") or _DESCRIPTION_TEMPLATES
+    value_line = value_lines[variant_seed % len(value_lines)]
+    template = templates[variant_seed % len(templates)]
 
     description = template.format(
         headline=headline,

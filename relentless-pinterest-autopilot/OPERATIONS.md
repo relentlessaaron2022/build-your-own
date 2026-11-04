@@ -153,7 +153,7 @@ by this repair, so conversions and revenue must not be presented as measured sal
 
 ## Bamboo sheets
 
-The existing active offer is still Prompt Mastery Studio. Do not use the private
+The active product offer is Bamboo Solid 2000 Series; Prompt Mastery Studio is inactive. The original public bamboo site is the interim destination. See PROMOTION-FOCUS.md. Do not use the private
 Bamboo preview as a Pinterest destination. After the Cloudflare site is public,
 add its URL as an offer with a bedding brand and bedding board mapping, review
 the generated copy/images, and then activate it. Neither ten public sheet pages

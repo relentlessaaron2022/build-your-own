@@ -85,6 +85,112 @@
   },
   "domain_mappings": {
     "relentlessaaron.net": "relentless_aaron",
-    "webfilmbooks.com": "webfilmbooks"
+    "webfilmbooks.com": "webfilmbooks",
+    "bamboo-solid-2000-series.relentless-a-2737.chatgpt.site": "bamboo_sheets"
+  },
+  "bamboo_sheets": {
+    "display_name": "Bamboo Solid 2000 Series",
+    "site_id": "relentlessaaron",
+    "colors": {
+      "primary": "#203C35",
+      "secondary": "#B6C5A7",
+      "accent": "#FFFFFF",
+      "background": "#F7F4ED"
+    },
+    "typography": {
+      "headline_font": "DejaVuSans-Bold.ttf",
+      "body_font": "DejaVuSans.ttf"
+    },
+    "approved_ctas": [
+      "View Sizes and Colors",
+      "Explore the Sheet Set",
+      "Check Availability",
+      "See the Collection"
+    ],
+    "banned_phrases": [
+      "guaranteed",
+      "miracle",
+      "100% bamboo",
+      "2000 thread count",
+      "hypoallergenic",
+      "antibacterial",
+      "organic certification"
+    ],
+    "headline_templates": {
+      "list": [
+        "{topic}: Sizes, Colors, and Set Contents",
+        "{topic}: A Six-Piece Starting Point",
+        "Explore {topic} for Your Bedroom",
+        "{topic}: Plan Your Next Refresh"
+      ],
+      "curiosity": [
+        "Which {topic} Fit Your Room?",
+        "A New Color Story With {topic}",
+        "Have You Considered {topic}?",
+        "Find Your Starting Point With {topic}"
+      ],
+      "transformation": [
+        "Refresh Your Bedroom With {topic}",
+        "Build a Bedroom Palette Around {topic}",
+        "Give Your Guest Room a New Look With {topic}",
+        "Make the Bed Your Focal Point With {topic}"
+      ],
+      "problem_solution": [
+        "Choosing {topic}? Start With the Fit",
+        "Before Ordering {topic}, Check Your Size",
+        "Match {topic} to Your Existing Room",
+        "Compare Your Options for {topic}"
+      ],
+      "beginner": [
+        "New to {topic}? Explore the Collection",
+        "A First Look at {topic}",
+        "Start Your Bedroom Refresh With {topic}",
+        "Your Starting Point for {topic}"
+      ]
+    },
+    "subheadlines": [
+      "Queen and King · Six pieces per sheet set.",
+      "Explore twelve listed colors.",
+      "Call to confirm stock and ordering details.",
+      "Choose a palette that works with your room."
+    ],
+    "description_templates": [
+      "{headline}. {keyword_line} {value_line}",
+      "{value_line} Explore {keyword_line} {headline}.",
+      "Explore the Bamboo Solid 2000 Series collection. {headline}. {value_line}"
+    ],
+    "value_lines": [
+      "Each listed sheet set includes a fitted sheet, flat sheet, and four pillowcases.",
+      "Queen and King sizes are listed. Confirm mattress fit and pocket depth before ordering.",
+      "Explore twelve listed colors and ask about current stock.",
+      "Call 404-314-2100 to confirm availability, the final price, and delivery or collection."
+    ],
+    "keyword_profile": {
+      "primary": "bamboo sheet sets",
+      "secondary": [
+        "Queen sheet sets",
+        "King sheet sets",
+        "six-piece sheet sets",
+        "bedroom color ideas",
+        "guest bedroom bedding",
+        "bedroom refresh ideas",
+        "neutral bedroom bedding",
+        "bold bedroom colors"
+      ],
+      "long_tail": [
+        "how to choose sheet set sizes",
+        "sheet set colors for a guest room",
+        "what is included in a six-piece sheet set",
+        "Queen and King bedding choices",
+        "ideas for a bedroom refresh"
+      ],
+      "intent_angles": [
+        "size and fit",
+        "color selection",
+        "set contents",
+        "guest room styling",
+        "phone ordering"
+      ]
+    }
   }
 }

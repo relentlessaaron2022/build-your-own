@@ -63,7 +63,7 @@ def generate_campaign_concepts(
     genuinely new concepts instead of immediately colliding with the
     fingerprints the first batch already created.
     """
-    keyword_data = generate_keywords(topic, seed_keywords=seed_keywords)
+    keyword_data = generate_keywords(topic, seed_keywords=seed_keywords, brand_key=brand_key)
     pool = _angle_pool(topic, keyword_data, seed_keywords)
     start = (batch_offset * ANGLES_PER_CAMPAIGN) % len(pool)
     angles = [pool[(start + i) % len(pool)] for i in range(ANGLES_PER_CAMPAIGN)]
@@ -90,7 +90,7 @@ def generate_campaign_concepts(
                 family = HEADLINE_FAMILIES[(angle_idx + concept_idx + batch_offset) % len(HEADLINE_FAMILIES)]
                 visual_style = VISUAL_STYLES[(angle_idx + 2 * concept_idx + batch_offset) % len(VISUAL_STYLES)]
 
-                headline_data = generate_headline(angle_keyword, family, variant_seed=variant_seed)
+                headline_data = generate_headline(angle_keyword, family, variant_seed=variant_seed, brand_key=brand_key)
                 desc_data = generate_description(
                     headline_data["headline"], angle_keyword, brand_key, variant_seed=variant_seed
                 )
@@ -157,7 +157,7 @@ def spawn_replacement_concept(session, failed_concept: PinConcept, max_attempts:
         ]
         variant_seed = failed_concept.id * 7 + i
 
-        headline_data = generate_headline(failed_concept.keyword, family, variant_seed=variant_seed)
+        headline_data = generate_headline(failed_concept.keyword, family, variant_seed=variant_seed, brand_key=brand_key)
         desc_data = generate_description(
             headline_data["headline"], failed_concept.keyword, brand_key, variant_seed=variant_seed
         )

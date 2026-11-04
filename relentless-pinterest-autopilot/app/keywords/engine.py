@@ -12,7 +12,7 @@ import re
 
 import requests
 
-from app.config import settings
+from app.config import settings, brand_for_key
 from app.logging_config import get_logger
 
 logger = get_logger(__name__)
@@ -127,8 +127,14 @@ def _is_valid_keyword_payload(data) -> bool:
     return bool(data.get("secondary"))
 
 
-def generate_keywords(topic: str, seed_keywords: list[str] | None = None) -> dict:
+def generate_keywords(topic: str, seed_keywords: list[str] | None = None, brand_key: str | None = None) -> dict:
     """Return {"primary", "secondary", "long_tail", "intent_angles"} for topic."""
+    profile = brand_for_key(brand_key).get("keyword_profile") if brand_key else None
+    if profile:
+        # A reviewed product profile avoids unrelated business/AI modifiers and
+        # does not invoke the optional LLM for this product campaign.
+        return {"primary": topic.strip(), "secondary": list(profile["secondary"]),
+                "long_tail": list(profile["long_tail"]), "intent_angles": list(profile["intent_angles"])}
     result = _llm_keywords(topic, seed_keywords)
     if result:
         return result

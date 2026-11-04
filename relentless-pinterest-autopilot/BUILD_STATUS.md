@@ -48,8 +48,9 @@ The macOS installer cannot be exercised with launchctl in this Linux environment
   does not accept raw vendor archives.
 - Source-linked export tests do not establish content quality or rights for
   arbitrary input. Review actual pin images and destinations before publishing.
-- The active product offer remains Prompt Mastery Studio. Bamboo sheets require
-  a public destination and an appropriate offer/brand/board configuration.
+- The active offer is now bamboo sheets, using the verified original public site.
+  Prompt Mastery is inactive. Bedding board names require real Pinterest IDs;
+  the Cloudflare destination remains pending. See PROMOTION-FOCUS.md.
 - Daily content weighting, distributed worker support, and sales attribution
   are not added by this repair.
 
