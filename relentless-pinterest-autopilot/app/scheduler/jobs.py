@@ -38,7 +38,7 @@ from app.publish_lock import single_publisher
 logger = get_logger(__name__)
 
 BATCH_SIZE = ANGLES_PER_CAMPAIGN * CONCEPTS_PER_ANGLE
-MAX_GENERATION_ROUNDS = 6  # safety cap: each round can add up to BATCH_SIZE concepts per active offer
+MAX_GENERATION_ROUNDS = 12  # safety cap: each round can add up to BATCH_SIZE concepts per active offer
 PUBLISH_SLOTS_PER_DAY = 5  # must match the cron hours wired in scheduler/runner.py
 
 
@@ -200,18 +200,8 @@ def _remaining_daily_budget(session) -> int:
 
 
 def _active_pin_query():
-    disabled_names = [f"{offer['name']} - Primary" for offer in load_offers() if not offer.get("active", True)]
-    disabled_urls = [offer["landing_url"] for offer in load_offers() if not offer.get("active", True)]
-    query = (select(Pin.id).join(PinConcept).join(Campaign)
-            .outerjoin(SourceContent, PinConcept.source_id == SourceContent.id)
-            .where(Campaign.status == "active")
-            .where(Campaign.name.not_in(disabled_names))
-            .where((PinConcept.source_id.is_(None)) | (SourceContent.status == "promoted"))
-            .where(Pin.status.in_(["queued", "scheduled"])))
-    for url in disabled_urls:
-        query = query.where(~Pin.destination_url.startswith(url, autoescape=True))
-    return query
-
+    from app.promotion import active_pin_query
+    return active_pin_query(load_offers())
 
 @single_publisher
 def publish_job(*, retry_only: bool = False) -> dict:

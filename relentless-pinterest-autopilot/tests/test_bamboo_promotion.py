@@ -50,3 +50,15 @@ def test_old_queued_prompt_destination_cannot_publish_even_under_other_campaign(
         selected = session.scalars(_active_pin_query()).all()
         destinations = [session.get(Pin, pin_id).destination_url for pin_id in selected]
         assert destinations == [PUBLIC_BAMBOO]
+
+def test_disabled_prompt_pins_do_not_inflate_usable_queue():
+    from app.queue_manager import queued_pin_count
+    with get_session() as session:
+        campaign = Campaign(name="Historical queue", site="relentlessaaron", category="publishing", landing_url="https://relentlessaaron.net", status="active")
+        session.add(campaign); session.flush()
+        for i, url in enumerate(["https://relentlessaaron.net/prompt-mastery-studio?utm_content=old", PUBLIC_BAMBOO]):
+            concept = PinConcept(campaign_id=campaign.id, headline="H", description="D", landing_url=url, status="ready", fingerprint=f"queue-test-{i}")
+            session.add(concept); session.flush()
+            session.add(Pin(concept_id=concept.id, destination_url=url, board_id="B", status="queued"))
+        session.commit()
+    assert queued_pin_count() == 1

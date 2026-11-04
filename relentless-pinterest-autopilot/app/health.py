@@ -63,6 +63,10 @@ def health_report() -> dict:
         failed = session.scalar(select(func.count(Pin.id)).where(Pin.status == "failed"))
         queued_boards = set(session.scalars(select(Pin.board_id).join(PinConcept).join(Campaign)
                                            .where(Pin.status.in_(["queued", "scheduled"]), Campaign.status == "active")))
+    # Disabled product pins are retained as history but cannot block readiness.
+    from app.promotion import active_pin_query
+    with get_session() as session:
+        queued_boards = set(session.scalars(select(Pin.board_id).where(Pin.id.in_(active_pin_query()))))
     for name in sorted(queued_boards):
         if not any(b.get("name") == name and b.get("pinterest_board_id") for b in boards):
             blockers.append(f"Queued pins need board mapping: {name}")

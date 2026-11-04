@@ -7,12 +7,13 @@ from sqlalchemy import func, select
 
 from app.config import settings
 from app.db import Pin, get_session
+from app.promotion import active_pin_query
 
 
 def queued_pin_count() -> int:
     with get_session() as session:
         return session.execute(
-            select(func.count(Pin.id)).where(Pin.status.in_(["queued", "scheduled"]))
+            select(func.count(Pin.id)).where(Pin.id.in_(active_pin_query()))
         ).scalar_one()
 
 
