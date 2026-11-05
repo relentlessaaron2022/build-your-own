@@ -7,8 +7,39 @@ const path = require('path');
 const fs = require('fs');
 const {
   app, BrowserWindow, ipcMain, dialog, shell, clipboard,
-  Notification, Menu, globalShortcut, nativeTheme,
+  Notification, Menu, globalShortcut, nativeTheme, protocol,
 } = require('electron');
+
+// bama-media://file/<absolute path> streams local media to pages with
+// byte-range support (for seeking) and CORS (so canvases can read frames).
+protocol.registerSchemesAsPrivileged([{
+  scheme: 'bama-media',
+  privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, corsEnabled: true, bypassCSP: true },
+}]);
+const MIME = { '.mp4': 'video/mp4', '.m4v': 'video/mp4', '.mov': 'video/quicktime', '.webm': 'video/webm', '.mkv': 'video/x-matroska',
+  '.mp3': 'audio/mpeg', '.m4a': 'audio/mp4', '.aac': 'audio/aac', '.wav': 'audio/wav', '.aif': 'audio/aiff', '.aiff': 'audio/aiff',
+  '.flac': 'audio/flac', '.ogg': 'audio/ogg', '.opus': 'audio/ogg', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif', '.webp': 'image/webp', '.heic': 'image/heic', '.bmp': 'image/bmp', '.svg': 'image/svg+xml' };
+function serveMedia(request) {
+  const url = new URL(request.url);
+  const file = decodeURIComponent(url.pathname);
+  let st;
+  try { st = fs.statSync(file); } catch (_) { return new Response('Not found', { status: 404 }); }
+  const type = MIME[path.extname(file).toLowerCase()] || 'application/octet-stream';
+  const base = { 'Content-Type': type, 'Accept-Ranges': 'bytes', 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-cache' };
+  const range = request.headers.get('range');
+  const body = (start, end) => require('stream').Readable.toWeb(fs.createReadStream(file, { start, end }));
+  if (range) {
+    const m = range.match(/bytes=(\d*)-(\d*)/);
+    let start = m && m[1] ? parseInt(m[1], 10) : 0;
+    let end = m && m[2] ? parseInt(m[2], 10) : st.size - 1;
+    if (m && !m[1] && m[2]) { start = Math.max(0, st.size - parseInt(m[2], 10)); end = st.size - 1; }
+    end = Math.min(end, st.size - 1);
+    if (start > end || start >= st.size) return new Response(null, { status: 416, headers: { ...base, 'Content-Range': `bytes */${st.size}` } });
+    return new Response(body(start, end), { status: 206, headers: { ...base, 'Content-Range': `bytes ${start}-${end}/${st.size}`, 'Content-Length': String(end - start + 1) } });
+  }
+  return new Response(body(0, Math.max(0, st.size - 1)), { status: 200, headers: { ...base, 'Content-Length': String(st.size) } });
+}
 
 const ROOT = path.join(__dirname, '..');
 
@@ -165,6 +196,7 @@ function buildMenu(extra = []) {
 
 // ---------- boot ----------
 app.whenReady().then(() => {
+  protocol.handle('bama-media', serveMedia);
   createWindow();
   const ctx = {
     app, win: () => win, ipcMain, handle, store, manifest, appDir: APP_DIR,

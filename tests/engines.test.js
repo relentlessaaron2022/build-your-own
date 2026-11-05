@@ -86,51 +86,116 @@ test('manuscript snapshots keep history', () => {
 });
 
 // ---------------- Cutroom ----------------
-const clips = [
-  { kind: 'video', in: 1, out: 4, duration: 10 },
-  { kind: 'image', duration: 3, transition: { type: 'fade', duration: 1 } },
-  { kind: 'title', duration: 2, transition: { type: 'cut' } },
-  { kind: 'image', duration: 0.5, transition: { type: 'fadeblack', duration: 5 } }, // too long, gets clamped
-];
-test('cutroom timeline overlaps clips by the transition length', () => {
-  const tl = Cut.timeline(clips);
-  assert.deepEqual(tl.slice(0, 3).map((t) => [t.start, t.len]), [[0, 3], [2, 3], [5, 2]]);
-  assert.ok(tl[3].transition.duration <= 0.45, 'transition clamped to the shorter clip');
-  assert.equal(Cut.totalDuration(clips), Math.round((tl[3].start + 0.5) * 1000) / 1000);
+const vid = (dur, extra = {}) => ({ id: Cut.uid(), name: 'v', kind: 'video', duration: dur, hasAudio: true, path: '/x.mp4', ...extra });
+function project(...clips) {
+  const P = Cut.newProject();
+  for (const [m, extra] of clips) { P.media.push(m); Cut.mainTrack(P).items.push(Cut.newClip(m, extra)); }
+  return P;
+}
+test('cutroom main track overlaps clips by their transition', () => {
+  const P = project([vid(4), { in: 1, out: 4 }], [vid(3), { transition: { type: 'fade', duration: 1 } }], [{ ...vid(0), kind: 'image' }, { duration: 2 }]);
+  const lay = Cut.layoutMain(Cut.mainTrack(P).items);
+  assert.deepEqual(lay.map((l) => [l.start, l.len]), [[0, 3], [2, 3], [5, 2]]);
+  assert.equal(Cut.duration(P), 7);
 });
-test('cutroom join graph uses xfade for transitions and concat for cuts', () => {
-  const { args, total } = Cut.joinArgs(['a', 'b', 'c', 'd'], clips, { preset: '1080p', fps: 30 }, { out: 'o.mp4', music: { path: 'm.mp3', volume: 0.5 } });
-  const graph = args[args.indexOf('-filter_complex') + 1];
-  assert.match(graph, /xfade=transition=fade:duration=1:offset=2/);
-  assert.match(graph, /concat=n=2:v=1:a=1/);
-  assert.match(graph, /amix=inputs=2:duration=first:normalize=0/);
-  assert.ok(total > 0);
+test('cutroom clamps long transitions so neighbours keep room', () => {
+  const P = project([vid(1)], [vid(1), { transition: { type: 'spin', duration: 5 } }]);
+  assert.ok(Cut.layoutMain(Cut.mainTrack(P).items)[1].transition.duration <= 0.45);
+});
+test('cutroom speed changes length and source time', () => {
+  const c = Cut.newClip(vid(10), { in: 2, out: 6, speed: 2 });
+  assert.equal(Cut.itemLength(c), 2);
+  assert.equal(Cut.sourceTime(c, 1), 4);
+});
+test('cutroom keyframes interpolate and presets build moves', () => {
+  const it = { tf: Cut.TF(), kf: {} };
+  Cut.setKeyframe(it, 'scale', 0, 1); Cut.setKeyframe(it, 'scale', 2, 2);
+  assert.equal(Cut.transformAt(it, 0).scale, 1);
+  assert.equal(Cut.transformAt(it, 1).scale, 1.5); // inout ease is symmetric at the midpoint
+  assert.equal(Cut.transformAt(it, 5).scale, 2);
+  Cut.removeKeyframe(it, 'scale', 2);
+  assert.equal(it.kf.scale.length, 1);
+  Cut.applyMotion(it, 'panLeft', 4);
+  assert.ok(Cut.transformAt(it, 0).x > 0 && Cut.transformAt(it, 4).x < 0);
+});
+test('cutroom animations fade and pop in, then settle', () => {
+  const a = { in: { type: 'fade', dur: 1 }, out: { type: 'slideUp', dur: 1 }, loop: { type: 'none' } };
+  assert.equal(Cut.animState(a, 0.5, 5).alpha, 0.5);
+  assert.equal(Cut.animState(a, 2.5, 5).alpha, 1);
+  assert.ok(Cut.animState(a, 4.9, 5).dy < 0);
+  assert.equal(Cut.animState({ in: { type: 'typewriter', dur: 1 } }, 0.5, 5).letters.type, 'typewriter');
+});
+test('cutroom splits clips, keeping keyframes continuous', () => {
+  const P = project([vid(10), { in: 0, out: 8 }]);
+  const c = Cut.mainTrack(P).items[0];
+  Cut.setKeyframe(c, 'x', 0, 0); Cut.setKeyframe(c, 'x', 8, 0.8);
+  const right = Cut.splitAt(P, c.id, 2);
+  assert.equal(c.out, 2); assert.equal(right.in, 2);
+  assert.equal(Cut.mainTrack(P).items.length, 2);
+  assert.ok(Math.abs(Cut.transformAt(c, 2).x - Cut.transformAt(right, 0).x) < 1e-9);
+  assert.equal(Cut.splitAt(P, c.id, 0.01), null, 'refuses a split at the very edge');
+});
+test('cutroom places free items on a track with room, adding tracks as needed', () => {
+  const P = Cut.newProject();
+  Cut.placeItem(P, 'text', Cut.newText('a', { start: 0 }));
+  Cut.placeItem(P, 'text', Cut.newText('b', { start: 1 }));
+  assert.equal(P.tracks.filter((t) => t.type === 'text').length, 2);
+  Cut.placeItem(P, 'effect', Cut.newEffect('vhs', { start: 0 }));
+  const types = P.tracks.map((t) => t.type);
+  assert.ok(types.indexOf('effect') < types.indexOf('main'), 'effects sit above main');
+});
+test('cutroom captions: whisper words, grouping, SRT round trip', () => {
+  const json = { transcription: [
+    { text: ' We', offsets: { from: 0, to: 300 } }, { text: ' don', offsets: { from: 300, to: 500 } }, { text: "'t", offsets: { from: 500, to: 600 } },
+    { text: ' stop.', offsets: { from: 600, to: 1000 } }, { text: ' [BLANK_AUDIO]', offsets: { from: 1000, to: 2000 } }, { text: ' Ever', offsets: { from: 2500, to: 2900 } } ] };
+  const words = Cut.parseWhisperJSON(json);
+  assert.deepEqual(words.map((w) => w.w), ['We', "don't", 'stop.', 'Ever']);
+  const caps = Cut.groupCaptions(words, { maxWords: 3 });
+  assert.deepEqual(caps.map((c) => c.text), ["We don't stop.", 'Ever']);
+  const back = Cut.parseSRT(Cut.toSRT(caps));
+  assert.deepEqual(back.map((c) => [c.text, c.start, c.end]), caps.map((c) => [c.text, c.start, c.end]));
+  assert.equal(Cut.wordsFor({ text: 'a b', start: 0, end: 2 })[1].t0, 1);
+});
+test('cutroom beat detection finds clicks', () => {
+  const sr = 8000, s = new Float32Array(sr * 4);
+  const hits = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0];
+  for (const t of hits) for (let i = 0; i < 400; i++) s[Math.round(t * sr) + i] = Math.sin(i / 3) * Math.exp(-i / 80);
+  const beats = Cut.detectBeats(s, sr);
+  assert.equal(beats.length, hits.length);
+  beats.forEach((b, i) => assert.ok(Math.abs(b - hits[i]) < 0.05, `${b} vs ${hits[i]}`));
+});
+test('cutroom syncs main clips to beats', () => {
+  const img = { id: 'i', kind: 'image', duration: 0 };
+  const P = project([img, { duration: 3 }], [img, { duration: 3 }]);
+  P.media = [img];
+  assert.equal(Cut.syncToBeats(P, [0.5, 1.25, 2]), 2);
+  assert.deepEqual(Cut.layoutMain(Cut.mainTrack(P).items).map((l) => l.end), [0.5, 1.25]);
 });
 
 const hasFfmpeg = (() => { try { execFileSync('ffmpeg', ['-version'], { stdio: 'ignore' }); return true; } catch (_) { return false; } })();
-test('cutroom renders a real film with ffmpeg', { skip: !hasFfmpeg && 'ffmpeg not installed' }, () => {
+test('cutroom audio mix renders with speed, voice, fades and silence padding', { skip: !hasFfmpeg && 'ffmpeg not installed' }, () => {
   const dir = tmp();
   const q = (args) => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args]);
-  q(['-f', 'lavfi', '-i', 'testsrc=size=640x360:rate=24', '-f', 'lavfi', '-i', 'sine=f=440', '-t', '2', path.join(dir, 'a.mp4')]);
-  q(['-f', 'lavfi', '-i', 'color=c=blue:size=400x600', '-frames:v', '1', path.join(dir, 's.png')]);
-  q(['-f', 'lavfi', '-i', 'sine=f=220', '-t', '2', path.join(dir, 'm.mp3')]);
-  const cl = [
-    { kind: 'video', in: 0, out: 2, duration: 2, look: 'punch' },
-    { kind: 'image', duration: 1.5, motion: 'in', transition: { type: 'dissolve', duration: 0.5 } },
-  ];
-  const settings = { preset: '720p', fps: 24, draft: true, fadeOut: 0.5 };
-  const segs = cl.map((c, i) => {
-    const out = path.join(dir, `seg${i}.mp4`);
-    execFileSync('ffmpeg', Cut.segmentArgs(c, settings, { input: path.join(dir, i ? 's.png' : 'a.mp4'), hasAudio: !i, out }));
-    return out;
-  });
-  const out = path.join(dir, 'final.mp4');
-  const { args, total } = Cut.joinArgs(segs, cl, settings, { out, music: { path: path.join(dir, 'm.mp3'), volume: 0.4, fadeOut: 0.5, duck: true } });
-  execFileSync('ffmpeg', args, { stdio: 'ignore' });
-  const probe = execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration:stream=width,height', '-of', 'json', out]).toString();
-  const info = JSON.parse(probe);
-  assert.equal(info.streams[0].width, 1280);
-  assert.ok(Math.abs(parseFloat(info.format.duration) - total) < 0.1, `duration ${info.format.duration} vs ${total}`);
+  const clipPath = path.join(dir, 'a.mp4'), songPath = path.join(dir, 'm.mp3');
+  q(['-f', 'lavfi', '-i', 'testsrc=size=320x240:rate=24', '-f', 'lavfi', '-i', 'sine=f=440', '-t', '3', '-shortest', clipPath]);
+  q(['-f', 'lavfi', '-i', 'sine=f=220', '-t', '6', songPath]);
+  const P = Cut.newProject();
+  const v = { id: 'v', kind: 'video', duration: 3, hasAudio: true, path: clipPath }, m = { id: 'm', kind: 'audio', duration: 6, hasAudio: true, path: songPath };
+  P.media.push(v, m);
+  Cut.mainTrack(P).items.push(Cut.newClip(v, { speed: 1.5, voice: 'deep', denoise: true, fadeOut: 0.5 }));
+  Cut.mainTrack(P).items.push(Cut.newClip(v, { transition: { type: 'fade', duration: 0.5 }, voice: 'robot' }));
+  Cut.placeItem(P, 'audio', Cut.newAudio(m, { start: 0.5, volume: 0.4, fadeIn: 1, voice: 'none' }));
+  Cut.placeItem(P, 'text', Cut.newText('x', { start: 0, duration: 6 })); // visual length 6s sets the total
+  const mix = Cut.buildAudioMix(P, { loudness: true });
+  assert.equal(mix.count, 3); assert.equal(mix.total, 6);
+  const out = path.join(dir, 'mix.wav');
+  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...mix.inputs, '-filter_complex', mix.filter, '-map', mix.out, out]);
+  const dur = parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', out]).toString());
+  assert.ok(Math.abs(dur - 6) < 0.05, `mix is ${dur}s`);
+  const voiceOnly = Cut.buildAudioMix(P, { include: 'voice' });
+  assert.equal(voiceOnly.count, 2, 'captions skip music');
+  const silent = Cut.buildAudioMix(Cut.newProject(), { total: 2 });
+  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-filter_complex', silent.filter, '-map', silent.out, path.join(dir, 's.wav')]);
 });
 
 // ---------------- Relay ----------------

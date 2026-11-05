@@ -126,7 +126,10 @@
     set: (k, v) => window.bama.invoke('store:set', k, v),
   };
 
-  window.BAMA = { h, toast, form, ask, debounce, uid, words, fmtTime, basename, esc, store,
+  // URL a page can load (and read pixels from) for a local file.
+  const mediaUrl = (p) => (window.bama.isNative ? 'bama-media://file' + encodeURI(p).replace(/#/g, '%23').replace(/\?/g, '%3F') : p);
+
+  window.BAMA = { h, toast, mediaUrl, form, ask, debounce, uid, words, fmtTime, basename, esc, store,
     invoke: (...a) => window.bama.invoke(...a), on: (...a) => window.bama.on(...a),
     get native() { return !!window.bama.isNative; } };
 })();

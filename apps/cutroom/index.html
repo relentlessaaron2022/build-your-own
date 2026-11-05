@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: file:; media-src 'self' blob: file:; style-src 'self' 'unsafe-inline'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: bama-media:; media-src 'self' blob: bama-media:; style-src 'self' 'unsafe-inline'; connect-src 'self' blob: bama-media:">
 <title>Cutroom</title>
 <link rel="stylesheet" href="../../kit/bama.css">
 <link rel="stylesheet" href="style.css">
@@ -11,73 +11,97 @@
 <div class="app">
   <div class="titlebar">
     <span class="brand">Cut<b>room</b></span>
-    <input class="input no-drag" id="projName" style="width:200px;height:24px" spellcheck="false">
-    <button class="btn sm" id="newBtn">New</button>
-    <button class="btn sm" id="openBtn">Open…</button>
-    <button class="btn sm" id="saveBtn">Save…</button>
+    <input class="input no-drag proj-name" id="projName" spellcheck="false">
+    <div class="no-drag row" style="gap:4px">
+      <button class="btn sm ghost" id="undoBtn" title="Undo (⌘Z)">↶</button>
+      <button class="btn sm ghost" id="redoBtn" title="Redo (⇧⌘Z)">↷</button>
+      <button class="btn sm ghost" id="menuBtn" title="Project">Project ▾</button>
+    </div>
     <span class="spacer"></span>
-    <select class="select no-drag" id="preset" style="height:24px;font-size:12px"></select>
-    <button class="btn sm primary" id="exportBtn">Export film</button>
+    <select class="select no-drag" id="aspect" title="Canvas size"></select>
+    <button class="btn sm primary no-drag" id="exportBtn">⤓ Export</button>
   </div>
-  <div class="body">
-    <aside class="sidebar">
-      <div class="toolbar">
-        <button class="btn sm" id="importBtn">＋ Media</button>
-        <button class="btn sm" id="titleBtn">＋ Title card</button>
-        <button class="btn sm" id="musicBtn">♫ Music</button>
-      </div>
-      <div class="section-label">Media bin <span class="faint" style="text-transform:none;letter-spacing:0">· drop files here</span></div>
-      <div class="scroll grow" id="bin"></div>
+
+  <div class="workspace">
+    <aside class="library">
+      <nav class="lib-tabs" id="libTabs">
+        <button data-tab="media"><i>🎞</i>Media</button>
+        <button data-tab="audio"><i>🎵</i>Audio</button>
+        <button data-tab="text"><i>Aa</i>Text</button>
+        <button data-tab="stickers"><i>😎</i>Stickers</button>
+        <button data-tab="effects"><i>✨</i>Effects</button>
+        <button data-tab="transitions"><i>⧉</i>Transitions</button>
+        <button data-tab="filters"><i>◐</i>Filters</button>
+        <button data-tab="captions"><i>💬</i>Captions</button>
+      </nav>
+      <div class="lib-body" id="libBody"></div>
     </aside>
-    <main class="main">
-      <div class="viewer" id="viewer">
-        <video id="vid" playsinline></video>
-        <img id="img" alt="" class="hidden">
-        <canvas id="titleCanvas" class="hidden"></canvas>
-        <div class="viewer-empty" id="viewerEmpty">Import clips, then press <span class="kbd">Space</span> to play the cut.</div>
+
+    <section class="stage">
+      <div class="player" id="player">
+        <canvas id="screen"></canvas>
+        <div id="gizmo" class="gizmo hidden"><div class="gz-rot"></div><div class="gz-scale"></div></div>
+        <div class="player-empty" id="playerEmpty">
+          <div>Drop videos, photos and music here</div>
+          <button class="btn primary" id="emptyImport">＋ Import media</button>
+        </div>
       </div>
       <div class="transport">
-        <button class="btn sm" id="playClip" title="Play selected clip">▶ Clip</button>
-        <button class="btn sm primary" id="playProg" title="Play the whole cut (Space)">▶ Program</button>
-        <button class="btn sm" id="stopBtn">■</button>
-        <span class="tc" id="tc">0:00.0 / 0:00.0</span>
+        <span class="tc" id="tc">00:00.00</span><span class="faint tc" id="tcTotal">/ 00:00.00</span>
         <span class="spacer"></span>
-        <button class="btn sm" id="setIn" title="Set in point (I)">In</button>
-        <button class="btn sm" id="setOut" title="Set out point (O)">Out</button>
-        <button class="btn sm" id="splitBtn" title="Split clip at playhead (S)">Split</button>
-        <span class="faint" style="font-size:11px">Transitions and color render on export</span>
+        <button class="btn sm ghost" id="toStart" title="Start (Home)">⏮</button>
+        <button class="btn sm ghost" id="prevFrame" title="Back one frame (←)">◂</button>
+        <button class="btn play" id="playBtn" title="Play / pause (Space)">▶</button>
+        <button class="btn sm ghost" id="nextFrame" title="Forward one frame (→)">▸</button>
+        <button class="btn sm ghost" id="toEnd" title="End (End)">⏭</button>
+        <span class="spacer"></span>
+        <select class="select" id="previewQ" title="Preview quality"><option value="360">Smooth</option><option value="540" selected>Balanced</option><option value="1080">Full</option></select>
+        <button class="btn sm ghost" id="fullBtn" title="Full screen">⛶</button>
       </div>
-      <div class="timeline" id="timeline">
-        <div class="tl-head">
-          <span class="faint">Timeline</span>
-          <span class="spacer"></span>
-          <span class="faint">Zoom</span>
-          <input type="range" id="zoom" min="10" max="200" value="60">
-        </div>
-        <div class="tl-scroll" id="tlScroll">
-          <div class="tl-inner" id="tlInner">
-            <div class="ruler" id="ruler"></div>
-            <div class="lane" id="laneV"></div>
-            <div class="lane music" id="laneM"></div>
-            <div class="playhead" id="playhead"></div>
-          </div>
-        </div>
-      </div>
-    </main>
+    </section>
+
     <aside class="inspector" id="inspector"></aside>
   </div>
-  <div class="statusbar" id="status"></div>
-</div>
-<div class="render-sheet hidden" id="renderSheet">
-  <div class="modal">
-    <h4 id="renderStage">Rendering</h4>
-    <div class="bar big"><div id="renderBar"></div></div>
-    <div class="muted" id="renderNote"></div>
-    <div class="actions"><button class="btn" id="cancelRender">Cancel</button></div>
+
+  <div class="timeline" id="timeline">
+    <div class="tl-resize" id="tlResize" title="Drag to resize the timeline"></div>
+    <div class="tl-tools">
+      <button class="btn sm ghost" id="splitBtn" title="Split at playhead (S)">✂︎ Split</button>
+      <button class="btn sm ghost" id="delBtn" title="Delete (⌫)">🗑</button>
+      <button class="btn sm ghost" id="dupBtn" title="Duplicate (⌘D)">⧉</button>
+      <span class="sep"></span>
+      <button class="btn sm ghost" id="freezeBtn" title="Freeze frame">❄︎ Freeze</button>
+      <button class="btn sm ghost" id="reverseBtn" title="Reverse clip">⇆ Reverse</button>
+      <button class="btn sm ghost" id="kfBtn" title="Keyframe position, scale, rotation and opacity at the playhead (K)">◆ Keyframe</button>
+      <button class="btn sm ghost" id="beatBtn" title="Find beats in the music">♪ Beats</button>
+      <span class="spacer"></span>
+      <button class="btn sm ghost" id="snapBtn" title="Snap to edges and beats">🧲 Snap</button>
+      <span class="faint" style="font-size:11px">Zoom</span>
+      <input type="range" id="zoom" min="8" max="400" value="80">
+    </div>
+    <div class="tl-body">
+      <div class="tl-heads" id="tlHeads"></div>
+      <div class="tl-scroll" id="tlScroll"><div class="tl-canvas" id="tlCanvas"></div></div>
+    </div>
   </div>
 </div>
+
+<div class="busy hidden" id="busy">
+  <div class="busy-card">
+    <div class="busy-preview" id="busyPreview"></div>
+    <strong id="busyStage">Working…</strong>
+    <div class="bar big"><div id="busyBar"></div></div>
+    <div class="faint" id="busyNote"></div>
+    <div class="actions"><button class="btn" id="busyCancel">Cancel</button></div>
+  </div>
+</div>
+
 <script src="../../kit/bama.js"></script>
 <script src="lib.js"></script>
-<script src="renderer.js"></script>
+<script src="compositor.js"></script>
+<script src="app-core.js"></script>
+<script src="app-timeline.js"></script>
+<script src="app-panels.js"></script>
+<script src="app-main.js"></script>
 </body>
 </html>
