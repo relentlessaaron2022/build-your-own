@@ -17,7 +17,7 @@ def norm(w): return re.sub(r"[^a-z0-9%$.]", '', w.lower()).strip('.')
 # ---------- 1. voice ----------
 src = E.get('voice'); placeholder = False
 if src and os.path.exists(os.path.join(EP, src)):
-    sh('ffmpeg', '-v', 'error', '-y', '-i', os.path.join(EP, src), '-af', 'highpass=f=70,silenceremove=start_periods=1:start_threshold=-45dB', '-ac', '1', '-ar', '48000', os.path.join(EP, 'voice.wav'))
+    sh('ffmpeg', '-v', 'error', '-y', '-i', os.path.join(EP, src), '-af', 'highpass=f=70,silenceremove=start_periods=1:start_threshold=-45dB' + (f",atempo={E['voice_speed']}" if E.get('voice_speed') else ''), '-ac', '1', '-ar', '48000', os.path.join(EP, 'voice.wav'))
 else:
     placeholder = True
     sents = [s.strip() for s in re.findall(r'[^.!?]+[.!?]*', E['script']) if s.strip()]
@@ -45,6 +45,16 @@ for w in words:
     if merged and (re.match(r"^[.,%'\-]", w['w']) or merged[-1]['w'].endswith('-')): merged[-1]['w'] += w['w']; merged[-1]['e'] = w['e']
     else: merged.append(dict(w))
 words = merged
+if E.get('script') and not placeholder:                        # captions use the script's words; the transcript gives only the timing
+    S_ = E['script'].split(); a, b = [norm(w['w']) for w in words], [norm(x) for x in S_]; out = []
+    for op, i0, i1, j0, j1 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
+        if op == 'delete': continue
+        if op == 'equal': out += [{'w': S_[j0 + k], 's': words[i0 + k]['s'], 'e': words[i0 + k]['e']} for k in range(i1 - i0)]; continue
+        s0 = words[i0]['s'] if i0 < len(words) and i1 > i0 else (out[-1]['e'] if out else words[0]['s'])
+        s1 = words[i1 - 1]['e'] if i1 > i0 else (words[i0]['s'] if i0 < len(words) else s0 + .3 * (j1 - j0))
+        s1 = max(s1, s0 + .12 * (j1 - j0)); d = (s1 - s0) / (j1 - j0)
+        out += [{'w': S_[j0 + k], 's': round(s0 + k * d, 3), 'e': round(s0 + (k + 1) * d, 3)} for k in range(j1 - j0)]
+    words = out
 if not words: sys.exit('prepare.py: no speech found in the recording')
 vend = words[-1]['e']
 

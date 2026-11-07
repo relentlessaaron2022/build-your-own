@@ -1,0 +1,29 @@
+{
+ "look": "be-nice",
+ "series": "Be Nice",
+ "episode": 3,
+ "title": "The Extra Umbrella",
+ "voice": "voice.mp3",
+ "script": "Be Nice. Episode three. The extra umbrella. Mr. Daniels carried two umbrellas every day. People laughed. Then a storm hit the bus stop, and a young mother stood there with her baby and nothing over her head. He handed her the second one and kept walking. Twenty years later. Rain on his daughter's first day of college. A stranger held an umbrella over her. Same blue handle. What you carry for strangers finds its way home. Be nice. See you tomorrow.",
+ "quote": "What you carry for strangers finds its way home.",
+ "scenes": [
+  {
+   "type": "text",
+   "text": "Two umbrellas. Every day."
+  },
+  {
+   "type": "text",
+   "text": "He handed her the second one."
+  },
+  {
+   "type": "text",
+   "text": "20 years later."
+  },
+  {
+   "type": "text",
+   "text": "Same blue handle."
+  }
+ ],
+ "cta": "Follow for Episode 4 tomorrow",
+ "handle": "@relentless"
+}

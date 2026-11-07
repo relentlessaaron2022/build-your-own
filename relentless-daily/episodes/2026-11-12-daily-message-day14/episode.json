@@ -1,0 +1,30 @@
+{
+ "look": "daily-message",
+ "series": "Daily Message",
+ "episode": 14,
+ "title": "Well-Dressed Excuses",
+ "voice": "voice.mp3",
+ "script": "Your excuses are well dressed. They show up looking reasonable. \"I'm tired.\" \"Now isn't the time.\" \"When things calm down.\" And they're convincing, because they sound like wisdom. But things don't calm down. They just get comfortable. You don't need a perfect week. You need one honest hour. Take the hour. Let the excuses wait in the lobby.",
+ "quote": "You don't need a perfect week. You need one honest hour.",
+ "scenes": [
+  {
+   "type": "text",
+   "text": "Your excuses are well dressed."
+  },
+  {
+   "type": "text",
+   "text": "\u201cWhen things calm down.\u201d"
+  },
+  {
+   "type": "stat",
+   "value": "1 hour",
+   "label": "is enough to start"
+  },
+  {
+   "type": "text",
+   "text": "Let the excuses wait in the lobby."
+  }
+ ],
+ "cta": "Follow for tomorrow's message",
+ "handle": "@relentless"
+}

@@ -1,0 +1,29 @@
+{
+ "look": "be-nice",
+ "series": "Be Nice",
+ "episode": 6,
+ "title": "The Saved Seat",
+ "voice": "voice.mp3",
+ "script": "Be Nice. Episode six. The saved seat. Every Sunday, Mr. Walter saved the seat next to him. Third pew. Left side. His friend Ruth had stopped coming after her husband passed. Weeks turned into months. People told him to let it go. He kept the seat. One Sunday in spring, the door opened. Ruth walked in, looked down the aisle, and saw her seat waiting. Don't give up on people. Keep their seat warm. Be nice. See you tomorrow.",
+ "quote": "Don't give up on people. Keep their seat warm.",
+ "scenes": [
+  {
+   "type": "text",
+   "text": "Third pew. Left side."
+  },
+  {
+   "type": "text",
+   "text": "Weeks turned into months."
+  },
+  {
+   "type": "text",
+   "text": "He kept the seat."
+  },
+  {
+   "type": "text",
+   "text": "One Sunday in spring\u2026"
+  }
+ ],
+ "cta": "Follow for Episode 7 tomorrow",
+ "handle": "@relentless"
+}

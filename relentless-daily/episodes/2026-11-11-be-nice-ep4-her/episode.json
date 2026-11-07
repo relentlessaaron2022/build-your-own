@@ -1,0 +1,30 @@
+{
+ "look": "be-nice",
+ "series": "Be Nice",
+ "episode": 4,
+ "title": "The Lunch Tray",
+ "voice": "voice.mp3",
+ "script": "Be Nice. Episode four. The lunch tray. Every school has that table. The one where the new kid sits alone. Jasmine noticed him on day one. She didn't make a speech. She set her tray down across from him and said, \"Is this seat taken?\" That's it. Fifteen years later, he's a teacher. And every September, he watches that table. Somebody sat down for you once. Go sit down for someone. Be nice. See you tomorrow.",
+ "quote": "Somebody sat down for you once. Go sit down for someone.",
+ "scenes": [
+  {
+   "type": "text",
+   "text": "Every school has that table."
+  },
+  {
+   "type": "text",
+   "text": "\u201cIs this seat taken?\u201d"
+  },
+  {
+   "type": "text",
+   "text": "15 years later."
+  },
+  {
+   "type": "text",
+   "text": "He watches that table."
+  }
+ ],
+ "cta": "Follow for Episode 5 tomorrow",
+ "handle": "@relentless",
+ "voice_speed": 1.4
+}

@@ -1,0 +1,31 @@
+{
+ "look": "be-nice",
+ "series": "Be Nice",
+ "episode": 5,
+ "title": "Wrong Order",
+ "voice": "voice.mp3",
+ "script": "Be Nice. Episode five. Wrong order. Friday night. The diner's slammed, and the waitress is on hour eleven. She brings him the wrong plate. Again. She braces for it. The sigh. The look. The complaint. Instead, he eats it. Leaves a fifty on a twelve-dollar check, and a napkin that says, \"Rough night? Me too. It gets better.\" She kept that napkin for years. You never know which night someone is barely holding on. Be nice. See you tomorrow.",
+ "quote": "You never know which night someone is barely holding on.",
+ "scenes": [
+  {
+   "type": "text",
+   "text": "Hour eleven."
+  },
+  {
+   "type": "text",
+   "text": "The wrong plate. Again."
+  },
+  {
+   "type": "stat",
+   "value": "$50",
+   "label": "on a $12 check"
+  },
+  {
+   "type": "text",
+   "text": "\u201cRough night? Me too. It gets better.\u201d"
+  }
+ ],
+ "cta": "Follow for Episode 6 tomorrow",
+ "handle": "@relentless",
+ "voice_speed": 1.4
+}

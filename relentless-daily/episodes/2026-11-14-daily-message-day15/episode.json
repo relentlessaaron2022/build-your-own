@@ -1,0 +1,29 @@
+{
+ "look": "daily-message",
+ "series": "Daily Message",
+ "episode": 15,
+ "title": "You're Not Behind",
+ "voice": "voice.mp3",
+ "script": "You are not behind. You're comparing your chapter three to somebody's chapter twenty. Their highlight to your Tuesday. Their finish line to your first step. Stop it. The clock you keep checking isn't yours. Some trees take a year. Some take ten. All of them reach for the same sun. Run your own race today. Even if it's slow. Especially if it's slow.",
+ "quote": "Some trees take a year. Some take ten. All of them reach for the same sun.",
+ "scenes": [
+  {
+   "type": "text",
+   "text": "You are not behind."
+  },
+  {
+   "type": "text",
+   "text": "Your chapter 3. Their chapter 20."
+  },
+  {
+   "type": "text",
+   "text": "The clock isn't yours."
+  },
+  {
+   "type": "text",
+   "text": "Run your own race."
+  }
+ ],
+ "cta": "Follow for tomorrow's message",
+ "handle": "@relentless"
+}

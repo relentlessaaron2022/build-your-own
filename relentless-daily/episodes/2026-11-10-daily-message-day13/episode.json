@@ -1,0 +1,29 @@
+{
+ "look": "daily-message",
+ "series": "Daily Message",
+ "episode": 13,
+ "title": "Quiet Seasons",
+ "voice": "voice.mp3",
+ "script": "Some seasons are loud. Promotions. Applause. Pictures to post. And some seasons are quiet. Nobody claps for the person paying off debt. Nobody posts the night you stayed in and studied. But a seed doesn't make noise while it grows roots. The quiet season is not the empty season. It's the one holding everything up. Keep going. Nobody has to see it yet.",
+ "quote": "The quiet season is not the empty season. It's the one holding everything up.",
+ "scenes": [
+  {
+   "type": "text",
+   "text": "Some seasons are loud."
+  },
+  {
+   "type": "text",
+   "text": "Some seasons are quiet."
+  },
+  {
+   "type": "text",
+   "text": "Nobody claps for roots."
+  },
+  {
+   "type": "text",
+   "text": "Keep going."
+  }
+ ],
+ "cta": "Follow for tomorrow's message",
+ "handle": "@relentless"
+}

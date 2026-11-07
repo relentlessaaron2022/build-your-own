@@ -5,3 +5,5 @@ episodes/*/events.json
 episodes/*/mix.wav
 episodes/*/voice.wav
 stills/
+episodes/*/voice.mp3
+episodes/*/build.json
