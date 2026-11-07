@@ -67,9 +67,9 @@ async function sceneBg(s, t) {
   if (s.kind === 'image') { const [z, ox, oy] = motion(s, t); cover(IMG[s.src], z, ox, oy); return; }
   if (s.kind === 'video') { const k = Math.floor((t - s.t0) * 30), n = s.nframes, c = n > 1 ? k % (2 * n - 2) : 0, f = c < n ? c : 2 * n - 2 - c; cover(await frame(s, clamp(f, 0, n - 1)), lerp(1.0, 1.06, seg(t, s.t0, s.t1)), 0, 0); return; }
   cardBg(t, s);
-  const lt = t - s.t0;
+  const lt = t - Math.max(s.t0, s.t0 === 0 ? 2.6 : s.t0);          // a card that opens the video waits for the title to clear
   if (s.kind === 'stat') {
-    const num = s.value.match(/[\d.,]+/), v = num ? parseFloat(num[0].replace(/,/g, '')) : 0, dec = num && num[0].includes('.') ? num[0].split('.')[1].length : 0, k = eo(seg(lt, .2, 1.3));
+    const num = s.value.match(/[\d.,]+/) && parseFloat(s.value.match(/[\d.,]+/)[0].replace(/,/g, '')) >= 10 ? s.value.match(/[\d.,]+/) : null, v = num ? parseFloat(num[0].replace(/,/g, '')) : 0, dec = num && num[0].includes('.') ? num[0].split('.')[1].length : 0, k = eo(seg(lt, .2, 1.3));
     const shown = num ? s.value.replace(num[0], (v * k).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec })) : s.value;
     const f = L.big, sz = fitSize(s.value, f, 230 * S, W - 140 * S), y = H * .44, sc = back(seg(lt, .05, .5));
     ctx.save(); ctx.translate(W / 2, y); ctx.scale(sc, sc); txt(shown, 0, 0, f(sz), B.look === 'be-nice' ? '#fff' : L.a, 'center', { stroke: B.look === 'be-nice' ? 14 * S : 0, shadow: 30 * S }); ctx.restore();
