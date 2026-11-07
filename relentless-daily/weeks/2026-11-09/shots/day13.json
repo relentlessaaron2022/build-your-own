@@ -1,0 +1,50 @@
+{
+ "style": "adult animated drama illustration, cel-shaded characters with clean bold linework and realistic proportions, expressive faces and body language, detailed near-photoreal painted background, cinematic lighting, shallow depth of field, vertical 9:16, no text, no watermark",
+ "characters": {
+  "Him": "Black man in his thirties, low fade, gray hoodie, tired but focused eyes"
+ },
+ "shots": [
+  {
+   "file": "day13-1.jpg",
+   "prompt": "A loud rooftop party, friends cheering and filming with phones; him at the edge, smiling politely, leaving early",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day13-2.jpg",
+   "prompt": "Him at a kitchen table at midnight, stacks of bills and a notebook, a phone face down beside him",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day13-3.jpg",
+   "prompt": "Over his shoulder: him studying a certification textbook by lamplight while his roommate plays video games on the couch",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day13-4.jpg",
+   "prompt": "Him alone on the late-night bus, headphones in, reading flashcards, city lights blurring past",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day13-5.jpg",
+   "prompt": "Him at a bank counter handing over a final payment slip, the teller smiling at him",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day13-6.jpg",
+   "prompt": "Morning: him stepping out of an apartment building into sunlight, small proud smile",
+   "cast": [
+    "Him"
+   ]
+  }
+ ]
+}

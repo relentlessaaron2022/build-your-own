@@ -1,0 +1,55 @@
+{
+ "style": "adult animated drama illustration, cel-shaded characters with clean bold linework and realistic proportions, expressive faces and body language, detailed near-photoreal painted background, cinematic lighting, shallow depth of field, vertical 9:16, no text, no watermark",
+ "characters": {
+  "Mr. Daniels": "tall Black man in his fifties, salt-and-pepper beard, long navy raincoat, flat cap, two umbrellas, one with a blue handle",
+  "Young mother": "Black woman in her twenties, braids in a bun, denim jacket soaked by rain, holding a baby in a yellow blanket",
+  "Daughter": "Black woman, nineteen, long braids, backpack, college sweatshirt"
+ },
+ "shots": [
+  {
+   "file": "ep3-1.jpg",
+   "prompt": "A city bus stop in pouring rain at dusk: Mr. Daniels standing under the shelter holding two umbrellas, two young men nearby smirking at him",
+   "cast": [
+    "Mr. Daniels"
+   ]
+  },
+  {
+   "file": "ep3-2.jpg",
+   "prompt": "Young mother rushing up to the bus stop, shielding the baby with her body, drenched, panicked",
+   "cast": [
+    "Young mother"
+   ]
+  },
+  {
+   "file": "ep3-3.jpg",
+   "prompt": "Two-shot: Mr. Daniels holding out the blue-handled umbrella to the young mother, rain streaming, her eyes wide",
+   "cast": [
+    "Mr. Daniels",
+    "Young mother"
+   ]
+  },
+  {
+   "file": "ep3-4.jpg",
+   "prompt": "Mr. Daniels walking away into the rain without looking back, the young mother under the blue umbrella watching him go",
+   "cast": [
+    "Mr. Daniels",
+    "Young mother"
+   ]
+  },
+  {
+   "file": "ep3-5.jpg",
+   "prompt": "Twenty years later, a college campus in the rain: Mr. Daniels's daughter stuck in a downpour, books held over her head",
+   "cast": [
+    "Daughter"
+   ]
+  },
+  {
+   "file": "ep3-6.jpg",
+   "prompt": "A grown woman, the same young mother twenty years older, holding the blue-handled umbrella over the daughter, the two smiling at each other",
+   "cast": [
+    "Young mother",
+    "Daughter"
+   ]
+  }
+ ]
+}

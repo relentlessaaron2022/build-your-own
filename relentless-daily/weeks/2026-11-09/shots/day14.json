@@ -1,0 +1,50 @@
+{
+ "style": "adult animated drama illustration, cel-shaded characters with clean bold linework and realistic proportions, expressive faces and body language, detailed near-photoreal painted background, cinematic lighting, shallow depth of field, vertical 9:16, no text, no watermark",
+ "characters": {
+  "Her": "Black woman in her thirties, natural curls in a high puff, gold hoops, cream blazer"
+ },
+ "shots": [
+  {
+   "file": "day14-1.jpg",
+   "prompt": "Her in a sharp outfit in front of a mirror, talking herself out of the gym bag by the door",
+   "cast": [
+    "Her"
+   ]
+  },
+  {
+   "file": "day14-2.jpg",
+   "prompt": "Her on a couch scrolling her phone, a friend in workout clothes at the door waving her on, her shaking her head",
+   "cast": [
+    "Her"
+   ]
+  },
+  {
+   "file": "day14-3.jpg",
+   "prompt": "Her at an office desk at 6 PM, a sticky note reading \"start tomorrow\" on the monitor, a coworker leaving",
+   "cast": [
+    "Her"
+   ]
+  },
+  {
+   "file": "day14-4.jpg",
+   "prompt": "Close-up of her tired face in a dark bedroom, lit by a phone screen, the alarm clock at 1 AM",
+   "cast": [
+    "Her"
+   ]
+  },
+  {
+   "file": "day14-5.jpg",
+   "prompt": "Dawn: her at the kitchen table, laptop open, coffee steaming, focused, the friend from shot 2 texting a thumbs-up",
+   "cast": [
+    "Her"
+   ]
+  },
+  {
+   "file": "day14-6.jpg",
+   "prompt": "Her walking out of an apartment lobby into the morning, confident stride",
+   "cast": [
+    "Her"
+   ]
+  }
+ ]
+}

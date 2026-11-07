@@ -1,0 +1,55 @@
+{
+ "style": "adult animated drama illustration, cel-shaded characters with clean bold linework and realistic proportions, expressive faces and body language, detailed near-photoreal painted background, cinematic lighting, shallow depth of field, vertical 9:16, no text, no watermark",
+ "characters": {
+  "Miss Lee": "Korean-American woman in her sixties, short silver hair, green cardigan, round glasses, warm smile",
+  "Marcus (kid)": "nine-year-old Black boy, short twists, red hoodie, blue backpack",
+  "Marcus (grown)": "Black man in his late twenties, short twists, red work jacket, gentle eyes"
+ },
+ "shots": [
+  {
+   "file": "ep2-1.jpg",
+   "prompt": "Morning on a city block of row houses: Miss Lee holding a wooden garden gate open, three kids rushing through with backpacks, Marcus grinning up at her",
+   "cast": [
+    "Miss Lee",
+    "Marcus (kid)"
+   ]
+  },
+  {
+   "file": "ep2-2.jpg",
+   "prompt": "Close two-shot: Miss Lee bending to fix Marcus's backpack strap at the gate, both laughing",
+   "cast": [
+    "Miss Lee",
+    "Marcus (kid)"
+   ]
+  },
+  {
+   "file": "ep2-3.jpg",
+   "prompt": "Over Marcus's shoulder: Miss Lee waving goodbye from the gate as the kids run toward a school bus",
+   "cast": [
+    "Miss Lee"
+   ]
+  },
+  {
+   "file": "ep2-4.jpg",
+   "prompt": "Same block years later in autumn: Miss Lee, older, walking slowly with a cane, struggling with the heavy gate and grocery bag",
+   "cast": [
+    "Miss Lee"
+   ]
+  },
+  {
+   "file": "ep2-5.jpg",
+   "prompt": "Marcus jogging over, holding the gate open for her and taking her grocery bag, she looks up surprised and moved",
+   "cast": [
+    "Marcus (grown)"
+   ]
+  },
+  {
+   "file": "ep2-6.jpg",
+   "prompt": "Close-up: Miss Lee's hand squeezing Marcus's arm at the open gate, both smiling, golden light",
+   "cast": [
+    "Miss Lee",
+    "Marcus (grown)"
+   ]
+  }
+ ]
+}

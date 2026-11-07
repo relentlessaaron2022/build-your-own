@@ -1,0 +1,50 @@
+{
+ "style": "adult animated drama illustration, cel-shaded characters with clean bold linework and realistic proportions, expressive faces and body language, detailed near-photoreal painted background, cinematic lighting, shallow depth of field, vertical 9:16, no text, no watermark",
+ "characters": {
+  "Him": "Black man in his twenties, short locs, white T-shirt, denim jacket"
+ },
+ "shots": [
+  {
+   "file": "day15-1.jpg",
+   "prompt": "Him on his bed at night scrolling past friends' wedding, car and promotion posts, face lit by the phone",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day15-2.jpg",
+   "prompt": "Him at a cousin's cookout, relatives asking him questions, his forced smile",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day15-3.jpg",
+   "prompt": "Him at a community-college desk, older than the classmates around him, one of them nodding at him",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day15-4.jpg",
+   "prompt": "Him talking with his grandmother on her porch, her hand on his cheek",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day15-5.jpg",
+   "prompt": "Him jogging at dawn, passing a much faster runner, both nodding at each other",
+   "cast": [
+    "Him"
+   ]
+  },
+  {
+   "file": "day15-6.jpg",
+   "prompt": "Him in a cap and gown, the grandmother from shot 4 clapping in the crowd",
+   "cast": [
+    "Him"
+   ]
+  }
+ ]
+}

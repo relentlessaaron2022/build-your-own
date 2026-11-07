@@ -1,0 +1,53 @@
+{
+ "style": "adult animated drama illustration, cel-shaded characters with clean bold linework and realistic proportions, expressive faces and body language, detailed near-photoreal painted background, cinematic lighting, shallow depth of field, vertical 9:16, no text, no watermark",
+ "characters": {
+  "Mr. Walter": "Black man in his seventies, white mustache, brown three-piece suit, church hat in his lap",
+  "Ruth": "Black woman in her seventies, lavender dress and wide matching hat, pearl earrings, a handkerchief in her hand"
+ },
+ "shots": [
+  {
+   "file": "ep6-1.jpg",
+   "prompt": "A small Baptist church on Sunday morning, the congregation filing in, Mr. Walter settling into the third pew",
+   "cast": [
+    "Mr. Walter"
+   ]
+  },
+  {
+   "file": "ep6-2.jpg",
+   "prompt": "Mr. Walter placing his hand on the empty seat beside him as an usher tries to seat someone there; he shakes his head kindly",
+   "cast": [
+    "Mr. Walter"
+   ]
+  },
+  {
+   "file": "ep6-3.jpg",
+   "prompt": "Two church ladies whispering to Mr. Walter, \"let it go,\" him smiling and keeping his hand on the seat",
+   "cast": [
+    "Mr. Walter"
+   ]
+  },
+  {
+   "file": "ep6-4.jpg",
+   "prompt": "The church doors opening onto bright spring light, Ruth standing in the doorway, hesitant",
+   "cast": [
+    "Ruth"
+   ]
+  },
+  {
+   "file": "ep6-5.jpg",
+   "prompt": "Ruth walking down the aisle, seeing Mr. Walter and the empty seat, tears in her eyes",
+   "cast": [
+    "Ruth",
+    "Mr. Walter"
+   ]
+  },
+  {
+   "file": "ep6-6.jpg",
+   "prompt": "Ruth sitting beside Mr. Walter, his hand over hers, the choir standing behind them",
+   "cast": [
+    "Ruth",
+    "Mr. Walter"
+   ]
+  }
+ ]
+}

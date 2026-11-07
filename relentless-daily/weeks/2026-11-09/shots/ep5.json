@@ -1,0 +1,53 @@
+{
+ "style": "adult animated drama illustration, cel-shaded characters with clean bold linework and realistic proportions, expressive faces and body language, detailed near-photoreal painted background, cinematic lighting, shallow depth of field, vertical 9:16, no text, no watermark",
+ "characters": {
+  "Rosa": "Latina waitress in her forties, hair in a messy bun, mint-green diner uniform, name tag, tired eyes",
+  "Mr. Kemp": "Black man in his sixties, gray beard, flannel shirt, reading glasses, kind face"
+ },
+ "shots": [
+  {
+   "file": "ep5-1.jpg",
+   "prompt": "A packed neon-lit diner on a Friday night, Rosa balancing four plates while a table waves at her impatiently",
+   "cast": [
+    "Rosa"
+   ]
+  },
+  {
+   "file": "ep5-2.jpg",
+   "prompt": "Rosa setting a plate in front of Mr. Kemp, then realizing it's wrong, her face falling",
+   "cast": [
+    "Rosa",
+    "Mr. Kemp"
+   ]
+  },
+  {
+   "file": "ep5-3.jpg",
+   "prompt": "Over Rosa's shoulder: Mr. Kemp looking at the plate, then up at her with a calm smile",
+   "cast": [
+    "Mr. Kemp"
+   ]
+  },
+  {
+   "file": "ep5-4.jpg",
+   "prompt": "Mr. Kemp eating the wrong meal, Rosa watching from the counter, confused and relieved",
+   "cast": [
+    "Mr. Kemp",
+    "Rosa"
+   ]
+  },
+  {
+   "file": "ep5-5.jpg",
+   "prompt": "Rosa picking up a fifty-dollar bill and a handwritten napkin from the empty booth, hand to her mouth",
+   "cast": [
+    "Rosa"
+   ]
+  },
+  {
+   "file": "ep5-6.jpg",
+   "prompt": "Years later: Rosa in her own small kitchen, the napkin framed on the wall, her teenage daughter asking about it",
+   "cast": [
+    "Rosa"
+   ]
+  }
+ ]
+}

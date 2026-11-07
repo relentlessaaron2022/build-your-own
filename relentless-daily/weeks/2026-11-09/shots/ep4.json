@@ -1,0 +1,54 @@
+{
+ "style": "adult animated drama illustration, cel-shaded characters with clean bold linework and realistic proportions, expressive faces and body language, detailed near-photoreal painted background, cinematic lighting, shallow depth of field, vertical 9:16, no text, no watermark",
+ "characters": {
+  "Jasmine": "twelve-year-old Black girl, two curly puffs, yellow hoodie, confident smile",
+  "Andre (kid)": "twelve-year-old Latino boy, short dark hair, oversized gray jacket, shy",
+  "Andre (grown)": "Latino man in his late twenties, short dark hair, gray cardigan, staff lanyard"
+ },
+ "shots": [
+  {
+   "file": "ep4-1.jpg",
+   "prompt": "A loud middle-school cafeteria, kids crowded at tables, Andre sitting alone with his tray, head down",
+   "cast": [
+    "Andre (kid)"
+   ]
+  },
+  {
+   "file": "ep4-2.jpg",
+   "prompt": "Jasmine across the room holding her tray, noticing him, her friends calling her to their table",
+   "cast": [
+    "Jasmine"
+   ]
+  },
+  {
+   "file": "ep4-3.jpg",
+   "prompt": "Two-shot: Jasmine setting her tray down across from Andre, \"Is this seat taken?\", him looking up in surprise",
+   "cast": [
+    "Jasmine",
+    "Andre (kid)"
+   ]
+  },
+  {
+   "file": "ep4-4.jpg",
+   "prompt": "Jasmine and Andre laughing together, two other kids sliding in to join them",
+   "cast": [
+    "Jasmine",
+    "Andre (kid)"
+   ]
+  },
+  {
+   "file": "ep4-5.jpg",
+   "prompt": "Fifteen years later: Andre on cafeteria duty, arms crossed, scanning the room",
+   "cast": [
+    "Andre (grown)"
+   ]
+  },
+  {
+   "file": "ep4-6.jpg",
+   "prompt": "Andre walking toward a new kid sitting alone, tray in hand, a small knowing smile",
+   "cast": [
+    "Andre (grown)"
+   ]
+  }
+ ]
+}
