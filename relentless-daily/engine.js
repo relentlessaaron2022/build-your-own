@@ -48,6 +48,7 @@ function cover(im, z, ox, oy) {                              // cover-fit an ima
 }
 function motion(s, t) {                                      // gentle camera on a still: push, pull, drift
   const k = ss(seg(t, s.t0 - .5, s.t1 + .5)), m = s.motion;
+  if (m === 'push') return [lerp(1.02, 1.09, k), 0, 0];                // the default: a slight, steady push-in
   return m === 'in' ? [lerp(1.04, 1.16, k), 0, 0] : m === 'out' ? [lerp(1.18, 1.05, k), 0, 0] : m === 'left' ? [1.14, lerp(.7, -.7, k), 0] : m === 'right' ? [1.14, lerp(-.7, .7, k), 0] : [1.14, 0, lerp(.7, -.7, k)];
 }
 
