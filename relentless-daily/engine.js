@@ -18,6 +18,8 @@ const LOOKS = {
     cap: s => `800 ${s}px Barlow`, big: s => `700 italic ${s}px Playfair`, quote: s => `700 italic ${s}px Playfair`, small: s => `500 ${s}px Plex`, upper: true, trans: 'flash' },
   'relentless-times': { bg: '#121417', a: '#F2CF1D', b: '#C8363A', c: '#F4F1E8', d: '#F2CF1D', ink: '#121417',
     cap: s => `800 ${s}px Barlow`, big: s => `400 ${s}px Anton`, quote: s => `400 ${s}px Anton`, small: s => `500 ${s}px Plex`, upper: true, trans: 'whip' },
+  'vox': { bg: '#efe8da', a: '#ffe14d', b: '#e2402f', c: '#1b1b1b', d: '#e2402f', ink: '#1b1b1b',
+    cap: s => `800 ${s}px Barlow`, big: s => `400 ${s}px Anton`, quote: s => `400 ${s}px Anton`, small: s => `500 ${s}px Plex`, upper: true, trans: 'slide' },
 };
 const L = LOOKS[B.look] || LOOKS['be-nice'];
 await Promise.all([L.cap(60), L.big(60), L.quote(60), L.small(30), '600 40px Caveat', '800 40px Barlow', '500 20px Plex'].map(f => document.fonts.load(f)));
@@ -193,12 +195,110 @@ async function scenesAt(t) {
   if (L.trans === 'whip' && nx && t > nx.t0 - .25) { const k = eio(seg(t, nx.t0 - .25, nx.t0)); ctx.save(); ctx.translate(W * (1 - k), 0); await sceneBg(nx, t); ctx.restore(); }
 }
 async function render(t) {
+  if (B.look === 'vox') return voxRender(t);
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = L.bg; ctx.fillRect(0, 0, W, H);
   await scenesAt(t);
   if (L.trans === 'flash') { const nx = B.scenes.find(s => s.t0 > 0 && Math.abs(t - s.t0) < .3); if (nx && t < nx.t0) { ctx.save(); ctx.globalAlpha = ss(seg(t, nx.t0 - .3, nx.t0)); ctx.filter = `blur(${6 * S}px)`; await sceneBg(nx, t); ctx.restore(); } }
   grade(t); bokeh(t, 8, [L.a, '#ffffff'], .12);
   transition(t); progress(t); logo(t); strap(t); captions(t); quoteCard(t); hook(t); endCard(t);
 }
+
+// ---------- the Vox look: real footage in paper cut-out frames, highlighter captions, hand-drawn notes ----------
+const PAPER = (() => { const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d'); g.fillStyle = '#efe8da'; g.fillRect(0, 0, W, H);
+  const id = g.getImageData(0, 0, W, H), d = id.data; for (let i = 0; i < d.length; i += 4) { const n = (hash(i * .37) - .5) * 14 + (hash(Math.floor(i / 4 / W) * .11 + (i / 4 % W) * .0007) - .5) * 10; d[i] += n; d[i + 1] += n; d[i + 2] += n * .8; }
+  g.putImageData(id, 0, 0); g.globalAlpha = .06; g.strokeStyle = '#6b5a44'; for (let i = 0; i < 900; i++) { const x = hash(i) * W, y = hash(i * 2.3) * H; g.beginPath(); g.moveTo(x, y); g.lineTo(x + (hash(i * 5) - .5) * 40, y + (hash(i * 7) - .5) * 40); g.stroke(); } return c; })();
+const DOTS = (() => { const c = document.createElement('canvas'); c.width = c.height = 6; const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 6, 6); g.fillStyle = '#7a6a58'; g.beginPath(); g.arc(3, 3, 1.3, 0, 7); g.fill(); return ctx.createPattern(c, 'repeat'); })();
+const VF = { x: 75 * S, y: 300 * S, w: W - 150 * S, h: 1130 * S };          // the frame's resting place
+function scribble(pts, p, col, w) {                                              // a marker line drawn along pts up to fraction p
+  const n = Math.max(2, Math.round(pts.length * clamp(p))); ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineCap = ctx.lineJoin = 'round'; ctx.globalAlpha *= .92;
+  ctx.beginPath(); for (let i = 0; i < n; i++) i ? ctx.lineTo(pts[i][0], pts[i][1]) : ctx.moveTo(pts[i][0], pts[i][1]); ctx.stroke(); ctx.restore();
+}
+const ring = (cx, cy, rx, ry, seed) => { const o = []; for (let i = 0; i <= 60; i++) { const a = -2 + i / 60 * Math.PI * 2.15, j = 1 + (hash(seed + i * .3) - .5) * .06; o.push([cx + Math.cos(a) * rx * j, cy + Math.sin(a) * ry * j]); } return o; };
+async function voxMedia(s, t, x, y, w, h) {
+  const z = lerp(1.03, 1.12, ss(seg(t, s.t0 - .4, s.t1 + .4)));
+  ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip(); ctx.translate(x + w / 2, y + h / 2); ctx.scale(z, z); ctx.translate(-(x + w / 2), -(y + h / 2));
+  let im; if (s.kind === 'video') { const k = Math.floor((t - s.t0) * 30), n = s.nframes, c = n > 1 ? k % (2 * n - 2) : 0; im = await frame(s, clamp(c < n ? c : 2 * n - 2 - c, 0, n - 1)); } else im = IMG[s.src];
+  const r = Math.max(w / im.width, h / im.height); ctx.drawImage(im, x + (w - im.width * r) / 2, y + (h - im.height * r) / 2, im.width * r, im.height * r);
+  ctx.restore(); ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+  ctx.globalCompositeOperation = 'saturation'; ctx.fillStyle = 'rgba(128,128,128,.42)'; ctx.fillRect(x, y, w, h);
+  ctx.globalCompositeOperation = 'multiply'; ctx.fillStyle = 'rgba(243,214,170,.32)'; ctx.fillRect(x, y, w, h); ctx.globalAlpha = .22; ctx.fillStyle = DOTS; ctx.fillRect(x, y, w, h); ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = 'source-over'; const v = ctx.createRadialGradient(x + w / 2, y + h / 2, w * .3, x + w / 2, y + h / 2, w * .85); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.35)'); ctx.fillStyle = v; ctx.fillRect(x, y, w, h);
+  ctx.restore();
+}
+async function voxScene(s, t, i) {
+  const enter = eo(seg(t, s.t0 - .05, s.t0 + .38)), leave = ss(seg(t, s.t1 - .05, s.t1 + .38)), rot = (i % 2 ? -1 : 1) * .022 + (1 - enter) * .08 - leave * .06;
+  const dx = (1 - enter) * W * 1.05 - leave * W * 1.1, f = VF;
+  if (s.kind === 'image' || s.kind === 'video') {
+    ctx.save(); ctx.translate(f.x + f.w / 2 + dx, f.y + f.h / 2); ctx.rotate(rot); ctx.translate(-(f.x + f.w / 2), -(f.y + f.h / 2));
+    ctx.shadowColor = 'rgba(40,30,20,.45)'; ctx.shadowBlur = 40 * S; ctx.shadowOffsetY = 14 * S; ctx.fillStyle = '#fbf8f1'; ctx.fillRect(f.x - 16 * S, f.y - 16 * S, f.w + 32 * S, f.h + 32 * S); ctx.shadowColor = 'transparent';
+    await voxMedia(s, t, f.x, f.y, f.w, f.h);
+    ctx.fillStyle = 'rgba(226,214,180,.82)'; for (const [tx, ty, a] of [[f.x + 40 * S, f.y - 22 * S, -.5], [f.x + f.w - 40 * S, f.y - 22 * S, .5]]) { ctx.save(); ctx.translate(tx, ty); ctx.rotate(a); ctx.fillRect(-70 * S, -20 * S, 140 * S, 40 * S); ctx.restore(); }
+    ctx.restore();
+    if (s.note && leave < .2) {                                            // a hand-written note with an arrow into the frame
+      const k = seg(t, s.t0 + .55, s.t0 + 1.3), nx = f.x + 30 * S + dx, ny = f.y + f.h + 120 * S;
+      ctx.save(); ctx.font = `600 ${64 * S}px Caveat`; const nw = ctx.measureText(s.note).width; ctx.beginPath(); ctx.rect(nx - 10, ny - 70 * S, (nw + 20) * eo(k), 100 * S); ctx.clip(); txt(s.note, nx, ny, `600 ${64 * S}px Caveat`, L.b, 'left'); ctx.restore();
+      const ax = nx + Math.min(nw, 380 * S) + 30 * S; scribble([[ax, ny - 20 * S], [ax + 60 * S, ny - 60 * S], [ax + 110 * S, ny - 150 * S], [ax + 120 * S, ny - 200 * S]], seg(t, s.t0 + 1.1, s.t0 + 1.5), L.b, 7 * S);
+      scribble([[ax + 95 * S, ny - 175 * S], [ax + 120 * S, ny - 205 * S], [ax + 140 * S, ny - 172 * S]], seg(t, s.t0 + 1.45, s.t0 + 1.6), L.b, 7 * S);
+    }
+    return;
+  }
+  // text and stat cards: big type on paper with a highlighter swipe
+  ctx.save(); ctx.translate(dx, 0); const lt = t - Math.max(s.t0, s.t0 === 0 ? 2.6 : s.t0);
+  if (s.kind === 'stat') {
+    const sz = fitSize(s.value, L.big, 260 * S, W - 200 * S), y = H * .45, sw = tw(s.value, L.big(sz));
+    txt(s.value, W / 2, y, L.big(sz), L.c, 'center'); scribble(ring(W / 2, y - sz * .35, sw * .62, sz * .62, 7), seg(lt, .4, 1.1), L.b, 10 * S);
+    wrap(up(s.label), L.cap(46 * S), W - 220 * S).forEach((l, j) => txt(l, W / 2, y + 170 * S + j * 60 * S, L.cap(46 * S), L.c, 'center', { ls: 2 }));
+  } else {
+    const sz = 120 * S, lines = wrap(up(s.text), L.big(sz), W - 180 * S), lh = sz * 1.12, y0 = H * .42 - (lines.length - 1) * lh / 2;
+    lines.forEach((l, j) => { const lw = tw(l, L.big(sz)), k = eo(seg(lt, .1 + j * .25, .5 + j * .25)); ctx.fillStyle = 'rgba(255,225,77,.85)'; ctx.fillRect(W / 2 - lw / 2 - 18 * S, y0 + j * lh - sz * .78, (lw + 36 * S) * k, sz * .92); ctx.globalAlpha = clamp(k * 2); txt(l, W / 2, y0 + j * lh, L.big(sz), L.c, 'center'); ctx.globalAlpha = 1; });
+  }
+  ctx.restore();
+}
+function voxCaptions(t) {
+  if (t < 2.5 || t > B.end0) return; const c = B.caps.find(c => t >= c.t0 && t < c.t1); if (!c) return;
+  const f = L.cap, str = c.words.map(w => w.w.toUpperCase()), full = str.join(' '), size = Math.min(70 * S, fitSize(full, f, 70 * S, W - 160 * S)), y = H * .885, fw = tw(full, f(size));
+  const k = eo(seg(t, c.t0, c.t0 + .16)); ctx.fillStyle = 'rgba(255,225,77,.92)'; ctx.save(); ctx.translate(W / 2, y - size * .35); ctx.rotate(-.012); ctx.fillRect(-(fw / 2 + 24 * S), -size * .62, (fw + 48 * S) * k, size * 1.2); ctx.restore();
+  let x = W / 2 - fw / 2; c.words.forEach((w, j) => { const cur = t >= w.s - .03 && t < w.e + .05, ww = tw(str[j], f(size)); txt(str[j], x + ww / 2, y, f(size), cur ? L.b : L.c, 'center'); x += ww + tw(' ', f(size)); });
+}
+function voxHook(t) {
+  const out = 1 - ss(seg(t, 2.3, 2.7)); if (out <= 0) return; ctx.save(); ctx.globalAlpha = out;
+  const words = (B.title || '').toUpperCase().split(' '), lines = wrap(words.join(' '), L.big(170 * S), W - 160 * S), lh = 165 * S, h = lines.length * lh + 70 * S, y = H * .36 - h / 2, k = eo(seg(t, .05, .4));
+  ctx.fillStyle = 'rgba(27,27,27,.94)'; ctx.save(); ctx.translate(0, y); ctx.rotate(-.025); ctx.fillRect(-20, 0, (W + 40) * k, h); ctx.restore();
+  lines.forEach((l, j) => { ctx.save(); ctx.beginPath(); ctx.rect(0, y + j * lh - 10, W, lh + 30 * S); ctx.clip(); txt(l, 80 * S, y + (j + 1) * lh + (1 - eo(seg(t, .15 + j * .12, .5 + j * .12))) * lh - 10 * S, L.big(170 * S), j === lines.length - 1 ? L.a : '#fbf8f1', 'left'); ctx.restore(); });
+  const tag = `${B.series} · ${B.series === 'Daily Message' ? 'Day' : 'Ep.'} ${B.episode}`.toUpperCase(), tg = tw(tag, L.small(30 * S), 4) + 40 * S;
+  ctx.save(); ctx.translate(80 * S, y - 40 * S); ctx.rotate(-.04); ctx.fillStyle = L.b; ctx.fillRect(0, -40 * S, tg, 56 * S); txt(tag, 20 * S, -2 * S, L.small(30 * S), '#fff', 'left', { ls: 4 }); ctx.restore();
+  ctx.restore();
+}
+function voxQuote(t) {
+  const q = B.quote; if (!q) return; const k = ss(seg(t, q.t0, q.t0 + .3)), out = 1 - ss(seg(t, q.t1 - .3, q.t1)); if (k * out <= 0) return;
+  ctx.save(); ctx.globalAlpha = k * out; ctx.drawImage(PAPER, 0, 0);
+  const ws = B.quote_words, s0 = 108 * S, all = ws.map(w => w.w.toUpperCase()).join(' '), lines = wrap(all, L.quote(s0), W - 200 * S), lh = s0 * 1.1, y0 = H * .44 - (lines.length - 1) * lh / 2;
+  txt('“', 90 * S, y0 - lh * .55, `400 ${260 * S}px Anton`, L.b, 'left');
+  let wi = 0; lines.forEach((l, j) => { let x = W / 2 - tw(l, L.quote(s0)) / 2; for (const p of l.split(' ')) { const w = ws[wi++], on = t >= w.s - .05, cw = tw(p, L.quote(s0));
+    if (on) { ctx.fillStyle = 'rgba(255,225,77,.8)'; ctx.fillRect(x - 6 * S, y0 + j * lh - s0 * .8, cw + 12 * S, s0 * .92); }
+    ctx.globalAlpha = k * out * (on ? 1 : .2); txt(p, x + cw / 2, y0 + j * lh, L.quote(s0), L.c, 'center'); ctx.globalAlpha = k * out; x += cw + tw(' ', L.quote(s0)); } });
+  ctx.restore();
+}
+function voxEnd(t) {
+  const k = eo(seg(t, B.end0, B.end0 + .45)); if (k <= 0) return; const lt = t - B.end0;
+  ctx.save(); ctx.globalAlpha = k; ctx.drawImage(PAPER, 0, 0);
+  const line1 = (B.tagline || (B.series === 'Be Nice' ? 'Be nice.' : 'Tomorrow, another one.')).toUpperCase(), sz = fitSize(line1, L.big, 190 * S, W - 160 * S), lw = tw(line1, L.big(sz)), y = H * .42;
+  ctx.fillStyle = 'rgba(255,225,77,.9)'; ctx.fillRect(W / 2 - lw / 2 - 20 * S, y - sz * .8, (lw + 40 * S) * eo(seg(lt, .1, .5)), sz * .95); txt(line1, W / 2, y, L.big(sz), L.c, 'center');
+  const cta = (B.cta || 'Follow for tomorrow').toUpperCase(), bw = tw(cta, L.cap(42 * S)) + 80 * S, by = H * .54, p = 1 + .04 * Math.sin(lt * 6) * seg(lt, 1, 1.3);
+  ctx.globalAlpha = k * eo(seg(lt, .6, 1)); ctx.save(); ctx.translate(W / 2, by); ctx.scale(p, p); ctx.rotate(-.02); ctx.fillStyle = L.b; ctx.fillRect(-bw / 2, -50 * S, bw, 100 * S); txt(cta, 0, 15 * S, L.cap(42 * S), '#fff'); ctx.restore();
+  txt(B.handle || '@relentless', W / 2, by + 150 * S, `600 ${66 * S}px Caveat`, L.c);
+  ctx.restore();
+}
+async function voxRender(t) {
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(PAPER, 0, 0);
+  const i = B.scenes.findIndex(s => t >= s.t0 && t < s.t1), cur = i < 0 ? B.scenes.length - 1 : i;
+  if (cur > 0 && t < B.scenes[cur].t0 + .45) await voxScene(B.scenes[cur - 1], t, cur - 1);
+  await voxScene(B.scenes[cur], t, cur);
+  ctx.save(); ctx.translate(70 * S, 150 * S); ctx.rotate(-.035); ctx.fillStyle = L.b; ctx.fillRect(0, 0, 300 * S, 78 * S); txt('RELENTLESS', 150 * S, 60 * S, L.big(56 * S), '#fff', 'center', { ls: 3 }); ctx.restore();
+  ctx.fillStyle = L.b; ctx.fillRect(0, 0, W * clamp(t / B.end0), 10 * S);
+  voxCaptions(t); voxQuote(t); voxHook(t); voxEnd(t);
+}
+
 const EV = [{ t: 0, type: 'rise' }, { t: B.v0, type: 'vo' }];
 B.scenes.slice(1).forEach(s => EV.push({ t: s.t0, type: 'cut' }));
 B.scenes.filter(s => s.kind === 'stat').forEach(s => EV.push({ t: s.t0 + .2, type: 'hit' }));

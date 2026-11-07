@@ -1,5 +1,5 @@
 {
- "look": "be-nice",
+ "look": "vox",
  "series": "Be Nice",
  "episode": 5,
  "title": "Wrong Order",
@@ -8,21 +8,32 @@
  "quote": "You never know which night someone is barely holding on.",
  "scenes": [
   {
-   "type": "text",
-   "text": "Hour eleven."
+   "media": "media/01-mk4672.mp4",
+   "note": "hour eleven"
   },
   {
-   "type": "text",
-   "text": "The wrong plate. Again."
+   "media": "media/02-mk44008.mp4",
+   "note": "wrong plate. again."
   },
   {
-   "type": "stat",
-   "value": "$50",
-   "label": "on a $12 check"
+   "media": "media/03-mk28748.mp4",
+   "note": "she braces for it"
   },
   {
-   "type": "text",
-   "text": "\u201cRough night? Me too. It gets better.\u201d"
+   "media": "media/04-mk372.mp4",
+   "note": "he just eats it"
+  },
+  {
+   "media": "media/05-mk31117.mp4",
+   "note": "$50 on a $12 check"
+  },
+  {
+   "media": "media/06-mk1737.mp4",
+   "note": "\"Rough night? Me too.\""
+  },
+  {
+   "media": "media/07-mk4859.mp4",
+   "note": "she kept it for years"
   }
  ],
  "cta": "Follow for Episode 6 tomorrow",

@@ -87,7 +87,7 @@ for i in range(n - 1):
 cuts.append(span1)
 scenes = []
 for i, s in enumerate(SC):
-    o = {'t0': round(cuts[i], 3), 't1': round(cuts[i + 1], 3), 'motion': s.get('motion', E.get('motion', 'push'))}
+    o = {'t0': round(cuts[i], 3), 't1': round(cuts[i + 1], 3), 'motion': s.get('motion', E.get('motion', 'push')), 'note': s.get('note', '')}
     if 'at' in s:                                               # optional: start this scene on a phrase
         f = find(s['at'])
         if f: o['t0'] = round(words[f[0]]['s'] - .1, 3)
