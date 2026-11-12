@@ -1,5 +1,5 @@
 {
- "look": "be-nice",
+ "look": "vox",
  "series": "Be Nice",
  "episode": 4,
  "title": "The Lunch Tray",
@@ -8,20 +8,28 @@
  "quote": "Somebody sat down for you once. Go sit down for someone.",
  "scenes": [
   {
-   "type": "text",
-   "text": "Every school has that table."
+   "media": "media/01-mk4794.mp4",
+   "note": "that table"
   },
   {
-   "type": "text",
-   "text": "\u201cIs this seat taken?\u201d"
+   "media": "media/02-mk4720.mp4",
+   "note": "the new kid"
   },
   {
-   "type": "text",
-   "text": "15 years later."
+   "media": "media/03-mk15016.mp4",
+   "note": "\"is this seat taken?\""
   },
   {
-   "type": "text",
-   "text": "He watches that table."
+   "media": "media/04-mk6676.mp4",
+   "note": "15 years later"
+  },
+  {
+   "media": "media/05-mk4601.mp4",
+   "note": "he's the teacher now"
+  },
+  {
+   "media": "media/06-mk8257.mp4",
+   "note": "every September"
   }
  ],
  "cta": "Follow for Episode 5 tomorrow",
