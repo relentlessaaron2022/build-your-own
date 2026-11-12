@@ -17,7 +17,7 @@ def norm(w): return re.sub(r"[^a-z0-9%$.]", '', w.lower()).strip('.')
 # ---------- 1. voice ----------
 src = E.get('voice'); placeholder = False
 if src and os.path.exists(os.path.join(EP, src)):
-    sh('ffmpeg', '-v', 'error', '-y', '-i', os.path.join(EP, src), '-af', 'highpass=f=70,silenceremove=start_periods=1:start_threshold=-45dB' + (f",atempo={E['voice_speed']}" if E.get('voice_speed') else ''), '-ac', '1', '-ar', '48000', os.path.join(EP, 'voice.wav'))
+    sh('ffmpeg', '-v', 'error', '-y', '-i', os.path.join(EP, src), '-af', 'highpass=f=70,silenceremove=start_periods=1:start_threshold=-45dB' + ('' if E.get('keep_pauses') else ',silenceremove=stop_periods=-1:stop_duration=1.1:stop_threshold=-42dB:stop_silence=0.55') + (f",atempo={E['voice_speed']}" if E.get('voice_speed') else ''), '-ac', '1', '-ar', '48000', os.path.join(EP, 'voice.wav'))
 else:
     placeholder = True
     sents = [s.strip() for s in re.findall(r'[^.!?]+[.!?]*', E['script']) if s.strip()]
@@ -45,6 +45,19 @@ for w in words:
     if merged and (re.match(r"^[.,%'\-]", w['w']) or merged[-1]['w'].endswith('-')): merged[-1]['w'] += w['w']; merged[-1]['e'] = w['e']
     else: merged.append(dict(w))
 words = merged
+if not placeholder and not E.get('keep_pauses'):                # cut dead air: any gap between words longer than 1.2 s shrinks to 0.6 s
+    import numpy as np
+    y, sr = sf.read(os.path.join(EP, 'voice.wav')); cuts_, shift, keep = [], 0.0, []
+    for i in range(len(words) - 1):
+        g0, g1 = words[i]['e'] - V0 + .3, words[i + 1]['s'] - V0 - .3
+        if g1 - g0 > .6: cuts_.append((g0, g1))
+    if cuts_:
+        pos = 0
+        for g0, g1 in cuts_: keep.append(y[int(pos * sr):int(g0 * sr)]); pos = g1
+        keep.append(y[int(pos * sr):]); sf.write(os.path.join(EP, 'voice.wav'), np.concatenate(keep), sr)
+        for w in words:
+            d = sum(g1 - g0 for g0, g1 in cuts_ if g1 <= w['s'] - V0 + 1e-6); w['s'] = round(w['s'] - d, 3); w['e'] = round(w['e'] - d, 3)
+        print(f'cut {len(cuts_)} pause(s), {sum(b - a for a, b in cuts_):.1f} s of dead air', file=sys.stderr)
 if E.get('script') and not placeholder:                        # captions use the script's words; the transcript gives only the timing
     S_ = E['script'].split(); a, b = [norm(w['w']) for w in words], [norm(x) for x in S_]; out = []
     for op, i0, i1, j0, j1 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
