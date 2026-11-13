@@ -206,7 +206,7 @@ function cam(t) {
 }
 function boardBg(x, z) {
   const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#fbfaf6'); g.addColorStop(1, '#f0eee8'); ctx.fillStyle = g; ctx.fillRect(-W, -H, W * 30, H * 3);
-  ctx.globalAlpha = .03; for (let i = 0; i < 50; i++) { const gx = hash(i) * 21000 - 500, gy = hash(i * 3.3) * 1000; ink(ctx, hash(i * 5) < .5 ? circ(gx, gy, 60, 40) : [[gx, gy], [gx + 160, gy + 10]], { seed: i, w: 6, col: '#7f8796' }); } ctx.globalAlpha = 1;
+  ctx.globalAlpha = .03; for (let i = 0; i < 50; i++) { const gx = hash(i) * 21000 - 500, gy = hash(i * 3.3) * 1000; ink(ctx, hash(i * 5) < .5 ? circ(gx, gy, 60, 40) : [[gx, gy], [gx + 160, gy + 10]], { seed: i, w: 6, col: '#7f8796', alpha: .07 }); } ctx.globalAlpha = 1;
 }
 function overlays(t) {
   // sheen
