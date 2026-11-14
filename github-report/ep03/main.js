@@ -232,3 +232,17 @@ async function render(t) {
   ctx.setTransform(1, 0, 0, 1, 0, 0); overlays(t);
 }
 window.EV = []; window.DUR = DUR; window.render = render; window.READY = true;
+
+// ---------- part cards (?card=part1end | part2open): 3.4 s each, used when the episode is cut in two ----------
+const CARD = new URLSearchParams(location.search).get('card');
+if (CARD) {
+  window.DUR = 3.4;
+  window.render = async t => {
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = PAPER; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = C.k; ctx.fillRect(0, 0, W, 150); txt('THE GITHUB REPORT · EPISODE 03', 80, 100, F.a(58), '#fff'); ctx.fillStyle = C.yel; ctx.fillRect(0, 150, W, 12);
+    const end = CARD === 'part1end', head = end ? 'PART 2 IS NEXT' : 'PART 2', sub = end ? 'Up next: the rest of the board' : 'Your desk is the data center';
+    bigText(head, 120, 450, 210, C.k, t, .25); hw(sub, 128, 560, 70, C.red, t, .6, 1.6);
+    ['APPWRITE', 'HORIZON', 'AISOC', 'INFINITETALK', 'TIDES OF FORTUNE'].forEach((s, i) => stamp(s, 300 + (i % 3) * 560, 720 + Math.floor(i / 3) * 150, (hash(i) - .5) * .08, [C.red, C.blue, C.k, C.or, C.green][i], t, .9 + i * .22, 60));
+    if (end) { const p = 1 + .04 * Math.sin(t * 6) * seg(t, 2, 2.4); ctx.save(); ctx.translate(1580, 450); ctx.scale(p, p); ctx.fillStyle = C.k; ctx.fillRect(-250 + 10, -70 + 10, 500, 140); ctx.fillStyle = C.red; ctx.fillRect(-250, -70, 500, 140); txt('WATCH PART 2 ▶', 0, 22, F.a(64), '#fff', 'center'); ctx.restore(); }
+  };
+}
