@@ -1,0 +1,16 @@
+Good morning. This is The GitHub Report, Friday, November 13.
+The hunt ran again this morning. Seven new tools passed the vetting and joined the board. The running total now stands at 85 vetted tools, and the bill is still zero dollars. Nothing has been installed without your word.
+Today the hunt came home to your voice.
+The strongest find of the morning is VoiceStudio.
+It is a fully local alternative to ElevenLabs. Voice cloning, voice design, video dubbing, dictation, transcription, and audiobook creation, all in one app, all on your own machine, in 646 languages. It carries 109,000 stars and it was pushed again today, so the maintainers are active right now.
+Here is why it fits your business. You already run Clone Voice through a paid account. VoiceStudio is the in-house version of that same job. Your voice stays on your machine. Your dubbing, your audiobooks, your narration for the film slate, all of it runs without a monthly meter.
+Installing it takes a download of the app and a voice sample to clone from. It is licensed AGPL, which means you can use it freely as an app, and you would need to read the terms before you ever ship it inside a product of your own.
+Your voice is your asset. This one keeps it in your hands.
+Film and drama. Toonflow is an open short drama and motion comic tool, script to storyboard to finished scenes, with local deployment and room for your own models. It speaks directly to SPOOK and CROSSED.
+Lip sync, the lane you ordered. Three finds. Kandinsky S2V turns one photo and a speech track into a full-body talking video, and the lab's own tests put its lip sync ahead of HeyGen. Digital-human-koubo is an agent skill that turns one photo and one sentence into a finished talking-head video, script, captions, and packaging included. Lanshu is a provider-neutral Codex skill that builds verified presenter videos from your script and an authorized photo, with voiceover, lip sync, and subtitles.
+Agents and control. T3 Code lets you drive Claude Code and Codex from any computer or your phone, so your agent chain answers to you from anywhere.
+Web design. Hallmark is an anti-slop design skill for your coding agents, art direction and reference images instead of generic AI pages. Your forty thousand dollar lane gets sharper output.
+The caution this morning is plain. Kandinsky S2V is the sharpest lip-sync model in the batch, and your machines cannot run it. It needs a 48 gigabyte GPU, 80 for high definition. Your MacBook is Intel, and the Dell carries 2 gigabytes. The model is real, the hardware is not yours yet. Watch it, do not chase it.
+That is the morning. 85 tools on the board. Zero dollars spent. Zero installs without your word.
+Tomorrow, the hunt runs again, and this report runs with it. One more morning. More tools. Same rule: nothing moves without you. We will see you tomorrow.
+This is The GitHub Report, brought to you by The Automator, Novelist and Multimedia Producer, Relentless Aaron.
