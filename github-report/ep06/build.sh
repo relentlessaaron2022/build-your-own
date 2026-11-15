@@ -8,6 +8,6 @@ sh "$HERE/master.sh" "$HERE/out/video.mp4" "$HERE/out/audio.wav" "$HERE/out/mast
 # the paper texture is hard to compress: re-encode under GitHub's 100 MB limit
 ffmpeg -v error -y -i "$HERE/out/master.mp4" -c:v libx264 -preset slow -crf 25 -tune grain -c:a copy -movflags +faststart "$HERE/github-report-ep06.mp4"
 # two halves of the full-quality master, cut on a keyframe near the middle, for stitching in CapCut (each under 100 MB)
-D=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$HERE/out/master.mp4")
-ffmpeg -v error -y -i "$HERE/out/master.mp4" -c copy -map 0 -f segment -segment_times "$(echo "$D / 2" | bc -l)" -reset_timestamps 1 -movflags +faststart "$HERE/out/half%d.mp4"
+D=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$HERE/github-report-ep06.mp4")
+ffmpeg -v error -y -i "$HERE/github-report-ep06.mp4" -c copy -map 0 -f segment -segment_times "$(echo "$D / 2" | bc -l)" -reset_timestamps 1 -movflags +faststart "$HERE/out/half%d.mp4"
 mv "$HERE/out/half0.mp4" "$HERE/github-report-ep06-A.mp4"; mv "$HERE/out/half1.mp4" "$HERE/github-report-ep06-B.mp4"
