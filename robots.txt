@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-batch1.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-artist-marketing.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-blacknificent.xml
