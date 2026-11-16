@@ -11,7 +11,7 @@ const eo = x => 1 - Math.pow(1 - x, 3), eio = x => x < .5 ? 4 * x * x * x : 1 - 
 const hash = n => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
 
 // ---------- the voiceover (aligned to the manuscript, so every word is spelled right) ----------
-const OFF = 0;                                                  // a title sting before the first word
+const OFF = 2.5;                                                 // a title sting before the first word
 const WD = (await (await fetch('audio/ep05-words.json')).json()).words.map(w => ({ ...w, s: w.s + OFF, e: w.e + OFF }));
 const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 function at(phrase, after = 0) { const q = phrase.split(' ').map(norm);
@@ -22,16 +22,16 @@ const T = {
   vv: at('The strongest find'), ms: at("It is Microsoft's"), gen: at('It generates long-form'), distinct: at('distinct voices'), one: at('from one model'), stars: at('and it carries'), pushed: at('It was pushed'),
   why: at("Here's why"), brand: at('Your voice is your'), show: at('The show,'), films: at('the films,'), books: at('the audiobooks,'), chars: at('the characters.'), studio: at('Voice Studio gave'), cast: at('VibeVoice gives you'),
   onem: at('One model, many'), many: at('many voices, long'), long: at('long scenes,'), nometer: at('no per-character meter'), mit: at('It is licensed MIT'), products: at('including inside your'), honest: at('One honest note: local inference'), readme: at('so check the README'), machine: at('One machine, many voices.'),
-  film: at('Film. ArtCraft'), ac: at('ArtCraft is an'), who: at('for artists, designers,'), ide: at('an AI media'), acstars: at('41,000 stars,'), slate: at('The film slate'), craft: at('This one is built'),
+  film: at('Film. ArtCraft'), ac: at('ArtCraft is an'), who: at('for artists, designers,'), ide: at('an AI media'), acstars: at('41,000 stars,'), slate: at('Your film slate'), craft: at('This one is built'),
   agents: at('Agents. Anthropic'), kwp: at('Anthropic published its'), rwa: at('for research, writing,'), kstars: at('35,000 stars,'), shop: at('The same shop'), ships: at('now ships the'),
-  web: at('Web design. Chrome'), mwg: at('Chrome published Modern'), keep: at('official skills that'), wstars: at('Nearly 6,000 stars.'), today: at('pushed today.'), sites: at('Your client sites'),
+  web: at('Web design. Chrome'), mwg: at('Chrome published Modern'), keep: at('official skills that'), wstars: at('Nearly 6,000 stars.'), today: at('pushed November 14.'), sites: at('Your client sites'),
   pdf: at('Books and guides.'), st: at('Stirling-PDF is the'), dozens: at('Dozens of tools'), selfh: at('self-hosted.'), pstars: at('96,000 stars.'), free: at('business, free.'),
   music: at('Music and sound.'), asm: at('Audio Studio MCP generates'), stable: at('with Stable Audio'), plain: at('driven by Claude'), astars: at('Nearly 700 stars,'), apple: at('One honest note: local generation'), win: at('so the Windows'), intel: at('and the Intel'),
   game: at('Game dev. Saltline'), sl: at('Saltline is a'), drones: at('Drones and robot'), file: at('The whole game'), sstars: at('339 stars'), nolic: at('No license is declared'), study: at('Study the build'),
   caution: at('The caution this afternoon'), notfree: at('A repo with no license'), public: at('The code is public'), until: at('Until the author'), can: at('you can read it'), cannot: at('but you cannot'), rule: at('That rule protects'),
-  recap: at('That is the afternoon'), news: at("And if you're really"), cost: at('The cost?'), link: at('The link is in'), credit: at('This is The GitHub Report, brought'),
+  recap: at('That is Monday'), news: at("And if you're really"), cost: at('The cost?'), link: at('The link is in'), credit: at('This is The GitHub Report, brought'),
 };
-const END = WD[WD.length - 1].e, DUR = 233.35;
+const END = WD[WD.length - 1].e, DUR = 228.8;
 const REG = [0, T.vv - .4, T.why - .4, T.film - .4, T.agents - .4, T.web - .4, T.pdf - .4, T.music - .4, T.game - .4, T.caution - .4, T.recap - .4];
 const SECT = [null, ['★', 'HEADLINE: VIBEVOICE'], ['$', 'WHY IT FITS YOUR BUSINESS'], ['1', 'FILM'], ['2', 'AGENTS'], ['3', 'WEB DESIGN'], ['4', 'BOOKS & GUIDES'], ['5', 'MUSIC & SOUND'], ['6', 'GAME DEV'], ['!', 'ONE CAUTION: NO LICENSE'], null];
 const RX = i => i * 2200;
@@ -104,7 +104,7 @@ function box(x, y, w, h, s, fill, t, a, size = 46, col = C.k) { const k = back(s
 const B = [
   // 0 · cold open
   t => {
-    bigText('VOICES, PLURAL', 120, 230, 110, C.k, t, T.gm + .3); hw('The GitHub Report · Saturday, November 14', 128, 305, 50, C.or, t, T.gm + .9, T.gm + 2.4); mk([[120, 345], [1500, 351]], t, T.gm + 1.5, T.gm + 2.5, C.or, 8);
+    bigText('VOICES, PLURAL', 120, 230, 110, C.k, t, T.gm + .3); hw('The GitHub Report · Monday, November 16', 128, 305, 50, C.or, t, T.gm + .9, T.gm + 2.4); mk([[120, 345], [1500, 351]], t, T.gm + 1.5, T.gm + 2.5, C.or, 8);
     for (let i = 0; i < 108; i++) { const isNew = i >= 101, k = isNew ? seg(t, T.seven + .3 + (i - 101) * .25, T.seven + .6 + (i - 101) * .25) : seg(t, T.gm + .5, T.gm + 2.5); if (k <= 0) continue;
       const x = 120 + (i % 23) * 47 + (hash(i) - .5) * 8, y = 420 + Math.floor(i / 23) * 36 - (isNew ? (1 - eo(k)) * 60 : 0); ctx.save(); ctx.globalAlpha = clamp(k * 2); ctx.translate(x, y); ctx.rotate((hash(i * 3) - .5) * .15);
       ctx.fillStyle = isNew ? C.or : ['#ffe680', '#ffd1dc', '#c8f0d0', '#cfe4ff'][i % 4]; ctx.fillRect(0, 0, 40, 24); ctx.restore(); }
@@ -154,7 +154,7 @@ const B = [
   },
   // 5 · web design: Modern Web Guidance
   t => {
-    card(120, 170, 1000, 'GoogleChrome', 'Modern Web Guidance', ['Official skills that keep your coding agent', 'current on web best practices.'], ['Apache 2.0', 'pushed today'], '~6K stars', t, T.mwg, C.green);
+    card(120, 170, 1000, 'GoogleChrome', 'Modern Web Guidance', ['Official skills that keep your coding agent', 'current on web best practices.'], ['Apache 2.0', 'pushed Nov 14'], '~6K stars', t, T.mwg, C.green);
     // a pile of changelogs you no longer read
     const c0 = T.sites; for (let i = 0; i < 5; i++) { const k = back(seg(t, c0 + i * .15, c0 + .4 + i * .15)); if (k <= 0) continue; ctx.save(); ctx.translate(1450 + (i - 2) * 22, 520 - i * 26); ctx.rotate((hash(i) - .5) * .2); ctx.scale(k, k);
       ctx.fillStyle = C.k; ctx.fillRect(-170 + 8, -110 + 8, 340, 220); ctx.fillStyle = '#fff'; ctx.fillRect(-170, -110, 340, 220); ctx.strokeStyle = C.k; ctx.lineWidth = 4; ctx.strokeRect(-170, -110, 340, 220); txt('CHANGELOG', 0, -50, F.a(40), C.k, 'center'); ctx.fillStyle = '#ccc'; for (let j = 0; j < 4; j++) ctx.fillRect(-130, -20 + j * 30, 260 - j * 30, 12); ctx.restore(); }
