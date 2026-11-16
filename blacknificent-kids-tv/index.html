@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blacknificent Kids TV | The brand</title>
+  <meta name="description" content="Blacknificent Kids TV is a children’s entertainment and learning brand by Relentless Aaron. Official spelling: Blacknificent, with a C. Animated show and five picture books.">
+  <link rel="canonical" href="https://relentlessaaron2022.github.io/build-your-own/blacknificent-kids-tv/">
+  <meta property="og:title" content="Blacknificent Kids TV | The brand">
+  <meta property="og:description" content="Blacknificent Kids TV is a children’s entertainment and learning brand by Relentless Aaron. Official spelling: Blacknificent, with a C. Animated show and five picture books.">
+  <style>
+:root{
+  --sky:#e8f6ff;--paper:#fffdf6;--ink:#1a2433;--gold:#e0a21a;--orange:#f07a1a;
+  --green:#1f7a43;--navy:#16325c;--muted:#4e5b6c;--line:#d7e3ee;--white:#ffffff;
+  --lilac:#7a4bb8;--card:#ffffff;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--sky);color:var(--ink);line-height:1.65}
+a{color:var(--navy)}img{max-width:100%;height:auto;display:block}
+.wrap{width:min(1080px,92vw);margin:0 auto}
+.topbar{background:var(--navy);color:#fff;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:.45rem 1rem;font-weight:700}
+.topbar a{color:#ffe08a;text-decoration:none}
+header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.brand{text-decoration:none;color:var(--ink);font-weight:800;letter-spacing:.01em;font-size:1.05rem}
+.brand span{display:block;font-weight:700;letter-spacing:.16em;font-size:.62rem;color:var(--orange);text-transform:uppercase}
+nav a{margin:0 .55rem 0 0;text-decoration:none;color:var(--ink);font-size:.86rem;font-weight:650}
+nav a[aria-current="page"]{color:var(--orange);text-decoration:underline;text-underline-offset:4px}
+.crumbs{font-size:.78rem;color:var(--muted);margin:1rem 0 0}
+.crumbs a{color:var(--muted)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center;padding:2rem 0 1.4rem}
+@media(max-width:800px){.hero{grid-template-columns:1fr}header{flex-wrap:wrap}nav{display:flex;flex-wrap:wrap;gap:.2rem .4rem}}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--orange);font-weight:800;margin:0 0 .4rem}
+h1,h2,h3{font-family:Georgia,"Iowan Old Style",Times,serif;line-height:1.2;margin:.2rem 0 .75rem}
+h1{font-size:clamp(1.85rem,4.4vw,3rem)}
+.lede{font-size:1.08rem;max-width:40rem}
+.fine,.note{font-size:.86rem;color:var(--muted)}
+.note{background:#fff6d8;border-left:4px solid var(--gold);padding:.75rem 1rem;margin:1.1rem 0}
+.button{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:800;padding:.8rem 1.15rem;border-radius:999px;margin:.35rem .45rem .35rem 0;font-size:.9rem}
+.button.secondary{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.button.disabled{background:#8a7d6c;pointer-events:none;cursor:not-allowed}
+figure{margin:0}
+figure img, .mark{border-radius:16px;width:100%;box-shadow:0 10px 30px rgba(22,50,92,.12)}
+figcaption{font-size:.76rem;color:var(--muted);margin-top:.45rem}
+.mark{background:linear-gradient(160deg,#16325c 0%,#1f7a43 55%,#e0a21a 100%);color:#fff;min-height:280px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center}
+.mark strong{display:block;font-family:Georgia,serif;font-size:clamp(1.6rem,3vw,2.2rem);color:#ffe08a}
+.mark em{font-style:normal;display:block;margin-top:.45rem;font-size:.95rem;opacity:.95}
+.facts{background:var(--navy);color:#f6fbff;padding:1.25rem 0}
+.fact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+@media(max-width:700px){.fact-grid{grid-template-columns:repeat(2,1fr)}}
+.fact-grid strong{display:block;font-size:1.12rem;font-family:Georgia,serif;color:#ffe08a}
+.section{padding:1.7rem 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.15rem 1.25rem}
+.card h2,.card h3{margin-top:0}
+.card img{border-radius:10px;margin:0 0 .8rem;background:#e8f0f6}
+.status{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#fff6d8;color:#6a4a00;border-radius:999px;padding:.2rem .55rem;margin:0 0 .5rem}
+.faq details{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;margin:.55rem 0}
+.faq summary{cursor:pointer;font-weight:700}
+footer{border-top:1px solid var(--line);padding:1.4rem 0 2.2rem;margin-top:1rem;font-size:.88rem;background:var(--paper)}
+.related{display:flex;flex-wrap:wrap;gap:.55rem}
+.related a{background:var(--white);border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:var(--ink);font-size:.8rem}
+ul.plain{padding-left:1.15rem}
+</style>
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is the name spelled?","acceptedAnswer":{"@type":"Answer","text":"Blacknificent Kids TV. That is B-L-A-C-K-N-I-F-I-C-E-N-T. The official logo lettering uses that spelling, with a C."}},{"@type":"Question","name":"Is there a live show site or a buy link on this page?","acceptedAnswer":{"@type":"Answer","text":"This page is the brand home for four informational pages on this site. It does not invent a streaming URL or a store checkout."}}]},{"@context":"https://schema.org","@type":"WebPage","name":"Blacknificent Kids TV","url":"https://relentlessaaron2022.github.io/build-your-own/blacknificent-kids-tv/","description":"Blacknificent Kids TV is a children’s entertainment and learning brand by Relentless Aaron, with an animated show and five picture books."}]</script>
+</head>
+<body>
+  <div class="topbar">A Relentless Aaron project · <a href="../">Site home</a> · <a href="../relentless-library/">Relentless Library</a></div>
+  <header class="wrap">
+    <a class="brand" href="index.html">Blacknificent Kids TV<span>Where Young Legends Shine</span></a>
+    <nav aria-label="Blacknificent Kids TV"><a href="index.html" aria-current="page">Brand home</a><a href="black-childrens-shows.html">The show</a><a href="picture-books.html">Picture books</a><a href="for-parents-and-educators.html">For parents</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs wrap">Blacknificent Kids TV</p>
+    
+    <section class="hero wrap">
+      <div>
+        <p class="eyebrow">The brand</p>
+        <h1>Blacknificent Kids TV</h1>
+        <p class="lede">Blacknificent Kids TV is a children’s entertainment and learning brand created by Relentless Aaron. It is built around Black children, original characters, stories, and hands-on ideas families can try. The official spelling is Blacknificent — with a C.</p>
+        <p>
+          <a class="button" href="black-childrens-shows.html">About the show</a>
+          <a class="button secondary" href="picture-books.html">The five picture books</a>
+        </p>
+      </div>
+      <div class="mark" role="img" aria-label="Blacknificent Kids TV wordmark">
+        <strong>Blacknificent</strong>
+        <em>Kids TV</em>
+        <em>Where Young Legends Shine</em>
+      </div>
+    </section>
+    <section class="facts"><div class="wrap fact-grid">
+      <p><strong>The name</strong>Blacknificent, with a C</p>
+      <p><strong>Form</strong>An animated kids’ show and picture books</p>
+      <p><strong>Tagline in the brand notes</strong>Where Young Legends Shine</p>
+      <p><strong>Owner in the agenda</strong>Relentless Aaron / WEBFILMBOOKS.com LLC</p>
+    </div></section>
+    <section class="section wrap">
+      <h2>What this brand is</h2>
+      <p>The project agenda describes Blacknificent Kids TV as a welcoming children’s entertainment and learning brand centered on Black children, original characters, music, stories, educational activities, and family-friendly digital products. Brand notes also use the tagline “Where Young Legends Shine,” a supporting line, “The Next Generation of Blacknificent,” and a connection “From the creators of Blacknificent News.”</p>
+      <p>Those notes describe the mission as celebrating Black excellence, young brilliance, curiosity, culture, creativity, and leadership, with a joyful, encouraging, playful, and clear tone. A related series brief puts it this way: “Learning is a blast! Fun stories, games, and adventures for curious kids.”</p>
+      <div class="grid-2" style="margin-top:1.2rem">
+        <article class="card">
+          <h3>An animated show</h3>
+          <p>Project stills and episode title cards show a 3D, cartoon-style series with a title card and a small corner logo during play. The <a href="black-childrens-shows.html">show page</a> covers that video side, including what is documented and what is not yet public.</p>
+        </article>
+        <article class="card">
+          <h3>Five picture books</h3>
+          <p>A planned set of five Blacknificent Kids TV picture books lives in the Relentless Library: Sink or Float?, Tower Power!, The Kindness Fix, Shadow Giants, and Game Time! See the <a href="picture-books.html">picture books page</a> for each title’s real library link and current status.</p>
+        </article>
+      </div>
+    </section>
+    <section class="section wrap">
+      <h2>The four hosts in the project agenda</h2>
+      <p>The Blacknificent Kids TV project agenda names four core characters. This page uses those agenda names and roles. It does not invent new biographies.</p>
+      <div class="grid-2">
+        <article class="card"><h3>Malik — The Reporter</h3><p>Shares stories, facts, and uplifting community news. Malik is also the one character name confirmed on screen in the project stills.</p></article>
+        <article class="card"><h3>Zuri — The Curious One</h3><p>Asks questions and explores how the world works.</p></article>
+        <article class="card"><h3>Kai — The Funny One</h3><p>Brings humor, music, and playful energy.</p></article>
+        <article class="card"><h3>Amara — The Smart One</h3><p>Explores STEM, inventions, logic, and big ideas.</p></article>
+      </div>
+      <p class="note">The picture-book files use a partly different set of names — Zara, Amara, Dre, Jordan, and Kofi — and early visual notes marked most book-file names other than Malik as placeholders. Those names are used on the <a href="picture-books.html">picture books page</a>, as they already appear in the Relentless Library.</p>
+    </section>
+    <section class="section wrap">
+      <h2>What these pages will not invent</h2>
+      <p>No public watch link, social-account handle, or store listing was verified when this section was built. Programming that is not published is not treated as if it were already on the air. The five picture books are listed with their real Relentless Library pages, and titles that are not on sale are labeled Coming soon or Upcoming. Parents and teachers can start on the <a href="for-parents-and-educators.html">parents and educators page</a>.</p>
+    </section>
+    <section class="section wrap faq"><h2>Questions</h2>
+      <details><summary>How is the name spelled?</summary><p>Blacknificent Kids TV. That is B-L-A-C-K-N-I-F-I-C-E-N-T. The official logo lettering uses that spelling, with a C.</p></details>
+      <details><summary>Is there a live show site or a buy link on this page?</summary><p>This page is the brand home for four informational pages on this site. It does not invent a streaming URL or a store checkout.</p></details>
+    </section>
+
+  </main>
+  <footer>
+    <div class="wrap">
+      <p><strong>In this section</strong></p>
+      <p class="related">
+        <a href="index.html">Blacknificent Kids TV</a>
+        <a href="black-childrens-shows.html">Black children’s shows and videos</a>
+        <a href="picture-books.html">Blacknificent picture books</a>
+        <a href="for-parents-and-educators.html">For parents and educators</a>
+        <a href="../relentless-library/">Relentless Library</a>
+        <a href="../">Site home</a>
+      </p>
+      <p class="fine">The name is Blacknificent Kids TV — B-L-A-C-K-N-I-F-I-C-E-N-T. Contact: <a href="tel:+14043142100">404-314-2100</a>. Project owner in the brand agenda: Relentless Aaron / WEBFILMBOOKS.com LLC.</p>
+    </div>
+  </footer>
+</body>
+</html>

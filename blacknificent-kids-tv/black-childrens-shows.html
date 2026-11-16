@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blacknificent Kids TV: a Black children’s animated show</title>
+  <meta name="description" content="Blacknificent Kids TV is an animated children’s show centered on Black kids, with STEM play, kindness, and “try this at home” endings. Project title cards exist; a public watch link has not been verified.">
+  <link rel="canonical" href="https://relentlessaaron2022.github.io/build-your-own/blacknificent-kids-tv/black-childrens-shows.html">
+  <meta property="og:title" content="Blacknificent Kids TV: a Black children’s animated show">
+  <meta property="og:description" content="Blacknificent Kids TV is an animated children’s show centered on Black kids, with STEM play, kindness, and “try this at home” endings. Project title cards exist; a public watch link has not been verified.">
+  <style>
+:root{
+  --sky:#e8f6ff;--paper:#fffdf6;--ink:#1a2433;--gold:#e0a21a;--orange:#f07a1a;
+  --green:#1f7a43;--navy:#16325c;--muted:#4e5b6c;--line:#d7e3ee;--white:#ffffff;
+  --lilac:#7a4bb8;--card:#ffffff;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--sky);color:var(--ink);line-height:1.65}
+a{color:var(--navy)}img{max-width:100%;height:auto;display:block}
+.wrap{width:min(1080px,92vw);margin:0 auto}
+.topbar{background:var(--navy);color:#fff;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:.45rem 1rem;font-weight:700}
+.topbar a{color:#ffe08a;text-decoration:none}
+header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.brand{text-decoration:none;color:var(--ink);font-weight:800;letter-spacing:.01em;font-size:1.05rem}
+.brand span{display:block;font-weight:700;letter-spacing:.16em;font-size:.62rem;color:var(--orange);text-transform:uppercase}
+nav a{margin:0 .55rem 0 0;text-decoration:none;color:var(--ink);font-size:.86rem;font-weight:650}
+nav a[aria-current="page"]{color:var(--orange);text-decoration:underline;text-underline-offset:4px}
+.crumbs{font-size:.78rem;color:var(--muted);margin:1rem 0 0}
+.crumbs a{color:var(--muted)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center;padding:2rem 0 1.4rem}
+@media(max-width:800px){.hero{grid-template-columns:1fr}header{flex-wrap:wrap}nav{display:flex;flex-wrap:wrap;gap:.2rem .4rem}}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--orange);font-weight:800;margin:0 0 .4rem}
+h1,h2,h3{font-family:Georgia,"Iowan Old Style",Times,serif;line-height:1.2;margin:.2rem 0 .75rem}
+h1{font-size:clamp(1.85rem,4.4vw,3rem)}
+.lede{font-size:1.08rem;max-width:40rem}
+.fine,.note{font-size:.86rem;color:var(--muted)}
+.note{background:#fff6d8;border-left:4px solid var(--gold);padding:.75rem 1rem;margin:1.1rem 0}
+.button{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:800;padding:.8rem 1.15rem;border-radius:999px;margin:.35rem .45rem .35rem 0;font-size:.9rem}
+.button.secondary{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.button.disabled{background:#8a7d6c;pointer-events:none;cursor:not-allowed}
+figure{margin:0}
+figure img, .mark{border-radius:16px;width:100%;box-shadow:0 10px 30px rgba(22,50,92,.12)}
+figcaption{font-size:.76rem;color:var(--muted);margin-top:.45rem}
+.mark{background:linear-gradient(160deg,#16325c 0%,#1f7a43 55%,#e0a21a 100%);color:#fff;min-height:280px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center}
+.mark strong{display:block;font-family:Georgia,serif;font-size:clamp(1.6rem,3vw,2.2rem);color:#ffe08a}
+.mark em{font-style:normal;display:block;margin-top:.45rem;font-size:.95rem;opacity:.95}
+.facts{background:var(--navy);color:#f6fbff;padding:1.25rem 0}
+.fact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+@media(max-width:700px){.fact-grid{grid-template-columns:repeat(2,1fr)}}
+.fact-grid strong{display:block;font-size:1.12rem;font-family:Georgia,serif;color:#ffe08a}
+.section{padding:1.7rem 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.15rem 1.25rem}
+.card h2,.card h3{margin-top:0}
+.card img{border-radius:10px;margin:0 0 .8rem;background:#e8f0f6}
+.status{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#fff6d8;color:#6a4a00;border-radius:999px;padding:.2rem .55rem;margin:0 0 .5rem}
+.faq details{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;margin:.55rem 0}
+.faq summary{cursor:pointer;font-weight:700}
+footer{border-top:1px solid var(--line);padding:1.4rem 0 2.2rem;margin-top:1rem;font-size:.88rem;background:var(--paper)}
+.related{display:flex;flex-wrap:wrap;gap:.55rem}
+.related a{background:var(--white);border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:var(--ink);font-size:.8rem}
+ul.plain{padding-left:1.15rem}
+</style>
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where can I watch an episode today?","acceptedAnswer":{"@type":"Answer","text":"A public streaming page was not found when this page was built. This page does not invent a watch link."}},{"@type":"Question","name":"Are the file names a complete episode list?","acceptedAnswer":{"@type":"Answer","text":"No. They are names found in title cards and project files. This page does not turn that into a published season guide."}}]},{"@context":"https://schema.org","@type":"WebPage","name":"Blacknificent Kids TV, a Black children’s animated show","url":"https://relentlessaaron2022.github.io/build-your-own/blacknificent-kids-tv/black-childrens-shows.html","description":"Blacknificent Kids TV is an animated children’s show centered on Black kids. Project title cards exist; a public watch link has not been verified."}]</script>
+</head>
+<body>
+  <div class="topbar">A Relentless Aaron project · <a href="../">Site home</a> · <a href="../relentless-library/">Relentless Library</a></div>
+  <header class="wrap">
+    <a class="brand" href="index.html">Blacknificent Kids TV<span>Where Young Legends Shine</span></a>
+    <nav aria-label="Blacknificent Kids TV"><a href="index.html">Brand home</a><a href="black-childrens-shows.html" aria-current="page">The show</a><a href="picture-books.html">Picture books</a><a href="for-parents-and-educators.html">For parents</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs wrap"><a href="index.html">Blacknificent Kids TV</a> / Black children’s shows and videos</p>
+    
+    <section class="hero wrap">
+      <div>
+        <p class="eyebrow">Black children’s shows and videos</p>
+        <h1>A Black children’s animated show, still finding its public home</h1>
+        <p class="lede">Blacknificent Kids TV is an animated series built around Black children as curious, capable friends. Project videos and title cards already exist. A public page where families can press play was not found when this page was written, so there is no invented watch button here.</p>
+        <p><span class="button disabled">No verified watch link yet</span> <a class="button secondary" href="index.html">Back to the brand</a></p>
+      </div>
+      <div class="mark" role="img" aria-label="Show title treatment">
+        <strong>The show</strong>
+        <em>Animated stories · STEM play · kindness</em>
+        <em>Public stream not yet verified</em>
+      </div>
+    </section>
+    <section class="facts"><div class="wrap fact-grid">
+      <p><strong>Style</strong>3D cartoon animation</p>
+      <p><strong>Planned format in the notes</strong>Short horizontal YouTube videos, about 30 seconds</p>
+      <p><strong>On-screen habit</strong>“Try this at home”</p>
+      <p><strong>Public watch URL</strong>Not verified</p>
+    </div></section>
+    <section class="section wrap">
+      <h2>What the videos look like</h2>
+      <p>Visual notes taken from the Blacknificent Kids TV project stills describe a dimensional, Pixar-like cartoon style, big expressive eyes, and rich brown skin tones. Settings include a rainbow-and-sky backdrop with clouds and sparkles, a warm classroom or playroom with a painted rainbow wall and gold stars, and a science lab. The logo is a cartoon television with antennae: “Blacknificent” in an orange-to-yellow gradient, “Kids” in green, and “TV” on a red badge, with thick black outlines.</p>
+      <p>The same notes record a title card, numbered episodes and scenes, and a small corner logo during play. Recurring themes on screen include hands-on STEM play, kindness and fixing a mistake, taking turns and making a plan, noticing and listening, and the idea that different imaginations are all good. Episode files often end with an invitation to try the idea at home.</p>
+    </section>
+    <section class="section wrap">
+      <h2>Title cards and episode names in the project files</h2>
+      <p>These names come from on-screen title cards and from project file names. They are a record of work in the files, not a claim that a public episode guide or a streaming catalog already exists.</p>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Seen on title cards</h3>
+          <ul class="plain">
+            <li>Sink or Float?</li>
+            <li>Tower Power!</li>
+            <li>The Kindness Fix</li>
+            <li>GAME TIME!</li>
+            <li>“Let’s make our own volcano!”</li>
+            <li>“Try this at home and test your own towers!”</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Named in project file names</h3>
+          <ul class="plain">
+            <li>Color Detective</li>
+            <li>Shadow Giants</li>
+            <li>Pattern Party</li>
+            <li>Listening Game</li>
+            <li>Sink or Float</li>
+            <li>Kindness Fix</li>
+            <li>Paper Bridge</li>
+          </ul>
+        </article>
+      </div>
+      <p>Series-guide notes also describe short making-and-science adventures, including a paper-bridge test and a color-mixing detective story, with a sign-off in the “young legends” language of the brand. Brand planning notes describe current production as short horizontal YouTube episodes, about 30 seconds, with a longer format as a later idea. This page does not invent a YouTube channel URL, a handle, or a schedule.</p>
+    </section>
+    <section class="section wrap">
+      <h2>Why this belongs with other Black children’s shows</h2>
+      <p>The series brief calls for bright, joyful science-and-making adventures centered on Black children as curious, capable young investigators. The project agenda asks the brand to keep its own original identity, characters, artwork, and content. That is the search angle of this page: a Black children’s animated show, made for families looking for stories in which Black kids lead the curiosity, the jokes, and the tests.</p>
+      <p>If a public watch page is later verified, it can be added here. Until then, the five related picture-book plans are on the <a href="picture-books.html">picture books page</a>, and classroom or home-use notes are on the <a href="for-parents-and-educators.html">parents and educators page</a>.</p>
+    </section>
+    <section class="section wrap faq"><h2>Questions</h2>
+      <details><summary>Where can I watch an episode today?</summary><p>A public streaming page was not found when this page was built. This page does not invent a watch link.</p></details>
+      <details><summary>Are the file names a complete episode list?</summary><p>No. They are names found in title cards and project files. Later numbered scene files also exist in the project folder. This page does not turn that into a published season guide.</p></details>
+    </section>
+
+  </main>
+  <footer>
+    <div class="wrap">
+      <p><strong>In this section</strong></p>
+      <p class="related">
+        <a href="index.html">Blacknificent Kids TV</a>
+        <a href="black-childrens-shows.html">Black children’s shows and videos</a>
+        <a href="picture-books.html">Blacknificent picture books</a>
+        <a href="for-parents-and-educators.html">For parents and educators</a>
+        <a href="../relentless-library/">Relentless Library</a>
+        <a href="../">Site home</a>
+      </p>
+      <p class="fine">The name is Blacknificent Kids TV — B-L-A-C-K-N-I-F-I-C-E-N-T. Contact: <a href="tel:+14043142100">404-314-2100</a>. Project owner in the brand agenda: Relentless Aaron / WEBFILMBOOKS.com LLC.</p>
+    </div>
+  </footer>
+</body>
+</html>
