@@ -30,7 +30,7 @@ Run `python -m http.server 4173 --directory dist`, then open http://localhost:41
 2. Add that repository as a remote and push this project. Use GitHub Desktop if preferred.
 3. In the owner's Cloudflare dashboard, create a Pages project connected to that repository.
 4. Select no framework, leave the build command empty, and set output directory to `dist`.
-5. Confirm prices, inventory, product fiber label, permitted image use, and ordering details before promotion. The existing asset provenance is not independent licensing verification.
+5. Prices ($20 set, $40/$50 pillows), 2000 thread count, California King fit, daily shipping, and no-returns policy were confirmed by Relentless on Nov 16, 2026. Still confirm the product fiber label, permitted image use, and ordering details before promotion. The existing asset provenance is not independent licensing verification.
 6. Assign a domain if desired. Domain registration is separate from hosting costs.
 
 The original Sites identity and Git metadata are excluded from this library copy. Cloudflare Pages deploys the files in dist directly.
