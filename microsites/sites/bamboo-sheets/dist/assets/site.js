@@ -32,7 +32,7 @@
     image.src = `assets/color-${slug}.webp`;
     image.alt = hasPreview ? `${selected} styled bedding preview` : 'Teal styled bedding example; selected color is not pictured';
     caption.textContent = hasPreview ? 'Styled color inspiration. Confirm the actual product when ordering.' : `${selected} is listed; an exact preview is unavailable. Teal example pictured.`;
-    document.querySelector('#dimensions').textContent = `${size.value} fitted sheet: ${size.value === 'Queen' ? '60 × 80' : '76 × 80'} in. Confirm mattress depth by phone.`;
+    document.querySelector('#dimensions').textContent = size.value === 'California King' ? 'California King: this line fits California King. Confirm mattress depth by phone.' : `${size.value} fitted sheet: ${size.value === 'Queen' ? '60 × 80' : '76 × 80'} in. Confirm mattress depth by phone.`;
     document.querySelector('#selection').textContent = `Ask for: ${size.value} · ${selected} · 6-piece sheet set`;
     try { sessionStorage.setItem('bamboo-selection', JSON.stringify({size: size.value, color: selected})); } catch {}
   };
