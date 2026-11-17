@@ -49,6 +49,23 @@ figcaption{font-size:.76rem;color:var(--muted);margin-top:.45rem;font-family:sys
 footer{border-top:1px solid var(--line);padding:1.4rem 0 2.2rem;margin-top:1rem;font-size:.88rem}
 .related{display:flex;flex-wrap:wrap;gap:.55rem}
 .related a{background:var(--white);border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:var(--ink);font-size:.8rem;font-family:system-ui,sans-serif}
+.t-band{background:#140f0c;color:#f6f0e4;padding:3.1rem 0 3.4rem;margin:0}
+.t-band h2{font-size:clamp(2.15rem,6.2vw,4.35rem);color:#f1d48a;text-transform:uppercase;letter-spacing:.01em;margin:.15rem 0 .7rem;line-height:.95}
+.t-kicker{display:inline-block;background:#f1d48a;color:#140f0c;font-family:system-ui,sans-serif;font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;padding:.35rem .7rem;margin:0 0 .85rem}
+.t-intro{font-size:1.12rem;max-width:46rem;margin:0 0 1.7rem;color:#f3ead6}
+.t-quotes{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem;margin:0 0 2.1rem}
+.t-card{background:#241c16;border:3px solid #b08428;border-radius:18px;padding:1.35rem 1.4rem 1.2rem;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.t-card blockquote{margin:0 0 .9rem;font-size:clamp(1.2rem,2.3vw,1.55rem);line-height:1.28;font-weight:700;color:#fffdf7}
+.t-card blockquote::before{content:"“";color:#f1d48a;font-size:2.4rem;line-height:0;position:relative;top:.55rem;margin-right:.15rem}
+.t-card cite{display:block;font-style:normal;font-family:system-ui,sans-serif;font-size:.82rem;color:#d7c9a6;line-height:1.45}
+.t-card cite a{color:#f1d48a;font-weight:700}
+.t-videos{display:grid;grid-template-columns:1fr 1fr;gap:1.35rem}
+.t-videos .yt-block{margin:0}
+.t-videos .yt-wrap{aspect-ratio:16/9;border:4px solid #b08428;border-radius:16px;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+.t-videos .yt-cap{color:#d7c9a6;font-size:.86rem}
+.t-videos .yt-cap a{color:#f1d48a}
+@media(max-width:800px){.t-quotes,.t-videos{grid-template-columns:1fr}.t-band{padding:2.3rem 0 2.6rem}}
+
 .status-live{color:#d7f5d7}.status-pending{color:#ffe1a8}.status-soon{color:#ffd0c4}
 .yt-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#111;margin:.85rem 0 .5rem;border-radius:12px;overflow:hidden}
 .yt-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -86,14 +103,60 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0 2.2rem;margin-top:1rem;
 <h2>A Griffin book, not a later reprint of a Relentless Content title we found</h2>
 <p>Unlike Push and Sugar Daddy, the public record for this title starts at St. Martin’s Griffin in 2006. Addall and Gale both list it that way. No earlier Relentless Content ISBN for Extra Marital Affairs was confirmed in this pass.</p>
 </section>
-    <section class="section wrap" id="what-readers-are-saying">
-<h2>What readers are saying</h2>
-<p>This is a real YouTube video of a reader talking about <em>Extra Marital Affairs</em>. The title and channel name below are the video’s own. Book trailers and author promo clips are not included here.</p>
-<div class="yt-block">
-  <div class="yt-wrap">
-    <iframe src="https://www.youtube-nocookie.com/embed/6gBA7EFU21k" title="URBAN LIT KING - RELENTLESS AARON -Extra Marital Affairs Testimonial - Meka fr Savanna" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <section class="t-band" id="what-readers-are-saying">
+<div class="wrap">
+<p class="t-kicker">Testimonials</p>
+<h2>Readers on camera. Extra Marital Affairs.</h2>
+<p class="t-intro">These are real YouTube videos of people talking about <em>Extra Marital Affairs</em>, all on the Relentless channel. The titles, names, and short quotes below are taken from the videos themselves. Book trailers and author promo clips are not included here.</p>
+<div class="t-quotes">
+  <article class="t-card">
+    <blockquote>It was good. It was naughty.</blockquote>
+    <blockquote>Pick up a book and read it. It's good. It's worth it.</blockquote>
+    <cite>Meka, a hairdresser from Savannah, Georgia, speaking about <em>Extra Marital Affairs</em> in <a href="https://www.youtube.com/watch?v=6gBA7EFU21k">URBAN LIT KING - RELENTLESS AARON -Extra Marital Affairs Testimonial - Meka fr Savanna</a> — channel: Relentless. The video listing describes Meka as a hairdresser from Savanna, Ga.</cite>
+  </article>
+  <article class="t-card">
+    <blockquote>I don't buy books, but this is one book that I'm glad I have. I love that book.</blockquote>
+    <blockquote>I can't give it away, but the plot twist is dope.</blockquote>
+    <blockquote>I had called up all my friends I was like look you have got to read this book.</blockquote>
+    <cite>Kimberly, a massage therapist from the Bronx, on <em>Extra Marital Affairs</em>. She also said, of a 1-to-10 rating, &ldquo;it was a 10.&rdquo; From <a href="https://www.youtube.com/watch?v=By8eSoYacIA">RELENTLESS AARON URBAN LIT KING - Extra Marital Affairs #1</a> — channel: Relentless.</cite>
+  </article>
+  <article class="t-card">
+    <blockquote>It ain't like the other ones.</blockquote>
+    <blockquote>There was a lot of unexpected twist and turns.</blockquote>
+    <cite>A reader from New Jersey, speaking with her partner about <em>Extra Marital Affairs</em> in <a href="https://www.youtube.com/watch?v=VTCMnUSmQIE">Extra Marital Affairs - January 09 Interview</a> — channel: Relentless. The video listing says: &ldquo;Two lovers speak on Extra Marital Affairs, the Relentless Aaron novel, in stores everywhere.&rdquo;</cite>
+  </article>
+  <article class="t-card">
+    <blockquote>I was left kind of satisfied.</blockquote>
+    <blockquote>I really had a real reaction to it you know a visceral reaction to it.</blockquote>
+    <cite>Her partner, in the same <a href="https://www.youtube.com/watch?v=VTCMnUSmQIE">January 09 Interview</a> on the Relentless channel. In the video, the couple says they picked the book up at a bookstore and later ran into Relentless in Atlanta.</cite>
+  </article>
+</div>
+<div class="t-videos">
+  <div class="yt-block">
+    <div class="yt-wrap">
+      <iframe src="https://www.youtube-nocookie.com/embed/6gBA7EFU21k" title="URBAN LIT KING - RELENTLESS AARON -Extra Marital Affairs Testimonial - Meka fr Savanna" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <p class="yt-cap"><a href="https://www.youtube.com/watch?v=6gBA7EFU21k">URBAN LIT KING - RELENTLESS AARON -Extra Marital Affairs Testimonial - Meka fr Savanna</a> — channel: Relentless. Meka talks about reading <em>Extra Marital Affairs</em> in about 2 and 1/2 days.</p>
   </div>
-  <p class="yt-cap"><a href="https://www.youtube.com/watch?v=6gBA7EFU21k">URBAN LIT KING - RELENTLESS AARON -Extra Marital Affairs Testimonial - Meka fr Savanna</a> — channel: Relentless. The video listing describes Meka, a hairdresser from Savannah, Georgia, speaking about the novel Extra Marital Affairs.</p>
+  <div class="yt-block">
+    <div class="yt-wrap">
+      <iframe src="https://www.youtube-nocookie.com/embed/By8eSoYacIA" title="RELENTLESS AARON URBAN LIT KING - Extra Marital Affairs #1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <p class="yt-cap"><a href="https://www.youtube.com/watch?v=By8eSoYacIA">RELENTLESS AARON URBAN LIT KING - Extra Marital Affairs #1</a> — channel: Relentless. The video listing introduces Kimberly, a massage therapist. She talks about the novel on camera.</p>
+  </div>
+  <div class="yt-block">
+    <div class="yt-wrap">
+      <iframe src="https://www.youtube-nocookie.com/embed/VTCMnUSmQIE" title="Extra Marital Affairs - January 09 Interview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <p class="yt-cap"><a href="https://www.youtube.com/watch?v=VTCMnUSmQIE">Extra Marital Affairs - January 09 Interview</a> — channel: Relentless. Two readers from New Jersey speak about the novel. Their first names were not clear enough in the recording to list here with certainty.</p>
+  </div>
+  <div class="yt-block">
+    <div class="yt-wrap">
+      <iframe src="https://www.youtube-nocookie.com/embed/OzsVO4tTmQc" title="street testimonial number 4,344" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <p class="yt-cap"><a href="https://www.youtube.com/watch?v=OzsVO4tTmQc">street testimonial number 4,344</a> — channel: Relentless. The video listing says: &ldquo;Relentless Reader purchases Extra Marital Affairs and she has something to tell you.&rdquo; In the video she gives her name as Tashana, from Mount Vernon and the Bronx. She talks about Relentless Aaron's books as she gets this one; she does not give a finished-book review of <em>Extra Marital Affairs</em> in the remarks we could verify.</p>
+  </div>
+</div>
 </div>
 </section>
     <section class="section wrap faq"><h2>Questions</h2><details><summary>Is the title one word or three?</summary><p>Catalogs, the Open Library record, and the cover all use Extra Marital Affairs. Relentless has also said “Extramarital Affairs.” These pages use the official printed title and note his wording.</p></details><details><summary>Where can I buy it?</summary><p>ISBN 9780312359355 / 0312359357, listed at Amazon and other bookstores. An automated Amazon fetch was blocked (HTTP 405) on Nov 15, 2026; the URL matches the ISBN.</p></details></section>
