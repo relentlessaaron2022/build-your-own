@@ -60,7 +60,6 @@ def prestrip(s):
     s=re.sub(r'<details><summary>[^<]*Missing Kids[^<]*</summary><p>.*?</p></details>','',s,flags=re.S)
     s=re.sub(r',?\s*\{"@type": "Question", "name": "[^"]*Missing Kids[^"]*", "acceptedAnswer": \{"@type": "Answer", "text": "[^"]*"\}\}','',s)
     s=s.replace('"mainEntity": [, ','"mainEntity": [').replace('"mainEntity": [,','"mainEntity": [')
-    s=re.sub(r'\s*Whether [^.]* is the same project as Blacknificent Kids TV[^.]*\.','',s)
     return s
 def strip(s,path):
     s=prestrip(s)
