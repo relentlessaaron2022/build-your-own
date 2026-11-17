@@ -74,3 +74,29 @@ footer .fgrid a{background:#2a221b;color:#fff;text-decoration:none;border-radius
 .crumbs{font-size:.86rem;color:var(--muted);margin:1rem 0 0}
 .crumbs a{color:var(--muted)}
 blockquote.blurb{margin:1rem 0;padding:1rem 1.1rem;background:#fff;border-radius:14px;border-left:6px solid var(--sky);font-size:1.05rem}
+
+.showcase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.15rem;margin:1.3rem 0 2.4rem}
+.thumb-card{display:flex;flex-direction:column;background:var(--paper);border:3px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;color:var(--ink);box-shadow:0 6px 0 var(--line);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.thumb-card:hover,.thumb-card:focus{transform:translateY(-5px);border-color:var(--red);box-shadow:0 10px 0 var(--red);outline:none}
+.thumb{aspect-ratio:4/3;overflow:hidden;position:relative;background:#1a140f}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.pos-top img{object-position:center top}
+.pos-bottom img{object-position:center 80%}
+.pos-mid img{object-position:center 45%}
+.pos-left img{object-position:20% center}
+.thumb-tag{position:absolute;left:.7rem;bottom:.7rem;background:rgba(26,20,15,.88);color:var(--sun);font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .55rem;border-radius:999px}
+.thumb-styled{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:1rem 1.05rem;color:#fff;font-family:Fredoka,Nunito,sans-serif;min-height:100%}
+.thumb-styled .kicker{font-family:Nunito,sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:.9;margin:0}
+.thumb-styled strong{font-size:1.85rem;line-height:1.05;margin:.15rem 0 0}
+.t-lessons{background:linear-gradient(160deg,#0F7A6C,#149886)}
+.t-guide{background:linear-gradient(160deg,#1578B3,#3BA3E8)}
+.t-aloud{background:linear-gradient(160deg,#C44B2B,#E25B2A)}
+.t-gift{background:linear-gradient(160deg,#E31C23,#F5B400)}
+.t-xmas{background:linear-gradient(160deg,#1a3d2a,#0F7A6C)}
+.t-teach{background:linear-gradient(160deg,#2F4A8A,#3BA3E8)}
+.t-faq{background:linear-gradient(160deg,#1A140F,#5A4F45)}
+.t-paper{background:linear-gradient(160deg,#F5B400,#FFD24A);color:#1A140F}
+.t-kindle{background:linear-gradient(160deg,#232f3e,#3d4f66)}
+.thumb-card .body{padding:.9rem 1rem 1.05rem}
+.thumb-card h2{font-size:1.2rem;margin:0 0 .35rem}
+.thumb-card p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.45}
