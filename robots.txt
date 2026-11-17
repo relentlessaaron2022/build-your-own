@@ -9,3 +9,4 @@ Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-music-cata
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-latonya-holmes.xml
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-elegant-extensions.xml
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-vibrant-living.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-action-septic.xml
