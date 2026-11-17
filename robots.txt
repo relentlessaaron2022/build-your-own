@@ -10,3 +10,5 @@ Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-latonya-ho
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-elegant-extensions.xml
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-vibrant-living.xml
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-action-septic.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-whiterobin-group.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-relentless-eats.xml
