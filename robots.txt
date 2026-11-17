@@ -12,3 +12,4 @@ Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-vibrant-li
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-action-septic.xml
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-whiterobin-group.xml
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-relentless-eats.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-articles.xml
