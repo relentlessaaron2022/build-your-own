@@ -14,3 +14,7 @@ Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-whiterobin
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-relentless-eats.xml
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-articles.xml
 Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-ricky-cool.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-criminal-af.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-scoreboard.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-git-hub-report.xml
+Sitemap: https://relentlessaaron2022.github.io/build-your-own/sitemap-rewind.xml
