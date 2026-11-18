@@ -28,7 +28,10 @@ h2{font-family:Anton,sans-serif;font-size:clamp(32px,5vw,64px);line-height:.95;t
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
 .card{background:#16161b;border:2px solid #2a2a33;border-radius:16px;padding:0;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;min-height:220px;transition:transform .15s,border-color .15s}
 .card:hover{transform:translateY(-3px);border-color:#f5c542}
-.card .thumb{width:100%;aspect-ratio:16/10;object-fit:cover;background:#111;display:flex;align-items:flex-end;padding:14px 16px;font-family:Anton,sans-serif;font-size:clamp(28px,3vw,42px);line-height:.9;text-transform:uppercase;color:#111;letter-spacing:-.02em}
+.card .thumb{position:relative;width:100%;aspect-ratio:16/10;padding:0;overflow:hidden;background:#111;display:block}
+.card .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.card .thumb .thumb-year{position:absolute;left:12px;bottom:8px;z-index:1;margin:0;font-family:Anton,sans-serif;font-size:clamp(28px,3vw,42px);line-height:.9;text-transform:uppercase;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+.card-photo-note{font-size:14px;color:#9a9aa3;max-width:62ch;margin:16px 0 0}
 .card .in{padding:14px 16px 18px;margin-top:auto}
 .card .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#111;background:#f5c542;padding:3px 8px;border-radius:999px}
 .card h3{margin:8px 0 4px;font-size:20px;line-height:1.2}
