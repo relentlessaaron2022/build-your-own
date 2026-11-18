@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="Bill Duke">
+  <rect width="1000" height="1000" fill="#0b0b0d"/>
+  <rect width="1000" height="24" fill="#f5c542"/>
+  <rect y="976" width="1000" height="24" fill="#8b1e3f"/>
+  <text x="70" y="460" fill="#f4f1ea" font-family="Anton, Anton Regular, Impact, sans-serif" font-size="200" letter-spacing="-4">BILL</text>
+  <text x="70" y="680" fill="#f5c542" font-family="Anton, Anton Regular, Impact, sans-serif" font-size="200" letter-spacing="-4">DUKE</text>
+  <text x="76" y="780" fill="#d8d8de" font-family="Bebas Neue, Helvetica, sans-serif" font-size="36" letter-spacing="6">ACTOR  ·  DIRECTOR  ·  PRODUCER</text>
+</svg>
