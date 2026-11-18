@@ -33,25 +33,27 @@ h2.sec{font-size:clamp(28px,5vw,48px);line-height:1;margin:48px 0 14px;font-weig
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;padding:4px 0 20px}
 .card{position:relative;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;text-decoration:none;color:inherit;background:var(--card);border:2px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.5);transition:transform .15s,border-color .15s;min-height:420px}
 a.card:hover{transform:translateY(-4px);border-color:var(--gold)}
-.card .heroish{position:relative;min-height:180px;flex:0 0 auto}
-.card .heroish img,.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.card .heroish{position:relative;min-height:0;flex:0 0 auto;line-height:0;background:#000}
+.card .heroish img,.thumbs img,.as-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
 .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:#000}
 .thumbs a{display:block;aspect-ratio:4/3;overflow:hidden;background:#1a1a1e}
 .thumbs img{height:100%}
 .as-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:#000}
-.as-thumbs span{display:flex;align-items:flex-end;min-height:72px;padding:8px;font-size:11px;font-weight:800;letter-spacing:.02em;color:var(--bone);background:linear-gradient(135deg,#1b3a2a,#c96b3d)}
-.as-thumbs span:nth-child(even){background:linear-gradient(135deg,#0e1612,#3d2a14)}
+.as-thumbs a{display:block;position:relative;aspect-ratio:4/3;overflow:hidden;background:#1a1a1e}
+.as-thumbs .lbl{position:absolute;left:0;right:0;bottom:0;padding:6px 7px;font-size:11px;font-weight:800;letter-spacing:.02em;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.65);background:linear-gradient(180deg,transparent,rgba(0,0,0,.72))}
+.photo-credit{font-size:12px;color:#9a9aa3;max-width:78ch;margin:4px 0 18px;line-height:1.45}
+.photo-credit a{color:#b9b3a6}
 .card .in{padding:22px 22px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
 .count{font-size:clamp(48px,7vw,72px);font-weight:900;line-height:.9;margin:0;color:#fff}
 .card h3{font-size:clamp(22px,3vw,30px);margin:4px 0 6px;font-weight:900}
 .card p{margin:0;font-size:16px;color:#eee}
 .card .go{margin-top:auto;padding-top:14px;color:var(--gold);font-weight:800}
 .tag{position:absolute;top:14px;left:14px;z-index:2;background:var(--gold);color:#111;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
-.c-as .heroish{background:linear-gradient(135deg,#1b3a2a,#c96b3d)}
-.c-vl .heroish{background:linear-gradient(135deg,#0b3d3a,#1b7b6f)}
-.c-ee .heroish{background:linear-gradient(135deg,#3a2a12,#d4a646)}
-.c-wr .heroish{background:linear-gradient(135deg,#1a0a12,#8b1e3f)}
-.c-lh .heroish{background:linear-gradient(135deg,#4a148c,#f9a825)}
+.c-as .heroish{background:#000}
+.c-vl .heroish{background:#000}
+.c-ee .heroish{background:#000}
+.c-wr .heroish{background:#000}
+.c-lh .heroish{background:#000}
 .pod-grid,.promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding:4px 0 20px}
 .pod,.promo{display:flex;flex-direction:column;gap:8px;padding:22px;border:2px solid var(--line);border-radius:18px;background:#121214;text-decoration:none;color:inherit;min-height:200px;transition:border-color .15s,transform .15s}
 a.pod:hover,a.promo:hover{border-color:var(--gold);transform:translateY(-3px)}
@@ -115,8 +117,14 @@ footer a{color:var(--gold)}
       <div class="heroish">
         <span class="tag">25 pages</span>
         <div class="as-thumbs" aria-hidden="true">
-          <span>Home</span><span>Alpharetta</span><span>Repair</span><span>Replacement</span>
-          <span>Pumping</span><span>Inspections</span><span>Emergency</span><span>Guides</span>
+          <a href="/build-your-own/action-septic/"><img src="/build-your-own/action-septic/img/thumb-home.svg?v=20261118c" alt=""><span class="lbl">Home</span></a>
+          <a href="/build-your-own/action-septic/alpharetta.html"><img src="/build-your-own/action-septic/img/thumb-alpharetta.svg?v=20261118c" alt=""><span class="lbl">Alpharetta</span></a>
+          <a href="/build-your-own/action-septic/alpharetta-septic-repair.html"><img src="/build-your-own/action-septic/img/thumb-repair.svg?v=20261118c" alt=""><span class="lbl">Repair</span></a>
+          <a href="/build-your-own/action-septic/alpharetta-septic-replacement.html"><img src="/build-your-own/action-septic/img/thumb-replacement.svg?v=20261118c" alt=""><span class="lbl">Replacement</span></a>
+          <a href="/build-your-own/action-septic/septic-pumping.html"><img src="/build-your-own/action-septic/img/thumb-pumping.svg?v=20261118c" alt=""><span class="lbl">Pumping</span></a>
+          <a href="/build-your-own/action-septic/septic-inspections.html"><img src="/build-your-own/action-septic/img/thumb-inspections.svg?v=20261118c" alt=""><span class="lbl">Inspections</span></a>
+          <a href="/build-your-own/action-septic/emergency-septic.html"><img src="/build-your-own/action-septic/img/thumb-emergency.svg?v=20261118c" alt=""><span class="lbl">Emergency</span></a>
+          <a href="/build-your-own/action-septic/what-to-flush.html"><img src="/build-your-own/action-septic/img/thumb-guides.svg?v=20261118c" alt=""><span class="lbl">Guides</span></a>
         </div>
       </div>
       <div class="in">
@@ -200,6 +208,7 @@ footer a{color:var(--gold)}
     </article>
 
   </div>
+  <p class="photo-credit">Action Septic card photos via <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>: Greg Goebel (CC BY-SA 2.0); OceanLoop (CC BY-SA 4.0); ITookSomePhotos (CC BY-SA 4.0); Ossewa (CC BY 4.0); Tiia Monto (CC BY 4.0); W.carter (CC0); Wikideas1 (CC0).</p>
 </section>
 
 <section id="podcasts">
