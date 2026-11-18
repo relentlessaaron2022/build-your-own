@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Gladys Knight typographic wordmark">
+  <rect width="800" height="800" fill="#0b0b0d"/>
+  <rect x="24" y="24" width="752" height="752" fill="none" stroke="#f5c542" stroke-width="12"/>
+  <text x="400" y="340" text-anchor="middle" font-family="Georgia, serif" font-size="92" font-weight="700" fill="#f5c542" letter-spacing="4">GLADYS</text>
+  <text x="400" y="450" text-anchor="middle" font-family="Georgia, serif" font-size="92" font-weight="700" fill="#f4f1ea" letter-spacing="8">KNIGHT</text>
+  <text x="400" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#f5c542" letter-spacing="10">EMPRESS OF SOUL</text>
+</svg>
