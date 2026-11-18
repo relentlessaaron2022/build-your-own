@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Letter and Page Report for Elegant Extensions | Relentless Aaron</title>
+<meta name="description" content="A letter from Relentless Aaron to Waatani Norris, a plain-English report on the 13 live Elegant Extensions pages, and a clickable thumbnail grid of every page.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/showcase.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Elegant Extensions">
+<meta property="og:title" content="Letter and Page Report for Elegant Extensions | Relentless Aaron">
+<meta property="og:description" content="A letter from Relentless Aaron to Waatani Norris, a plain-English report on the 13 live Elegant Extensions pages, and a clickable thumbnail grid of every page.">
+<meta property="og:url" content="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/showcase.html">
+<meta property="og:image" content="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/img/waatani-styling-blonde-extensions.svg">
+<meta property="og:image:alt" content="Waatani Norris styling long platinum-blonde hair extensions">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Letter and Page Report for Elegant Extensions | Relentless Aaron">
+<meta name="twitter:description" content="A letter from Relentless Aaron to Waatani Norris, a plain-English report on the 13 live Elegant Extensions pages, and a clickable thumbnail grid of every page.">
+<meta name="theme-color" content="#0f0d0b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/build-your-own/elegant-extensions/style.css">
+<style>
+
+  .showcase-hero .lead { max-width: 42rem; }
+  .letter-panel {
+    background: var(--card, #fff);
+    border: 1px solid var(--line);
+    border-left: 8px solid var(--accent);
+    border-radius: 8px 22px 22px 8px;
+    padding: 2rem 1.6rem 1.7rem;
+    max-width: 44rem;
+  }
+  .letter-panel h2 { font-family: var(--display); font-size: 1.85rem; margin: 0 0 1rem; }
+  .letter-panel .letter-meta { text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; font-weight: 700; color: var(--link); margin: 0 0 1.1rem; }
+  .letter-panel p { color: var(--ink); font-size: 1.08rem; margin: 0 0 1rem; }
+  .signoff { margin: 1.4rem 0 0; }
+  .signoff-name { display: block; font-family: var(--display); font-size: 1.55rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+  .signoff-meta { display: block; margin-top: .2rem; font-weight: 700; }
+  .report { max-width: 48rem; }
+  .report h2 { font-family: var(--display); font-size: 2rem; margin: 0 0 .7rem; }
+  .report h3 { font-family: var(--display); font-size: 1.4rem; margin: 1.8rem 0 .5rem; }
+  .report p, .report li { color: var(--muted); }
+  .report p strong, .report li strong { color: var(--ink); }
+  .report ol, .report ul { padding-left: 1.2rem; }
+  .report li { margin: .45rem 0; }
+  .report a { font-weight: 700; }
+  .pages-wrap { width: min(1200px, calc(100% - 2rem)); margin-inline: auto; padding: 0 0 3rem; }
+  .pages-head { margin: 2.2rem 0 1.4rem; max-width: 46rem; }
+  .pages-head h2 { font-family: var(--display); font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; margin: 0 0 .5rem; letter-spacing: -0.02em; }
+  .pages-head p { color: var(--muted); margin: 0; font-size: 1.08rem; }
+  .block { margin: 2.2rem 0 2.6rem; }
+  .block h2 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 .35rem; }
+  .gintro { margin: 0 0 1.1rem; color: var(--muted); max-width: 46rem; }
+  .thumb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+  .thumb-card { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); background: var(--card, #fff); border: 2px solid var(--line); border-radius: 20px; overflow: hidden; min-height: 340px; transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+  .thumb-card:hover, .thumb-card:focus { transform: translateY(-7px); box-shadow: 0 22px 44px rgba(15, 13, 11, .2); border-color: var(--accent); color: var(--ink); outline: none; }
+  .thumb { min-height: 210px; padding: 1.35rem 1.25rem 1.2rem; display: flex; flex-direction: column; justify-content: flex-end; color: #f7efe2; }
+  .thumb img, .thumb-card > img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; min-height: 190px; background: #1a1612; }
+  .thumb .kicker { text-transform: uppercase; letter-spacing: .16em; font-size: .7rem; font-weight: 700; margin-bottom: .35rem; }
+  .thumb .word { font-family: var(--display); font-size: clamp(2.1rem, 4vw, 2.7rem); line-height: 0.98; font-weight: 700; letter-spacing: -0.03em; }
+  .t-gold { background: linear-gradient(160deg, #5c4310 0%, #b8892a 55%, #d4a646 100%); }
+  .t-gold .kicker { color: #fff7e6; }
+  .t-dark { background: linear-gradient(160deg, #0a0908 0%, #0f0d0b 42%, #3a2a12 100%); }
+  .t-dark .kicker { color: #d4a646; }
+  .t-bronze { background: linear-gradient(160deg, #3a2210 0%, #6a3d18 50%, #a5682a 100%); }
+  .t-bronze .kicker { color: #f7efe2; }
+  .t-cream { background: linear-gradient(160deg, #d9ccb0 0%, #f5ecdc 100%); color: var(--ink); }
+  .t-cream .kicker { color: var(--link); }
+  .t-pine { background: linear-gradient(160deg, #0b3d3a 0%, #11615b 50%, #1b7b6f 100%); }
+  .t-pine .kicker { color: #f2b34a; }
+  .t-deep { background: linear-gradient(160deg, #071c1b 0%, #0b3d3a 50%, #0f4f4a 100%); }
+  .t-deep .kicker { color: #f2b34a; }
+  .t-sand { background: linear-gradient(160deg, #c9b894 0%, #eef5f1 100%); color: var(--ink); }
+  .t-sand .kicker { color: #0d6b66; }
+  .tbody { padding: 1.15rem 1.2rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+  .tbody h3 { font-family: var(--display); font-size: 1.32rem; line-height: 1.2; margin: 0 0 .4rem; }
+  .tbody p { margin: 0; color: var(--muted); font-size: 1rem; flex: 1; }
+  .go { display: inline-block; margin-top: .9rem; font-weight: 700; color: var(--link); letter-spacing: .02em; }
+  .thumb-card:hover .go { color: var(--ink); }
+  .jump { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0 0; }
+  .jump a { text-decoration: none; font-weight: 700; background: var(--card, #fff); border: 1px solid var(--line); border-radius: 999px; padding: .45rem .9rem; color: var(--ink); }
+  .jump a:hover { border-color: var(--accent); color: var(--link); }
+  @media (max-width: 640px) {
+    .thumb { min-height: 170px; }
+    .thumb .word { font-size: 2rem; }
+    .letter-panel { padding: 1.4rem 1.1rem 1.2rem; }
+  }
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Letter and Page Report for Elegant Extensions | Relentless Aaron","description":"A letter from Relentless Aaron to Waatani Norris, a plain-English report on the 13 live Elegant Extensions pages, and a clickable thumbnail grid of every page.","url":"https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/showcase.html","inLanguage":"en-US","author":{"@type":"Person","name":"Relentless Aaron","telephone":"+14043142100"},"isPartOf":{"@type":"WebSite","name":"Elegant Extensions","url":"https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Elegant Extensions","item":"https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/"},{"@type":"ListItem","position":2,"name":"Showcase","item":"https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/showcase.html"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap topin"><a class="brand" href="/build-your-own/elegant-extensions/">Elegant Extensions<small>by Mr. Waatani Norris</small></a><a class="topcall" href="tel:+18589454247">(858) 945-4247</a></div><nav class="nav wrap" aria-label="Site"><a href="/build-your-own/elegant-extensions/index.html">Home</a><a href="/build-your-own/elegant-extensions/meet-waatani-norris.html">Meet Waatani</a><a href="/build-your-own/elegant-extensions/glamlocks-beaded-sew-in-extensions.html">GLAMLOCKS</a><a href="/build-your-own/elegant-extensions/great-lengths-extensions-san-diego.html">Great Lengths</a><a href="/build-your-own/elegant-extensions/tape-in-extensions-san-diego.html">Tape-ins</a><a href="/build-your-own/elegant-extensions/hairdreams-hairlocs-micro-bead-extensions.html">Hairdreams &amp; beads</a><a href="/build-your-own/elegant-extensions/custom-weaves-sew-in-san-diego.html">Weaves</a><a href="/build-your-own/elegant-extensions/hair-extension-repair-san-diego.html">Repair</a><a href="/build-your-own/elegant-extensions/choose-hair-extension-method.html">Choose a method</a><a href="/build-your-own/elegant-extensions/hair-extension-aftercare.html">Aftercare</a><a href="/build-your-own/elegant-extensions/hair-extension-cost-san-diego.html">Pricing</a><a href="/build-your-own/elegant-extensions/la-jolla-hair-extensions-studio.html">La Jolla</a><a href="/build-your-own/elegant-extensions/showcase.html" aria-current="page">Showcase</a><a href="/build-your-own/elegant-extensions/book-consultation.html">Book</a></nav></header>
+<main id="main">
+  <section class="hero showcase-hero">
+    <div class="wrap heroin" style="grid-template-columns:1fr">
+      <div>
+      <p class="eyebrow">A letter from Relentless · Tuesday, November 17, 2026</p>
+      <h1>Waatani, I built 13 pages so San Diego can find you.</h1>
+      <p class="lead">A letter, a plain-English report on the work, and a big clickable grid of every live page for Elegant Extensions.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#pages">See all 13 pages</a>
+        <a class="btn ghost" href="sms:+18589454247">Text (858) 945-4247</a>
+        <a class="btn ghost" href="tel:+18589454247">Call</a>
+      </div>
+      </div>
+    </div>
+  </section>
+  <div class="wrap body">
+
+    <section class="letter-panel" id="letter">
+      <p class="letter-meta">Letter to Waatani Norris</p>
+      <h2>These pages are built to send the text or the call to you.</h2>
+      <p>Waatani,</p>
+      <p>I built these pages for Elegant Extensions so the work you already do is easier to find.</p>
+      <p>When someone in San Diego or La Jolla types “hair extensions,” “GLAMLOCKS,” “Great Lengths,” “tape-ins,” “Hairdreams,” or “extension repair” into Google — or asks an AI tool the same question — they should land on you, not a directory. And they should be able to text or call (858) 945-4247 with one tap.</p>
+      <p>That is what this site is for. Thirteen live pages, each aimed at a real search, each with your number up front. Your official website at elegantextensions.com stays the company home. These pages are built to send the booking to you.</p>
+      <p>Please look them over. If a word is off, or if you want a detail added, tell me and I will fix it.</p>
+      <p class="signoff"><span class="signoff-name">Relentless Aaron</span><span class="signoff-meta"><a href="tel:+14043142100">404-314-2100</a></span></p>
+    </section>
+
+    <section class="report" id="report">
+      <h2>Work report</h2>
+      <h3>What was built</h3>
+      <p>A 13-page public site for Elegant Extensions is live at:</p>
+      <p><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/</a></p>
+      <p>The pages are:</p>
+      <p><strong>Start here</strong></p>
+      <ul>
+        <li>Home — Hair extensions in San Diego, by Mr. Waatani Norris.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/</a></li>
+        <li>Meet Waatani Norris — Specialist, educator, and GLAMLOCKS co-creator.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/meet-waatani-norris.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/meet-waatani-norris.html</a></li>
+        <li>Book a consultation — Text or call (858) 945-4247. What to send for a quote.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/book-consultation.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/book-consultation.html</a></li>
+        <li>La Jolla studio — 7520 La Jolla Blvd, La Jolla, CA 92037.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/la-jolla-hair-extensions-studio.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/la-jolla-hair-extensions-studio.html</a></li>
+      </ul>
+      <p><strong>Methods</strong></p>
+      <ul>
+        <li>GLAMLOCKS beaded sew-in extensions — From the man who co-created them.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/glamlocks-beaded-sew-in-extensions.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/glamlocks-beaded-sew-in-extensions.html</a></li>
+        <li>Great Lengths — Ultrasonic, Thermal, GL Tapes, and GL Apps.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/great-lengths-extensions-san-diego.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/great-lengths-extensions-san-diego.html</a></li>
+        <li>Tape-ins — Great Lengths and Hot Heads.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/tape-in-extensions-san-diego.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/tape-in-extensions-san-diego.html</a></li>
+        <li>Hairdreams, Hairlocs, and micro-bead methods.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/hairdreams-hairlocs-micro-bead-extensions.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/hairdreams-hairlocs-micro-bead-extensions.html</a></li>
+        <li>Custom weaves and sew-in weaves in San Diego.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/custom-weaves-sew-in-san-diego.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/custom-weaves-sew-in-san-diego.html</a></li>
+        <li>Hair extension repair and redo.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/hair-extension-repair-san-diego.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/hair-extension-repair-san-diego.html</a></li>
+      </ul>
+      <p><strong>Guides</strong></p>
+      <ul>
+        <li>Which hair extensions are best for you — what the consultation looks at.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/choose-hair-extension-method.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/choose-hair-extension-method.html</a></li>
+        <li>Aftercare and maintenance.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/hair-extension-aftercare.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/hair-extension-aftercare.html</a></li>
+        <li>What a quote includes — no dollar prices until you confirm a menu.<br><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/hair-extension-cost-san-diego.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/hair-extension-cost-san-diego.html</a></li>
+      </ul>
+      <p>Every page has click-to-call and click-to-text to (858) 945-4247 in the header, in the page body, in the footer, and on a mobile bar. The studio address is 7520 La Jolla Blvd, La Jolla, CA 92037, by appointment. The footer also notes Del Mar and Mission Valley appointments, with a request to text to confirm. There is no online checkout. The design uses your own published photos, converted to page graphics, plus typographic cards. There are no invented prices and no fabricated reviews.</p>
+      <p>A sitemap of all Elegant Extensions pages is registered at:</p>
+      <p><a href="https://relentlessaaron2022.github.io/build-your-own/sitemap-elegant-extensions.xml">https://relentlessaaron2022.github.io/build-your-own/sitemap-elegant-extensions.xml</a></p>
+      <p>That sitemap is listed in the site’s robots.txt and in the root sitemap index, so Google can find every page.</p>
+      <p>This showcase page collects the letter, this report, and a clickable thumbnail for each of the 13 pages:</p>
+      <p><a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/showcase.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/showcase.html</a></p>
+      <h3>Why it was built this way</h3>
+      <p>People do not only search for “a hair salon in San Diego.” They search for a method: GLAMLOCKS, Great Lengths, tape-ins, Hairdreams, a weave, or a repair. A single homepage cannot answer all of those searches as clearly as a dedicated page can.</p>
+      <p>That is why each method has its own page. Google and the AI tools people use to ask questions can then match a specific search to a specific, factual page that names Elegant Extensions, states that you work in San Diego and La Jolla, and puts (858) 945-4247 in easy reach.</p>
+      <p>The La Jolla studio page is the only location page with a street address, because 7520 La Jolla Blvd is the address on your listings and on your LinkedIn profile. Del Mar and Mission Valley are named on your official site, but a dedicated page for either one was held until a current address is confirmed.</p>
+      <p>Click-to-text and click-to-call are on every page because the point of this work is a consultation, not a long browse. There is no checkout on these pages.</p>
+      <p>Only facts from your official site, the GlamLocks “Meet Waatani” biography, and your LinkedIn profile were used for claims about the business. Your official wording is followed for certifications (about 15 techniques, about ten certifications), for GLAMLOCKS and GL7 co-creation, and for America’s Next Top Model, KUSI, and North County Times mentions. LinkedIn’s “since April 1995” is attributed to that profile, not invented.</p>
+      <h3>Facts left off, pending your confirmation</h3>
+      <p>These items showed up in research or on older or third-party listings, but not clearly enough to publish as current fact. Nothing below has been added as a hard claim. If you want any of it public, say the word and it goes on. If you want it kept off, it stays off.</p>
+      <ol>
+        <li><strong>Dollar prices.</strong> An older third-party service list quoted figures such as $595, $795, and $1,595. Those may be stale. The pricing page explains what a quote includes. It does not publish a price list.</li>
+        <li><strong>A “free consultation and 25% off” offer.</strong> That wording appears on your official homepage. It was not copied here, in case the offer has changed. The booking page tells people they can ask about current consultation offers when they text.</li>
+        <li><strong>A dedicated Del Mar page, including 1555 Camino del Mar, Suite 203.</strong> That address appears on older listings and on the GlamLocks biography, sometimes with a different phone number. It is held until you confirm the chair is current. The footer notes Del Mar appointments and asks people to text to confirm.</li>
+        <li><strong>A dedicated Mission Valley page.</strong> Your official site names the area. No street address was found. The footer notes Mission Valley appointments, with a request to text to confirm.</li>
+        <li><strong>A second phone number, (858) 800-4078.</strong> It appeared on one third-party salon page only. It is omitted.</li>
+        <li><strong>Braid-style services</strong> — knotless braids, box braids, men’s braids, or kids’ braids. Your public brand is hair extensions, not a braiding shop. Those pages were not built.</li>
+        <li><strong>Google ratings and review counts.</strong> Public listings do not agree with each other, and some reviews are old. No star rating or review count is on the pages.</li>
+      </ol>
+      <h3>Next steps for you, Waatani</h3>
+      <ol>
+        <li>Open the showcase and click through the thumbnails. Start here: <a href="https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/showcase.html">https://relentlessaaron2022.github.io/build-your-own/elegant-extensions/showcase.html</a></li>
+        <li>Tell me what to correct — a word, a method, a location, or anything that does not sound like you.</li>
+        <li>Look at the list above and tell me what to add, what to leave off, and whether weaves, Del Mar, and Mission Valley should have more detail.</li>
+        <li>If you want a current price menu, hours, or a booking-tool link on the pages, send them and I will add them.</li>
+        <li>Call or text me at <a href="tel:+14043142100">404-314-2100</a> with questions.</li>
+      </ol>
+      <p>Relentless Aaron<br><a href="tel:+14043142100">404-314-2100</a></p>
+    </section>
+
+    <div class="jump">
+      <a href="#ee-start">Start here</a>
+      <a href="#ee-methods">Methods</a>
+      <a href="#ee-guides">Guides</a>
+    </div>
+  </div>
+  <div class="pages-wrap" id="pages">
+    <div class="pages-head">
+      <h2>All 13 live pages</h2>
+      <p>Each card opens the real page. Thumbnails use your published photos where we have them, and typographic cards for the rest.</p>
+    </div>
+    <section class="block" id="ee-start">
+      <h2>Start here</h2>
+      <p class="gintro">The front door, the stylist, and how to book.</p>
+      <div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/">
+    <img src="/build-your-own/elegant-extensions/img/client-long-hair-result.svg" alt="Long, full hair after extensions at Elegant Extensions" loading="lazy">
+    <div class="tbody">
+      <h3>Elegant Extensions</h3>
+      <p>Hair extensions in San Diego, by Mr. Waatani Norris — methods at a glance, the La Jolla studio, and a direct text or call to (858) 945-4247.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/meet-waatani-norris.html">
+    <img src="/build-your-own/elegant-extensions/img/waatani-hairdreams-event.svg" alt="Waatani Norris with colleagues at a Hairdreams event" loading="lazy">
+    <div class="tbody">
+      <h3>Meet Waatani Norris</h3>
+      <p>Hair-extension specialist, educator, and co-creator of GLAMLOCKS and the GL7 system.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/book-consultation.html">
+    <div class="thumb t-gold">
+      <span class="kicker">Book</span>
+      <span class="word">Consult</span>
+    </div>
+    <div class="tbody">
+      <h3>Book a consultation</h3>
+      <p>Text or call (858) 945-4247. What photos and details to send for the fastest quote.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/la-jolla-hair-extensions-studio.html">
+    <div class="thumb t-dark">
+      <span class="kicker">Studio</span>
+      <span class="word">La Jolla</span>
+    </div>
+    <div class="tbody">
+      <h3>La Jolla studio</h3>
+      <p>7520 La Jolla Blvd, La Jolla, CA 92037 — directions and what to know before your appointment.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+      </div>
+    </section>
+    <section class="block" id="ee-methods">
+      <h2>Methods</h2>
+      <p class="gintro">One page for each method he actually advertises — not a fake product catalog.</p>
+      <div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/glamlocks-beaded-sew-in-extensions.html">
+    <img src="/build-your-own/elegant-extensions/img/waatani-glamlocks-beading.svg" alt="GLAMLOCKS beaded row being installed" loading="lazy">
+    <div class="tbody">
+      <h3>GLAMLOCKS beaded sew-ins</h3>
+      <p>Hand-tied, beaded rows with a lockstitch, from the man who co-created them.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/great-lengths-extensions-san-diego.html">
+    <img src="/build-your-own/elegant-extensions/img/before-after-blonde-volume.svg" alt="Before and after: thin blonde hair to long, full waves" loading="lazy">
+    <div class="tbody">
+      <h3>Great Lengths</h3>
+      <p>Ultrasonic cold fusion, Thermal bonds, GL Tapes, and GL Apps in San Diego and La Jolla.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/tape-in-extensions-san-diego.html">
+    <img src="/build-your-own/elegant-extensions/img/before-after-brunette-ombre.svg" alt="Before and after: short brunette bob to long ombre waves" loading="lazy">
+    <div class="tbody">
+      <h3>Tape-ins</h3>
+      <p>Great Lengths and Hot Heads tape-ins: when they make sense, move-ups, and what to ask.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/hairdreams-hairlocs-micro-bead-extensions.html">
+    <img src="/build-your-own/elegant-extensions/img/waatani-styling-blonde-extensions.svg" alt="Waatani Norris styling long platinum-blonde hair extensions" loading="lazy">
+    <div class="tbody">
+      <h3>Hairdreams, Hairlocs and beads</h3>
+      <p>Micro Strands, Micro Line, Quikkies, Hairlocs micro beads, NXS Tress, and shrink tubes.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/custom-weaves-sew-in-san-diego.html">
+    <img src="/build-your-own/elegant-extensions/img/client-blonde-waves-result.svg" alt="Client result: long blonde waves after a weave or extension install" loading="lazy">
+    <div class="tbody">
+      <h3>Custom weaves and sew-ins</h3>
+      <p>Custom sew-in weaves in San Diego, among the techniques listed on his studio site.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/hair-extension-repair-san-diego.html">
+    <img src="/build-your-own/elegant-extensions/img/before-after-straight-blonde.svg" alt="Before and after: added length and fullness on straight blonde hair" loading="lazy">
+    <div class="tbody">
+      <h3>Repair and redo</h3>
+      <p>Redo or repair of damaged extensions, across nearly every type on the market.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+      </div>
+    </section>
+    <section class="block" id="ee-guides">
+      <h2>Guides</h2>
+      <p class="gintro">Help someone decide, care for the work, and understand a quote — without publishing a price list.</p>
+      <div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/choose-hair-extension-method.html">
+    <div class="thumb t-cream">
+      <span class="kicker">Guide</span>
+      <span class="word">Choose</span>
+    </div>
+    <div class="tbody">
+      <h3>Which method is best?</h3>
+      <p>How a consultation chooses among beaded sew-ins, tape-ins, keratin bonds, micro beads, and weaves.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/hair-extension-aftercare.html">
+    <div class="thumb t-bronze">
+      <span class="kicker">Care</span>
+      <span class="word">Aftercare</span>
+    </div>
+    <div class="tbody">
+      <h3>Aftercare</h3>
+      <p>Washing, brushing, sleeping, heat, swimming, and move-up timing.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/elegant-extensions/hair-extension-cost-san-diego.html">
+    <div class="thumb t-dark">
+      <span class="kicker">Quote</span>
+      <span class="word">Pricing</span>
+    </div>
+    <div class="tbody">
+      <h3>What a quote includes</h3>
+      <p>What drives the cost — method, length, amount of hair, color, removal, and maintenance. No dollar figures until he confirms a menu.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+      </div>
+    </section>
+  </div>
+  <div class="wrap body" style="padding-top:0">
+    <section class="band">
+      <h2>Ready for your transformation?</h2>
+      <p>Text or call Waatani at (858) 945-4247 with a few photos of your hair and the look you want. Consultation first, always.</p>
+      <div class="ctas"><a class="btn primary" href="sms:+18589454247">Text (858) 945-4247</a><a class="btn ghost" href="tel:+18589454247">Call</a><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&amp;query=7520+La+Jolla+Blvd%2C+La+Jolla%2C+CA+92037">Directions</a><a class="btn ghost" href="https://www.instagram.com/mrwaataninorris/">Instagram</a></div>
+    </section>
+  </div>
+</main>
+<footer class="foot"><div class="wrap footin"><p><strong>Elegant Extensions</strong>, hair extensions by Mr. Waatani Norris<br>7520 La Jolla Blvd, La Jolla, CA 92037 · By appointment · Also La Jolla, Del Mar &amp; Mission Valley appointments<br><a href="tel:+18589454247">(858) 945-4247</a> · <a href="https://www.instagram.com/mrwaataninorris/">@mrwaataninorris</a> · <a href="https://elegantextensions.com/">elegantextensions.com</a></p>
+<p><a href="/build-your-own/elegant-extensions/">Home</a> · <a href="/build-your-own/elegant-extensions/meet-waatani-norris.html">Meet Waatani</a> · <a href="/build-your-own/elegant-extensions/showcase.html">Showcase</a> · <a href="/build-your-own/elegant-extensions/book-consultation.html">Book</a> · <a href="https://elegantextensions.com/">Official website</a></p>
+<p class="credit">Site by <a href="https://webfilmbooks.com">WebFilmBooks</a></p></div></footer>
+<div class="mobilebar"><a href="sms:+18589454247">Text to book</a><a href="tel:+18589454247">Call</a><a href="https://www.google.com/maps/search/?api=1&amp;query=7520+La+Jolla+Blvd%2C+La+Jolla%2C+CA+92037">Directions</a></div>
+</body>
+</html>
