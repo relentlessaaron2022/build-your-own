@@ -70,7 +70,9 @@ h2{font-family:Anton,sans-serif;font-size:clamp(32px,5vw,64px);line-height:.95;t
 .gallery figure{margin:0;background:#16161b;border:2px solid #2a2a33;border-radius:14px;overflow:hidden;padding:0 0 12px}
 .gallery img{width:100%;height:240px;object-fit:cover;border:0}
 .gallery figcaption{padding:0 12px}
-.ad-block{width:min(1180px,94vw);margin:0 auto 36px;padding:18px;border:2px dashed #5a5a66;border-radius:16px;background:#101014}
-.ad-block .ad-label{margin:0 0 10px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#c8c8ce}
-.ad-block a{display:block;max-width:360px}
-.ad-block img{width:100%;height:auto;border:1px solid #2a2a33;border-radius:8px}
+
+.site-credit{width:min(1180px,94vw);margin:0 auto 28px;padding:0;color:#9a9aa3;font-size:14px;line-height:1.45}
+.site-credit p{margin:0 0 4px}
+.site-credit strong{color:#f4f1ea;font-weight:800}
+.site-credit a{color:#f5c542;text-decoration:none}
+.site-credit a:hover{text-decoration:underline}
