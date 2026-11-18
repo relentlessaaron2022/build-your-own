@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio | Relentless Aaron</title>
+<meta name="description" content="A public portfolio of live work by Relentless Aaron: websites and micro pages, podcasts, newsletters, and promo. Built for clients and candidates — no personal letters.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://relentlessaaron2022.github.io/build-your-own/portfolio/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Portfolio | Relentless Aaron">
+<meta property="og:description" content="Live websites, podcasts, newsletters, and promo work for clients and candidates. No personal letters — just the work.">
+<meta property="og:url" content="https://relentlessaaron2022.github.io/build-your-own/portfolio/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Portfolio | Relentless Aaron">
+<meta name="twitter:description" content="Live websites, podcasts, newsletters, and promo work for clients and candidates.">
+<meta name="theme-color" content="#0b0b0d">
+<style>
+:root{--bg:#0b0b0d;--gold:#f5c542;--crimson:#6a1f28;--bone:#f3ead6;--muted:#b9b3a6;--card:#141416;--line:#2a2a33}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+a{color:var(--gold)}
+.wrap{width:min(1200px,94vw);margin:0 auto}
+header.top{padding:48px 0 18px}
+.kick{font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-size:14px;margin:0}
+h1{font-size:clamp(40px,7vw,84px);line-height:.95;margin:10px 0 12px;font-weight:900;letter-spacing:-.02em;color:#fff}
+.lede{font-size:clamp(18px,2.2vw,24px);color:#d8d8de;max-width:62ch;margin:0 0 10px}
+nav.jump{display:flex;flex-wrap:wrap;gap:10px 18px;margin:22px 0 8px;font-weight:800}
+nav.jump a{color:var(--gold);text-decoration:none;border-bottom:2px solid transparent}
+nav.jump a:hover{border-bottom-color:var(--gold)}
+h2.sec{font-size:clamp(28px,5vw,48px);line-height:1;margin:48px 0 14px;font-weight:900;letter-spacing:-.02em;padding-top:12px;border-top:3px solid var(--crimson)}
+.sec-lede{color:#d8d8de;max-width:62ch;margin:0 0 22px;font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;padding:4px 0 20px}
+.card{position:relative;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;text-decoration:none;color:inherit;background:var(--card);border:2px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.5);transition:transform .15s,border-color .15s;min-height:420px}
+a.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.card .heroish{position:relative;min-height:180px;flex:0 0 auto}
+.card .heroish img,.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:#000}
+.thumbs a{display:block;aspect-ratio:4/3;overflow:hidden;background:#1a1a1e}
+.thumbs img{height:100%}
+.as-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:#000}
+.as-thumbs span{display:flex;align-items:flex-end;min-height:72px;padding:8px;font-size:11px;font-weight:800;letter-spacing:.02em;color:var(--bone);background:linear-gradient(135deg,#1b3a2a,#c96b3d)}
+.as-thumbs span:nth-child(even){background:linear-gradient(135deg,#0e1612,#3d2a14)}
+.card .in{padding:22px 22px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+.count{font-size:clamp(48px,7vw,72px);font-weight:900;line-height:.9;margin:0;color:#fff}
+.card h3{font-size:clamp(22px,3vw,30px);margin:4px 0 6px;font-weight:900}
+.card p{margin:0;font-size:16px;color:#eee}
+.card .go{margin-top:auto;padding-top:14px;color:var(--gold);font-weight:800}
+.tag{position:absolute;top:14px;left:14px;z-index:2;background:var(--gold);color:#111;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+.c-as .heroish{background:linear-gradient(135deg,#1b3a2a,#c96b3d)}
+.c-vl .heroish{background:linear-gradient(135deg,#0b3d3a,#1b7b6f)}
+.c-ee .heroish{background:linear-gradient(135deg,#3a2a12,#d4a646)}
+.c-wr .heroish{background:linear-gradient(135deg,#1a0a12,#8b1e3f)}
+.c-lh .heroish{background:linear-gradient(135deg,#4a148c,#f9a825)}
+.pod-grid,.promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding:4px 0 20px}
+.pod,.promo{display:flex;flex-direction:column;gap:8px;padding:22px;border:2px solid var(--line);border-radius:18px;background:#121214;text-decoration:none;color:inherit;min-height:200px;transition:border-color .15s,transform .15s}
+a.pod:hover,a.promo:hover{border-color:var(--gold);transform:translateY(-3px)}
+.pod h3,.promo h3{margin:0 0 4px;font-size:22px;font-weight:900}
+.pod p,.promo p{margin:0;color:#ddd}
+.pod .links{margin-top:auto;padding-top:12px;font-weight:800}
+.pod .links a{margin-right:14px}
+.flyer{display:block;border-radius:18px;overflow:hidden;border:2px solid var(--line);background:#111}
+.flyer img{width:100%;height:auto;display:block;background:#0b0b0d}
+.cta-final{margin:36px 0 10px;padding:32px 28px;border:3px solid var(--gold);border-radius:22px;background:linear-gradient(180deg,#1a1508,#0b0b0d 70%)}
+.cta-final h2{font-size:clamp(28px,5vw,48px);line-height:.95;margin:0 0 12px;font-weight:900}
+.cta-final p{margin:0 0 16px;color:#d8d8de;font-size:18px;max-width:52ch}
+.cta-final .btn{display:inline-block;background:var(--gold);color:#111;font-weight:900;text-decoration:none;padding:14px 22px;border-radius:999px;font-size:18px}
+.cta-final .btn:hover{background:#ffe08a}
+footer{color:#9a9aa3;padding:28px 0 40px;font-size:14px}
+footer a{color:var(--gold)}
+
+#fms-banner{box-sizing:border-box;margin:28px 0 0;padding:14px 16px 16px;background:#1a100c;color:#f3ead6;border-top:3px solid #f5c542;border-bottom:4px solid #6a1f28;font-size:14px;line-height:1.4}
+#fms-banner *{box-sizing:border-box}
+#fms-banner .fms-inner{max-width:1120px;margin:0 auto}
+#fms-banner .fms-head{margin:0 0 8px;font-size:clamp(18px,2.6vw,26px);font-weight:800;letter-spacing:.01em;color:#f3ead6;line-height:1.15}
+#fms-banner .fms-name{color:#39FF14;text-shadow:0 0 8px rgba(57,255,20,.55)}
+#fms-banner ul{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:2px 0}
+#fms-banner li{margin:0;padding:0 12px 0 0;color:#f3ead6}
+#fms-banner li:not(:last-child)::after{content:"·";color:#f5c542;margin-left:12px;font-weight:700}
+#fms-banner .fms-timing{margin:0 0 6px;color:#f5c542;font-weight:700}
+#fms-banner .fms-cta{margin:0;color:#f3ead6}
+#fms-banner a{color:#f5c542;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+#fms-banner a:hover{color:#39FF14}
+@media (max-width:700px){
+#fms-banner{padding:14px 14px 16px}
+#fms-banner ul{display:block}
+#fms-banner li{display:block;padding:2px 0 2px 12px;position:relative}
+#fms-banner li::before{content:"•";color:#f5c542;position:absolute;left:0}
+#fms-banner li:not(:last-child)::after{content:none}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kick">Relentless Aaron · Public portfolio</p>
+  <h1>Work we build for friends and clients.</h1>
+  <p class="lede">This is the page to send to a potential client or candidate. It shows the live work — websites and micro pages, podcasts, newsletters, and promo — with no personal letters.</p>
+  <nav class="jump" aria-label="Portfolio sections">
+    <a href="#websites">Websites</a>
+    <a href="#podcasts">Podcasts</a>
+    <a href="#newsletters">Newsletters</a>
+    <a href="#flyers">Flyers &amp; promo</a>
+    <a href="#apply">Get your bundle</a>
+  </nav>
+</header>
+
+<section id="websites">
+  <h2 class="sec">Websites &amp; micro pages</h2>
+  <p class="sec-lede">Eighty-three live pages across five clients. Each card opens a public view of the work — the thumbnail grid, not a personal letter.</p>
+  <div class="grid">
+
+    <article class="card c-as">
+      <div class="heroish">
+        <span class="tag">25 pages</span>
+        <div class="as-thumbs" aria-hidden="true">
+          <span>Home</span><span>Alpharetta</span><span>Repair</span><span>Replacement</span>
+          <span>Pumping</span><span>Inspections</span><span>Emergency</span><span>Guides</span>
+        </div>
+      </div>
+      <div class="in">
+        <p class="count">25</p>
+        <h3>Action Septic</h3>
+        <p>We built 25 pages for our friends at Action Septic, a septic service in Alpharetta–Milton.</p>
+        <p class="go"><a href="/build-your-own/action-septic/portfolio.html">See the 25 pages</a> · <a href="/build-your-own/action-septic/">Home</a></p>
+      </div>
+    </article>
+
+    <article class="card c-vl">
+      <div class="heroish">
+        <span class="tag">25 pages</span>
+        <div class="thumbs" aria-hidden="true">
+          <a href="/build-your-own/vibrant-living/"><img src="/build-your-own/vibrant-living/img/lance-place-living-room.svg" alt=""></a>
+          <a href="/build-your-own/vibrant-living/lance-place-del-cerro-board-and-care.html"><img src="/build-your-own/vibrant-living/img/lance-place-backyard-patio.svg" alt=""></a>
+          <a href="/build-your-own/vibrant-living/crawford-street-serra-mesa-board-and-care.html"><img src="/build-your-own/vibrant-living/img/crawford-street-sunroom.svg" alt=""></a>
+          <a href="/build-your-own/vibrant-living/portfolio.html"><img src="/build-your-own/vibrant-living/img/lance-place-living-room.svg" alt=""></a>
+        </div>
+      </div>
+      <div class="in">
+        <p class="count">25</p>
+        <h3>Vibrant Living</h3>
+        <p>We built 25 pages for our friends at Vibrant Living — two licensed six-bed board-and-care homes in San Diego.</p>
+        <p class="go"><a href="/build-your-own/vibrant-living/portfolio.html">See the 25 pages</a> · <a href="/build-your-own/vibrant-living/">Home</a></p>
+      </div>
+    </article>
+
+    <article class="card c-ee">
+      <div class="heroish">
+        <span class="tag">13 pages</span>
+        <div class="thumbs" aria-hidden="true">
+          <a href="/build-your-own/elegant-extensions/"><img src="/build-your-own/elegant-extensions/img/client-long-hair-result.svg" alt=""></a>
+          <a href="/build-your-own/elegant-extensions/meet-waatani-norris.html"><img src="/build-your-own/elegant-extensions/img/waatani-hairdreams-event.svg" alt=""></a>
+          <a href="/build-your-own/elegant-extensions/portfolio.html"><img src="/build-your-own/elegant-extensions/img/waatani-styling-blonde-extensions.svg" alt=""></a>
+          <a href="/build-your-own/elegant-extensions/"><img src="/build-your-own/elegant-extensions/img/client-long-hair-result.svg" alt=""></a>
+        </div>
+      </div>
+      <div class="in">
+        <p class="count">13</p>
+        <h3>Elegant Extensions</h3>
+        <p>We built 13 pages for our friends at Elegant Extensions, a hair-extension studio in San Diego.</p>
+        <p class="go"><a href="/build-your-own/elegant-extensions/portfolio.html">See the 13 pages</a> · <a href="/build-your-own/elegant-extensions/">Home</a></p>
+      </div>
+    </article>
+
+    <article class="card c-wr">
+      <div class="heroish">
+        <span class="tag">6 pages</span>
+        <div class="thumbs" aria-hidden="true">
+          <a href="/build-your-own/whiterobin-group/"><img src="/build-your-own/whiterobin-group/img/angela-scott-studio.svg" alt=""></a>
+          <a href="/build-your-own/whiterobin-group/about.html"><img src="/build-your-own/whiterobin-group/img/angela-headshot.svg" alt=""></a>
+          <a href="/build-your-own/whiterobin-group/nyc-acting-intensive.html"><img src="/build-your-own/whiterobin-group/img/class-seated.svg" alt=""></a>
+          <a href="/build-your-own/whiterobin-group/portfolio.html"><img src="/build-your-own/whiterobin-group/img/angela-headshot.svg" alt=""></a>
+        </div>
+      </div>
+      <div class="in">
+        <p class="count">6</p>
+        <h3>WhiteRobin Group</h3>
+        <p>We built 6 pages for our friends at The WhiteRobin Group, acting workshops and coaching led by Angela Robinson and Scott Whitehurst.</p>
+        <p class="go"><a href="/build-your-own/whiterobin-group/portfolio.html">See the 6 pages</a> · <a href="/build-your-own/whiterobin-group/">Home</a></p>
+      </div>
+    </article>
+
+    <article class="card c-lh">
+      <div class="heroish">
+        <span class="tag">14 pages</span>
+        <div class="thumbs" aria-hidden="true">
+          <a href="/build-your-own/latonya-holmes/"><img src="https://ugc.production.linktr.ee/4acc662f-f5c2-4560-9430-dcbb108e5848_E8EF7CC7-3C35-4CDA-9A3A-D4DB06564177.jpeg" alt=""></a>
+          <a href="/build-your-own/latonya-holmes/"><img src="/build-your-own/latonya-holmes/img/portrait-linktree.svg" alt=""></a>
+          <a href="/build-your-own/latonya-holmes/a-different-world-dr-henry.html"><img src="/build-your-own/latonya-holmes/img/portrait-linktree.svg" alt=""></a>
+          <a href="/build-your-own/latonya-holmes/discography.html"><img src="https://ugc.production.linktr.ee/4acc662f-f5c2-4560-9430-dcbb108e5848_E8EF7CC7-3C35-4CDA-9A3A-D4DB06564177.jpeg" alt=""></a>
+        </div>
+      </div>
+      <div class="in">
+        <p class="count">14</p>
+        <h3>LaTonya Holmes</h3>
+        <p>We built 14 pages for our friends at the LaTonya Holmes hub — music, stage, and Dr. Henry on Netflix’s A Different World.</p>
+        <p class="go"><a href="/build-your-own/latonya-holmes/">See the 14 pages</a></p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="podcasts">
+  <h2 class="sec">Podcasts</h2>
+  <p class="sec-lede">Shows Relentless hosts or publishes. These are the live public links.</p>
+  <div class="pod-grid">
+    <div class="pod">
+      <h3>CRIMINAL AF: Where Criminal Activity Fails</h3>
+      <p>The current Criminal AF show, on Spotify.</p>
+      <p class="links">
+        <a href="https://open.spotify.com/show/2P31IxgTcqOjouCHMIJdQW">Listen on Spotify</a>
+        <a href="/build-your-own/criminal-af/">Show pages</a>
+      </p>
+    </div>
+    <div class="pod">
+      <h3>SUPERPRENEUR!</h3>
+      <p>Chronicles of Relentless Aaron — the Superpreneur run on Spotify and Apple Podcasts.</p>
+      <p class="links">
+        <a href="https://open.spotify.com/show/1hImEirXGDSyiV5qL53aYE">Listen on Spotify</a>
+        <a href="https://podcasts.apple.com/us/podcast/superpreneur/id1487512863">Listen on Apple Podcasts</a>
+      </p>
+    </div>
+    <div class="pod">
+      <h3>The Urban Lit King</h3>
+      <p>Live on Apple Podcasts.</p>
+      <p class="links">
+        <a href="https://podcasts.apple.com/us/podcast/id1362550927">Listen on Apple Podcasts</a>
+      </p>
+    </div>
+    <div class="pod">
+      <h3>The Git Hub Report</h3>
+      <p>The build-and-ship letter, published as web editions. A public audio feed is not up yet.</p>
+      <p class="links">
+        <a href="/build-your-own/git-hub-report/">Read the editions</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="newsletters">
+  <h2 class="sec">Newsletters</h2>
+  <p class="sec-lede">Free letters from the desk, and the branded newsletter service we build for clients.</p>
+  <div class="pod-grid">
+    <a class="pod" href="/build-your-own/articles/newsletters.html">
+      <h3>Relentless Times &amp; The Git Hub Report</h3>
+      <p>Two free newsletters. Relentless Times is commentary and culture. The Git Hub Report is the build-and-ship letter.</p>
+      <p class="links">Open the newsletters page</p>
+    </a>
+    <a class="pod" href="/build-your-own/brand-bundle/brand-newsletter-service.html">
+      <h3>Brand newsletter service</h3>
+      <p>A newsletter that sounds like the client’s brand, included in the Brand Visibility Bundle — plus up to three more if the sub-genres qualify.</p>
+      <p class="links">See the service</p>
+    </a>
+  </div>
+</section>
+
+<section id="flyers">
+  <h2 class="sec">Flyers &amp; promo</h2>
+  <p class="sec-lede">The Brand Visibility Bundle, and the one-page flyer that shows what a brand gets.</p>
+  <div class="promo-grid">
+    <a class="promo flyer" href="/build-your-own/brand-bundle/">
+      <img src="/build-your-own/brand-bundle/visuals/what-you-get-1080x1080.svg" width="1080" height="1080" alt="What you get in the Brand Visibility Bundle: five web pages, 100 social posts, 50 SEO articles, and a brand newsletter.">
+    </a>
+    <a class="promo" href="/build-your-own/brand-bundle/">
+      <h3>Brand Visibility Bundle</h3>
+      <p>$199 for the first 25 brands, delivered in 48 hours. After Friday, November 20, 2026, at 11:59 PM ET, the offer is $1,000.</p>
+      <p class="links">See the bundle</p>
+    </a>
+  </div>
+</section>
+
+
+<aside id="fms-banner" role="complementary" aria-label="First Mover Special offer">
+<div class="fms-inner">
+<p class="fms-head"><span class="fms-name">First Mover Special</span> — $199</p>
+<ul>
+<li>5 web pages</li>
+<li>100 social posts across five platforms including YouTube</li>
+<li>50 SEO articles (3–5 page cap per brand/sub-genre)</li>
+<li>one interactive brand newsletter (links, photos, possible video)</li>
+<li>up to 3 sub-genre newsletters if the brand qualifies</li>
+</ul>
+<p class="fms-timing">Delivered in 48 hours for the first 25 brands · Then $1,000 · Deadline Friday, Nov 20, 2026, 11:59 PM ET.</p>
+<p class="fms-cta"><a href="/build-your-own/brand-bundle/">See the Brand Visibility Bundle</a> · Apply first · Telegram <a href="https://t.me/gorelentless">@gorelentless</a></p>
+</div>
+</aside>
+
+
+<section class="cta-final" id="apply">
+  <h2>Ready for your own pages?</h2>
+  <p>Apply for the Brand Visibility Bundle. The First Mover Special is $199 for the first 25 brands, then $1,000 after Friday, November 20, 2026, at 11:59 PM ET. Message @gorelentless on Telegram, or call 404-314-2100.</p>
+  <a class="btn" href="/build-your-own/brand-bundle/">Get your bundle</a>
+</section>
+
+<footer>Questions? Call <a href="tel:+14043142100">404-314-2100</a>. · Telegram <a href="https://t.me/gorelentless">@gorelentless</a> · <a href="/build-your-own/">Relentless hub</a> · <a href="/build-your-own/brand-bundle/">Brand Visibility Bundle</a> · <a href="/build-your-own/action-septic/portfolio.html">Action Septic</a> · <a href="/build-your-own/vibrant-living/portfolio.html">Vibrant Living</a> · <a href="/build-your-own/elegant-extensions/portfolio.html">Elegant Extensions</a> · <a href="/build-your-own/whiterobin-group/portfolio.html">WhiteRobin Group</a> · <a href="/build-your-own/latonya-holmes/">LaTonya Holmes</a> · <a href="/build-your-own/articles/newsletters.html">Newsletters</a> · <a href="/build-your-own/git-hub-report/">The Git Hub Report</a>.</footer>
+</div>
+</body>
+</html>
