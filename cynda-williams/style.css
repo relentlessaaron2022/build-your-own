@@ -60,3 +60,29 @@ h2{font-family:Anton,sans-serif;font-size:clamp(32px,5vw,64px);line-height:.95;t
 .crumb{font-size:14px;color:#9a9aa3;margin:0 0 10px}
 .crumb a{color:#f5c542;text-decoration:none}
 .links a{margin-right:14px}
+
+/* Shared talent-page extras: portraits, galleries, ad */
+.portrait-slot,.portrait{margin:0}
+.portrait-slot{border:3px solid #f5c542;border-radius:8px;box-shadow:8px 8px 0 #8b1e3f;background:#111;overflow:hidden}
+.portrait-slot img,.portrait img{width:100%;height:auto;display:block;background:#111}
+.portrait{margin:0 0 28px;max-width:36rem}
+.portrait.wide{max-width:100%}
+.portrait figcaption,.gallery figcaption,.portrait-slot figcaption{font-size:13px;color:#9a9aa3;padding:10px 2px 0;line-height:1.45}
+.photo-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:8px 0 28px}
+.photo-row figure{margin:0}
+.photo-row img{width:100%;height:220px;object-fit:cover;border:2px solid #2a2a33;border-radius:8px;background:#111}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin:12px 0 40px}
+.gallery-grid a,.gallery-grid figure{margin:0;color:inherit;text-decoration:none}
+.gallery-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;border:2px solid #2a2a33;border-radius:8px;background:#111;display:block}
+.gallery-grid a:hover img{border-color:#f5c542}
+.gallery-num{display:inline-block;background:#f5c542;color:#111;font-weight:900;font-size:12px;letter-spacing:.08em;padding:2px 8px;border-radius:999px;margin-bottom:6px}
+.timeline-with-photo{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:start}
+@media(max-width:700px){.timeline-with-photo{grid-template-columns:1fr}}
+.timeline-photo{margin:0 0 12px;max-width:180px}
+.timeline-photo img{width:100%;height:auto;border:2px solid #f5c542;border-radius:6px;display:block}
+.site-ad{background:#08080a;border-top:2px solid #2a2a33;padding:36px 0 8px}
+.site-ad .ad-kicker{font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8a8a93;font-size:11px;margin:0 0 10px}
+.site-ad .ad-card{display:block;max-width:420px}
+.site-ad img{width:100%;height:auto;border:2px solid #f5c542;border-radius:8px;display:block;background:#000}
+.site-ad .ad-note{max-width:52ch;color:#9a9aa3;font-size:14px;margin:12px 0 24px}
+.hero-grid .portrait-slot figcaption{padding:10px 12px 14px}
