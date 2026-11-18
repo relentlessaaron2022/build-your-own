@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Action Septic pages | Relentless Aaron portfolio</title>
+<meta name="description" content="We built 25 pages for our friends at Action Septic, an Alpharetta–Milton septic service. Open the live thumbnail grid.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://relentlessaaron2022.github.io/build-your-own/action-septic/portfolio.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Action Septic Tank Service">
+<meta property="og:title" content="Action Septic pages | Relentless Aaron portfolio">
+<meta property="og:description" content="We built 25 pages for our friends at Action Septic, an Alpharetta–Milton septic service. Open the live thumbnail grid.">
+<meta property="og:url" content="https://relentlessaaron2022.github.io/build-your-own/action-septic/portfolio.html">
+<meta property="og:image" content="https://relentlessaaron2022.github.io/build-your-own/action-septic/logo.svg">
+<meta property="og:image:alt" content="Action Septic Tank Service — Alpharetta–Milton, GA">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Action Septic pages | Relentless Aaron portfolio">
+<meta name="twitter:description" content="We built 25 pages for our friends at Action Septic, an Alpharetta–Milton septic service. Open the live thumbnail grid.">
+<meta name="theme-color" content="#0e1612">
+<link rel="icon" href="/build-your-own/action-septic/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/build-your-own/action-septic/style.css">
+<style>
+  .showcase-hero .lead { max-width: 42rem; }
+  .letter-panel {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-left: 8px solid var(--clay);
+    border-radius: 8px 22px 22px 8px;
+    padding: 2rem 1.6rem 1.7rem;
+    max-width: 44rem;
+  }
+  .letter-panel h2 {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    margin: 0 0 1rem;
+  }
+  .letter-panel .letter-meta {
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--clay);
+    margin: 0 0 1.1rem;
+  }
+  .letter-panel p {
+    color: var(--ink-soft);
+    font-size: 1.08rem;
+    margin: 0 0 1rem;
+  }
+  .signoff { margin: 1.4rem 0 0; }
+  .signoff-name {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .signoff-meta {
+    display: block;
+    margin-top: .2rem;
+    font-weight: 700;
+  }
+  .report {
+    max-width: 48rem;
+  }
+  .report h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    margin: 0 0 .7rem;
+  }
+  .report h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    margin: 1.8rem 0 .5rem;
+  }
+  .report p, .report li { color: var(--ink-soft); }
+  .report ol, .report ul { padding-left: 1.2rem; }
+  .report li { margin: .45rem 0; }
+  .pages-wrap {
+    width: min(1200px, calc(100% - 2rem));
+    margin-inline: auto;
+    padding: 0 0 3rem;
+  }
+  .pages-head {
+    margin: 2.2rem 0 1.4rem;
+    max-width: 46rem;
+  }
+  .pages-head h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 .5rem;
+    letter-spacing: -0.02em;
+  }
+  .pages-head p { color: var(--ink-soft); margin: 0; font-size: 1.08rem; }
+  .block { margin: 2.2rem 0 2.6rem; }
+  .block h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin: 0 0 .35rem;
+  }
+  .gintro { margin: 0 0 1.1rem; color: var(--ink-soft); max-width: 46rem; }
+  .thumb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.2rem;
+  }
+  .thumb-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--cream);
+    border: 2px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 340px;
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .thumb-card:hover, .thumb-card:focus {
+    transform: translateY(-7px);
+    box-shadow: 0 22px 44px rgba(14, 22, 18, .2);
+    border-color: var(--clay);
+    color: var(--ink);
+    outline: none;
+  }
+  .thumb {
+    min-height: 210px;
+    padding: 1.35rem 1.25rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: var(--paper);
+  }
+  .thumb .kicker {
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: .7rem;
+    font-weight: 700;
+    color: var(--clay-2);
+    margin-bottom: .35rem;
+  }
+  .thumb .word {
+    font-family: var(--serif);
+    font-size: clamp(2.1rem, 4vw, 2.7rem);
+    line-height: 0.98;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .t-clay { background: linear-gradient(160deg, #7a3218 0%, #b5522a 55%, #c96b3d 100%); }
+  .t-clay .kicker { color: #fff7f0; }
+  .t-pine { background: linear-gradient(160deg, #0f2a22 0%, #1d4a3a 50%, #2a6a52 100%); }
+  .t-pine .kicker { color: #e4c4a8; }
+  .t-dark { background: linear-gradient(160deg, #070b09 0%, #0e1612 42%, #1a2a22 100%); }
+  .t-cream {
+    background: linear-gradient(160deg, #d9d0bc 0%, #f3efe6 100%);
+    color: var(--ink);
+  }
+  .t-cream .kicker { color: var(--clay); }
+  .tbody { padding: 1.15rem 1.2rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+  .tbody h3 {
+    font-family: var(--serif);
+    font-size: 1.32rem;
+    line-height: 1.2;
+    margin: 0 0 .4rem;
+  }
+  .tbody p { margin: 0; color: var(--muted); font-size: 1rem; flex: 1; }
+  .go {
+    display: inline-block;
+    margin-top: .9rem;
+    font-weight: 700;
+    color: var(--clay);
+    letter-spacing: .02em;
+  }
+  .thumb-card:hover .go { color: var(--pine); }
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 1.2rem 0 0;
+  }
+  .jump a {
+    text-decoration: none;
+    font-weight: 700;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: .45rem .9rem;
+    color: var(--ink);
+  }
+  .jump a:hover { border-color: var(--clay); color: var(--clay); }
+  @media (max-width: 640px) {
+    .thumb { min-height: 170px; }
+    .thumb .word { font-size: 2rem; }
+    .letter-panel { padding: 1.4rem 1.1rem 1.2rem; }
+  }
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Action Septic pages | Relentless Aaron portfolio","description":"We built 25 pages for our friends at Action Septic, an Alpharetta–Milton septic service. Open the live thumbnail grid.","url":"https://relentlessaaron2022.github.io/build-your-own/action-septic/portfolio.html","inLanguage":"en-US","author":{"@type":"Person","name":"Relentless Aaron","telephone":"+14043142100"},"isPartOf":{"@type":"WebSite","name":"Action Septic Tank Service","url":"https://relentlessaaron2022.github.io/build-your-own/action-septic/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Action Septic Tank Service","item":"https://relentlessaaron2022.github.io/build-your-own/action-septic/"},{"@type":"ListItem","position":2,"name":"Portfolio","item":"https://relentlessaaron2022.github.io/build-your-own/action-septic/portfolio.html"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap topin">
+    <a class="brand" href="/build-your-own/action-septic/"><span class="mark">Action Septic</span><span class="sub">Tank Service · Alpharetta–Milton</span></a>
+    <a class="topcall" href="tel:+17709221434">Call 770-922-1434</a>
+  </div>
+  <nav class="nav wrap" aria-label="Site"><a href="/build-your-own/action-septic/index.html">Home</a><a href="/build-your-own/action-septic/alpharetta.html">Alpharetta</a><a href="/build-your-own/action-septic/index.html#services">Services</a><a href="/build-your-own/action-septic/service-areas.html">Areas</a><a href="/build-your-own/action-septic/about.html">About</a><a href="/build-your-own/action-septic/portfolio.html" aria-current="page">Portfolio</a><a href="/build-your-own/action-septic/contact.html">Contact</a></nav>
+</header>
+<main id="main">
+  <section class="hero showcase-hero">
+    <div class="wrap heroin">
+      <p class="eyebrow">Public portfolio · Relentless Aaron</p>
+      <h1>We built 25 pages for our friends at Action Septic.</h1>
+      <p class="lead">A 25-page public site for Action Septic Tank Service in Alpharetta–Milton, with a clickable grid of every live page.</p>
+      <div class="ctas">
+        <a class="btn" href="#pages">See all 25 pages</a>
+        <a class="btn ghost" href="/build-your-own/action-septic/">Open the home page</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap body">
+    
+    <section class="report" id="work">
+      <h2>What we built</h2>
+      <p>We built 25 websites for our friends at Action Septic, a septic service serving Alpharetta–Milton and North Atlanta. The set includes a home page, an Alpharetta hub, six Alpharetta pages for the searches that matter most (repair, replacement, maintenance, drain field, emergency, and inspection), service pages for pumping, inspections, installation, line repair, drain field work, hydro jetting, sewer service, grease traps, emergency calls, and commercial work, four homeowner guides, plus service areas, about, and contact.</p>
+      <p>Every page has click-to-call to <a href="tel:+17709221434">770-922-1434</a> in the header, in the body, in the footer, and on a mobile call bar. Hours follow the official Action Septic site: open daily 7:00 a.m. to 10:00 p.m., with emergency service available. The design is typographic only — no invented photos, no prices, and no fabricated reviews.</p>
+      <p>The work starts at the <a href="/build-your-own/action-septic/">Action Septic home page</a>. A sitemap of every Action Septic page is registered at <a href="https://relentlessaaron2022.github.io/build-your-own/sitemap-action-septic.xml">sitemap-action-septic.xml</a>.</p>
+    </section>
+
+  </div>
+
+  <div class="pages-wrap" id="pages">
+    <div class="pages-head">
+      <h2>All 25 pages, click any card.</h2>
+      <p>Each thumbnail opens the live page. There are 25 of them — home, the Alpharetta cluster, the service pages, the homeowner guides, and the company pages.</p>
+      <nav class="jump" aria-label="Page groups">
+        <a href="#start-here">Start here</a>
+        <a href="#alpharetta">Alpharetta</a>
+        <a href="#services">Services</a>
+        <a href="#guides">Guides</a>
+        <a href="#company">Company</a>
+      </nav>
+    </div>
+    <section class="block" id="start-here">
+      <h2>Start here</h2>
+      <p class="gintro">The front door of the new site.</p>
+<div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/action-septic/">
+    <div class="thumb t-dark" aria-hidden="true">
+      <span class="kicker">Home</span>
+      <span class="word">Take action.</span>
+    </div>
+    <div class="tbody">
+      <h3>Home</h3>
+      <p>The front door: pumping, repair, inspections, and a direct call to 770-922-1434.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+</div>
+    </section>
+    <section class="block" id="alpharetta">
+      <h2>Alpharetta</h2>
+      <p class="gintro">The local cluster — so a search for septic repair, replacement, maintenance, a drain field, an emergency, or an inspection in Alpharetta can land on a page built for that job.</p>
+<div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/action-septic/alpharetta.html">
+    <div class="thumb t-clay" aria-hidden="true">
+      <span class="kicker">Alpharetta</span>
+      <span class="word">Home base.</span>
+    </div>
+    <div class="tbody">
+      <h3>Alpharetta septic service</h3>
+      <p>The local hub for septic work in Alpharetta, from a crew based in Alpharetta–Milton.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/alpharetta-septic-repair.html">
+    <div class="thumb t-clay" aria-hidden="true">
+      <span class="kicker">Alpharetta</span>
+      <span class="word">Repair.</span>
+    </div>
+    <div class="tbody">
+      <h3>Septic repair in Alpharetta</h3>
+      <p>Find the real problem first — lines, baffles, tanks, and honest diagnosis.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/alpharetta-septic-replacement.html">
+    <div class="thumb t-dark" aria-hidden="true">
+      <span class="kicker">Alpharetta</span>
+      <span class="word">Replace.</span>
+    </div>
+    <div class="tbody">
+      <h3>Tank and system replacement</h3>
+      <p>Septic tank and system replacement in Alpharetta when a repair will not do.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/alpharetta-septic-maintenance.html">
+    <div class="thumb t-pine" aria-hidden="true">
+      <span class="kicker">Alpharetta</span>
+      <span class="word">Maintain.</span>
+    </div>
+    <div class="tbody">
+      <h3>Pumping and maintenance</h3>
+      <p>Routine pumping and care in Alpharetta that protects the drain field.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/alpharetta-drain-field-repair.html">
+    <div class="thumb t-clay" aria-hidden="true">
+      <span class="kicker">Alpharetta</span>
+      <span class="word">Drain field.</span>
+    </div>
+    <div class="tbody">
+      <h3>Drain field repair in Alpharetta</h3>
+      <p>Drain field repair and replacement built for North Fulton clay.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/alpharetta-emergency-septic.html">
+    <div class="thumb t-dark" aria-hidden="true">
+      <span class="kicker">Alpharetta</span>
+      <span class="word">Emergency.</span>
+    </div>
+    <div class="tbody">
+      <h3>Emergency septic in Alpharetta</h3>
+      <p>Backups and alarms in Alpharetta — open daily, with emergency service available.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/alpharetta-septic-inspection.html">
+    <div class="thumb t-pine" aria-hidden="true">
+      <span class="kicker">Alpharetta</span>
+      <span class="word">Inspect.</span>
+    </div>
+    <div class="tbody">
+      <h3>Septic inspection in Alpharetta</h3>
+      <p>Inspections for homeowners and real estate closings in Alpharetta.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+</div>
+    </section>
+    <section class="block" id="services">
+      <h2>Services</h2>
+      <p class="gintro">Each service has its own page, so Google and AI answer tools can match a specific question to a specific, factual page.</p>
+<div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/action-septic/septic-pumping.html">
+    <div class="thumb t-pine" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Pumping.</span>
+    </div>
+    <div class="tbody">
+      <h3>Septic tank pumping</h3>
+      <p>What happens during a pumping, and why it protects the drain field.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/septic-inspections.html">
+    <div class="thumb t-dark" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Inspections.</span>
+    </div>
+    <div class="tbody">
+      <h3>Septic inspections</h3>
+      <p>A look at the tank and the field, including homes that are changing hands.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/septic-installation.html">
+    <div class="thumb t-clay" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Install.</span>
+    </div>
+    <div class="tbody">
+      <h3>Septic system installation</h3>
+      <p>Installations and replacement work by a licensed Georgia contractor.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/line-repair.html">
+    <div class="thumb t-dark" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Lines.</span>
+    </div>
+    <div class="tbody">
+      <h3>Line repair and replacement</h3>
+      <p>Septic line repair and replacement in the Alpharetta–Milton area.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/drainfield-repair.html">
+    <div class="thumb t-clay" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">The field.</span>
+    </div>
+    <div class="tbody">
+      <h3>Drain field repair</h3>
+      <p>Repair and replacement of drain fields in North Georgia clay.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/hydro-jetting.html">
+    <div class="thumb t-pine" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Jetting.</span>
+    </div>
+    <div class="tbody">
+      <h3>Hydro jetting</h3>
+      <p>High-pressure cleaning for stubborn septic and sewer lines.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/sewer-service.html">
+    <div class="thumb t-dark" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Sewer.</span>
+    </div>
+    <div class="tbody">
+      <h3>Sewer line service</h3>
+      <p>Sewer line cleaning, repair, replacement, and backflow prevention.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/grease-trap.html">
+    <div class="thumb t-clay" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Grease traps.</span>
+    </div>
+    <div class="tbody">
+      <h3>Grease trap cleaning</h3>
+      <p>Grease trap cleaning and care for restaurants and other businesses.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/emergency-septic.html">
+    <div class="thumb t-dark" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Emergency.</span>
+    </div>
+    <div class="tbody">
+      <h3>Emergency septic service</h3>
+      <p>When a backup will not wait — call 770-922-1434.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/commercial-septic.html">
+    <div class="thumb t-pine" aria-hidden="true">
+      <span class="kicker">Service</span>
+      <span class="word">Commercial.</span>
+    </div>
+    <div class="tbody">
+      <h3>Commercial and industrial</h3>
+      <p>Septic and sewer service for restaurants, churches, offices, and industry.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+</div>
+    </section>
+    <section class="block" id="guides">
+      <h2>Guides</h2>
+      <p class="gintro">Practical pages for homeowners, buyers, and sellers, based on advice already published on the official Action Septic site.</p>
+<div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/action-septic/signs-your-tank-needs-pumping.html">
+    <div class="thumb t-cream" aria-hidden="true">
+      <span class="kicker">Guide</span>
+      <span class="word">Warning signs.</span>
+    </div>
+    <div class="tbody">
+      <h3>Signs your tank needs pumping</h3>
+      <p>Slow drains, odors, soggy grass, gurgles, and other warnings.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/septic-maintenance-schedule.html">
+    <div class="thumb t-cream" aria-hidden="true">
+      <span class="kicker">Guide</span>
+      <span class="word">The schedule.</span>
+    </div>
+    <div class="tbody">
+      <h3>Maintenance schedule</h3>
+      <p>How often to pump and inspect, including the company's and EPA guidance.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/what-to-flush.html">
+    <div class="thumb t-cream" aria-hidden="true">
+      <span class="kicker">Guide</span>
+      <span class="word">What to flush.</span>
+    </div>
+    <div class="tbody">
+      <h3>What to flush — and what not to</h3>
+      <p>Grease, wipes, leaky toilets, and other problems that overload a tank.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/home-buyer-septic-inspection.html">
+    <div class="thumb t-cream" aria-hidden="true">
+      <span class="kicker">Guide</span>
+      <span class="word">Buy or sell.</span>
+    </div>
+    <div class="tbody">
+      <h3>Buying or selling a home</h3>
+      <p>What to check on a North Fulton septic system before closing.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+</div>
+    </section>
+    <section class="block" id="company">
+      <h2>Company</h2>
+      <p class="gintro">Who you are, where you work, and how to call.</p>
+<div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/action-septic/service-areas.html">
+    <div class="thumb t-pine" aria-hidden="true">
+      <span class="kicker">Company</span>
+      <span class="word">Service areas.</span>
+    </div>
+    <div class="tbody">
+      <h3>Service areas</h3>
+      <p>Alpharetta–Milton first, plus the North Atlanta and Metro Atlanta cities they list.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/about.html">
+    <div class="thumb t-dark" aria-hidden="true">
+      <span class="kicker">Company</span>
+      <span class="word">About Matt.</span>
+    </div>
+    <div class="tbody">
+      <h3>About Action Septic</h3>
+      <p>Matt Banta, a licensed Georgia septic contractor with 20+ years in North Atlanta.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/action-septic/contact.html">
+    <div class="thumb t-clay" aria-hidden="true">
+      <span class="kicker">Company</span>
+      <span class="word">Call now.</span>
+    </div>
+    <div class="tbody">
+      <h3>Contact</h3>
+      <p>Call 770-922-1434. Open daily 7 a.m. to 10 p.m. Emergency service available.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+</div>
+    </section>
+  </div>
+
+  <div class="wrap body" style="padding-top:0">
+    <section class="band">
+      <h2>Need septic service in Alpharetta or North Atlanta?</h2>
+      <p>Call Action Septic Tank Service at 770-922-1434. Matt Banta and the crew are open every day from 7 a.m. to 10 p.m., and emergency service is available.</p>
+      <div class="ctas"><a class="btn" href="tel:+17709221434">Call 770-922-1434</a> <a class="btn ghost" href="/build-your-own/action-septic/contact.html">Request service</a></div>
+    </section>
+  </div>
+</main>
+<footer class="foot"><div class="wrap footin"><p><strong>Action Septic Tank Service</strong></p>
+<p>Alpharetta–Milton, GA · North Fulton County</p>
+<p><a href="tel:+17709221434">770-922-1434</a> · Open daily 7:00 a.m. to 10:00 p.m. · Emergency service available</p>
+<p>Licensed, state-certified Georgia septic contractor. Owner and chief operator: Matt Banta.</p>
+<p>
+<a href="/build-your-own/action-septic/">Home</a> ·
+<a href="/build-your-own/action-septic/alpharetta.html">Alpharetta</a> ·
+<a href="/build-your-own/action-septic/service-areas.html">Service areas</a> ·
+<a href="/build-your-own/action-septic/portfolio.html" aria-current="page">Portfolio</a> ·
+<a href="/build-your-own/action-septic/contact.html">Contact</a> ·
+<a href="https://actionseptictankservice.com/">Official website</a>
+</p>
+<p class="credit">Site by <a href="https://webfilmbooks.com/services/">WEBFILMBOOKS</a></p>
+</div></footer>
+<div class="mobilebar">
+  <a href="tel:+17709221434">Call 770-922-1434</a>
+  <a href="/build-your-own/action-septic/contact.html">Request service</a>
+</div>
+</body>
+</html>

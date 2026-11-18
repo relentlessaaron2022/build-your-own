@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibrant Living pages | Relentless Aaron portfolio</title>
+<meta name="description" content="We built 25 pages for our friends at Vibrant Living, two licensed six-bed board-and-care homes in San Diego. Open the live thumbnail grid.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://relentlessaaron2022.github.io/build-your-own/vibrant-living/portfolio.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vibrant Living">
+<meta property="og:title" content="Vibrant Living pages | Relentless Aaron portfolio">
+<meta property="og:description" content="We built 25 pages for our friends at Vibrant Living, two licensed six-bed board-and-care homes in San Diego. Open the live thumbnail grid.">
+<meta property="og:url" content="https://relentlessaaron2022.github.io/build-your-own/vibrant-living/portfolio.html">
+<meta property="og:image" content="https://relentlessaaron2022.github.io/build-your-own/vibrant-living/img/lance-place-living-room.svg">
+<meta property="og:image:alt" content="Living room at the Lance Place board and care home">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vibrant Living pages | Relentless Aaron portfolio">
+<meta name="twitter:description" content="We built 25 pages for our friends at Vibrant Living, two licensed six-bed board-and-care homes in San Diego. Open the live thumbnail grid.">
+<meta name="theme-color" content="#0b3d3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Nunito+Sans:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/build-your-own/vibrant-living/style.css">
+<style>
+
+  .showcase-hero .lead { max-width: 42rem; }
+  .letter-panel {
+    background: var(--card, #fff);
+    border: 1px solid var(--line);
+    border-left: 8px solid var(--accent);
+    border-radius: 8px 22px 22px 8px;
+    padding: 2rem 1.6rem 1.7rem;
+    max-width: 44rem;
+  }
+  .letter-panel h2 { font-family: var(--display); font-size: 1.85rem; margin: 0 0 1rem; }
+  .letter-panel .letter-meta { text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; font-weight: 700; color: var(--link); margin: 0 0 1.1rem; }
+  .letter-panel p { color: var(--ink); font-size: 1.08rem; margin: 0 0 1rem; }
+  .signoff { margin: 1.4rem 0 0; }
+  .signoff-name { display: block; font-family: var(--display); font-size: 1.55rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+  .signoff-meta { display: block; margin-top: .2rem; font-weight: 700; }
+  .report { max-width: 48rem; }
+  .report h2 { font-family: var(--display); font-size: 2rem; margin: 0 0 .7rem; }
+  .report h3 { font-family: var(--display); font-size: 1.4rem; margin: 1.8rem 0 .5rem; }
+  .report p, .report li { color: var(--muted); }
+  .report p strong, .report li strong { color: var(--ink); }
+  .report ol, .report ul { padding-left: 1.2rem; }
+  .report li { margin: .45rem 0; }
+  .report a { font-weight: 700; }
+  .pages-wrap { width: min(1200px, calc(100% - 2rem)); margin-inline: auto; padding: 0 0 3rem; }
+  .pages-head { margin: 2.2rem 0 1.4rem; max-width: 46rem; }
+  .pages-head h2 { font-family: var(--display); font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; margin: 0 0 .5rem; letter-spacing: -0.02em; }
+  .pages-head p { color: var(--muted); margin: 0; font-size: 1.08rem; }
+  .block { margin: 2.2rem 0 2.6rem; }
+  .block h2 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 .35rem; }
+  .gintro { margin: 0 0 1.1rem; color: var(--muted); max-width: 46rem; }
+  .thumb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+  .thumb-card { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); background: var(--card, #fff); border: 2px solid var(--line); border-radius: 20px; overflow: hidden; min-height: 340px; transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+  .thumb-card:hover, .thumb-card:focus { transform: translateY(-7px); box-shadow: 0 22px 44px rgba(15, 13, 11, .2); border-color: var(--accent); color: var(--ink); outline: none; }
+  .thumb { min-height: 210px; padding: 1.35rem 1.25rem 1.2rem; display: flex; flex-direction: column; justify-content: flex-end; color: #f7efe2; }
+  .thumb img, .thumb-card > img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; min-height: 190px; background: #1a1612; }
+  .thumb .kicker { text-transform: uppercase; letter-spacing: .16em; font-size: .7rem; font-weight: 700; margin-bottom: .35rem; }
+  .thumb .word { font-family: var(--display); font-size: clamp(2.1rem, 4vw, 2.7rem); line-height: 0.98; font-weight: 700; letter-spacing: -0.03em; }
+  .t-gold { background: linear-gradient(160deg, #5c4310 0%, #b8892a 55%, #d4a646 100%); }
+  .t-gold .kicker { color: #fff7e6; }
+  .t-dark { background: linear-gradient(160deg, #0a0908 0%, #0f0d0b 42%, #3a2a12 100%); }
+  .t-dark .kicker { color: #d4a646; }
+  .t-bronze { background: linear-gradient(160deg, #3a2210 0%, #6a3d18 50%, #a5682a 100%); }
+  .t-bronze .kicker { color: #f7efe2; }
+  .t-cream { background: linear-gradient(160deg, #d9ccb0 0%, #f5ecdc 100%); color: var(--ink); }
+  .t-cream .kicker { color: var(--link); }
+  .t-pine { background: linear-gradient(160deg, #0b3d3a 0%, #11615b 50%, #1b7b6f 100%); }
+  .t-pine .kicker { color: #f2b34a; }
+  .t-deep { background: linear-gradient(160deg, #071c1b 0%, #0b3d3a 50%, #0f4f4a 100%); }
+  .t-deep .kicker { color: #f2b34a; }
+  .t-sand { background: linear-gradient(160deg, #c9b894 0%, #eef5f1 100%); color: var(--ink); }
+  .t-sand .kicker { color: #0d6b66; }
+  .tbody { padding: 1.15rem 1.2rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+  .tbody h3 { font-family: var(--display); font-size: 1.32rem; line-height: 1.2; margin: 0 0 .4rem; }
+  .tbody p { margin: 0; color: var(--muted); font-size: 1rem; flex: 1; }
+  .go { display: inline-block; margin-top: .9rem; font-weight: 700; color: var(--link); letter-spacing: .02em; }
+  .thumb-card:hover .go { color: var(--ink); }
+  .jump { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0 0; }
+  .jump a { text-decoration: none; font-weight: 700; background: var(--card, #fff); border: 1px solid var(--line); border-radius: 999px; padding: .45rem .9rem; color: var(--ink); }
+  .jump a:hover { border-color: var(--accent); color: var(--link); }
+  @media (max-width: 640px) {
+    .thumb { min-height: 170px; }
+    .thumb .word { font-size: 2rem; }
+    .letter-panel { padding: 1.4rem 1.1rem 1.2rem; }
+  }
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Vibrant Living pages | Relentless Aaron portfolio","description":"We built 25 pages for our friends at Vibrant Living, two licensed six-bed board-and-care homes in San Diego. Open the live thumbnail grid.","url":"https://relentlessaaron2022.github.io/build-your-own/vibrant-living/portfolio.html","inLanguage":"en-US","author":{"@type":"Person","name":"Relentless Aaron","telephone":"+14043142100"},"isPartOf":{"@type":"WebSite","name":"Vibrant Living","url":"https://relentlessaaron2022.github.io/build-your-own/vibrant-living/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Vibrant Living","item":"https://relentlessaaron2022.github.io/build-your-own/vibrant-living/"},{"@type":"ListItem","position":2,"name":"Portfolio","item":"https://relentlessaaron2022.github.io/build-your-own/vibrant-living/portfolio.html"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap topin"><a class="brand" href="/build-your-own/vibrant-living/">Vibrant Living<small>Board and care · San Diego</small></a><a class="topcall" href="tel:+16199718431">(619) 971-8431</a></div><nav class="nav wrap" aria-label="Site"><a href="/build-your-own/vibrant-living/index.html">Home</a><a href="/build-your-own/vibrant-living/lance-place-del-cerro-board-and-care.html">Lance Place</a><a href="/build-your-own/vibrant-living/crawford-street-serra-mesa-board-and-care.html">Crawford Street</a><a href="/build-your-own/vibrant-living/six-bed-board-and-care-vs-assisted-living-campus.html">Small vs large</a><a href="/build-your-own/vibrant-living/what-is-an-rcfe-california.html">What is an RCFE?</a><a href="/build-your-own/vibrant-living/hospice-in-board-and-care-san-diego.html">Hospice</a><a href="/build-your-own/vibrant-living/non-ambulatory-care-six-bed-home.html">Non-ambulatory</a><a href="/build-your-own/vibrant-living/board-and-care-cost-san-diego.html">Cost</a><a href="/build-your-own/vibrant-living/medi-cal-assisted-living-waiver-san-diego.html">Medi-Cal ALW</a><a href="/build-your-own/vibrant-living/how-to-choose-a-board-and-care-home.html">Tour checklist</a><a href="/build-your-own/vibrant-living/reading-cdss-inspection-reports.html">Inspections</a><a href="/build-your-own/vibrant-living/faq.html">FAQ</a><a href="/build-your-own/vibrant-living/about-julie-norris-greater-solutions.html">About</a><a href="/build-your-own/vibrant-living/for-operators/index.html">For operators</a><a href="/build-your-own/vibrant-living/portfolio.html" aria-current="page">Portfolio</a><a href="/build-your-own/vibrant-living/schedule-a-tour.html">Schedule a tour</a></nav></header>
+<main id="main">
+  <section class="hero showcase-hero">
+    <div class="wrap heroin" style="grid-template-columns:1fr">
+      <div>
+      <p class="eyebrow">Public portfolio · Relentless Aaron</p>
+      <h1>We built 25 pages for our friends at Vibrant Living.</h1>
+      <p class="lead">Fourteen pages for families and eleven pages for operators, covering two licensed six-bed board-and-care homes in San Diego. Click any thumbnail to open a live page.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#pages">See all 25 pages</a>
+        <a class="btn ghost" href="/build-your-own/vibrant-living/">Open the home page</a>
+        <a class="btn ghost" href="/build-your-own/vibrant-living/schedule-a-tour.html">Schedule a tour</a>
+      </div>
+      </div>
+    </div>
+  </section>
+  <div class="wrap body">
+
+    
+    <section class="report" id="work">
+      <h2>What we built</h2>
+      <p>We built 25 websites for our friends at Vibrant Living — two licensed 6-bed board-and-care homes in San Diego, led by Julie Norris. Fourteen pages help families understand the homes, licensing, hospice, Medi-Cal, and how to schedule a tour. Eleven more pages speak to operators who want to start or run a small RCFE.</p>
+      <p>The family-facing set includes the home page, Lance Place in Del Cerro (license #374604775), Crawford Street in Serra Mesa (license #374604608), guides on six-bed homes versus large campuses, what an RCFE is in California, hospice, non-ambulatory care, how to choose a home, reading CDSS inspection reports, cost, the Medi-Cal Assisted Living Waiver, an FAQ, a tour page, and a page about Julie Norris and Greater Solutions.</p>
+      <p>The operator set includes an operators hub, plus pages on starting a board-and-care in San Diego, RCFE licensing, Title 22 for six-bed homes, staffing and caregiver training, medication and care-plan records, CCL inspections, hospice waivers, the Assisted Living Waiver as a provider, marketing a six-bed home, and running two small homes. The work starts at the <a href="/build-your-own/vibrant-living/">Vibrant Living home page</a>.</p>
+    </section>
+
+
+    <div class="jump">
+      <a href="#vl-families">For families</a>
+      <a href="#vl-operators">For operators</a>
+    </div>
+  </div>
+  <div class="pages-wrap" id="pages">
+    <div class="pages-head">
+      <h2>All 25 live pages</h2>
+      <p>Each card opens the real page. Thumbnails use the room and garden graphics already on the site.</p>
+    </div>
+    <section class="block" id="vl-families">
+      <h2>For families</h2>
+      <p class="gintro">14 pages for families looking for a small, licensed board and care home in San Diego.</p>
+      <div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/vibrant-living/">
+    <img src="/build-your-own/vibrant-living/img/lance-place-living-room.svg" alt="Living room with sofa and sliding door to the yard at Lance Place" loading="lazy">
+    <div class="tbody">
+      <h3>Vibrant Living</h3>
+      <p>Two licensed 6-bed board and care homes in San Diego.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/lance-place-del-cerro-board-and-care.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-backyard-patio.svg" alt="Shaded backyard patio with benches and cushions at the Lance Place home" loading="lazy">
+    <div class="tbody">
+      <h3>Lance Place home (92120)</h3>
+      <p>6236 Lance Place, near Del Cerro, Allied Gardens and San Carlos. License #374604775.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/crawford-street-serra-mesa-board-and-care.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-sunroom.svg" alt="Sunroom with wide windows and wood floors at the Crawford Street home" loading="lazy">
+    <div class="tbody">
+      <h3>Crawford Street home (92123)</h3>
+      <p>6140 Crawford Street in Serra Mesa, near Kearny Mesa. License #374604608.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/six-bed-board-and-care-vs-assisted-living-campus.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-living-room.svg" alt="Home-style living room at a 6-bed board and care" loading="lazy">
+    <div class="tbody">
+      <h3>6-bed home vs large campus</h3>
+      <p>What actually changes when there are six residents.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/what-is-an-rcfe-california.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-front-entry.svg" alt="Front entry of a residential care home in San Diego" loading="lazy">
+    <div class="tbody">
+      <h3>What is an RCFE?</h3>
+      <p>California&#x27;s board and care license, in plain language.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/hospice-in-board-and-care-san-diego.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-bedroom.svg" alt="Quiet resident bedroom at a board and care home" loading="lazy">
+    <div class="tbody">
+      <h3>Hospice in a board and care</h3>
+      <p>Staying home at the end of life, and what a hospice waiver means.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/board-and-care-cost-san-diego.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-dining.svg" alt="Dining table by a window in a board and care home" loading="lazy">
+    <div class="tbody">
+      <h3>What board and care costs</h3>
+      <p>How to read a quote, and why directory prices conflict. No Vibrant Living rate is published.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/how-to-choose-a-board-and-care-home.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-back-lawn.svg" alt="Back lawn and covered patio of a board and care home" loading="lazy">
+    <div class="tbody">
+      <h3>How to choose a home</h3>
+      <p>A tour checklist: licensing, staffing, food, and feel.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/medi-cal-assisted-living-waiver-san-diego.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-kitchen-dining.svg" alt="Kitchen and dining area at the Lance Place home" loading="lazy">
+    <div class="tbody">
+      <h3>Medi-Cal Assisted Living Waiver</h3>
+      <p>How the ALW works in San Diego, and this home&#x27;s public listing.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/non-ambulatory-care-six-bed-home.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-bedroom-1.svg" alt="Bedroom with wide floor space and sliding door" loading="lazy">
+    <div class="tbody">
+      <h3>Non-ambulatory care</h3>
+      <p>What &#x27;non-ambulatory&#x27; means and why fire clearance matters.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/reading-cdss-inspection-reports.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-sitting-nook.svg" alt="Tidy sitting nook in a board and care home" loading="lazy">
+    <div class="tbody">
+      <h3>Reading inspection reports</h3>
+      <p>Type A vs Type B citations, and how to open the state file.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/schedule-a-tour.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-front-entry.svg" alt="Gated front entry of the Crawford Street home" loading="lazy">
+    <div class="tbody">
+      <h3>Schedule a tour</h3>
+      <p>Call (619) 971-8431 or email. Both addresses and maps.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/about-julie-norris-greater-solutions.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-garden-view.svg" alt="Garden and hillside view from the Lance Place backyard" loading="lazy">
+    <div class="tbody">
+      <h3>About the operator</h3>
+      <p>Julie Norris, Greater Solutions, and the two-home model.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/faq.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-backyard-patio.svg" alt="Backyard patio at the Lance Place home" loading="lazy">
+    <div class="tbody">
+      <h3>FAQ</h3>
+      <p>Quick answers from the public record.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+      </div>
+    </section>
+    <section class="block" id="vl-operators">
+      <h2>For operators and owners</h2>
+      <p class="gintro">11 guides for people running or starting a small home, with Vibrant Living as the working example.</p>
+      <div class="thumb-grid">
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-back-lawn.svg" alt="Back lawn and patio of a 6-bed board and care home" loading="lazy">
+    <div class="tbody">
+      <h3>For operators</h3>
+      <p>Guides for people who run, or want to start, a small RCFE.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/rcfe-license-california.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-front-entry.svg" alt="Front entry of a licensed residential care home" loading="lazy">
+    <div class="tbody">
+      <h3>Getting an RCFE license</h3>
+      <p>Orientation, administrator certificate, fire clearance, application.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/title-22-six-bed-home.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-kitchen-dining.svg" alt="Home kitchen in a 6-bed board and care" loading="lazy">
+    <div class="tbody">
+      <h3>Title 22 for a 6-bed home</h3>
+      <p>What governs day-to-day operations in a house.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/ccl-inspections-prepare.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-sitting-nook.svg" alt="Clean, organized sitting area in a board and care" loading="lazy">
+    <div class="tbody">
+      <h3>Preparing for CCL inspections</h3>
+      <p>Unannounced visits, records, and how to respond.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/rcfe-staffing-caregiver-training.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-living-room.svg" alt="Living room of a small residential care home" loading="lazy">
+    <div class="tbody">
+      <h3>Staffing and caregiver training</h3>
+      <p>Coverage, required training, and retention — not a published roster for these homes.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/start-a-board-and-care-san-diego.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-yard-view.svg" alt="Yard of a single-family home used as a board and care" loading="lazy">
+    <div class="tbody">
+      <h3>Starting a board and care in San Diego</h3>
+      <p>House, zoning, fire, capital, and timeline.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/running-two-small-homes.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-dining.svg" alt="Dining area at a second board and care home" loading="lazy">
+    <div class="tbody">
+      <h3>Running two small homes</h3>
+      <p>Consistent standards and clean listings across sites.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/hospice-waiver-for-operators.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-bedroom.svg" alt="Resident bedroom in a small care home" loading="lazy">
+    <div class="tbody">
+      <h3>Hospice waivers (operators)</h3>
+      <p>Why to get one, and how to work with hospice agencies.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/assisted-living-waiver-provider.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-kitchen-dining.svg" alt="Kitchen and dining area in a board and care home" loading="lazy">
+    <div class="tbody">
+      <h3>Assisted Living Waiver (operators)</h3>
+      <p>Provider view: CCAs, waitlists, care vs room and board.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/medication-care-plans-records.html">
+    <img src="/build-your-own/vibrant-living/img/crawford-street-sitting-nook.svg" alt="Orderly common area in a board and care home" loading="lazy">
+    <div class="tbody">
+      <h3>Medication and records</h3>
+      <p>Medication management and care plans that hold up.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+  <a class="thumb-card" href="/build-your-own/vibrant-living/for-operators/marketing-a-six-bed-home.html">
+    <img src="/build-your-own/vibrant-living/img/lance-place-backyard-patio.svg" alt="Inviting backyard patio of a small care home" loading="lazy">
+    <div class="tbody">
+      <h3>Marketing a 6-bed home</h3>
+      <p>Google profile, directories, and a real website.</p>
+      <span class="go">Open this page →</span>
+    </div>
+  </a>
+      </div>
+    </section>
+  </div>
+  <div class="wrap body" style="padding-top:0">
+    <section class="band">
+      <h2>Come see the homes</h2>
+      <p>Tours are the best way to choose. Call (619) 971-8431 or email vibrantlivingsd@gmail.com to visit Lance Place or Crawford Street.</p>
+      <div class="ctas"><a class="btn primary" href="tel:+16199718431">Call (619) 971-8431</a><a class="btn ghost" href="/build-your-own/vibrant-living/schedule-a-tour.html">Schedule a tour</a><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&amp;query=6236+Lance+Place%2C+San+Diego%2C+CA+92120">Directions</a></div>
+    </section>
+  </div>
+</main>
+<footer class="foot"><div class="wrap footin"><p><strong>Vibrant Living</strong>, licensed residential care for the elderly<br>Lance Place: 6236 Lance Place, San Diego, CA 92120 · CDSS #374604775<br>Crawford Street: 6140 Crawford Street, San Diego, CA 92123 · CDSS #374604608<br><a href="tel:+16199718431">(619) 971-8431</a> · <a href="mailto:vibrantlivingsd@gmail.com">vibrantlivingsd@gmail.com</a></p>
+<p><a href="/build-your-own/vibrant-living/">Home</a> · <a href="/build-your-own/vibrant-living/lance-place-del-cerro-board-and-care.html">Lance Place</a> · <a href="/build-your-own/vibrant-living/crawford-street-serra-mesa-board-and-care.html">Crawford Street</a> · <a href="/build-your-own/vibrant-living/portfolio.html" aria-current="page">Portfolio</a> · <a href="/build-your-own/vibrant-living/schedule-a-tour.html">Schedule a tour</a></p>
+<p class="credit">Site by <a href="https://webfilmbooks.com">WebFilmBooks</a></p></div></footer>
+<div class="mobilebar"><a href="tel:+16199718431">Call to tour</a><a href="mailto:vibrantlivingsd@gmail.com">Email</a><a href="/build-your-own/vibrant-living/schedule-a-tour.html">Visit</a></div>
+</body>
+</html>
