@@ -1,0 +1,30 @@
+{
+  "show": "The GitHub Report",
+  "code": "GHR",
+  "host": "Stormi Diamondz",
+  "next_episode": 9,
+  "episodes": [
+    {
+      "number": 8,
+      "id": "GHR-EP08",
+      "air_date": "2026-11-19",
+      "title": null,
+      "length": "4:07",
+      "raw_file": "copy_12D36774-E26E-4C8A-A047-7F8086C6F97B.mov",
+      "finished_file": "GHR-EP08-glass.mp4",
+      "effect": "glass-widgets",
+      "status": "delivered",
+      "board": { "tools_on_board": 129, "vetted_today": 7, "spent": 0 },
+      "repos": [
+        { "slot": "Headline", "name": "last30days", "stars": 68606, "license": "MIT", "pushed": "Nov 17" },
+        { "slot": "1 · Agents", "name": "DeepSeek Harness", "stars": 282781, "license": "MIT", "pushed": "Nov 13" },
+        { "slot": "2 · Code review", "name": "open-code-review", "stars": 53415, "license": "Apache 2.0", "pushed": "Nov 17" },
+        { "slot": "3 · Security", "name": "claude-bughunter", "stars": 8240, "license": "MIT", "pushed": "Nov 16" },
+        { "slot": "4 · Film", "name": "OpenFilm", "stars": 8038, "license": "MIT", "pushed": "Nov 16" },
+        { "slot": "5 · Voice", "name": "Voicebox", "stars": 60803, "license": "MIT", "pushed": null },
+        { "slot": "6 · Books", "name": "cangjie-skill", "stars": 12938, "license": "MIT", "pushed": null }
+      ],
+      "caution": "LoopForge: all rights reserved, not an open license. 10 copycat repos in the Blender ring."
+    }
+  ]
+}
