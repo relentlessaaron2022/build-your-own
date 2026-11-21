@@ -1,0 +1,5 @@
+Small teams want AI, but not ten accounts and ten bills.
+Open WebUI is a free, self-hosted AI chat portal with more than 140,000 stars. One login per employee, shared prompts, and the files stay on the company's own server.
+The software is free. Your setup is not. A starting price I would use: seven hundred fifty to set it up, one hundred fifty a month for updates and new prompts.
+One warning. The license has a branding rule. Do not sell it under your own name. Sell your setup with their name left on.
+The full breakdown, with your first client script, is on The GitHub Report.

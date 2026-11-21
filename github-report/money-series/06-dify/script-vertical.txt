@@ -1,0 +1,5 @@
+Every business answers the same twenty questions every day.
+Dify builds AI assistants without much code, with more than 130,000 stars. Feed it a business's FAQ, and it answers customers at midnight.
+A starting price I would use: one thousand to build it, two hundred fifty a month to keep it updated.
+One warning. Dify's license bars running one platform for many customers without written permission, and the logo stays on. One setup per client.
+The full breakdown, with your first client script, is on The GitHub Report.

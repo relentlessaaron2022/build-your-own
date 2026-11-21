@@ -1,0 +1,5 @@
+Business owners will pay to get their boring hours back.
+n8n is a workflow automation tool with more than 200,000 stars. New lead in, text out in under a minute. Invoice late, reminder goes out on its own.
+A starting price I would use: five hundred per workflow, two hundred a month to keep them running.
+One warning. n8n uses the Sustainable Use License. Build workflows for clients, but do not resell n8n or host it for clients to build on.
+The full breakdown, with your first client script, is on The GitHub Report.

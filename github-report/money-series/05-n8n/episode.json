@@ -1,0 +1,96 @@
+{
+  "num": "05", "bug": "BUILD FOR CLIENTS  ·  DON'T RESELL", "next": "NEXT: MONEY #06 · DIFY",
+  "open": [
+    {"text": "MONEY SERIES #5", "x": 330, "y": 810, "at": "Number five.", "size": 60, "col": "yel", "rot": -0.04},
+    {"text": "ONE REPO · ONE WAY IT PAYS", "x": 450, "y": 930, "at": "One repo,", "d": 0.3, "size": 44, "col": "red", "rot": 0.02},
+    {"text": "ONE LINE YOU CANNOT CROSS", "x": 1400, "y": 930, "at": "and the one line", "d": 0.4, "size": 44, "col": "k"}
+  ],
+  "sections": [
+    {"tag": ["★", "THE REPO: N8N"], "at": "Today's repo is", "els": [
+      {"type": "card", "owner": "n8n-io", "name": "n8n", "lines": ["Workflow automation: connect apps,", "box to box, with AI steps built in."], "tags": ["Sustainable Use License", "self-host"], "star": "200K+ stars", "at": "Today's repo is", "col": "or"},
+      {"type": "stamp", "text": "#1 RISING JAVASCRIPT PROJECT LAST YEAR", "x": 960, "y": 720, "at": "Last year it gained", "col": "blue", "size": 46}
+    ]},
+    {"tag": ["1", "WHAT IT IS"], "at": "So what is it?", "els": [
+      {"type": "box", "text": "FORM IN", "x": 140, "y": 260, "w": 300, "h": 130, "at": "A form comes in,", "size": 50},
+      {"type": "arrow", "x0": 460, "y0": 325, "x1": 560, "y1": 325, "at": "a contact goes into"},
+      {"type": "box", "text": "CRM", "x": 580, "y": 260, "w": 260, "h": 130, "fill": "yel", "at": "a contact goes into", "size": 50},
+      {"type": "arrow", "x0": 860, "y0": 325, "x1": 960, "y1": 325, "at": "a text goes out,"},
+      {"type": "box", "text": "TEXT OUT", "x": 980, "y": 260, "w": 300, "h": 130, "at": "a text goes out,", "size": 50},
+      {"type": "arrow", "x0": 1300, "y0": 325, "x1": 1400, "y1": 325, "at": "and a task lands"},
+      {"type": "box", "text": "TASK", "x": 1420, "y": 260, "w": 260, "h": 130, "fill": "green", "col": "#fff", "at": "and a task lands", "size": 50},
+      {"type": "checks", "x": 140, "y": 560, "dy": 110, "size": 52, "items": [
+        {"text": "hundreds of connections", "at": "It has hundreds"},
+        {"text": "AI steps built in", "at": "AI steps built in,"},
+        {"text": "you can host it yourself", "at": "and you can host"}]}
+    ]},
+    {"tag": ["$", "THE MONEY"], "at": "Here is the money.", "els": [
+      {"type": "big", "text": "THE SAME BORING TASKS", "x": 120, "y": 230, "size": 96, "at": "Every small business does"},
+      {"type": "checks", "x": 140, "y": 380, "dy": 100, "size": 48, "items": [
+        {"text": "copying leads into a spreadsheet", "mark": "✗", "at": "Somebody copies the lead"},
+        {"text": "the same follow-up email by hand", "mark": "✗", "at": "Somebody sends the same"},
+        {"text": "chasing the unpaid invoice, again", "mark": "✗", "at": "Somebody reminds the"}]},
+      {"type": "box", "text": "SELL\nAUTOMATIONS", "x": 1250, "y": 200, "w": 500, "h": 220, "fill": "yel", "at": "You can sell automations.", "size": 64},
+      {"type": "hw", "text": "new lead: CRM + text in under a minute + owner ping", "x": 140, "y": 760, "size": 46, "col": "green", "at": "New lead comes in,"},
+      {"type": "hw", "text": "7 days late: a polite reminder, on its own", "x": 140, "y": 830, "size": 46, "col": "green", "at": "Invoice is seven days"},
+      {"type": "banner", "l1": "YOU ARE NOT SELLING SOFTWARE.", "l2": "YOU ARE SELLING HOURS BACK.", "at": "You are not selling", "size1": 66, "size2": 62}
+    ]},
+    {"tag": ["$", "A STARTING PRICE"], "at": "Here is a starting price", "els": [
+      {"type": "box", "text": "$500\nPER WORKFLOW", "x": 140, "y": 190, "w": 600, "h": 220, "at": "Five hundred dollars per", "size": 76},
+      {"type": "box", "text": "$200\nA MONTH", "x": 820, "y": 190, "w": 560, "h": 220, "fill": "yel", "at": "Two hundred dollars a", "size": 80},
+      {"type": "stack", "n": 4, "label": "$200", "x": 200, "y": 680, "at": "Four clients on"},
+      {"type": "big", "text": "$800/mo", "x": 860, "y": 720, "size": 140, "col": "green", "at": "Four clients on", "d": 1.6},
+      {"type": "note", "title": "MY NUMBERS, NOT A PROMISE", "lines": ["your market sets the price"], "x": 1580, "y": 540, "w": 500, "at": "These are my numbers,", "rot": 0.03}
+    ]},
+    {"tag": ["2", "WHAT IT COSTS YOU"], "at": "Now, what it costs you.", "els": [
+      {"type": "box", "text": "A SMALL\nSERVER", "x": 140, "y": 200, "w": 400, "h": 230, "at": "Self-hosted n8n needs"},
+      {"type": "box", "text": "APP\nFEES", "x": 600, "y": 200, "w": 400, "h": 230, "fill": "yel", "at": "and some of the apps"},
+      {"type": "box", "text": "AI MODEL\nBILL", "x": 1060, "y": 200, "w": 400, "h": 230, "at": "AI steps send"},
+      {"type": "stamp", "text": "PASS EVERY ONE THROUGH", "x": 700, "y": 590, "at": "Pass every one", "col": "green", "size": 50},
+      {"type": "hw", "text": "the real work: learning how the business runs", "x": 140, "y": 760, "size": 52, "at": "because the real work"}
+    ]},
+    {"tag": ["!", "THE LICENSE LINE"], "at": "Now, the license line,", "els": [
+      {"type": "big", "text": "SUSTAINABLE USE LICENSE", "x": 120, "y": 230, "size": 90, "col": "or", "at": "It uses the Sustainable"},
+      {"type": "checks", "x": 140, "y": 380, "dy": 110, "size": 50, "items": [
+        {"text": "build workflows for a client", "at": "you can build workflows"},
+        {"text": "best: on the client's own n8n", "at": "especially on the"},
+        {"text": "host it so clients build their own", "mark": "✗", "at": "What you cannot do"},
+        {"text": "resell it with your name on it", "mark": "✗", "at": "or resell n8n"}]},
+      {"type": "note", "title": "GRAY AREA", "lines": ["many clients on your one server?", "read the license FAQ,", "email n8n before you scale"], "x": 1500, "y": 560, "w": 560, "at": "Running many clients'"}
+    ]},
+    {"tag": ["!", "THE SAFETY LINE"], "at": "And one more line.", "els": [
+      {"type": "big", "text": "IT RUNS WHEN NOBODY WATCHES", "x": 120, "y": 230, "size": 86, "col": "red", "at": "Automations run when"},
+      {"type": "checks", "x": 140, "y": 420, "dy": 120, "items": [
+        {"text": "test with fake data first", "at": "Test every workflow"},
+        {"text": "an alert when something breaks", "at": "Build in an alert"},
+        {"text": "no money moved without a human yes", "mark": "✗", "at": "And never let an"}]}
+    ]},
+    {"tag": ["3", "YOUR FIRST CLIENT"], "at": "Here is your first client.", "els": [
+      {"type": "chips", "x": 140, "y": 220, "dx": 280, "w": 260, "items": [{"text": "a roofer", "at": "A roofer."}, {"text": "a tutor", "at": "A tutor."}, {"text": "a photographer", "at": "A wedding photographer."}]},
+      {"type": "phone", "x": 1000, "y": 120, "at": "Send this:", "d": -0.3},
+      {"type": "sms", "x": 1035, "y": 200, "w": 490, "text": "I build automations that answer your new leads in under a minute and chase late invoices for you. Tell me the one task you hate doing every week, and I will automate it free. If you like it, we talk about the rest.", "at": "Send this:", "d": 0.2, "end": "One free workflow is", "endD": -0.6, "fill": "blue", "tcol": "#fff", "size": 30},
+      {"type": "big", "text": "ONE FREE WORKFLOW", "x": 120, "y": 520, "size": 96, "col": "green", "at": "One free workflow is"},
+      {"type": "hw", "text": "...then they ask what else you can automate", "x": 140, "y": 640, "size": 50, "at": "When the owner stops"}
+    ]}
+  ],
+  "recap": {"at": "That is Money Series", "items": [["HOURS", "back", "green", 1.2], ["PAID", "builds", "red", 2.6], ["1", "license line", "blue", 3.8]]},
+  "vertical": {"outro": "The full breakdown,", "band": "BUILD FOR CLIENTS  •  DON'T RESELL", "beats": [
+    {"at": "Business owners will pay", "els": [
+      {"type": "big", "text": "BORING HOURS", "x": 80, "y": 170, "size": 140, "col": "red", "at": "to get their boring"},
+      {"type": "big", "text": "= YOUR BUSINESS", "x": 80, "y": 360, "size": 120, "col": "green", "at": "hours back."}]},
+    {"at": "n8n is a workflow", "els": [
+      {"type": "card", "x": 60, "y": 0, "w": 960, "owner": "n8n-io", "name": "n8n", "lines": ["Workflow automation that connects", "your apps, box to box."], "tags": ["fair-code"], "star": "200K+ stars", "at": "n8n is a workflow", "col": "or"},
+      {"type": "checks", "x": 80, "y": 460, "dy": 120, "size": 50, "items": [
+        {"text": "lead in, text out in a minute", "at": "New lead in,"},
+        {"text": "late invoice, auto reminder", "at": "Invoice late,"}]}]},
+    {"at": "A starting price", "els": [
+      {"type": "box", "text": "$500\nPER WORKFLOW", "x": 60, "y": 120, "w": 450, "h": 260, "at": "five hundred per", "size": 72},
+      {"type": "box", "text": "$200\nA MONTH", "x": 570, "y": 120, "w": 450, "h": 260, "fill": "yel", "at": "two hundred a month", "size": 86},
+      {"type": "hw", "text": "a starting price, not a promise", "x": 540, "y": 520, "size": 56, "align": "center", "at": "A starting price"}]},
+    {"at": "One warning.", "els": [
+      {"type": "big", "text": "ONE WARNING", "x": 80, "y": 140, "size": 120, "col": "k", "at": "One warning."},
+      {"type": "hw", "text": "the Sustainable Use License", "x": 80, "y": 250, "size": 60, "col": "or", "at": "n8n uses the"},
+      {"type": "checks", "x": 80, "y": 420, "dy": 130, "size": 50, "items": [
+        {"text": "build workflows for clients", "at": "Build workflows for"},
+        {"text": "don't resell or host it", "mark": "✗", "at": "but do not resell"}]}]}
+  ]}
+}
