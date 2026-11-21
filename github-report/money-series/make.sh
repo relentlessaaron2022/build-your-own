@@ -2,9 +2,10 @@
 # make.sh <episode folder> <outfit: black|red|gold> [16x9|9x16|both]
 # Builds a Money Series episode from its script.txt, script-vertical.txt and episode.json, with the avatar in that outfit.
 # Narration (Kokoro, the avatar's voice) is generated once and kept in audio/; delete audio/ to re-voice.
+# SKIN=game (default: video-game graphics + game sound effects) or SKIN=paper (the Vox paper boards).
 set -e
 MS=$(cd "$(dirname "$0")" && pwd); EP=$(cd "$1" && pwd); OUTFIT=${2:-black}; WHICH=${3:-both}; NAME=money-$(basename "$EP")
-P=/root/lemo-opuscar/.venv/bin/python; VOICE=${VOICE:-af_heart}
+P=/root/lemo-opuscar/.venv/bin/python; VOICE=${VOICE:-af_heart}; SKIN=${SKIN:-game}
 mkdir -p "$EP/audio"
 [ -f "$EP/audio/voice.wav" ] || $P "$MS/tools/voice.py" "$EP/script.txt" "$EP/audio/voice.wav" $VOICE
 [ -f "$EP/audio/voice-v.wav" ] || $P "$MS/tools/voice.py" "$EP/script-vertical.txt" "$EP/audio/voice-v.wav" $VOICE
@@ -14,12 +15,15 @@ HJ="$MS/assets/host-$OUTFIT.json"; PHOTO=$(python3 -c "import json;print(json.lo
 for CUT in 16x9 9x16; do
   [ "$WHICH" = both ] || [ "$WHICH" = $CUT ] || continue
   B="$EP/build-$CUT"; rm -rf "$B"; mkdir -p "$B/assets" "$B/audio" "$B/out"
-  cp -r "$MS/engine/fonts" "$MS/engine/sketch.js" "$MS/engine/master.sh" "$B/"; cp "$MS/engine/main-$CUT.js" "$B/main.js"; cp "$MS/engine/index-$CUT.html" "$B/index.html"
+  cp -r "$MS/engine/fonts" "$MS/engine/sketch.js" "$MS/engine/master.sh" "$B/"; if [ $SKIN = game ]; then cp "$MS/engine/game-$CUT.js" "$B/main.js"; cp "$MS/engine/index-game-$CUT.html" "$B/index.html"; else cp "$MS/engine/main-$CUT.js" "$B/main.js"; cp "$MS/engine/index-$CUT.html" "$B/index.html"; fi
   cp "$EP/episode.json" "$B/"; cp "$HJ" "$B/assets/host.json"; cp "$MS/assets/$PHOTO" "$MS/assets/ru-logo.jpg" "$B/assets/"
   if [ $CUT = 16x9 ]; then SZ=1920x1080; V=voice.wav; WJ=words.json; DL=1000; PAD=4; CRF=25; else SZ=1080x1920; V=voice-v.wav; WJ=words-v.json; DL=300; PAD=3; CRF=23; fi
   cp "$EP/audio/$WJ" "$B/audio/words.json"
   (cd /root/lemo-opuscar && node core/render/video.mjs "$B" --fps 30 --workers ${WORKERS:-4} --size $SZ --out "$B/out/video.mp4")
-  ffmpeg -v error -y -i "$EP/audio/$V" -af "adelay=$DL:all=1,apad=pad_dur=$PAD" -ar 48000 "$B/out/audio.wav"
+  if [ $SKIN = game ]; then
+    $P "$MS/tools/sfx.py" "$EP/episode.json" "$EP/audio/$WJ" $CUT "$B/out/sfx.wav"
+    ffmpeg -v error -y -i "$EP/audio/$V" -i "$B/out/sfx.wav" -filter_complex "[0]adelay=$DL:all=1,aformat=sample_rates=48000:channel_layouts=stereo,apad=pad_dur=$PAD[v];[1]volume=${SFXVOL:-0.35}[s];[v][s]amix=inputs=2:duration=first:normalize=0" -ar 48000 "$B/out/audio.wav"
+  else ffmpeg -v error -y -i "$EP/audio/$V" -af "adelay=$DL:all=1,apad=pad_dur=$PAD" -ar 48000 "$B/out/audio.wav"; fi
   sh "$B/master.sh" "$B/out/video.mp4" "$B/out/audio.wav" "$B/out/master.mp4" 30 0
   ffmpeg -v error -y -i "$B/out/master.mp4" -c:v libx264 -preset slow -crf $CRF -tune grain -c:a copy -movflags +faststart "$EP/$NAME-$CUT.mp4"
   rm -rf "$B/out"; echo "built $EP/$NAME-$CUT.mp4"

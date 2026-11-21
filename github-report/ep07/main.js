@@ -32,7 +32,7 @@ const T = {
 T.thirteen = T.seven; T.tools78 = T.total + .8;
 const END = WD[WD.length - 1].e, DUR = 259.6;
 const REG = [0, T.lp - .4, T.why - .4, T.agents - .4, T.web - .4, T.seo - .4, T.sec - .4, T.game - .4, T.caution - .4, T.recap - .4];
-const SECT = [null, ['★', 'HEADLINE: LIVE LIVE PLAYER'], ['$', 'WHY IT FITS YOUR BUSINESS'], ['1', 'AGENTS'], ['2', 'WEB DESIGN'], ['3', 'SEO'], ['4', 'SECURITY'], ['5', 'GAME DEV'], ['!', 'ONE CAUTION: DEAD REPOS'], null];
+const SECT = [null, ['★', 'HEADLINE: LIVLIV PLAYER'], ['$', 'WHY IT FITS YOUR BUSINESS'], ['1', 'AGENTS'], ['2', 'WEB DESIGN'], ['3', 'SEO'], ['4', 'SECURITY'], ['5', 'GAME DEV'], ['!', 'ONE CAUTION: DEAD REPOS'], null];
 const RX = i => i * 2200;
 
 // ---------- drawing vocabulary ----------
@@ -105,9 +105,9 @@ const B = [
     stamp('$0', 1500, 520, -.08, C.green, t, T.zero + .6, 120); stamp('0 INSTALLS WITHOUT YOUR WORD', 1500, 700, .04, C.red, t, T.nothing + .4, 40);
     face(1650, 900, 90, t, T.talks + .5, C.yel); hw('...right in your browser', 120, 900, 60, C.green, t, T.talks + 1, T.talks + 2.8);
   },
-  // 1 · Live Live Player
+  // 1 · LivLiv Player
   t => {
-    card(120, 170, 900, null, 'Live Live Player', ['A lightweight 2.5D character player for the web:', 'a page, a stream overlay, or an app.'], ['Apache 2.0', 'WebGL2'], '1,554 stars', t, T.lp, C.or);
+    card(120, 170, 900, null, 'LivLiv Player', ['A lightweight 2.5D character player for the web:', 'a page, a stream overlay, or an app.'], ['Apache 2.0', 'WebGL2'], '1,554 stars', t, T.lp, C.or);
     // browser window with the talking character
     const b0 = T.puts; wsh(rectP(1140, 200, 1800, 640), '#ffffff', t, b0, b0 + .4, .9); mk(rectP(1140, 200, 1800, 640), t, b0, b0 + .5, C.k, 6); if (t > b0 + .3) { ctx.fillStyle = C.k; ctx.fillRect(1140, 200, 660 * eo(seg(t, b0 + .3, b0 + .6)), 46); for (let i = 0; i < 3; i++) { ctx.fillStyle = [C.red, C.yel, C.green][i]; ctx.beginPath(); ctx.arc(1170 + i * 30, 223, 9, 0, 7); ctx.fill(); } }
     face(1470, 440, 130, t, b0 + .5, '#f4c9a0');
@@ -122,7 +122,7 @@ const B = [
     [['NO HEAVY GPU', T.nogpu], ['NO MODEL DOWNLOAD', T.nodl], ['NO PER-MINUTE METER', T.nometer]].forEach(([s, a], i) => stamp(s, 360 + i * 560, 400, -.04 + i * .04, C.red, t, a, 46));
     // what each needs
     const base = 830, sc = 6.2; mk([[120, base], [1150, base + 3]], t, T.big - .3, T.big + .1, C.k, 6);
-    [['BIG MODEL A', 48, C.red, T.big + .8], ['BIG MODEL B', 12, C.or, T.big + 2.2], ['LIVE LIVE PLAYER', 0, C.green, T.needsb]].forEach(([lab, gb, col, a], i) => { if (t < a) return; const x = 170 + i * 330, h = Math.max(gb, 1.5) * sc * eo(seg(t, a, a + .8));
+    [['BIG MODEL A', 48, C.red, T.big + .8], ['BIG MODEL B', 12, C.or, T.big + 2.2], ['LIVLIV PLAYER', 0, C.green, T.needsb]].forEach(([lab, gb, col, a], i) => { if (t < a) return; const x = 170 + i * 330, h = Math.max(gb, 1.5) * sc * eo(seg(t, a, a + .8));
       wsh(rectP(x, base - h, x + 220, base), col, t, a, a + .3, .6); mk(rectP(x, base - Math.max(gb, 1.5) * sc, x + 220, base), t, a, a + .8, C.k, 5); txt(gb ? `${gb} GB` : 'A BROWSER', x + 110, base - Math.max(gb, 1.5) * sc - 18, F.a(46), col, 'center'); txt(lab, x + 110, base + 50, F.a(30), C.k, 'center'); });
     hw('runs on your Intel MacBook and the Dells (WebGL2)', 140, 960, 46, C.k, t, T.runs, T.runs + 2.4);
     const n0 = T.personal; if (t > n0) { const k = back(seg(t, n0, n0 + .4)); ctx.save(); ctx.translate(1560, 700); ctx.rotate(.05); ctx.scale(k, k); ctx.fillStyle = '#ffe680'; ctx.fillRect(-190, -150, 380, 330); ctx.strokeStyle = C.k; ctx.lineWidth = 4; ctx.strokeRect(-190, -150, 380, 330);
