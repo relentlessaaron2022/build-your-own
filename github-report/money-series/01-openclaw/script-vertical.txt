@@ -1,0 +1,5 @@
+This free GitHub repo can become a paid business.
+It is called OpenClaw, the fastest climb in GitHub history. It is an AI assistant that answers a shop's messages after hours, books the appointment, and chases the late invoice.
+The software is free. Your setup is not. A starting price I would use: five hundred to set it up, one hundred fifty a month to keep it running.
+One warning. It can read email and run commands. Never give it banking passwords, and keep a human approving anything that moves money.
+The full breakdown, with your first client script, is on The GitHub Report.
