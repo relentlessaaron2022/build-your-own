@@ -1,0 +1,755 @@
+{
+ "num": "02",
+ "bug": "$0 SOFTWARE  ·  PAID SETUP",
+ "next": "NEXT: MONEY #03 · OLLAMA",
+ "open": [
+  {
+   "text": "MONEY SERIES #2",
+   "x": 330,
+   "y": 810,
+   "at": "Number two.",
+   "size": 60,
+   "col": "yel",
+   "rot": -0.04
+  },
+  {
+   "text": "ONE REPO · ONE WAY IT PAYS",
+   "x": 450,
+   "y": 930,
+   "at": "One repo,",
+   "d": 0.3,
+   "size": 44,
+   "col": "red",
+   "rot": 0.02
+  },
+  {
+   "text": "ONE LINE YOU CANNOT CROSS",
+   "x": 1400,
+   "y": 930,
+   "at": "and the one line",
+   "d": 0.4,
+   "size": 44,
+   "col": "k"
+  }
+ ],
+ "sections": [
+  {
+   "tag": [
+    "★",
+    "THE REPO: HERMES AGENT"
+   ],
+   "at": "Today's repo is",
+   "els": [
+    {
+     "type": "card",
+     "owner": "NousResearch",
+     "name": "Hermes Agent",
+     "lines": [
+      "An AI agent that grows with you:",
+      "memory, self-written skills, your chat apps."
+     ],
+     "tags": [
+      "MIT",
+      "self-hosted"
+     ],
+     "star": "200K+ stars",
+     "at": "Today's repo is",
+     "col": "blue"
+    },
+    {
+     "type": "hw",
+     "text": "public: February 25",
+     "x": 140,
+     "y": 660,
+     "size": 60,
+     "at": "It went public"
+    },
+    {
+     "type": "stamp",
+     "text": "200,000+ STARS BY SUMMER",
+     "x": 1450,
+     "y": 330,
+     "at": "By summer,",
+     "d": 0.6,
+     "col": "green",
+     "size": 50,
+     "rot": 0.04
+    },
+    {
+     "type": "line",
+     "pts": [
+      [
+       1180,
+       640
+      ],
+      [
+       1300,
+       620
+      ],
+      [
+       1400,
+       570
+      ],
+      [
+       1490,
+       480
+      ],
+      [
+       1560,
+       400
+      ]
+     ],
+     "at": "By summer,",
+     "dur": 1.4
+    }
+   ]
+  },
+  {
+   "tag": [
+    "1",
+    "WHAT IT IS"
+   ],
+   "at": "So what is it?",
+   "els": [
+    {
+     "type": "box",
+     "text": "IT REMEMBERS",
+     "x": 140,
+     "y": 200,
+     "w": 560,
+     "h": 150,
+     "fill": "yel",
+     "at": "It remembers.",
+     "size": 60
+    },
+    {
+     "type": "checks",
+     "x": 140,
+     "y": 480,
+     "dy": 110,
+     "items": [
+      {
+       "text": "a memory of your work",
+       "at": "It keeps a memory"
+      },
+      {
+       "text": "writes its own skills",
+       "at": "and it writes its"
+      },
+      {
+       "text": "works with almost any AI model",
+       "at": "It works with almost"
+      }
+     ]
+    },
+    {
+     "type": "chips",
+     "x": 1100,
+     "y": 260,
+     "per": 1,
+     "dy": 110,
+     "items": [
+      {
+       "text": "Telegram",
+       "at": "Telegram,"
+      },
+      {
+       "text": "Discord",
+       "at": "Discord,"
+      },
+      {
+       "text": "Slack",
+       "at": "Slack."
+      }
+     ]
+    },
+    {
+     "type": "stamp",
+     "text": "YOUR MACHINE · YOUR MEMORY",
+     "x": 1300,
+     "y": 720,
+     "at": "And it can run",
+     "d": 0.8,
+     "col": "blue",
+     "size": 46
+    }
+   ]
+  },
+  {
+   "tag": [
+    "$",
+    "THE MONEY"
+   ],
+   "at": "Here is the money.",
+   "els": [
+    {
+     "type": "big",
+     "text": "DROWNING IN FOLLOW-UP",
+     "x": 120,
+     "y": 230,
+     "size": 96,
+     "at": "Busy professionals are"
+    },
+    {
+     "type": "chips",
+     "x": 140,
+     "y": 380,
+     "dx": 380,
+     "items": [
+      {
+       "text": "40 open leads",
+       "at": "The real estate"
+      },
+      {
+       "text": "weekly renewals",
+       "at": "The insurance broker"
+      },
+      {
+       "text": "the forgotten proposal",
+       "at": "The consultant who"
+      }
+     ],
+     "w": 360
+    },
+    {
+     "type": "stamp",
+     "text": "NOT ANOTHER APP",
+     "x": 1500,
+     "y": 360,
+     "at": "They do not need",
+     "col": "red",
+     "size": 52
+    },
+    {
+     "type": "checks",
+     "x": 140,
+     "y": 560,
+     "dy": 100,
+     "size": 50,
+     "items": [
+      {
+       "text": "remembers every client and promise",
+       "at": "It remembers every"
+      },
+      {
+       "text": "drafts the follow-up before the deadline",
+       "at": "It drafts the follow-up"
+      },
+      {
+       "text": "pulls the notes before the meeting",
+       "at": "It pulls the notes"
+      },
+      {
+       "text": "learns how that person works",
+       "at": "And every week it"
+      }
+     ]
+    },
+    {
+     "type": "banner",
+     "l1": "YOU ARE NOT SELLING SOFTWARE.",
+     "l2": "YOU ARE SELLING A CHIEF OF STAFF.",
+     "at": "You are not selling",
+     "size1": 66,
+     "size2": 60
+    }
+   ]
+  },
+  {
+   "tag": [
+    "$",
+    "A STARTING PRICE"
+   ],
+   "at": "Here is a starting price",
+   "els": [
+    {
+     "type": "box",
+     "text": "$300\nSETUP",
+     "x": 140,
+     "y": 190,
+     "w": 560,
+     "h": 220,
+     "at": "Three hundred dollars",
+     "size": 80
+    },
+    {
+     "type": "box",
+     "text": "$100\nA MONTH",
+     "x": 780,
+     "y": 190,
+     "w": 560,
+     "h": 220,
+     "fill": "yel",
+     "at": "One hundred dollars a",
+     "size": 80
+    },
+    {
+     "type": "big",
+     "text": "10 CLIENTS",
+     "x": 140,
+     "y": 650,
+     "size": 120,
+     "col": "blue",
+     "at": "Ten clients is"
+    },
+    {
+     "type": "big",
+     "text": "= $1,000/mo",
+     "x": 760,
+     "y": 650,
+     "size": 120,
+     "col": "green",
+     "at": "Ten clients is",
+     "d": 1.2
+    },
+    {
+     "type": "hw",
+     "text": "the setups pay for your time up front",
+     "x": 760,
+     "y": 740,
+     "size": 46,
+     "at": "and the setups pay"
+    },
+    {
+     "type": "note",
+     "title": "MY NUMBERS, NOT A PROMISE",
+     "lines": [
+      "your market sets the price"
+     ],
+     "x": 560,
+     "y": 900,
+     "w": 620,
+     "at": "These are my numbers,"
+    }
+   ]
+  },
+  {
+   "tag": [
+    "2",
+    "WHAT IT COSTS YOU"
+   ],
+   "at": "Now, what it costs you.",
+   "els": [
+    {
+     "type": "box",
+     "text": "A MACHINE\nTHAT STAYS ON",
+     "x": 140,
+     "y": 200,
+     "w": 440,
+     "h": 230,
+     "at": "It needs a machine"
+    },
+    {
+     "type": "box",
+     "text": "THE AI\nMODEL BILL",
+     "x": 640,
+     "y": 200,
+     "w": 440,
+     "h": 230,
+     "fill": "yel",
+     "at": "It needs an AI"
+    },
+    {
+     "type": "box",
+     "text": "THE FIRST\nMONTH",
+     "x": 1140,
+     "y": 200,
+     "w": 440,
+     "h": 230,
+     "at": "And it costs you time."
+    },
+    {
+     "type": "stamp",
+     "text": "PASS THE BILL THROUGH",
+     "x": 600,
+     "y": 600,
+     "at": "Pass that bill",
+     "col": "green",
+     "size": 48
+    },
+    {
+     "type": "hw",
+     "text": "that's when it learns the person",
+     "x": 1000,
+     "y": 760,
+     "size": 52,
+     "at": "because that is when"
+    }
+   ]
+  },
+  {
+   "tag": [
+    "!",
+    "THE LICENSE LINE"
+   ],
+   "at": "Now, the license line.",
+   "els": [
+    {
+     "type": "stamp",
+     "text": "HERMES AGENT: MIT",
+     "x": 520,
+     "y": 280,
+     "at": "Hermes Agent is MIT",
+     "col": "green",
+     "size": 60
+    },
+    {
+     "type": "hw",
+     "text": "install it for clients, charge for the work",
+     "x": 140,
+     "y": 440,
+     "size": 54,
+     "at": "You can install"
+    },
+    {
+     "type": "box",
+     "text": "THE MODEL IS\nA SEPARATE THING",
+     "x": 1150,
+     "y": 200,
+     "w": 600,
+     "h": 220,
+     "fill": "red",
+     "col": "#fff",
+     "at": "But the model is",
+     "size": 60
+    },
+    {
+     "type": "box",
+     "text": "READ THE MODEL'S LICENSE",
+     "x": 140,
+     "y": 560,
+     "w": 1000,
+     "h": 140,
+     "fill": "yel",
+     "at": "Read the model's license",
+     "size": 62
+    }
+   ]
+  },
+  {
+   "tag": [
+    "!",
+    "THE TRUST LINE"
+   ],
+   "at": "And one more line,",
+   "els": [
+    {
+     "type": "big",
+     "text": "THE MEMORY HOLDS SECRETS",
+     "x": 120,
+     "y": 230,
+     "size": 92,
+     "col": "red",
+     "at": "That memory holds"
+    },
+    {
+     "type": "chips",
+     "x": 140,
+     "y": 360,
+     "items": [
+      {
+       "text": "client names",
+       "at": "client names,"
+      },
+      {
+       "text": "deals",
+       "at": "deals,"
+      },
+      {
+       "text": "private notes",
+       "at": "and private notes."
+      }
+     ]
+    },
+    {
+     "type": "hw",
+     "text": "a cloud model = the words leave the machine",
+     "x": 140,
+     "y": 500,
+     "size": 54,
+     "col": "or",
+     "at": "If you use a cloud"
+    },
+    {
+     "type": "checks",
+     "x": 140,
+     "y": 640,
+     "dy": 110,
+     "items": [
+      {
+       "text": "tell them where their data goes",
+       "at": "So tell your client"
+      },
+      {
+       "text": "put it in writing",
+       "at": "Put it in writing."
+      },
+      {
+       "text": "client leaves: delete the memory, show them",
+       "at": "And when a client"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "tag": [
+    "3",
+    "YOUR FIRST CLIENT"
+   ],
+   "at": "Here is your first client.",
+   "els": [
+    {
+     "type": "chips",
+     "x": 140,
+     "y": 220,
+     "dx": 280,
+     "w": 260,
+     "items": [
+      {
+       "text": "a realtor",
+       "at": "A realtor."
+      },
+      {
+       "text": "a broker",
+       "at": "A broker."
+      },
+      {
+       "text": "a consultant",
+       "at": "A consultant."
+      }
+     ]
+    },
+    {
+     "type": "phone",
+     "x": 1000,
+     "y": 120,
+     "at": "Send this:",
+     "d": -0.3
+    },
+    {
+     "type": "sms",
+     "x": 1035,
+     "y": 200,
+     "w": 490,
+     "text": "I set up a private AI chief of staff that remembers every client and drafts your follow-ups for you. Let me set one up for you free for thirty days. If it saves you five hours a week, we talk price.",
+     "at": "Send this:",
+     "d": 0.2,
+     "end": "Five hours a week is",
+     "endD": -0.6,
+     "fill": "blue",
+     "tcol": "#fff",
+     "size": 30
+    },
+    {
+     "type": "big",
+     "text": "5 HOURS A WEEK",
+     "x": 120,
+     "y": 520,
+     "size": 110,
+     "col": "green",
+     "at": "Five hours a week is"
+    },
+    {
+     "type": "hw",
+     "text": "a number anybody can feel",
+     "x": 140,
+     "y": 640,
+     "size": 56,
+     "at": "Five hours a week is",
+     "d": 1.2
+    }
+   ]
+  }
+ ],
+ "recap": {
+  "at": "That is Money Series",
+  "items": [
+   [
+    "$0",
+    "software",
+    "green",
+    1.2
+   ],
+   [
+    "PAID",
+    "setup",
+    "red",
+    2.6
+   ],
+   [
+    "1",
+    "line about trust",
+    "blue",
+    3.8
+   ]
+  ]
+ },
+ "vertical": {
+  "outro": "The full breakdown,",
+  "beats": [
+   {
+    "at": "Busy people do not",
+    "els": [
+     {
+      "type": "big",
+      "text": "NOT ANOTHER APP",
+      "x": 80,
+      "y": 170,
+      "size": 130,
+      "col": "red",
+      "at": "Busy people do not"
+     },
+     {
+      "type": "big",
+      "text": "A CHIEF OF STAFF",
+      "x": 80,
+      "y": 360,
+      "size": 130,
+      "col": "green",
+      "at": "They need a chief"
+     }
+    ]
+   },
+   {
+    "at": "Hermes Agent is a",
+    "els": [
+     {
+      "type": "card",
+      "x": 60,
+      "y": 0,
+      "w": 960,
+      "owner": "NousResearch",
+      "name": "Hermes Agent",
+      "lines": [
+       "A free AI agent that remembers",
+       "and learns new skills."
+      ],
+      "tags": [
+       "MIT"
+      ],
+      "star": "200K+ stars",
+      "at": "Hermes Agent is a",
+      "col": "blue"
+     },
+     {
+      "type": "checks",
+      "x": 80,
+      "y": 460,
+      "dy": 110,
+      "size": 50,
+      "items": [
+       {
+        "text": "remembers every client",
+        "at": "It remembers every"
+       },
+       {
+        "text": "learns new skills",
+        "at": "learns new skills,"
+       },
+       {
+        "text": "drafts follow-ups in Slack",
+        "at": "and drafts follow-ups"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "at": "The software is free.",
+    "els": [
+     {
+      "type": "stamp",
+      "text": "FREE SOFTWARE",
+      "x": 300,
+      "y": 80,
+      "at": "The software is free.",
+      "col": "green",
+      "size": 56,
+      "rot": -0.05
+     },
+     {
+      "type": "stamp",
+      "text": "PAID SETUP",
+      "x": 760,
+      "y": 80,
+      "at": "Your setup is not.",
+      "col": "red",
+      "size": 56,
+      "rot": 0.04
+     },
+     {
+      "type": "box",
+      "text": "$300\nSETUP",
+      "x": 60,
+      "y": 220,
+      "w": 450,
+      "h": 260,
+      "at": "three hundred to",
+      "size": 90
+     },
+     {
+      "type": "box",
+      "text": "$100\nA MONTH",
+      "x": 570,
+      "y": 220,
+      "w": 450,
+      "h": 260,
+      "fill": "yel",
+      "at": "one hundred a month",
+      "size": 90
+     },
+     {
+      "type": "hw",
+      "text": "a starting price, not a promise",
+      "x": 540,
+      "y": 600,
+      "size": 56,
+      "align": "center",
+      "at": "A starting price"
+     }
+    ]
+   },
+   {
+    "at": "One warning.",
+    "els": [
+     {
+      "type": "big",
+      "text": "ONE WARNING",
+      "x": 80,
+      "y": 150,
+      "size": 130,
+      "col": "red",
+      "at": "One warning.",
+      "d": 0.1
+     },
+     {
+      "type": "hw",
+      "text": "its memory holds private client notes",
+      "x": 80,
+      "y": 260,
+      "size": 54,
+      "at": "Its memory holds"
+     },
+     {
+      "type": "checks",
+      "x": 80,
+      "y": 420,
+      "dy": 130,
+      "size": 52,
+      "items": [
+       {
+        "text": "say where the data goes",
+        "at": "Tell your client"
+       },
+       {
+        "text": "put it in writing",
+        "at": "and put it in writing."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

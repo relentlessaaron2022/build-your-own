@@ -1,0 +1,5 @@
+Offices are scared of AI. That fear is your business.
+Ollama is free, MIT licensed, with more than 170,000 stars. It runs AI on a computer in the office, so the files never go to the cloud.
+The software is free. Your setup is not. A starting price I would use: one thousand to set it up, two hundred a month for updates and training.
+One warning. Private is not the same as compliant. Never promise compliance. Send them to their own lawyer.
+The full breakdown, with your first client script, is on The GitHub Report.

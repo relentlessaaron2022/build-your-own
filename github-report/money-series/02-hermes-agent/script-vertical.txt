@@ -1,0 +1,5 @@
+Busy people do not need another app. They need a chief of staff.
+Hermes Agent is a free AI agent from Nous Research with more than 200,000 stars. It remembers every client, learns new skills, and drafts follow-ups in Slack or Telegram.
+The software is free. Your setup is not. A starting price I would use: three hundred to set it up, one hundred a month to keep it tuned.
+One warning. Its memory holds private client notes. Tell your client exactly where that data goes, and put it in writing.
+The full breakdown, with your first client script, is on The GitHub Report.

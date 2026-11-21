@@ -1,0 +1,757 @@
+{
+ "num": "03",
+ "bug": "$0 SOFTWARE  ·  PAID SETUP",
+ "next": "NEXT: MONEY #04 · OPEN WEBUI",
+ "open": [
+  {
+   "text": "MONEY SERIES #3",
+   "x": 330,
+   "y": 810,
+   "at": "Number three.",
+   "size": 60,
+   "col": "yel",
+   "rot": -0.04
+  },
+  {
+   "text": "ONE REPO · ONE WAY IT PAYS",
+   "x": 450,
+   "y": 930,
+   "at": "One repo,",
+   "d": 0.3,
+   "size": 44,
+   "col": "red",
+   "rot": 0.02
+  },
+  {
+   "text": "ONE LINE YOU CANNOT CROSS",
+   "x": 1400,
+   "y": 930,
+   "at": "and the one line",
+   "d": 0.4,
+   "size": 44,
+   "col": "k"
+  }
+ ],
+ "sections": [
+  {
+   "tag": [
+    "★",
+    "THE REPO: OLLAMA"
+   ],
+   "at": "Today's repo is",
+   "els": [
+    {
+     "type": "card",
+     "owner": "ollama",
+     "name": "Ollama",
+     "lines": [
+      "Run AI models on your own computer:",
+      "Mac, Windows, or Linux."
+     ],
+     "tags": [
+      "MIT",
+      "runs offline"
+     ],
+     "star": "170K+ stars",
+     "at": "Today's repo is",
+     "col": "green"
+    },
+    {
+     "type": "stamp",
+     "text": "MIT LICENSED",
+     "x": 400,
+     "y": 660,
+     "at": "MIT licensed.",
+     "col": "green",
+     "size": 56
+    },
+    {
+     "type": "stamp",
+     "text": "ONE OF THE MOST STARRED AI PROJECTS",
+     "x": 1250,
+     "y": 820,
+     "at": "It is one of",
+     "d": 0.5,
+     "col": "blue",
+     "size": 44,
+     "rot": 0.03
+    }
+   ]
+  },
+  {
+   "tag": [
+    "1",
+    "WHAT IT IS"
+   ],
+   "at": "So what is it?",
+   "els": [
+    {
+     "type": "box",
+     "text": "AI ON YOUR\nOWN COMPUTER",
+     "x": 140,
+     "y": 190,
+     "w": 620,
+     "h": 220,
+     "fill": "yel",
+     "at": "Ollama runs AI",
+     "size": 60
+    },
+    {
+     "type": "chips",
+     "x": 140,
+     "y": 520,
+     "dx": 260,
+     "w": 230,
+     "items": [
+      {
+       "text": "Mac",
+       "at": "Mac,"
+      },
+      {
+       "text": "Windows",
+       "at": "Windows,"
+      },
+      {
+       "text": "Linux",
+       "at": "or Linux."
+      }
+     ]
+    },
+    {
+     "type": "checks",
+     "x": 1000,
+     "y": 260,
+     "dy": 110,
+     "size": 50,
+     "items": [
+      {
+       "text": "one command to download a model",
+       "at": "You download a"
+      },
+      {
+       "text": "not a word sent to the cloud",
+       "at": "without sending a"
+      },
+      {
+       "text": "no account, no monthly AI bill",
+       "at": "No account."
+      }
+     ]
+    },
+    {
+     "type": "stamp",
+     "text": "WORKS WITH THE INTERNET OFF",
+     "x": 900,
+     "y": 760,
+     "at": "Once the model is",
+     "d": 1.2,
+     "col": "red",
+     "size": 52
+    }
+   ]
+  },
+  {
+   "tag": [
+    "$",
+    "THE MONEY"
+   ],
+   "at": "Here is the money.",
+   "els": [
+    {
+     "type": "big",
+     "text": "OFFICES SCARED OF AI",
+     "x": 120,
+     "y": 230,
+     "size": 100,
+     "at": "Think about the"
+    },
+    {
+     "type": "chips",
+     "x": 140,
+     "y": 380,
+     "dx": 360,
+     "w": 340,
+     "items": [
+      {
+       "text": "the law office",
+       "at": "The law office."
+      },
+      {
+       "text": "the accountant",
+       "at": "The accountant during"
+      },
+      {
+       "text": "the medical practice",
+       "at": "The small medical"
+      }
+     ]
+    },
+    {
+     "type": "hw",
+     "text": "so staff use AI in secret, or not at all",
+     "x": 140,
+     "y": 520,
+     "size": 54,
+     "col": "red",
+     "at": "So their staff"
+    },
+    {
+     "type": "box",
+     "text": "A COMPUTER IN\nTHE BACK ROOM",
+     "x": 1280,
+     "y": 200,
+     "w": 520,
+     "h": 200,
+     "fill": "#fff",
+     "at": "A computer in the back",
+     "size": 54
+    },
+    {
+     "type": "checks",
+     "x": 140,
+     "y": 660,
+     "dy": 100,
+     "size": 50,
+     "items": [
+      {
+       "text": "summarize a contract",
+       "at": "summarize a contract,"
+      },
+      {
+       "text": "draft a letter",
+       "at": "draft a letter,"
+      },
+      {
+       "text": "clean up meeting notes",
+       "at": "or clean up meeting"
+      }
+     ]
+    },
+    {
+     "type": "stamp",
+     "text": "THE WORDS NEVER LEAVE THE BUILDING",
+     "x": 1300,
+     "y": 560,
+     "at": "and the words never",
+     "col": "green",
+     "size": 40,
+     "rot": 0.03
+    },
+    {
+     "type": "banner",
+     "l1": "YOU ARE NOT SELLING AI.",
+     "l2": "YOU ARE SELLING PEACE OF MIND.",
+     "at": "You are not selling",
+     "size1": 70,
+     "size2": 62
+    }
+   ]
+  },
+  {
+   "tag": [
+    "$",
+    "A STARTING PRICE"
+   ],
+   "at": "Here is a starting price",
+   "els": [
+    {
+     "type": "box",
+     "text": "$1,000\nSETUP",
+     "x": 140,
+     "y": 190,
+     "w": 560,
+     "h": 220,
+     "at": "One thousand dollars",
+     "size": 80
+    },
+    {
+     "type": "hw",
+     "text": "+ the computer at cost",
+     "x": 150,
+     "y": 480,
+     "size": 52,
+     "at": "plus the computer"
+    },
+    {
+     "type": "box",
+     "text": "$200\nA MONTH",
+     "x": 780,
+     "y": 190,
+     "w": 560,
+     "h": 220,
+     "fill": "yel",
+     "at": "Two hundred dollars",
+     "size": 80
+    },
+    {
+     "type": "hw",
+     "text": "updates + staff training",
+     "x": 790,
+     "y": 480,
+     "size": 52,
+     "at": "to keep it updated"
+    },
+    {
+     "type": "stack",
+     "n": 4,
+     "label": "$200",
+     "x": 200,
+     "y": 680,
+     "at": "Four offices is"
+    },
+    {
+     "type": "big",
+     "text": "$800/mo",
+     "x": 860,
+     "y": 720,
+     "size": 140,
+     "col": "green",
+     "at": "Four offices is",
+     "d": 1.6
+    },
+    {
+     "type": "note",
+     "title": "MY NUMBERS, NOT A PROMISE",
+     "lines": [
+      "your market sets the price"
+     ],
+     "x": 1560,
+     "y": 520,
+     "w": 520,
+     "at": "These are my numbers,",
+     "rot": 0.03
+    }
+   ]
+  },
+  {
+   "tag": [
+    "2",
+    "WHAT IT COSTS YOU"
+   ],
+   "at": "Now, what it costs you.",
+   "els": [
+    {
+     "type": "big",
+     "text": "LOCAL AI NEEDS MEMORY",
+     "x": 120,
+     "y": 230,
+     "size": 96,
+     "at": "Local AI needs memory."
+    },
+    {
+     "type": "bars",
+     "x": 120,
+     "y": 760,
+     "h": 340,
+     "at": "A strong desktop",
+     "items": [
+      {
+       "name": "SMALL MODEL",
+       "label": "LESS RAM",
+       "v": 1,
+       "col": "green",
+       "at": "Small models run"
+      },
+      {
+       "name": "MID-SIZE MODEL",
+       "label": "PLENTY OF RAM",
+       "v": 3,
+       "col": "or",
+       "at": "A strong desktop"
+      }
+     ]
+    },
+    {
+     "type": "box",
+     "text": "TEST THE EXACT MODEL\nON THE EXACT MACHINE",
+     "x": 900,
+     "y": 360,
+     "w": 860,
+     "h": 200,
+     "fill": "red",
+     "col": "#fff",
+     "at": "Test the exact model",
+     "size": 54
+    },
+    {
+     "type": "hw",
+     "text": "the real work: training the staff",
+     "x": 920,
+     "y": 680,
+     "size": 54,
+     "at": "And it costs you time,"
+    }
+   ]
+  },
+  {
+   "tag": [
+    "!",
+    "THE LICENSE LINE"
+   ],
+   "at": "Now, the license line.",
+   "els": [
+    {
+     "type": "stamp",
+     "text": "OLLAMA: MIT",
+     "x": 420,
+     "y": 280,
+     "at": "Ollama itself is",
+     "col": "green",
+     "size": 64
+    },
+    {
+     "type": "hw",
+     "text": "install it, charge for your work",
+     "x": 140,
+     "y": 430,
+     "size": 54,
+     "at": "so you can install"
+    },
+    {
+     "type": "box",
+     "text": "EVERY MODEL HAS\nITS OWN LICENSE",
+     "x": 1100,
+     "y": 180,
+     "w": 660,
+     "h": 220,
+     "fill": "red",
+     "col": "#fff",
+     "at": "But every model",
+     "size": 60
+    },
+    {
+     "type": "checks",
+     "x": 140,
+     "y": 600,
+     "dy": 110,
+     "items": [
+      {
+       "text": "some: commercial use, freely",
+       "at": "Some allow commercial"
+      },
+      {
+       "text": "some: conditions and limits",
+       "mark": "✗",
+       "at": "Some have conditions"
+      },
+      {
+       "text": "keep a copy in the client's file",
+       "at": "and keep a copy"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "tag": [
+    "!",
+    "THE LAW LINE"
+   ],
+   "at": "And one more line,",
+   "els": [
+    {
+     "type": "big",
+     "text": "PRIVATE ≠ COMPLIANT",
+     "x": 120,
+     "y": 240,
+     "size": 120,
+     "col": "red",
+     "at": "Private is not the same"
+    },
+    {
+     "type": "hw",
+     "text": "medical offices and law firms have rules about client data",
+     "x": 140,
+     "y": 360,
+     "size": 48,
+     "at": "A medical office"
+    },
+    {
+     "type": "hw",
+     "text": "local helps, but doesn't make anybody compliant by itself",
+     "x": 140,
+     "y": 440,
+     "size": 48,
+     "col": "or",
+     "at": "Running AI locally"
+    },
+    {
+     "type": "checks",
+     "x": 140,
+     "y": 600,
+     "dy": 110,
+     "items": [
+      {
+       "text": "never promise compliance",
+       "mark": "✗",
+       "at": "Do not promise"
+      },
+      {
+       "text": "send them to their own lawyer",
+       "at": "Tell them to check"
+      },
+      {
+       "text": "put it in your contract",
+       "at": "and put that in your"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "tag": [
+    "3",
+    "YOUR FIRST CLIENT"
+   ],
+   "at": "Here is your first client.",
+   "els": [
+    {
+     "type": "chips",
+     "x": 140,
+     "y": 220,
+     "dx": 280,
+     "w": 260,
+     "items": [
+      {
+       "text": "your accountant",
+       "at": "Your accountant."
+      },
+      {
+       "text": "your lawyer",
+       "at": "Your lawyer."
+      },
+      {
+       "text": "your dentist",
+       "at": "Your dentist."
+      }
+     ]
+    },
+    {
+     "type": "phone",
+     "x": 1000,
+     "y": 120,
+     "at": "Send this:",
+     "d": -0.3
+    },
+    {
+     "type": "sms",
+     "x": 1035,
+     "y": 200,
+     "w": 490,
+     "text": "I set up private AI assistants that run inside your office, so your files never go to the cloud. Let me show your team a live demo on our own machine, thirty minutes, no cost. If they want it, we talk price.",
+     "at": "Send this:",
+     "d": 0.2,
+     "end": "The demo sells it.",
+     "endD": -0.6,
+     "fill": "blue",
+     "tcol": "#fff",
+     "size": 30
+    },
+    {
+     "type": "big",
+     "text": "THE DEMO SELLS IT",
+     "x": 120,
+     "y": 520,
+     "size": 100,
+     "col": "green",
+     "at": "The demo sells it."
+    },
+    {
+     "type": "hw",
+     "text": "a contract summarized in 10 seconds, in the room",
+     "x": 140,
+     "y": 640,
+     "size": 50,
+     "at": "Once a staff member"
+    }
+   ]
+  }
+ ],
+ "recap": {
+  "at": "That is Money Series",
+  "items": [
+   [
+    "$0",
+    "software",
+    "green",
+    1.2
+   ],
+   [
+    "PAID",
+    "setup",
+    "red",
+    2.6
+   ],
+   [
+    "1",
+    "line about the law",
+    "blue",
+    3.8
+   ]
+  ]
+ },
+ "vertical": {
+  "outro": "The full breakdown,",
+  "beats": [
+   {
+    "at": "Offices are scared",
+    "els": [
+     {
+      "type": "big",
+      "text": "OFFICES FEAR AI",
+      "x": 80,
+      "y": 170,
+      "size": 130,
+      "col": "red",
+      "at": "Offices are scared"
+     },
+     {
+      "type": "big",
+      "text": "THAT'S YOUR BUSINESS",
+      "x": 80,
+      "y": 360,
+      "size": 110,
+      "col": "green",
+      "at": "That fear is"
+     }
+    ]
+   },
+   {
+    "at": "Ollama is free,",
+    "els": [
+     {
+      "type": "card",
+      "x": 60,
+      "y": 0,
+      "w": 960,
+      "owner": "ollama",
+      "name": "Ollama",
+      "lines": [
+       "Free AI that runs on a computer",
+       "in the office."
+      ],
+      "tags": [
+       "MIT"
+      ],
+      "star": "170K+ stars",
+      "at": "Ollama is free,",
+      "col": "green"
+     },
+     {
+      "type": "checks",
+      "x": 80,
+      "y": 460,
+      "dy": 120,
+      "size": 52,
+      "items": [
+       {
+        "text": "runs in the office",
+        "at": "It runs AI on"
+       },
+       {
+        "text": "files never go to the cloud",
+        "at": "so the files never"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "at": "The software is free.",
+    "els": [
+     {
+      "type": "stamp",
+      "text": "FREE SOFTWARE",
+      "x": 300,
+      "y": 80,
+      "at": "The software is free.",
+      "col": "green",
+      "size": 56,
+      "rot": -0.05
+     },
+     {
+      "type": "stamp",
+      "text": "PAID SETUP",
+      "x": 760,
+      "y": 80,
+      "at": "Your setup is not.",
+      "col": "red",
+      "size": 56,
+      "rot": 0.04
+     },
+     {
+      "type": "box",
+      "text": "$1,000\nSETUP",
+      "x": 60,
+      "y": 220,
+      "w": 450,
+      "h": 260,
+      "at": "one thousand to",
+      "size": 86
+     },
+     {
+      "type": "box",
+      "text": "$200\nA MONTH",
+      "x": 570,
+      "y": 220,
+      "w": 450,
+      "h": 260,
+      "fill": "yel",
+      "at": "two hundred a month",
+      "size": 86
+     },
+     {
+      "type": "hw",
+      "text": "a starting price, not a promise",
+      "x": 540,
+      "y": 600,
+      "size": 56,
+      "align": "center",
+      "at": "A starting price"
+     }
+    ]
+   },
+   {
+    "at": "One warning.",
+    "els": [
+     {
+      "type": "big",
+      "text": "ONE WARNING",
+      "x": 80,
+      "y": 140,
+      "size": 120,
+      "col": "k",
+      "at": "One warning."
+     },
+     {
+      "type": "big",
+      "text": "PRIVATE ≠ COMPLIANT",
+      "x": 80,
+      "y": 300,
+      "size": 100,
+      "col": "red",
+      "at": "Private is not"
+     },
+     {
+      "type": "checks",
+      "x": 80,
+      "y": 480,
+      "dy": 130,
+      "size": 52,
+      "items": [
+       {
+        "text": "never promise compliance",
+        "mark": "✗",
+        "at": "Never promise"
+       },
+       {
+        "text": "send them to their lawyer",
+        "at": "Send them to"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
