@@ -1,0 +1,112 @@
+{
+  "wave": 1,
+  "tasks": [
+    {
+      "id": "T01",
+      "agenda": "A1",
+      "title": "90-day revenue plan",
+      "contract": "contracts/T01-revenue.md",
+      "output": "deliverables/T01-revenue-plan.md",
+      "min_words": 1200,
+      "sections": [
+        "90-Day Revenue Pulse",
+        "Revenue Levers",
+        "Pricing Tests",
+        "Cross-Sells",
+        "Week-by-Week Calendar",
+        "Metrics to Track"
+      ],
+      "status": "todo",
+      "last_check": "missing output deliverables/T01-revenue-plan.md"
+    },
+    {
+      "id": "T02",
+      "agenda": "A2",
+      "title": "Publication-ready DeWitt Gilmore article",
+      "contract": "contracts/T02-article.md",
+      "output": "deliverables/T02-article.md",
+      "min_words": 1500,
+      "sections": [
+        "SEO",
+        "Article",
+        "Call to Action"
+      ],
+      "status": "todo",
+      "last_check": "missing output deliverables/T02-article.md"
+    },
+    {
+      "id": "T03",
+      "agenda": "A3",
+      "title": "7-day social calendar + caption pack",
+      "contract": "contracts/T03-social.md",
+      "output": "deliverables/T03-social-calendar.md",
+      "min_words": 1500,
+      "sections": [
+        "Day 1",
+        "Day 2",
+        "Day 3",
+        "Day 4",
+        "Day 5",
+        "Day 6",
+        "Day 7",
+        "Hashtag Sets",
+        "Reel Concepts"
+      ],
+      "status": "todo",
+      "last_check": "missing output deliverables/T03-social-calendar.md"
+    },
+    {
+      "id": "T04",
+      "agenda": "A4",
+      "title": "Catalogue spin-off book proposal",
+      "contract": "contracts/T04-book.md",
+      "output": "deliverables/T04-book-proposal.md",
+      "min_words": 2500,
+      "sections": [
+        "Title",
+        "Logline",
+        "Why Now",
+        "Chapter Breakdown",
+        "Sample Opening",
+        "Release Plan"
+      ],
+      "status": "todo",
+      "last_check": "missing output deliverables/T04-book-proposal.md"
+    },
+    {
+      "id": "T05",
+      "agenda": "A5",
+      "title": "Music + Moltbook promotion pack",
+      "contract": "contracts/T05-music-moltbook.md",
+      "output": "deliverables/T05-music-moltbook.md",
+      "min_words": 1200,
+      "sections": [
+        "CoCo Kity",
+        "Bobby Monroe",
+        "Atlanta Music Alliance",
+        "Book x Music Crossovers",
+        "Moltbook Posts",
+        "Viral Loop"
+      ],
+      "status": "todo",
+      "last_check": "missing output deliverables/T05-music-moltbook.md"
+    },
+    {
+      "id": "T06",
+      "agenda": "A6",
+      "title": "Story-to-series AI tool scouting report",
+      "contract": "contracts/T06-visual-pipeline.md",
+      "output": "deliverables/T06-visual-pipeline.md",
+      "min_words": 1200,
+      "sections": [
+        "Verdict",
+        "Tool Stack",
+        "Cost Breakdown",
+        "Pilot Episode Rollout",
+        "Sources"
+      ],
+      "status": "todo",
+      "last_check": "missing output deliverables/T06-visual-pipeline.md"
+    }
+  ]
+}
