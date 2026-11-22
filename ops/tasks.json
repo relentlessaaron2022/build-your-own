@@ -16,8 +16,8 @@
         "Week-by-Week Calendar",
         "Metrics to Track"
       ],
-      "status": "todo",
-      "last_check": "missing output deliverables/T01-revenue-plan.md"
+      "status": "done",
+      "last_check": "pass"
     },
     {
       "id": "T02",
@@ -31,8 +31,8 @@
         "Article",
         "Call to Action"
       ],
-      "status": "todo",
-      "last_check": "missing output deliverables/T02-article.md"
+      "status": "done",
+      "last_check": "pass"
     },
     {
       "id": "T03",
@@ -88,8 +88,8 @@
         "Moltbook Posts",
         "Viral Loop"
       ],
-      "status": "todo",
-      "last_check": "missing output deliverables/T05-music-moltbook.md"
+      "status": "done",
+      "last_check": "pass"
     },
     {
       "id": "T06",

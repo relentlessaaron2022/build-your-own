@@ -4,9 +4,9 @@ Wave 1
 
 | ID | Agenda | Task | Status | Output | Last check |
 |----|--------|------|--------|--------|------------|
-| T01 | A1 | 90-day revenue plan | **todo** | `deliverables/T01-revenue-plan.md` | missing output deliverables/T01-revenue-plan.md |
-| T02 | A2 | Publication-ready DeWitt Gilmore article | **todo** | `deliverables/T02-article.md` | missing output deliverables/T02-article.md |
+| T01 | A1 | 90-day revenue plan | **done** | `deliverables/T01-revenue-plan.md` | pass |
+| T02 | A2 | Publication-ready DeWitt Gilmore article | **done** | `deliverables/T02-article.md` | pass |
 | T03 | A3 | 7-day social calendar + caption pack | **todo** | `deliverables/T03-social-calendar.md` | missing output deliverables/T03-social-calendar.md |
 | T04 | A4 | Catalogue spin-off book proposal | **todo** | `deliverables/T04-book-proposal.md` | missing output deliverables/T04-book-proposal.md |
-| T05 | A5 | Music + Moltbook promotion pack | **todo** | `deliverables/T05-music-moltbook.md` | missing output deliverables/T05-music-moltbook.md |
+| T05 | A5 | Music + Moltbook promotion pack | **done** | `deliverables/T05-music-moltbook.md` | pass |
 | T06 | A6 | Story-to-series AI tool scouting report | **todo** | `deliverables/T06-visual-pipeline.md` | missing output deliverables/T06-visual-pipeline.md |
