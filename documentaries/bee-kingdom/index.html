@@ -10,9 +10,15 @@
   #paper { mix-blend-mode: multiply; pointer-events: none; }
   #fx { pointer-events: none; }
   .mul { mix-blend-mode: multiply; }
+  /* vertical 9:16 (?fmt=v): the 16:9 page sits in the middle, header above, big captions below */
+  body.v { width: 1080px; height: 1920px; }
+  body.v #stage, body.v #paper, body.v #fx { top: 600px; transform-origin: 0 0; transform: scale(0.5625); }
+  #vbg, #vfg { display: none; width: 1080px; height: 1920px; }
+  body.v #vbg, body.v #vfg { display: block; }
 </style>
 </head>
 <body>
+<svg id="vbg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
 <svg id="stage" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <!-- line boil (new seed every 0.1s) + ink grain -->
@@ -47,9 +53,12 @@
 </svg>
 <canvas id="paper" width="1920" height="1080"></canvas>
 <canvas id="fx" width="1920" height="1080"></canvas>
+<script src="vertical.js"></script>
+<svg id="vfg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
 
 <script>
 const NS = 'http://www.w3.org/2000/svg';
+const VERT = new URLSearchParams(location.search).get('fmt') === 'v'; if (VERT) document.body.classList.add('v');
 function el(tag, attrs = {}, parent) {
   const e = document.createElementNS(NS, tag);
   for (const k in attrs) e.setAttribute(k, attrs[k]);
@@ -433,6 +442,7 @@ function buildAll() {
   const dotsG = el('g', {}, wipe), wipeDots = []; for (let y = 0; y <= 1160; y += 80) for (let x = 0; x <= 2000; x += 80) wipeDots.push({ e: el('circle', { cx: x, cy: y, r: 0 }, dotsG), x, y });
   wipeUpdate = t => { const w = WIPES.find(([b]) => Math.abs(t - b) < .22); show(dotsG, !!w); if (!w) return; dotsG.setAttribute('fill', w[1]); const u = (t - w[0] + .22) / .44;
     wipeDots.forEach(d => { const delay = (d.x / 1920 * .6 + d.y / 1080 * .4) * .35, p = clamp((u - delay) / .65); d.e.setAttribute('r', (Math.sin(p * Math.PI) * 62).toFixed(1)); }); };
+  buildVertical({ title: 'THE HONEYBEE FILE', caseNo: 'CASE FILE No.007 · APIS', chips, KEY });
   window.EV = EV.sort((a, b) => a.t - b.t);
 }
 
@@ -459,7 +469,7 @@ function render(t) {
   const pulse = 1 + .006 * Math.exp(-((t % .625) / .07));
   cam.setAttribute('transform', `translate(${(dx + 960 * (1 - pulse)).toFixed(2)} ${(dy + 540 * (1 - pulse)).toFixed(2)}) scale(${pulse.toFixed(4)})`);
   let fl = 0; for (const f of FLASHES) if (t >= f && t < f + .3) fl = Math.max(fl, .5 * Math.pow(1 - (t - f) / .3, 2)); op(flash, fl);
-  op(fade, seg(t, DUR - .7, DUR - .05)); hudUpdate(t); capUpdate(t); wipeUpdate(t); drawFx(frame);
+  op(fade, seg(t, DUR - .7, DUR - .05)); hudUpdate(t); capUpdate(t); wipeUpdate(t); vUpdate(t); drawFx(frame);
 }
 async function init() {
   WD = (await (await fetch('audio/words.json')).json()).words.map(w => ({ ...w, s: w.s + OFF, e: w.e + OFF })); END = WD[WD.length - 1].e; DUR = Math.ceil((END + 4.5) * 10) / 10; window.DUR = DUR;

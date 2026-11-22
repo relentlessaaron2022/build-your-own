@@ -1,0 +1,23 @@
+THE CLIFF FILE: produced by Relentless Aaron
+Style: Halftone Dossier, from the Lemo-Opuscar film library (github.com/lemomo-ai/lemo-opuscar); engine helpers adapted from its demo.
+
+PICTURE
+- All artwork (mountain goat, kid, ibex, golden eagle and mountain lion characters, halftone dots, stamps, paper, grain, transitions) drawn procedurally in index.html (SVG + Canvas 2D). No photos or images.
+- Rendering: Playwright (Apache-2.0) driving headless Chromium; encoding with FFmpeg (libx264).
+
+VOICE
+- Narration: Kokoro TTS (Apache-2.0), voice "am_onyx". A synthetic voice.
+
+MUSIC AND SOUND EFFECTS
+- Score and every sound effect synthesized from scratch by music.py (NumPy, SciPy). No samples.
+
+FONTS (Google Fonts, all SIL Open Font License 1.1; https://openfontlicense.org)
+- Alfa Slab One (JM Solé): headlines
+- Bagel Fat One (Kyungwon Kim): numerals
+- JetBrains Mono (JetBrains): case numbers, HUD
+- Archivo Black (Omnibus-Type): captions, stamps
+- Chewy (Squid Art): reserved for interjections
+
+FACTS: see RESEARCH.md for every claim and its source (National Park Service, Britannica, NWF, Hamel & Côté 2009, BC Ministry of Environment, reporting on the Cingino Dam). Claims the sources disagree on were left out.
+
+You are responsible for the materials you publish with this film.
