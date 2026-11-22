@@ -7,8 +7,8 @@ The competition sells 27 to 28 PNGs per bundle. We sell 250, and the same art do
 | Book | What it is | Built from | Where it sells |
 |---|---|---|---|
 | **1. Clipart Bundle** | 250 transparent PNGs (ZIP) + a PDF catalog with cut lines | color art | Etsy, Creative Market, Gumroad, Shopify |
-| **2. Coloring Book** | 250 line-art drawings, 6 per page by default (42 pages + front matter); 4, 2 or 1 per page also available | line art made *from* the color art | Amazon KDP paperback, PDF download |
-| **3. Story Book** | 10 chapters: a short story opens each chapter, then 25 illustrations with an overture/caption under each (~143 pages) | color art + manuscript | Amazon KDP paperback & Kindle, PDF |
+| **2. Coloring Book** | 250 line-art drawings, 6 per page, every page single-sided so markers don't bleed (~100 pages) | line art made *from* the color art | Amazon KDP paperback (B&W), Etsy printable PDF |
+| **3. Story Book** | Meet-the-cast spread, introduction, 10 chapter stories, 100 hand-picked illustrations each with a caption, a closing, and lined "Your Turn" pages (80 pages) | color art + manuscript | Amazon KDP paperback (standard color), Etsy printable PDF |
 
 ## The 10 editions
 
@@ -48,8 +48,13 @@ editions/NN-*.json         each theme: actions, pairs, groups, props, phrases, 1
 manuscripts/NN-*.md        Book 3 text: introduction, 10 chapter stories, captions per image
 tools/build_prompts.py     -> output/NN-*/prompts.jsonl + prompts.csv (the 250-image shot list)
 tools/generate_images.py   OpenAI image generation: reference sheets, color art, line art
-tools/build_books.py       -> the 3 PDFs (+ PNG ZIP) per edition
-proofs/                    Edition 1 layout proofs with placeholder boxes (no art yet)
+tools/build_books.py       -> the 3 books per edition, in a print version (300 DPI, KDP) and a digital version (<20 MB, Etsy)
+tools/package.py           -> dist/NN-*/ sorted by platform: KDP interiors + cover wraps, Etsy files + listing images,
+                              Drive upload folder, and CHECKLIST.txt (PASS/FIX for every platform rule)
+style/fonts/               book fonts (SIL Open Font License), embedded in every PDF as KDP requires
+publishing/PUBLISHING.md   how to upload to Etsy, Amazon KDP and Google Drive, step by step
+publishing/listings/       ready-to-paste titles, tags, descriptions, keywords and categories
+proofs/                    Editions 1 and 2 layout proofs with placeholder boxes (no art yet)
 ```
 
 ## How to run it
@@ -63,8 +68,11 @@ python tools/generate_images.py --refs                 # 16 cast sheets -> style
 python tools/generate_images.py --edition 1 --limit 10 # test batch
 python tools/generate_images.py --edition 1            # 250 color images
 python tools/generate_images.py --edition 1 --lineart  # 250 coloring-page versions
-python tools/build_books.py 1                          # the 3 books for edition 1
+python tools/build_books.py 1                          # the 3 books for edition 1 (print + digital)
+python tools/package.py 1                              # upload-ready folders in dist/01-elder-wisdom/
 ```
+
+Then follow `publishing/PUBLISHING.md`.
 
 All scripts pick up where they left off. Delete any PNG you don't like and rerun to redraw it.
 
@@ -79,10 +87,12 @@ Per edition: 250 color images + 250 line-art edits = 500 calls. At high quality 
 - [x] 10 editions defined, 2,500 prompts written and balanced across the cast
 - [x] Generator for reference sheets, color art and matched line art
 - [x] PDF builder for all 3 books, with proofs in `proofs/`
-- [x] Edition 1 manuscript sample: introduction, Chapters 1 and 2, captions for Chapter 1
+- [x] **Editions 1 and 2 written in full:** back-cover copy, dedication, introduction, 10 stories, 100 captions each, closing
+- [x] KDP cover wraps with spine math, Etsy listing images, Drive download page, and listing copy for Editions 1 and 2
+- [x] Fonts embedded, KDP margins, single-sided coloring pages, digital PDFs sized for Etsy
+- [ ] **Relentless:** replace the two `[bracketed]` notes in each manuscript (intro memory, closing sign-off) with your own words
 - [ ] Generate and approve the 16 cast reference sheets
-- [ ] Generate the art (2,500 color + 2,500 line art)
-- [ ] Write the remaining story-book text: Edition 1 Chapters 3 to 10, then Editions 2 to 10
+- [ ] Generate the art for Editions 1 and 2 (500 color + 500 line art)
 - [ ] Spell-check every word-art image (AI sometimes misspells lettering)
-- [ ] Covers (front/back/spine) sized to KDP's calculator once page counts are final
-- [ ] Brand fonts (proofs use plain Times/Helvetica)
+- [ ] Put the Drive link in each edition file, rerun `package.py`, then upload
+- [ ] Editions 3 to 10 manuscripts and listings

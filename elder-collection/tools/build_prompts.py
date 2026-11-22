@@ -64,6 +64,9 @@ GRANDKIDS = [
 ]
 
 # Actions that only make sense for women in this cast's world. Everything else is open to anyone.
+# Brother Walter is a wheelchair user: these actions go to someone else.
+STANDING_ONLY = ("cane", "dancing", "dance", "jumping", "spinning", "skateboard", "bicycle", "walking", "strutting",
+                 "kneeling", "stride", "twirling", "power walking", "line dancing", "bowling", "golf", "hop", "standing")
 WOMAN_ONLY = ("skirt", "lipstick", "earrings", "brooch", "headwrap", "flowing dress", "spinning in a")
 
 
@@ -109,6 +112,8 @@ def build_edition(e, cast, couples):
         pool = women if any(w in action for w in WOMAN_ONLY) else cast
         for k in range(5):
             c = pool[(i * 5 + k + n * 3) % len(pool)]
+            if c["id"] == "walter" and any(w in action for w in STANDING_ONLY):
+                c = pool[(i * 5 + k + n * 3 + 8) % len(pool)]
             add("solo", f"{c['name']}, {action}", f"{person(c)}, {action}.", [c["id"]], STYLE_COLOR)
 
     # 50 pairs

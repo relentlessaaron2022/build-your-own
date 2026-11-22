@@ -3,3 +3,5 @@ output/**/images/
 output/**/*.pdf
 output/**/*.zip
 style/refs/
+dist/
+output/**/cache/
