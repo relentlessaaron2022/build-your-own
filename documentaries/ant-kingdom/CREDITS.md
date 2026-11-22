@@ -8,7 +8,7 @@
 - **Minor worker over major worker pupa (Pheidole floridana) (41319137445).jpg**: Insects Unlocked from USA, CC0. https://commons.wikimedia.org/wiki/File:Minor_worker_over_major_worker_pupa_(Pheidole_floridana)_(41319137445).jpg
 - **Eciton burchellii - rodrigo lazaro - 323639271.jpeg**: rodrigo_lazaro, CC BY 4.0. https://commons.wikimedia.org/wiki/File:Eciton_burchellii_-_rodrigo_lazaro_-_323639271.jpeg
 - **Ant bridge.jpg**: Geoff Gallice from Gainesville, FL, USA, CC BY 2.0. https://commons.wikimedia.org/wiki/File:Ant_bridge.jpg
-- **Hitchiking leafcutter ant.jpg**: Kathy &amp; sam from Beaverton OR, USA, CC BY 2.0. https://commons.wikimedia.org/wiki/File:Hitchiking_leafcutter_ant.jpg
+- **Hitchiking leafcutter ant.jpg**: Kathy & sam from Beaverton OR, USA, CC BY 2.0. https://commons.wikimedia.org/wiki/File:Hitchiking_leafcutter_ant.jpg
 - **Atta laevigata fungus garden.jpg**: Alex Wild, CC0. https://commons.wikimedia.org/wiki/File:Atta_laevigata_fungus_garden.jpg
 - **RIFA Raft After Heavy Rain.jpg**: TheCoz, CC BY-SA 4.0. https://commons.wikimedia.org/wiki/File:RIFA_Raft_After_Heavy_Rain.jpg
 - **Solenopsis invicta - fire ant worker.jpg**: Insects Unlocked, CC0. https://commons.wikimedia.org/wiki/File:Solenopsis_invicta_-_fire_ant_worker.jpg
