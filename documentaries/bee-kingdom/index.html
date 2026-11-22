@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Honeybee File</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #F2E7D0; }
+  svg, canvas { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+  #paper { mix-blend-mode: multiply; pointer-events: none; }
+  #fx { pointer-events: none; }
+  .mul { mix-blend-mode: multiply; }
+</style>
+</head>
+<body>
+<svg id="stage" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- line boil (new seed every 0.1s) + ink grain -->
+    <filter id="boil" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence id="boilT" type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="1" result="w"/>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" seed="4" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -22 15.2" result="gm"/>
+      <feComposite in="d" in2="gm" operator="in"/>
+    </filter>
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="9" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -22 15.4" result="gm"/>
+      <feComposite in="SourceGraphic" in2="gm" operator="in"/>
+    </filter>
+    <filter id="stampInk" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="11" result="w"/>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" seed="21" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -9 5.9" result="gm"/>
+      <feComposite in="d" in2="gm" operator="in"/>
+    </filter>
+    <clipPath id="frameClip"><rect width="1920" height="1080"/></clipPath>
+  </defs>
+  <g clip-path="url(#frameClip)">
+    <g id="cam"><g id="world"></g></g>
+    <g id="hud"></g>
+    <g id="wipe"></g>
+    <rect id="flash" width="1920" height="1080" fill="#FFFFFF" opacity="0"/>
+    <rect id="fade" width="1920" height="1080" fill="#2B1D14" opacity="0"/>
+  </g>
+</svg>
+<canvas id="paper" width="1920" height="1080"></canvas>
+<canvas id="fx" width="1920" height="1080"></canvas>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs = {}, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function txt(parent, str, attrs) { const e = el('text', attrs, parent); e.textContent = str; return e; }
+function tf(e, x = 0, y = 0, s = 1, r = 0, sy) {
+  e.setAttribute('transform', `translate(${x.toFixed(2)} ${y.toFixed(2)}) rotate(${r.toFixed(2)}) scale(${s.toFixed(4)} ${(sy ?? s).toFixed(4)})`);
+}
+function op(e, o) { e.setAttribute('opacity', Math.max(0, Math.min(1, o)).toFixed(3)); }
+function show(e, v) { e.style.display = v ? '' : 'none'; }
+
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const E = {
+  out: p => 1 - Math.pow(1 - p, 3),
+  in: p => p * p * p,
+  io: p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2,
+  back: p => { const c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); },
+  elastic: p => p <= 0 ? 0 : p >= 1 ? 1 : Math.pow(2, -10 * p) * Math.sin((p * 10 - 0.75) * 2 * Math.PI / 3) + 1,
+};
+const pop = (t, t0, d = 0.35) => t < t0 ? 0 : E.back(seg(t, t0, t0 + d));
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+const mctx = document.createElement('canvas').getContext('2d');
+function measure(str, size, family, weight = 400) { mctx.font = `${weight} ${size}px ${family}`; return mctx.measureText(str).width; }
+
+// per-character text (can pop in char by char), optional misregistration shadow
+function chars(parent, str, o) {
+  const { x, y, size, family, weight = 400, fill = C.ink, anchor = 'start', ls = 0, shadow, stroke, sw = 0 } = o;
+  const g = el('g', {}, parent);
+  const arr = [...str];
+  const widths = arr.map(c => measure(c, size, family, weight));
+  const total = widths.reduce((a, b) => a + b, 0) + ls * (arr.length - 1);
+  let cx = anchor === 'middle' ? x - total / 2 : anchor === 'end' ? x - total : x;
+  const items = arr.map((ch, i) => {
+    const cg = el('g', {}, g);
+    const base = { x: 0, y: 0, 'font-size': size, 'font-family': family, 'font-weight': weight, 'text-anchor': 'middle' };
+    if (shadow) txt(cg, ch, { ...base, x: shadow.dx, y: shadow.dy, fill: shadow.fill, class: 'mul' });
+    const st = stroke ? { stroke, 'stroke-width': sw, 'paint-order': 'stroke', 'stroke-linejoin': 'round' } : {};
+    txt(cg, ch, { ...base, fill, ...st });
+    const it = { g: cg, x: cx + widths[i] / 2, y, w: widths[i], size };
+    cx += widths[i] + ls;
+    tf(cg, it.x, it.y);
+    return it;
+  });
+  return { g, items, total };
+}
+// per-character animation: pop in (squash-and-rebound from below)
+function charsPop(c, t, t0, stagger = 0.05, d = 0.38, from = 60) {
+  c.items.forEach((it, i) => {
+    const s = t0 + i * stagger;
+    const p = seg(t, s, s + d);
+    const h = it.size * 0.35;
+    if (t < s) { op(it.g, 0); return; }
+    op(it.g, 1);
+    const sc = E.back(p);
+    const sq = 1 + 0.25 * Math.sin(p * Math.PI) * (1 - p);
+    it.g.setAttribute('transform', `translate(${it.x} ${it.y + from * (1 - E.out(p))}) translate(0 ${-h}) scale(${(sc / sq).toFixed(3)} ${(sc * sq).toFixed(3)}) translate(0 ${h})`);
+  });
+}
+function charsIdle(c, t, amp = 4, spd = 3) {
+  c.items.forEach((it, i) => tf(it.g, it.x, it.y + Math.sin(t * spd + i * 0.8) * amp));
+}
+
+// halftone dots: f(x,y) → 0..1 dot size
+function halftone(parent, { x0 = 0, y0 = 0, w = 1920, h = 1080, step = 22, angle = 15, color, f, maxK = 0.62 }) {
+  const a = angle * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+  const n = Math.ceil(Math.hypot(w, h) / step / 2) + 2;
+  let d = '';
+  for (let i = -n; i <= n; i++) for (let j = -n; j <= n; j++) {
+    const u = i * step, v = j * step;
+    const x = x0 + w / 2 + u * ca - v * sa, y = y0 + h / 2 + u * sa + v * ca;
+    if (x < x0 - step || x > x0 + w + step || y < y0 - step || y > y0 + h + step) continue;
+    const s = clamp(f(x, y)); if (s < 0.05) continue;
+    const r = s * step * maxK;
+    d += `M${(x - r).toFixed(1)} ${y.toFixed(1)}a${r.toFixed(1)} ${r.toFixed(1)} 0 1 0 ${(2 * r).toFixed(1)} 0a${r.toFixed(1)} ${r.toFixed(1)} 0 1 0 ${(-2 * r).toFixed(1)} 0`;
+  }
+  return el('path', { d, fill: color }, parent);
+}
+const radial = (cx, cy, R, pw = 1.2) => (x, y) => Math.pow(clamp(1 - Math.hypot(x - cx, y - cy) / R), pw);
+const edge = (R = 900, pw = 1.6) => (x, y) => Math.pow(clamp(Math.hypot(x - 960, y - 540) / R - 0.35), pw) * 1.3;
+
+function bg(parent, color) { return el('rect', { width: 1920, height: 1080, fill: color }, parent); }
+
+// subtitle bar
+function caption(parent, parts, { x = 960, y = 980, size = 46 } = {}) {
+  const g = el('g', {}, parent);
+  const inner = el('g', {}, g);
+  const w = parts.reduce((a, [s]) => a + measure(s, size, F.sans, 400), 0);
+  const padX = 34, hgt = size * 1.7;
+  el('rect', { x: -w / 2 - padX + 8, y: -hgt / 2 + 8, width: w + padX * 2, height: hgt, rx: 14, fill: C.teal, class: 'mul' }, inner);
+  el('rect', { x: -w / 2 - padX, y: -hgt / 2, width: w + padX * 2, height: hgt, rx: 14, fill: C.ink }, inner);
+  const t = el('text', { x: -w / 2, y: size * 0.36, 'font-size': size, 'font-family': F.sans, 'font-weight': 400 }, inner);
+  parts.forEach(([s, col]) => { const sp = el('tspan', { fill: col || C.cream }, t); sp.textContent = s; });
+  return { g, inner, x, y };
+}
+function captionAnim(c, t, t0) {
+  const p = seg(t, t0, t0 + 0.4);
+  if (t < t0) { op(c.g, 0); return; }
+  op(c.g, seg(t, t0, t0 + 0.12));
+  tf(c.g, c.x, c.y + 40 * (1 - E.out(p)), lerp(0.8, 1, E.back(p)), -1.2 * (1 - p) - 0.6);
+}
+
+// stamp
+function stampEl(parent, str, { size = 200, color = C.red, family = F.sans, padX = 50, padY = 26, border = 12 } = {}) {
+  const g = el('g', {}, parent);
+  const inner = el('g', { filter: 'url(#stampInk)' }, g);
+  const w = measure(str, size, family, 400) + padX * 2, h = size * 1.08 + padY * 2;
+  el('rect', { x: -w / 2, y: -h / 2, width: w, height: h, rx: 22, fill: 'none', stroke: color, 'stroke-width': border }, inner);
+  el('rect', { x: -w / 2 + border * 1.8, y: -h / 2 + border * 1.8, width: w - border * 3.6, height: h - border * 3.6, rx: 12, fill: 'none', stroke: color, 'stroke-width': border * 0.35 }, inner);
+  txt(inner, str, { x: 0, y: size * 0.36, 'font-size': size, 'font-family': family, 'font-weight': 400, fill: color, 'text-anchor': 'middle' });
+  return { g, w, h };
+}
+function stampAnim(s, t, t0, x, y, rot) {
+  if (t < t0 - 0.09) { op(s.g, 0); return; }
+  const p = seg(t, t0 - 0.09, t0);
+  const after = Math.max(0, t - t0);
+  const bounce = 1 + 0.05 * Math.sin(after * 30) * Math.exp(-after * 9);
+  op(s.g, p < 1 ? 0.3 + 0.7 * p : 0.93);
+  tf(s.g, x, y, lerp(2.6, 1, E.in(p)) * bounce, rot);
+}
+
+function heartPath(s = 1) {
+  return `M0 ${30 * s}C${-40 * s} 0 ${-50 * s} ${-30 * s} ${-25 * s} ${-45 * s}C${-10 * s} ${-52 * s} 0 ${-40 * s} 0 ${-30 * s}C0 ${-40 * s} ${10 * s} ${-52 * s} ${25 * s} ${-45 * s}C${50 * s} ${-30 * s} ${40 * s} 0 0 ${30 * s}Z`;
+}
+
+// ============================================================
+// THE HONEYBEE FILE: palette, fonts, voice clock
+// ============================================================
+const C = { paper: '#F2E7D0', ink: '#2B1D14', teal: '#2F8F8A', honey: '#F2B233', red: '#D8432F', cream: '#FFF6E4', night: '#1F1813', night2: '#3B2D22', orange: '#E07B2C', mint: '#7FB8A4' };
+const F = { serif: "'Alfa Slab One'", bagel: "'Bagel Fat One'", mono: "'JetBrains Mono'", sans: "'Archivo Black'", cute: "'Chewy'" };
+const FPS = 30;
+let WD = [], DUR = 200, END = 190;
+const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+function at(phrase, after = 0) { const q = phrase.split(' ').map(norm).filter(Boolean);
+  for (let i = 0; i < WD.length; i++) { if (WD[i].s < after) continue; if (q.every((x, j) => WD[i + j] && norm(WD[i + j].w) === x)) return WD[i].s; } throw new Error('phrase not found: ' + phrase); }
+const OFF = 1.2;
+const EV = [];   // sound cues for the mix: {t, kind}
+const cue = (t, kind) => { EV.push({ t: +t.toFixed(3), kind }); return t; };
+
+// ============================================================
+// characters: the bee and the hornet (thick ink outline, flat fills, glossy eyes)
+// ============================================================
+const LW = 7;
+function eyes(g, dx, y, r) { return [-dx, dx].map(x => { const e = el('g', {}, g); el('ellipse', { cx: x, cy: y, rx: r, ry: r * 1.15, fill: C.ink }, e); el('circle', { cx: x - r * .3, cy: y - r * .4, r: r * .32, fill: C.cream }, e); el('circle', { cx: x + r * .3, cy: y + r * .3, r: r * .14, fill: C.cream }, e); return e; }); }
+function beeEl(parent, s = 1) {   // faces right; (0,0) = body centre
+  const root = el('g', {}, parent), g = el('g', { filter: 'url(#boil)' }, root);
+  const wings = el('g', {}, g);
+  const wL = el('ellipse', { cx: -6, cy: -62, rx: 34, ry: 52, fill: C.cream, stroke: C.ink, 'stroke-width': LW, transform: 'rotate(-28 -6 -62)' }, wings);
+  const wR = el('ellipse', { cx: 30, cy: -58, rx: 30, ry: 46, fill: '#FFFDF5', stroke: C.ink, 'stroke-width': LW, transform: 'rotate(22 30 -58)' }, wings);
+  el('path', { d: 'M -78 6 L -104 14 L -80 24 Z', fill: C.ink }, g);   // stinger
+  el('ellipse', { cx: -20, cy: 10, rx: 64, ry: 50, fill: C.honey, stroke: C.ink, 'stroke-width': LW }, g);
+  [-42, -14, 14].forEach(x => el('path', { d: `M ${x} -34 Q ${x + 10} 10 ${x} 56`, stroke: C.ink, 'stroke-width': 15, fill: 'none', 'stroke-linecap': 'round' }, g));
+  el('ellipse', { cx: -20, cy: 10, rx: 64, ry: 50, fill: 'none', stroke: C.ink, 'stroke-width': LW }, g);
+  const head = el('g', {}, g);
+  el('circle', { cx: 56, cy: 0, r: 40, fill: C.honey, stroke: C.ink, 'stroke-width': LW }, head);
+  el('path', { d: 'M 64 -36 Q 72 -78 96 -84 M 46 -38 Q 40 -80 58 -96', stroke: C.ink, 'stroke-width': 6, fill: 'none', 'stroke-linecap': 'round' }, head);
+  el('circle', { cx: 96, cy: -84, r: 8, fill: C.ink }, head); el('circle', { cx: 58, cy: -96, r: 8, fill: C.ink }, head);
+  const ey = eyes(head, 14, -6, 10); ey.forEach(e => e.setAttribute('transform', 'translate(60 0)'));
+  el('path', { d: 'M 52 18 Q 62 28 74 18', stroke: C.ink, 'stroke-width': 5, fill: 'none', 'stroke-linecap': 'round' }, head);
+  tf(root, 0, 0, s);
+  return { root, wings: [wL, wR], eyes: ey, s };
+}
+function beeAnim(b, t, x, y, s, rot = 0, face = 1, flap = 1) {
+  tf(b.root, x, y + Math.sin(t * 6) * 4, s * face, rot, s);
+  const a = flap ? Math.sin(t * 60) * 18 : 0; b.wings[0].setAttribute('transform', `rotate(${-28 + a} -6 -62)`); b.wings[1].setAttribute('transform', `rotate(${22 - a} 30 -58)`);
+}
+function hornetEl(parent) {
+  const root = el('g', {}, parent), g = el('g', { filter: 'url(#boil)' }, root);
+  el('ellipse', { cx: -10, cy: -70, rx: 50, ry: 70, fill: '#FFF2D8', stroke: C.ink, 'stroke-width': LW, transform: 'rotate(-20 -10 -70)' }, g);
+  el('ellipse', { cx: -60, cy: 20, rx: 110, ry: 66, fill: C.orange, stroke: C.ink, 'stroke-width': LW }, g);
+  [-120, -76, -32].forEach(x => el('path', { d: `M ${x} -38 Q ${x + 14} 20 ${x} 78`, stroke: C.ink, 'stroke-width': 22, fill: 'none', 'stroke-linecap': 'round' }, g));
+  el('ellipse', { cx: -60, cy: 20, rx: 110, ry: 66, fill: 'none', stroke: C.ink, 'stroke-width': LW }, g);
+  el('circle', { cx: 80, cy: 0, r: 62, fill: C.honey, stroke: C.ink, 'stroke-width': LW }, g);
+  const ey = eyes(g, 22, -8, 15); ey.forEach(e => e.setAttribute('transform', 'translate(86 0)'));
+  const brows = el('path', { d: 'M 70 -40 L 100 -28 M 132 -40 L 104 -28', stroke: C.ink, 'stroke-width': 9, 'stroke-linecap': 'round' }, g);
+  el('path', { d: 'M 120 34 L 150 44 L 124 52', stroke: C.ink, 'stroke-width': 8, fill: 'none', 'stroke-linejoin': 'round' }, g);
+  const xs = el('path', { d: 'M 62 -22 l 22 22 m 0 -22 l -22 22 M 106 -22 l 22 22 m 0 -22 l -22 22', stroke: C.ink, 'stroke-width': 8, 'stroke-linecap': 'round' }, g);
+  return { root, eyes: ey, xs };
+}
+
+// ============================================================
+// the stage
+// ============================================================
+const world = document.getElementById('world'), cam = document.getElementById('cam'), hud = document.getElementById('hud'), wipe = document.getElementById('wipe'), flash = document.getElementById('flash'), fade = document.getElementById('fade');
+const scenes = [];
+function scene(t0, t1, build) { const g = el('g', {}, world); const s = { g, t0, t1 }; s.update = build(g, s); scenes.push(s); return s; }
+let hudUpdate = () => {}, wipeUpdate = () => {}, capUpdate = () => {};
+const SHAKES = [], FLASHES = [], WIPES = [];
+const headline = (g, s, x, y, size, fill = C.ink, sh = C.teal) => chars(g, s, { x, y, size, family: F.serif, weight: 400, fill, shadow: { fill: sh, dx: 8, dy: 8 } });
+const mono = (g, s, x, y, size, fill = C.ink, anchor = 'start') => txt(g, s, { x, y, 'font-size': size, 'font-family': F.mono, 'font-weight': 800, fill, 'text-anchor': anchor, 'letter-spacing': 2 });
+// a giant halftone-filled numeral, bleeding off the right edge
+let clipN = 0;
+function bigNumeral(g, s, x, y, size, fill, dots) { const id = 'cn' + clipN++; const cp = el('clipPath', { id }, document.querySelector('defs')); txt(cp, s, { x, y, 'font-size': size, 'font-family': F.bagel, 'text-anchor': 'end' });
+  const n = el('g', {}, g); txt(n, s, { x, y, 'font-size': size, 'font-family': F.bagel, fill, 'text-anchor': 'end' }); const h = el('g', { 'clip-path': `url(#${id})` }, n); halftone(h, { color: dots, step: 22, angle: 30, f: (px, py) => .3 + .5 * clamp((py - (y - size * .8)) / size), maxK: .66 }); return n; }
+function exhibitHead(g, num, title, tA, dark = false) {
+  const n = bigNumeral(g, num, 2010, 1030, 820, dark ? C.night2 : '#F7D78A', dark ? '#5a4535' : C.honey);
+  const tag = el('g', {}, g); el('rect', { x: 0, y: 0, width: 300, height: 56, rx: 8, fill: dark ? C.cream : C.ink }, tag); txt(tag, 'EXHIBIT ' + num, { x: 22, y: 40, 'font-size': 30, 'font-family': F.mono, 'font-weight': 800, fill: dark ? C.ink : C.honey, 'letter-spacing': 3 });
+  const hl = headline(g, title, 140, 350, 140, dark ? C.cream : C.ink, dark ? C.red : C.teal);
+  return t => { tf(n, lerp(400, 0, E.out(seg(t, tA - .3, tA + .4))), 0); op(n, t >= tA - .3 ? 1 : 0); tf(tag, 140, lerp(-80, 140, E.back(seg(t, tA, tA + .4)))); charsPop(hl, t, tA + .25, .04, .38, 70); };
+}
+
+function buildAll() {
+  const T = {
+    case: at('Case number zero'), subj: at('Subject: the honeybee.'), charge: at('Charge: keeping the world'), file: at('This is the file.'),
+    e1: at('Exhibit one.'), species: at('There are more than twenty'), wild: at('Most of them are wild,'), third: at('And according to United Nations'), bites: at('One in every three bites.'),
+    e2: at('Exhibit two.'), finds: at('A worker finds flowers.'), dances: at('and she dances.'), points: at('Her body points the way,'), longer: at('The longer she waggles,'), read: at('The other bees read it,'), frisch: at('A scientist named Karl'), nobel: at('In 1973, it helped'), speaking: at('The bees had been speaking'),
+    e3: at('Exhibit three.'), outgrows: at('When a colony outgrows'), scouts: at('So scouts go out'), each: at('Each scout comes back'), great: at('A great site gets'), poor: at('A poor site gets'), check: at('Other scouts go and check'), fifteen: at('And when about fifteen'), lifts: at('The whole swarm lifts off'), noking: at('No king.'),
+    e4: at('Exhibit four.'), japan: at('In Japan, a giant hornet'), defense: at('So the Japanese honeybee'), five: at('Five hundred bees or more'), vibrate: at('and they vibrate'), heats: at('The ball heats to'), kill: at('Hot enough to kill'), notbees: at('Not hot enough to kill'), single: at('No single bee can beat'), together: at('Five hundred together cook it.'),
+    e5: at('Exhibit five.'), sixty: at('In summer, a colony can hold'), sixweeks: at('A worker lives about six weeks.'), nursery: at('They keep the nursery'), allTime: at('Six weeks. That is all'), outlives: at('And the colony outlives'),
+    verdict: at('The verdict.'), charge2: at('On the charge of keeping'), essential: at('found essential.'), strong: at('Not because one bee'), alone: at('Because none of them'), closed: at('Case closed.'), produced: at('Produced by Relentless Aaron.'),
+  };
+  const S = [0, T.file - .15, T.e1 - .15, T.e2 - .15, T.e3 - .15, T.e4 - .15, T.e5 - .15, T.verdict - .15, T.closed - .15, END + .6, DUR];
+  S.forEach((s, i) => cue(s, 'sect' + i));
+  S.slice(1, 9).forEach((s, i) => { WIPES.push([s, [C.honey, C.teal, C.red, C.honey, C.teal, C.night, C.honey, C.ink][i]]); cue(s - .2, 'whoosh'); });
+  const ess = T.essential + .35; cue(ess, 'ess');
+
+  // ---------- S0 · the evidence bag: one bee on dark ink, the file assembles around her ----------
+  scene(S[0], S[1], g => {
+    bg(g, C.night); halftone(g, { color: C.night2, step: 24, angle: 20, f: edge(860, 1.3), maxK: .7 });
+    const halo = halftone(g, { color: C.honey, step: 22, angle: 45, f: radial(960, 560, 330, 1.3), maxK: .62 });
+    const bag = el('g', {}, g); el('rect', { x: -260, y: -240, width: 520, height: 470, rx: 18, fill: 'none', stroke: C.cream, 'stroke-width': 6, 'stroke-dasharray': '18 12' }, bag); mono(bag, 'EVIDENCE', -230, -200, 26, C.cream);
+    const bee = beeEl(g, 1.25);
+    const no = mono(g, 'CASE NO. 007', 140, 170, 40, C.honey);
+    const subj = chars(g, 'SUBJECT: THE HONEYBEE', { x: 140, y: 880, size: 70, family: F.sans, weight: 400, fill: C.cream });
+    const chg = chars(g, 'CHARGE: KEEPING THE WORLD FED', { x: 140, y: 980, size: 60, family: F.sans, weight: 400, fill: C.honey });
+    const st = stampEl(g, 'OPEN', { size: 120, color: C.red, family: F.sans }); cue(T.charge + .9, 'stamp'); SHAKES.push([T.charge + .9, 14, .3]);
+    return t => { const z = 1 + .06 * seg(t, 0, S[1]); tf(g, 960 * (1 - z), 540 * (1 - z), z); tf(bag, 960, 560); beeAnim(bee, t, 960, 580, 1.25); op(halo, .6 + .4 * Math.sin(t * 2));
+      op(no, seg(t, T.case, T.case + .2)); charsPop(subj, t, T.subj, .025); charsPop(chg, t, T.charge, .02); stampAnim(st, t, T.charge + .9, 1560, 300, -9); };
+  });
+  // ---------- S1 · the mugshot ----------
+  scene(S[1], S[2], g => {
+    bg(g, C.paper); halftone(g, { color: C.teal, step: 22, angle: 15, f: edge(900, 1.5), maxK: .62 }).setAttribute('class', 'mul');
+    const chart = el('g', {}, g); for (let i = 0; i <= 8; i++) { el('line', { x1: 560, x2: 1360, y1: 180 + i * 80, y2: 180 + i * 80, stroke: C.ink, 'stroke-width': i % 2 ? 2 : 5 }, chart); mono(chart, String(8 - i), 520, 192 + i * 80, 26, C.ink, 'end'); }
+    mono(chart, 'mm (enlarged)', 1380, 192, 22, C.ink);
+    const bee = beeEl(g, 2.2);
+    const plate = el('g', {}, g); el('rect', { x: -330, y: -70, width: 660, height: 140, rx: 10, fill: C.ink }, plate); txt(plate, 'HONEYBEE', { x: 0, y: 6, 'font-size': 72, 'font-family': F.sans, fill: C.cream, 'text-anchor': 'middle' }); mono(plate, 'APIS MELLIFERA · CASE 007', 0, 50, 26, C.honey, 'middle');
+    FLASHES.push(S[1] + .5, S[1] + 1.4); cue(S[1] + .5, 'shutter'); cue(S[1] + 1.4, 'shutter');
+    return t => { const z = 1 + .05 * seg(t, S[1], S[2]); tf(g, 960 * (1 - z), 540 * (1 - z), z); beeAnim(bee, t, 960, 520, 2.2, 0, 1, 0); tf(plate, 960, lerp(1250, 900, E.back(seg(t, S[1] + .2, S[1] + .6)))); };
+  });
+  // ---------- S2 · Exhibit 01: the numbers ----------
+  scene(S[2], S[3], g => {
+    bg(g, C.paper); const head = exhibitHead(g, '01', 'THE NUMBERS', T.e1);
+    const n1 = chars(g, '20,000+', { x: 140, y: 600, size: 210, family: F.bagel, weight: 400, fill: C.honey, shadow: { fill: C.ink, dx: 10, dy: 10 } });
+    const l1 = chars(g, 'SPECIES OF BEES', { x: 150, y: 690, size: 60, family: F.sans, weight: 400, fill: C.ink });
+    const wild = stampEl(g, 'MOSTLY WILD', { size: 70, color: C.teal, family: F.sans }); cue(T.wild + .5, 'stamp');
+    const plate = el('g', {}, g); el('circle', { cx: 0, cy: 0, r: 250, fill: C.cream, stroke: C.ink, 'stroke-width': 8 }, plate); const wedge = el('path', { d: '', fill: C.honey, stroke: C.ink, 'stroke-width': 6 }, plate); halftone(plate, { x0: -250, y0: -250, w: 500, h: 500, color: C.ink, step: 20, angle: 45, f: (x, y) => Math.hypot(x, y) < 240 ? .18 : 0, maxK: .6 }).setAttribute('class', 'mul');
+    [0, 120, 240].forEach(a => el('line', { x1: 0, y1: 0, x2: 250 * Math.sin(a * Math.PI / 180), y2: -250 * Math.cos(a * Math.PI / 180), stroke: C.ink, 'stroke-width': 6 }, plate));
+    const of = chars(g, '1 IN 3', { x: 140, y: 600, size: 230, family: F.bagel, weight: 400, fill: C.red, shadow: { fill: C.ink, dx: 10, dy: 10 } });
+    const l2 = chars(g, "OF THE WORLD'S FOOD PRODUCTION", { x: 150, y: 690, size: 44, family: F.sans, weight: 400, fill: C.ink }); const src = mono(g, 'SOURCE: UN FOOD & AGRICULTURE (FAO) / UNEP', 150, 760, 24);
+    const bites = stampEl(g, '1 IN 3 BITES', { size: 90, color: C.red, family: F.sans }); cue(T.bites + .4, 'stamp'); SHAKES.push([T.bites + .4, 16, .3]);
+    return t => { head(t); const A = t < T.third - .2;
+      show(n1.g, A); show(l1.g, A); show(wild.g, A); charsPop(n1, t, T.species + .6, .05); charsPop(l1, t, T.species + 1, .02); stampAnim(wild, t, T.wild + .5, 1300, 640, -8);
+      show(of.g, !A); show(l2.g, !A); show(src, !A); show(plate, !A); charsPop(of, t, T.third + .5, .06); charsPop(l2, t, T.third + 1, .015); op(src, seg(t, T.third + 1.6, T.third + 1.8));
+      const pp = pop(t, T.third + .2, .45); tf(plate, 1400, 600, pp, t * 4); const a = 120 * E.out(seg(t, T.third + 1.2, T.third + 2)) * Math.PI / 180; wedge.setAttribute('d', `M0 0 L0 -250 A250 250 0 0 1 ${250 * Math.sin(a)} ${-250 * Math.cos(a)} Z`);
+      stampAnim(bites, t, T.bites + .4, 1400, 900, 7); };
+  });
+  // ---------- S3 · Exhibit 02: the dance ----------
+  scene(S[3], S[4], g => {
+    bg(g, C.paper); const head = exhibitHead(g, '02', 'THE DANCE', T.e2);
+    halftone(g, { color: C.honey, step: 22, angle: 45, f: radial(1640, 160, 260, 1.1), maxK: .66 }); const sun = el('circle', { cx: 1640, cy: 160, r: 70, fill: C.honey, stroke: C.ink, 'stroke-width': 7 }, g);
+    const path = el('path', { d: '', fill: 'none', stroke: C.red, 'stroke-width': 8, 'stroke-dasharray': '18 12', 'stroke-linecap': 'round' }, g);
+    const up = el('line', { x1: 960, y1: 690, x2: 960, y2: 380, stroke: C.ink, 'stroke-width': 5, 'stroke-dasharray': '10 10' }, g); mono(g, '↑ UP = THE SUN', 980, 380, 26);
+    const arc = el('path', { d: 'M 960 560 A 130 130 0 0 1 1052 598', fill: 'none', stroke: C.teal, 'stroke-width': 10 }, g); const ang = mono(g, 'ANGLE = DIRECTION', 1080, 560, 30, C.teal);
+    const dist = mono(g, 'WAGGLE TIME = DISTANCE', 1080, 640, 30, C.red);
+    const bee = beeEl(g, .8);
+    const flower = el('g', {}, g); for (let i = 0; i < 6; i++) el('ellipse', { cx: 0, cy: -34, rx: 22, ry: 34, fill: C.cream, stroke: C.ink, 'stroke-width': 6, transform: `rotate(${i * 60})` }, flower); el('circle', { cx: 0, cy: 0, r: 22, fill: C.honey, stroke: C.ink, 'stroke-width': 6 }, flower);
+    const nameCard = el('g', {}, g); el('rect', { x: 0, y: 0, width: 760, height: 210, rx: 12, fill: C.cream, stroke: C.ink, 'stroke-width': 7 }, nameCard); txt(nameCard, 'KARL VON FRISCH', { x: 36, y: 92, 'font-size': 64, 'font-family': F.serif, fill: C.ink }); mono(nameCard, 'DECODED THE WAGGLE DANCE', 38, 160, 28, C.teal);
+    const nobel = stampEl(g, 'NOBEL · 1973', { size: 92, color: C.red, family: F.sans }); cue(T.nobel + .9, 'stamp'); SHAKES.push([T.nobel + .9, 16, .3]);
+    const lang = chars(g, 'WE LEARNED THE LANGUAGE.', { x: 140, y: 1000, size: 60, family: F.sans, weight: 400, fill: C.ink });
+    // figure-eight: waggle run straight up-right at 35°, loops back on alternating sides
+    const P = u => { const k = u % 1, a = 35 * Math.PI / 180, cx = 960, cy = 690, L = 260; if (k < .5) { const v = k / .5; return [cx + Math.sin(a) * L * v, cy - Math.cos(a) * L * v, 1]; } const v = (k - .5) / .5, side = Math.floor(u) % 2 ? 1 : -1, ex = cx + Math.sin(a) * L, ey = cy - Math.cos(a) * L, mx = (cx + ex) / 2 + side * 170 * Math.cos(a), my = (cy + ey) / 2 + side * 170 * Math.sin(a); const q = 1 - v; return [q * q * ex + 2 * q * v * mx + v * v * cx, q * q * ey + 2 * q * v * my + v * v * cy, 0]; };
+    let d = ''; for (let i = 0; i <= 160; i++) { const [x, y] = P(i / 80); d += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1); } path.setAttribute('d', d);
+    return t => { head(t); const onDance = t >= T.dances; show(path, onDance && t < T.frisch); op(path, seg(t, T.dances, T.dances + .4)); show(up, t >= T.points && t < T.frisch); show(arc, t >= T.points && t < T.frisch); op(ang, t >= T.points + .6 && t < T.frisch ? 1 : 0); op(dist, t >= T.longer + .3 && t < T.frisch ? 1 : 0);
+      if (t < T.dances) { const v = E.io(seg(t, T.finds, T.dances)); beeAnim(bee, t, lerp(400, 960, v), lerp(800, 690, v), .8); }
+      else if (t < T.frisch) { const u = (t - T.dances) * .55, [x, y, wag] = P(u), [x2, y2] = P(u + .01); beeAnim(bee, t, x + (wag ? Math.sin(t * 40) * 8 : 0), y, .8, Math.atan2(y2 - y, x2 - x) * 180 / Math.PI); }
+      else beeAnim(bee, t, -300, -300, .8);
+      const fl = pop(t, T.read, .4); tf(flower, 1500, 820, fl, t * 20); show(flower, t >= T.read && t < T.frisch);
+      tf(nameCard, lerp(-800, 140, E.back(seg(t, T.frisch, T.frisch + .45))), 520); show(nameCard, t >= T.frisch); stampAnim(nobel, t, T.nobel + .9, 1350, 640, -7); charsPop(lang, t, T.speaking + 1.2, .02); };
+  });
+  // ---------- S4 · Exhibit 03: the vote ----------
+  scene(S[4], S[5], g => {
+    bg(g, C.paper); const head = exhibitHead(g, '03', 'THE VOTE', T.e3);
+    el('path', { d: 'M 120 430 Q 400 410 640 440', stroke: C.ink, 'stroke-width': 14, fill: 'none', 'stroke-linecap': 'round' }, g);
+    const swarm = el('g', {}, g); const R = rng(7), SW = Array.from({ length: 140 }, () => { const a = R() * 6.28, r = Math.sqrt(R()); return [380 + Math.cos(a) * r * 150, 560 + Math.sin(a) * r * 110, R()]; });
+    const dots = SW.map(([x, y]) => el('ellipse', { cx: x, cy: y, rx: 12, ry: 8, fill: C.honey, stroke: C.ink, 'stroke-width': 3 }, swarm));
+    const sites = [['SITE A', .45, 900], ['SITE B', 1, 1260], ['SITE C', .25, 1620]].map(([n, q, x], i) => { const s = el('g', {}, g); el('rect', { x: -150, y: -110, width: 300, height: 220, rx: 12, fill: C.cream, stroke: C.ink, 'stroke-width': 6 }, s);
+      txt(s, n, { x: 0, y: -60, 'font-size': 40, 'font-family': F.sans, fill: C.ink, 'text-anchor': 'middle' }); el('rect', { x: -120, y: 0, width: 240, height: 30, rx: 6, fill: '#E5D6B8' }, s); const bar = el('rect', { x: -120, y: 0, width: 0, height: 30, rx: 6, fill: i === 1 ? C.red : C.teal }, s); mono(s, 'DANCE LENGTH', 0, 70, 20, C.ink, 'middle'); return { s, bar, q, x }; });
+    const count = el('g', {}, g); const cnt = txt(count, '0', { x: 0, y: 0, 'font-size': 150, 'font-family': F.bagel, fill: C.red, 'text-anchor': 'middle' }); mono(count, 'SCOUTS AT SITE B', 0, 50, 26, C.ink, 'middle');
+    const quorum = stampEl(g, 'QUORUM', { size: 120, color: C.red, family: F.sans }); cue(T.fifteen + 2.2, 'stamp'); SHAKES.push([T.fifteen + 2.2, 20, .35]);
+    const nok = chars(g, 'NO KING. NO CAMPAIGN MONEY.', { x: 140, y: 1000, size: 58, family: F.sans, weight: 400, fill: C.ink });
+    for (let i = 0; i < 15; i++) cue(T.fifteen + .3 + i * .12, 'tick');
+    return t => { head(t); const lift = E.io(seg(t, T.lifts, T.lifts + 2.2));
+      dots.forEach((d, i) => { const [x, y, r] = SW[i]; const tx = 1260 + (r - .5) * 220, ty = 760 + ((i * 37) % 100 - 50); d.setAttribute('cx', lerp(x + Math.sin(t * 3 + i) * 3, tx, lift).toFixed(1)); d.setAttribute('cy', lerp(y + Math.cos(t * 4 + i) * 3, ty, lift).toFixed(1)); });
+      op(swarm, seg(t, T.outgrows, T.outgrows + .4));
+      sites.forEach((s, i) => { const k = pop(t, T.scouts + .3 + i * .25, .4); tf(s.s, s.x, 760, k); s.bar.setAttribute('width', (240 * s.q * E.out(seg(t, (i === 1 ? T.great : i === 0 ? T.each + 1 : T.poor), (i === 1 ? T.great : i === 0 ? T.each + 1 : T.poor) + 1.2))).toFixed(1)); });
+      const n = Math.round(15 * seg(t, T.fifteen + .3, T.fifteen + 2.1)); cnt.textContent = String(n); tf(count, 1260, 500, pop(t, T.fifteen, .3)); show(count, t >= T.fifteen);
+      stampAnim(quorum, t, T.fifteen + 2.2, 1600, 430, -10); charsPop(nok, t, T.noking, .03); };
+  });
+  // ---------- S5 · Exhibit 04: the heat ball (night palette) ----------
+  scene(S[5], S[6], g => {
+    bg(g, C.night); halftone(g, { color: C.night2, step: 24, angle: 20, f: edge(820, 1.3), maxK: .7 });
+    const glow = halftone(g, { color: C.red, step: 22, angle: 45, f: radial(760, 600, 420, 1.1), maxK: .66 });
+    const head = exhibitHead(g, '04', 'THE HEAT BALL', T.e4, true);
+    const horn = hornetEl(g);
+    const ball = el('g', {}, g); const R = rng(11), BB = Array.from({ length: 120 }, (_, i) => ({ a: R() * 6.28, r: .75 + R() * .5, d: R() }));
+    const bdots = BB.map(() => el('ellipse', { rx: 18, ry: 12, fill: C.honey, stroke: C.ink, 'stroke-width': 3 }, ball));
+    const th = el('g', {}, g); el('rect', { x: -26, y: -330, width: 52, height: 360, rx: 26, fill: C.cream, stroke: C.cream, 'stroke-width': 4 }, th); el('circle', { cx: 0, cy: 50, r: 44, fill: C.red }, th); const merc = el('rect', { x: -16, y: 0, width: 32, height: 0, fill: C.red }, th);
+    const deg = txt(g, '0°C', { x: 1620, y: 640, 'font-size': 150, 'font-family': F.bagel, fill: C.red, 'text-anchor': 'middle' });
+    const n500 = chars(g, '500+ BEES', { x: 140, y: 1000, size: 64, family: F.sans, weight: 400, fill: C.honey });
+    const cook = chars(g, 'FIVE HUNDRED TOGETHER COOK IT.', { x: 140, y: 1000, size: 56, family: F.sans, weight: 400, fill: C.cream });
+    const st = stampEl(g, '47°C', { size: 120, color: C.red, family: F.sans }); cue(T.heats + 1.6, 'stamp'); SHAKES.push([T.heats + 1.6, 22, .4]);
+    cue(T.five, 'buzz');
+    return t => { head(t); const close = E.io(seg(t, T.five, T.five + 2.5)), dead = t >= T.kill + .8;
+      tf(horn.root, lerp(1300, 760, E.out(seg(t, T.japan, T.japan + 1.4))) + (dead ? 0 : Math.sin(t * 9) * 6), 600 + (dead ? 40 * seg(t, T.kill + .8, T.kill + 1.6) : 0), .85, dead ? 25 * seg(t, T.kill + .8, T.kill + 1.6) : 0); show(horn.xs, dead); horn.eyes.forEach(e => show(e, !dead));
+      const vib = t > T.vibrate ? Math.sin(t * 70) * 3 : 0;
+      bdots.forEach((d, i) => { const b = BB[i], a = b.a + t * .3, R0 = lerp(700, 150 * b.r, close), x = 760 + Math.cos(a) * R0 + vib, y = 600 + Math.sin(a) * R0 * .85; d.setAttribute('cx', x.toFixed(1)); d.setAttribute('cy', y.toFixed(1)); op(d, t >= T.five + b.d * .6 ? 1 : 0); });
+      const temp = 47 * E.io(seg(t, T.heats, T.heats + 1.5)); merc.setAttribute('y', (-temp / 47 * 300).toFixed(1)); merc.setAttribute('height', (temp / 47 * 300 + 30).toFixed(1)); deg.textContent = Math.round(temp) + '°C'; op(deg, t >= T.heats ? 1 : 0); tf(th, 1360, 640, pop(t, T.heats - .3, .35)); op(glow, seg(t, T.vibrate, T.heats + 1.5));
+      show(n500.g, t < T.single); charsPop(n500, t, T.five + .4, .04); show(cook.g, t >= T.together); charsPop(cook, t, T.together, .025); stampAnim(st, t, T.heats + 1.6, 1640, 840, 8); };
+  });
+  // ---------- S6 · Exhibit 05: the colony ----------
+  scene(S[6], S[7], g => {
+    bg(g, C.paper); const head = exhibitHead(g, '05', 'THE COLONY', T.e5);
+    const field = halftone(g, { x0: 140, y0: 420, w: 900, h: 440, color: C.honey, step: 14, angle: 0, f: () => 1, maxK: .5 }); const fieldMask = el('rect', { x: 140, y: 420, width: 900, height: 440, fill: C.paper }, g);
+    const n60 = chars(g, '60,000', { x: 1120, y: 620, size: 170, family: F.bagel, weight: 400, fill: C.honey, shadow: { fill: C.ink, dx: 10, dy: 10 } }); const w60 = mono(g, 'WORKERS IN A SUMMER COLONY', 1130, 680, 28);
+    const cal = el('g', {}, g); const boxes = []; for (let i = 0; i < 42; i++) { boxes.push(el('rect', { x: (i % 14) * 62, y: Math.floor(i / 14) * 62, width: 52, height: 52, rx: 6, fill: C.cream, stroke: C.ink, 'stroke-width': 4 }, cal)); } mono(cal, 'ONE WORKER: ~6 WEEKS', 0, -24, 30, C.red);
+    const gauge = el('g', {}, g); el('circle', { cx: 0, cy: 0, r: 120, fill: C.cream, stroke: C.ink, 'stroke-width': 8 }, gauge); txt(gauge, '93°F', { x: 0, y: 20, 'font-size': 64, 'font-family': F.bagel, fill: C.teal, 'text-anchor': 'middle' }); mono(gauge, 'NURSERY', 0, 70, 22, C.ink, 'middle');
+    const out = chars(g, 'THE COLONY OUTLIVES EVERY ONE OF THEM.', { x: 140, y: 1000, size: 50, family: F.sans, weight: 400, fill: C.ink });
+    for (let i = 0; i < 20; i++) cue(T.sixty + .4 + i * .08, 'tick');
+    return t => { head(t); const k = E.out(seg(t, T.sixty, T.sixty + 2)); fieldMask.setAttribute('x', (140 + 900 * k).toFixed(1)); fieldMask.setAttribute('width', (900 * (1 - k)).toFixed(1)); show(field, t >= T.sixty && t < T.sixweeks); show(fieldMask, t < T.sixweeks);
+      charsPop(n60, t, T.sixty + .5, .05); op(w60, t >= T.sixty + 1 ? 1 : 0); show(n60.g, t < T.sixweeks); show(w60, t < T.sixweeks);
+      show(cal, t >= T.sixweeks); tf(cal, 150, 520); boxes.forEach((b, i) => b.setAttribute('fill', t > T.allTime + i * .08 ? C.red : C.cream));
+      tf(gauge, 1560, 640, pop(t, T.nursery, .4)); show(gauge, t >= T.nursery); charsPop(out, t, T.outlives, .02); };
+  });
+  // ---------- S7 · the verdict (silence before the stamp) ----------
+  scene(S[7], S[8], g => {
+    bg(g, C.paper); halftone(g, { color: C.red, step: 22, angle: 70, f: radial(960, 560, 900, 1.2), maxK: .62 }).setAttribute('class', 'mul');
+    const v = headline(g, 'THE VERDICT', 140, 300, 170);
+    const ch = chars(g, 'ON THE CHARGE OF KEEPING THE WORLD FED:', { x: 140, y: 420, size: 46, family: F.sans, weight: 400, fill: C.ink });
+    const st = stampEl(g, 'ESSENTIAL', { size: 210, color: C.red, family: F.sans }); cue(ess, 'bigstamp'); SHAKES.push([ess, 26, .45]); FLASHES.push(ess);
+    const bee = beeEl(g, 1.1);
+    const l1 = chars(g, 'NOT BECAUSE ONE BEE IS STRONG.', { x: 140, y: 900, size: 52, family: F.sans, weight: 400, fill: C.ink });
+    const l2 = chars(g, 'BECAUSE NONE OF THEM WORKS ALONE.', { x: 140, y: 980, size: 52, family: F.sans, weight: 400, fill: C.red });
+    return t => { charsPop(v, t, T.verdict, .05); charsPop(ch, t, T.charge2, .012); stampAnim(st, t, ess, 960, 640, -6); beeAnim(bee, t, 1620, 380, 1.1, 0, 1, 1); show(bee.root, t > ess + .3); charsPop(l1, t, T.strong, .02); charsPop(l2, t, T.alone, .02); };
+  });
+  // ---------- S8 · the drawer: the file joins thousands ----------
+  scene(S[8], S[10], g => {
+    bg(g, C.ink); halftone(g, { color: C.night2, step: 24, angle: 20, f: edge(860, 1.2), maxK: .7 });
+    const drawer = el('g', {}, g); el('rect', { x: 260, y: 520, width: 1400, height: 420, rx: 16, fill: '#6b4f3a', stroke: C.cream, 'stroke-width': 6 }, drawer);
+    for (let i = 0; i < 18; i++) { const x = 300 + i * 74; el('rect', { x, y: 440, width: 64, height: 480, rx: 6, fill: '#E9D9B6', stroke: C.ink, 'stroke-width': 4 }, drawer); txt(drawer, 'HIVE', { x: x + 40, y: 520, 'font-size': 24, 'font-family': F.mono, 'font-weight': 800, fill: C.ink, transform: `rotate(90 ${x + 40} 520)` }); }
+    const folder = el('g', {}, g); el('rect', { x: -230, y: -160, width: 460, height: 320, rx: 12, fill: C.honey, stroke: C.ink, 'stroke-width': 7 }, folder); el('rect', { x: -230, y: -196, width: 180, height: 50, rx: 8, fill: C.honey, stroke: C.ink, 'stroke-width': 7 }, folder);
+    txt(folder, 'CASE 007', { x: 0, y: -30, 'font-size': 60, 'font-family': F.sans, fill: C.ink, 'text-anchor': 'middle' }); txt(folder, 'HONEYBEE', { x: 0, y: 50, 'font-size': 64, 'font-family': F.serif, fill: C.ink, 'text-anchor': 'middle' });
+    const closed = stampEl(g, 'CASE CLOSED', { size: 110, color: C.red, family: F.sans }); cue(T.closed + .4, 'stamp'); cue(T.closed + 1.6, 'drawer');
+    const pr = chars(g, 'PRODUCED BY RELENTLESS AARON', { x: 960, y: 220, size: 64, family: F.sans, weight: 400, fill: C.honey, anchor: 'middle' });
+    const title = chars(g, 'THE HONEYBEE FILE', { x: 960, y: 420, size: 140, family: F.serif, weight: 400, fill: C.cream, anchor: 'middle', shadow: { fill: C.red, dx: 8, dy: 8 } });
+    const end = END + .6;
+    return t => { const slide = E.io(seg(t, T.closed + 1.6, T.closed + 2.8)); tf(folder, lerp(960, 1700, slide), lerp(560, 640, slide), lerp(1, .3, slide), lerp(-3, 0, slide)); op(folder, 1 - seg(t, T.closed + 2.6, T.closed + 2.9));
+      stampAnim(closed, t, T.closed + .4, 960, 600, -8); op(closed.g, t < T.closed + 1.6 ? .93 : 0); charsPop(pr, t, T.produced, .02);
+      tf(drawer, 0, lerp(700, 0, E.back(seg(t, T.closed + 1.2, T.closed + 1.7)))); charsPop(title, t, end + .2, .05); };
+  });
+
+  // ---------- HUD ----------
+  const hudG = el('g', {}, hud); const caseNo = txt(hudG, 'CASE FILE No.007 · APIS', { x: 60, y: 62, 'font-size': 22, 'font-family': F.mono, 'font-weight': 800 });
+  const chip = el('g', {}, hudG), chipBg = el('rect', { x: 60, y: 76, height: 40, rx: 6 }, chip), chipA = txt(chip, '', { x: 74, y: 105, 'font-size': 24, 'font-family': F.sans }), chipB = txt(chip, '', { y: 105, 'font-size': 24, 'font-family': F.sans });
+  const date = el('g', {}, hudG), dateBg = el('rect', { x: 1690, y: 40, width: 170, height: 50, rx: 8, fill: 'none', 'stroke-width': 4 }, date), rec = el('circle', { cx: 1716, cy: 65, r: 9, fill: C.red }, date), dateT = txt(date, '2026.11', { x: 1736, y: 75, 'font-size': 28, 'font-family': F.mono, 'font-weight': 800 });
+  const chips = [[S[1], S[2], 'SUSPECT', 'MUGSHOT'], [S[2], S[3], 'EXHIBIT 01', 'NUMBERS'], [S[3], S[4], 'EXHIBIT 02', 'DANCE'], [S[4], S[5], 'EXHIBIT 03', 'VOTE'], [S[5], S[6], 'EXHIBIT 04', 'HEAT BALL'], [S[6], S[7], 'EXHIBIT 05', 'COLONY'], [S[7], S[8], 'RULING', 'VERDICT']];
+  hudUpdate = t => { const c = chips.find(c => t >= c[0] && t < c[1]); show(hudG, !!c); if (!c) return; const dark = t >= S[5] && t < S[6], ink = dark ? C.cream : C.ink;
+    caseNo.setAttribute('fill', ink); chipBg.setAttribute('fill', dark ? C.cream : C.ink); chipA.textContent = c[2]; chipA.setAttribute('fill', dark ? C.red : C.honey); chipB.textContent = c[3]; chipB.setAttribute('fill', dark ? C.ink : C.cream);
+    const wa = measure(c[2], 24, F.sans, 400), wb = measure(c[3], 24, F.sans, 400); chipB.setAttribute('x', 74 + wa + 14); chipBg.setAttribute('width', wa + wb + 42); dateBg.setAttribute('stroke', ink); dateT.setAttribute('fill', ink); op(rec, Math.floor(t * 2) % 2 ? .25 : 1); };
+
+  // ---------- caption bar: carries the spoken line, keyword in honey ----------
+  const KEY = /^(\d[\d,]*\+?|1973|third|three|fifteen|quorum|essential|nobel|dance|waggles|sun|alone|together|forty|seven|sixty|six|weeks|hornet|five|hundred|fed|honeybee|thousand|wild)$/i;
+  const groups = []; let gg = []; for (const w of WD) { if (gg.length && (gg.length >= 8 || /[.,!?:;]$/.test(gg[gg.length - 1].w) || w.s - gg[gg.length - 1].e > .45)) { groups.push(gg); gg = []; } gg.push(w); } if (gg.length) groups.push(gg);
+  const CAPS = groups.map(ws => { const parts = []; ws.forEach((w, i) => parts.push([w.w + (i < ws.length - 1 ? ' ' : ''), KEY.test(norm(w.w)) ? C.honey : null])); const c = caption(hud, parts, { x: 960, y: 1000, size: 40 }); show(c.g, false); return { c, t0: ws[0].s - .05, t1: ws[ws.length - 1].e + .35 }; });
+  capUpdate = t => CAPS.forEach(k => { const on = t >= k.t0 && t < k.t1 && t < END + .3; show(k.c.g, on); if (on) captionAnim(k.c, t, k.t0); });
+
+  // ---------- dot wipe ----------
+  const dotsG = el('g', {}, wipe), wipeDots = []; for (let y = 0; y <= 1160; y += 80) for (let x = 0; x <= 2000; x += 80) wipeDots.push({ e: el('circle', { cx: x, cy: y, r: 0 }, dotsG), x, y });
+  wipeUpdate = t => { const w = WIPES.find(([b]) => Math.abs(t - b) < .22); show(dotsG, !!w); if (!w) return; dotsG.setAttribute('fill', w[1]); const u = (t - w[0] + .22) / .44;
+    wipeDots.forEach(d => { const delay = (d.x / 1920 * .6 + d.y / 1080 * .4) * .35, p = clamp((u - delay) / .65); d.e.setAttribute('r', (Math.sin(p * Math.PI) * 62).toFixed(1)); }); };
+  window.EV = EV.sort((a, b) => a.t - b.t);
+}
+
+// ============================================================
+// paper & grain (as the engine does it)
+// ============================================================
+function buildPaper() { const cv = document.getElementById('paper'), ctx = cv.getContext('2d'), r = rng(3), small = document.createElement('canvas'); small.width = 96; small.height = 54; const sctx = small.getContext('2d'), sim = sctx.createImageData(96, 54);
+  for (let i = 0; i < sim.data.length; i += 4) { const v = 242 + r() * 13; sim.data[i] = sim.data[i + 1] = sim.data[i + 2] = v; sim.data[i + 3] = 255; } sctx.putImageData(sim, 0, 0); ctx.imageSmoothingEnabled = true; ctx.drawImage(small, 0, 0, 1920, 1080);
+  const base = ctx.getImageData(0, 0, 1920, 1080); for (let i = 0; i < base.data.length; i += 4) { const n = (r() - .5) * 26; base.data[i] = clamp(base.data[i] + n, 0, 255); base.data[i + 1] = clamp(base.data[i + 1] + n, 0, 255); base.data[i + 2] = clamp(base.data[i + 2] + n - 6, 0, 255); } ctx.putImageData(base, 0, 0);
+  const gr = ctx.createRadialGradient(960, 540, 400, 960, 540, 1150); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(1, 'rgba(120,100,80,0.35)'); ctx.fillStyle = gr; ctx.fillRect(0, 0, 1920, 1080);
+  ctx.strokeStyle = 'rgba(140,120,100,0.18)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(960, 0); ctx.lineTo(962, 1080); ctx.stroke(); }
+function drawFx(frame) { const cv = document.getElementById('fx'), ctx = cv.getContext('2d'); ctx.clearRect(0, 0, 1920, 1080); const r = rng(1000 + Math.floor(frame / 2));
+  ctx.fillStyle = 'rgba(255,248,235,0.75)'; for (let i = 0; i < 520; i++) { ctx.beginPath(); ctx.arc(r() * 1920, r() * 1080, .6 + r() * 1.8, 0, 7); ctx.fill(); }
+  ctx.fillStyle = 'rgba(43,29,20,0.25)'; for (let i = 0; i < 90; i++) { ctx.beginPath(); ctx.arc(r() * 1920, r() * 1080, .6 + r() * 1.3, 0, 7); ctx.fill(); } }
+
+// ============================================================
+// render
+// ============================================================
+const boilT = document.getElementById('boilT');
+function render(t) {
+  const frame = Math.round(t * FPS); boilT.setAttribute('seed', 1 + (Math.floor(t * 10) % 40));
+  for (const s of scenes) { const on = t >= s.t0 && t < s.t1; show(s.g, on); if (on) s.update(t); }
+  let dx = 0, dy = 0; for (const [t0, a, d] of SHAKES) if (t >= t0 && t < t0 + d) { const k = 1 - (t - t0) / d; dx += a * k * k * Math.sin(t * 91 + t0); dy += a * k * k * Math.cos(t * 77 + t0 * 3); }
+  const pulse = 1 + .006 * Math.exp(-((t % .625) / .07));
+  cam.setAttribute('transform', `translate(${(dx + 960 * (1 - pulse)).toFixed(2)} ${(dy + 540 * (1 - pulse)).toFixed(2)}) scale(${pulse.toFixed(4)})`);
+  let fl = 0; for (const f of FLASHES) if (t >= f && t < f + .3) fl = Math.max(fl, .5 * Math.pow(1 - (t - f) / .3, 2)); op(flash, fl);
+  op(fade, seg(t, DUR - .7, DUR - .05)); hudUpdate(t); capUpdate(t); wipeUpdate(t); drawFx(frame);
+}
+async function init() {
+  WD = (await (await fetch('audio/words.json')).json()).words.map(w => ({ ...w, s: w.s + OFF, e: w.e + OFF })); END = WD[WD.length - 1].e; DUR = Math.ceil((END + 4.5) * 10) / 10; window.DUR = DUR;
+  const all = document.documentElement.innerHTML + WD.map(w => w.w).join(' ');
+  const fams = ['400 50px "Alfa Slab One"', '400 50px "Bagel Fat One"', '800 50px "JetBrains Mono"', '400 50px "Archivo Black"', '400 50px "Chewy"'];
+  const sample = all + ' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:.,!?°+·—↑/&\'';
+  await Promise.all(fams.map(f => document.fonts.load(f, sample))); await document.fonts.ready;
+  buildPaper(); buildAll();
+  await Promise.all(fams.map(f => document.fonts.load(f, document.getElementById('stage').textContent))); await document.fonts.ready;
+  render(parseFloat(new URLSearchParams(location.search).get('t') || '0')); window.READY = true;
+}
+window.render = render; init();
+</script>
+</body>
+</html>

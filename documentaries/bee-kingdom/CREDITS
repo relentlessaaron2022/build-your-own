@@ -1,0 +1,23 @@
+THE HONEYBEE FILE: produced by Relentless Aaron
+Style: Halftone Dossier, from the Lemo-Opuscar film library (github.com/lemomo-ai/lemo-opuscar); engine helpers adapted from its demo.
+
+PICTURE
+- All artwork (bee and hornet characters, halftone dots, stamps, paper, grain, transitions) drawn procedurally in index.html (SVG + Canvas 2D). No photos or images.
+- Rendering: Playwright (Apache-2.0) driving headless Chromium; encoding with FFmpeg (libx264).
+
+VOICE
+- Narration: Kokoro TTS (Apache-2.0), voice "am_onyx". A synthetic voice.
+
+MUSIC AND SOUND EFFECTS
+- Score and every sound effect synthesized from scratch by music.py (NumPy, SciPy). No samples.
+
+FONTS (Google Fonts, all SIL Open Font License 1.1; https://openfontlicense.org)
+- Alfa Slab One (JM Solé): headlines
+- Bagel Fat One (Kyungwon Kim): numerals
+- JetBrains Mono (JetBrains): case numbers, HUD
+- Archivo Black (Omnibus-Type): captions, stamps
+- Chewy (Squid Art): reserved for interjections
+
+FACTS: see RESEARCH.md for every claim and its source (FAO/UNEP, Nobel Prize/von Frisch, Cornell/Seeley, Ono et al. Nature 1995, Sugahara & Sakamoto 2012, University of Delaware MAAREC).
+
+You are responsible for the materials you publish with this film.
