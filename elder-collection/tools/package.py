@@ -269,7 +269,7 @@ def main():
                       [i for i in items if i["category"] in ("group", "prop", "wordart")][::5], "WHAT'S INSIDE",
                       "120 · 50 · 20 · 40 · 20", "Elders  ·  Pairs  ·  Groups  ·  Objects  ·  Word Art",
                       "Elders, pairs, groups, objects and hand-lettered phrases", cols=6, rows=2)
-        listing_image(e_col / "listing-images" / "01-cover.jpg", d, people[::25], "COLORING BOOK", theme, sub,
+        listing_image(e_col / "listing-images" / "01-cover.jpg", d, people[::21], "COLORING BOOK", theme, sub,
                       "250 drawings  ·  single-sided pages  ·  printable PDF", lineart=True, cols=4, rows=2)
         listing_image(e_sto / "listing-images" / "01-cover.jpg", d, people[5::30], "STORIES & ILLUSTRATIONS", theme, sub,
                       "10 stories  ·  100 illustrations  ·  printable PDF", cols=4, rows=1)
