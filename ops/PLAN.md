@@ -9,4 +9,4 @@ Wave 1
 | T03 | A3 | 7-day social calendar + caption pack | **done** | `deliverables/T03-social-calendar.md` | pass |
 | T04 | A4 | Catalogue spin-off book proposal | **done** | `deliverables/T04-book-proposal.md` | pass |
 | T05 | A5 | Music + Moltbook promotion pack | **done** | `deliverables/T05-music-moltbook.md` | pass |
-| T06 | A6 | Story-to-series AI tool scouting report | **todo** | `deliverables/T06-visual-pipeline.md` | missing output deliverables/T06-visual-pipeline.md |
+| T06 | A6 | Story-to-series AI tool scouting report | **done** | `deliverables/T06-visual-pipeline.md` | pass |

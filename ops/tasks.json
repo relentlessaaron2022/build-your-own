@@ -105,8 +105,8 @@
         "Pilot Episode Rollout",
         "Sources"
       ],
-      "status": "todo",
-      "last_check": "missing output deliverables/T06-visual-pipeline.md"
+      "status": "done",
+      "last_check": "pass"
     }
   ]
 }
