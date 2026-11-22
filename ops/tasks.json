@@ -52,8 +52,8 @@
         "Hashtag Sets",
         "Reel Concepts"
       ],
-      "status": "todo",
-      "last_check": "missing output deliverables/T03-social-calendar.md"
+      "status": "done",
+      "last_check": "pass"
     },
     {
       "id": "T04",
@@ -70,8 +70,8 @@
         "Sample Opening",
         "Release Plan"
       ],
-      "status": "todo",
-      "last_check": "missing output deliverables/T04-book-proposal.md"
+      "status": "done",
+      "last_check": "pass"
     },
     {
       "id": "T05",
