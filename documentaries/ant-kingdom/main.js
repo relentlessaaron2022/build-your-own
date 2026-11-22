@@ -1,7 +1,9 @@
 // THE ANT KINGDOM: "When the little ones come together, even giants fall." Produced by Relentless Aaron.
 // One camera glides over one dark evidence board: prints, case-file stamps, big numbers, a pheromone trail, a map.
 // Every item lands on the narrator's word (audio/words.json). window.EV lists the cues for the sound effects.
-const W = 1920, H = 1080, cv = document.getElementById('out'), ctx = cv.getContext('2d');
+const V = new URLSearchParams(location.search).get('fmt') === 'v';          // ?fmt=v → 1080x1920: header, board window, big captions
+const W = V ? 1080 : 1920, H = V ? 1920 : 1080, cv = document.getElementById('out'); cv.width = W; cv.height = H; const ctx = cv.getContext('2d');
+const WIN = { y: 420, h: 1000 };   // the board window in the vertical frame
 const F = { a: s => `400 ${s}px Anton`, b8: s => `800 ${s}px Barlow`, b6: s => `600 ${s}px Barlow`, m: s => `500 ${s}px Plex`, h: s => `600 ${s}px Caveat` };
 await Promise.all([F.a(40), F.b8(40), F.b6(40), F.m(30), F.h(40)].map(f => document.fonts.load(f)));
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x)), seg = (t, a, b) => clamp((t - a) / (b - a)), lerp = (a, b, k) => a + (b - a) * k;
@@ -184,7 +186,15 @@ function drawItem(o, t, focus) { if (t < o.t - .05 && o.k !== 'trail') return; c
   ctx.restore(); }
 // captions: white on a black bar, the spoken word in gold
 const CAP = (() => { const out = []; let g = []; for (const w of WD) { if (g.length && (g.length >= 8 || /[.,!?:;]$/.test(g[g.length - 1].w) || w.s - g[g.length - 1].e > .45)) { out.push(g); g = []; } g.push(w); } if (g.length) out.push(g); return out.map(c => ({ t0: c[0].s - .05, t1: c[c.length - 1].e + .3, words: c })); })();
-function captions(t) { const c = CAP.find(c => t >= c.t0 && t < c.t1); if (!c || t > END + .3) return; const f = F.b6(46), words = c.words.map(w => w.w), fw = ctx.measureText ? (ctx.font = f, ctx.measureText(words.join(' ')).width) : 0;
+function captionsV(t) { const c = CAP.find(c => t >= c.t0 && t < c.t1); if (!c || t > END + .3) return; const f = F.b8(64); ctx.font = f;
+  const lines = [[]]; let lw = 0; c.words.forEach(w => { const ww = ctx.measureText(w.w + ' ').width; if (lw + ww > 960 && lines[lines.length - 1].length) { lines.push([]); lw = 0; } lines[lines.length - 1].push(w); lw += ww; });
+  lines.forEach((ln, j) => { ctx.font = f; const fw = ctx.measureText(ln.map(w => w.w).join(' ')).width, y = 1540 + j * 92; let x = W / 2 - fw / 2; ln.forEach(w => { txt(w.w, x, y, f, t >= w.s && t < w.e + .08 ? K.gold : '#fff'); ctx.font = f; x += ctx.measureText(w.w + ' ').width; }); }); }
+const CHAP = { open: 'WHEN THE LITTLE ONES COME TOGETHER', nums: 'THE NUMBERS', nobody: 'WHO IS IN CHARGE?', tools: 'THE TOOLS', army: 'CASE FILE 01 · THE ARMY', farm: 'CASE FILE 02 · THE FARMERS', raft: 'CASE FILE 03 · THE RAFT', empire: 'CASE FILE 04 · THE EMPIRE', lesson: 'THE LESSON' };
+function header(t, focus) { txt('THE ANT KINGDOM', W / 2, 150, F.a(96), K.ink, 'center'); ctx.fillStyle = K.red; ctx.fillRect(W / 2 - 300, 182, 600, 6);
+  const s = CHAP[focus] || ''; ctx.font = F.a(60); const sz = Math.min(60, 60 * 980 / Math.max(1, ctx.measureText(s).width)); txt(s, W / 2, 300, F.a(sz), K.gold, 'center'); txt('RELENTLESS AARON', W / 2, 380, F.m(30), K.dim, 'center');
+  ctx.strokeStyle = 'rgba(239,230,210,.25)'; ctx.lineWidth = 3; ctx.strokeRect(20, WIN.y, W - 40, WIN.h);
+  txt('ONE ANT IS SMALL. A THOUSAND ANTS ARE A FORCE.', W / 2, 1850, F.a(40), K.red, 'center'); }
+function captions(t) { if (V) return captionsV(t); const c = CAP.find(c => t >= c.t0 && t < c.t1); if (!c || t > END + .3) return; const f = F.b6(46), words = c.words.map(w => w.w), fw = ctx.measureText ? (ctx.font = f, ctx.measureText(words.join(' ')).width) : 0;
   ctx.fillStyle = 'rgba(0,0,0,.62)'; ctx.fillRect(W / 2 - fw / 2 - 24, 968, fw + 48, 70); let x = W / 2 - fw / 2; c.words.forEach(w => { txt(w.w, x, 1016, f, t >= w.s && t < w.e + .08 ? K.gold : '#fff'); ctx.font = f; x += ctx.measureText(w.w + ' ').width; }); }
 const GRAIN = Array.from({ length: 4 }, (_, j) => { const c = document.createElement('canvas'); c.width = 480; c.height = 270; const g = c.getContext('2d'), id = g.createImageData(480, 270); for (let i = 0; i < id.data.length; i += 4) { const v = hash(i * .13 + j * 977) * 255; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 18; } g.putImageData(id, 0, 0); return c; });
 function finish(t) { const vg = ctx.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, H * .95); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.55)'); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
@@ -193,16 +203,21 @@ function finish(t) { const vg = ctx.createRadialGradient(W / 2, H / 2, H * .35, 
 // opening title and closing credits
 function openTitle(t) { if (t > T0 + .3) return; const k = 1 - seg(t, T0 - .6, T0 + .3); ctx.fillStyle = `rgba(10,9,8,${k})`; ctx.fillRect(0, 0, W, H); ctx.globalAlpha = k * seg(t, .1, .8); txt('RELENTLESS AARON PRESENTS', W / 2, H / 2 + 14, F.m(34), K.gold, 'center'); ctx.globalAlpha = 1; }
 function endCredits(t) { if (t < CRED) return; const k = seg(t, CRED, CRED + 1); ctx.fillStyle = `rgba(10,9,8,${k})`; ctx.fillRect(0, 0, W, H); ctx.globalAlpha = k;
-  txt('THE ANT KINGDOM', W / 2, 250, F.a(130), K.ink, 'center'); txt('When the little ones come together, even giants fall.', W / 2, 330, F.h(56), K.gold, 'center'); txt('PRODUCED BY RELENTLESS AARON', W / 2, 430, F.a(60), K.red, 'center');
+  txt('THE ANT KINGDOM', W / 2, 250, F.a(130), K.ink, 'center'); txt('When the little ones come together, even giants fall.', W / 2, 330, F.h(V ? 40 : 56), K.gold, 'center'); txt('PRODUCED BY RELENTLESS AARON', W / 2, 430, F.a(V ? 54 : 60), K.red, 'center');
   const roll = seg(t, CRED + 2, DUR - 1), lines = ['PHOTOGRAPHS (Wikimedia Commons)', ...CREDITS.map(c => `${c.title.replace(/^File:/, '').replace(/\.[a-z]+$/i, '')}: ${c.author.slice(0, 48)} · ${c.license}`),
     '', 'SOURCES', 'Schultheiss et al., PNAS 2022: the abundance, biomass and distribution of ants on Earth', 'Giraud, Pedersen & Keller, PNAS 2002: the Argentine ant supercolony in Europe', 'Mlot, Tovey & Hu, PNAS 2011: fire ant rafts', 'Narration: synthetic voice (Kokoro)'];
-  ctx.save(); ctx.beginPath(); ctx.rect(0, 480, W, H - 520); ctx.clip(); lines.forEach((l, i) => txt(l, W / 2, 560 + i * 40 - roll * (lines.length * 40 - 380), l === l.toUpperCase() && l ? F.b8(30) : F.b6(26), l === l.toUpperCase() ? K.gold : K.ink, 'center')); ctx.restore(); ctx.globalAlpha = 1; }
+  ctx.save(); ctx.beginPath(); ctx.rect(0, 480, W, H - 520); ctx.clip(); lines.forEach((l, i) => { const f = l === l.toUpperCase() && l ? F.b8(30) : F.b6(V ? 20 : 26); ctx.font = f; const sc = Math.min(1, (W - 60) / Math.max(1, ctx.measureText(l).width)); ctx.save(); ctx.translate(W / 2, 560 + i * 40 - roll * (lines.length * 40 - (V ? 1200 : 380))); ctx.scale(sc, 1); txt(l, 0, 0, f, l === l.toUpperCase() ? K.gold : K.ink, 'center'); ctx.restore(); }); ctx.restore(); ctx.globalAlpha = 1; }
 
 async function render(t) {
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
-  const [cx, cy, vw, focus] = camera(t), z = W / vw; ctx.setTransform(z, 0, 0, z, W / 2 - cx * z, H / 2 - cy * z);
+  const [cx, cy, vw0, focus] = camera(t), wide = vw0 > 4000;
+  if (V) { ctx.fillStyle = BOARD; ctx.fillRect(0, 0, W, H); ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fillRect(0, 0, W, H); const vw = vw0 * 1.06, z = W / vw;
+    ctx.save(); ctx.beginPath(); ctx.rect(20, WIN.y, W - 40, WIN.h); ctx.clip(); const cxv = wide ? cx : Math.max(cx, CL[focus][0] + vw / 2 + 30); ctx.setTransform(z, 0, 0, z, W / 2 - cxv * z, WIN.y + WIN.h / 2 - cy * z);
+    ctx.fillStyle = BOARD; ctx.fillRect(cxv - vw, cy - vw, vw * 2, vw * 2); for (const o of items) drawItem(o, t, wide ? o.c : focus); ctx.restore();
+    ctx.setTransform(1, 0, 0, 1, 0, 0); finish(t); header(t, focus); captions(t); openTitle(t); endCredits(t); return; }
+  const vw = vw0, z = W / vw; ctx.setTransform(z, 0, 0, z, W / 2 - cx * z, H / 2 - cy * z);
   ctx.fillStyle = BOARD; ctx.fillRect(cx - vw, cy - vw, vw * 2, vw * 2);
-  const wide = vw > 4000; for (const o of items) drawItem(o, t, wide ? o.c : focus);
+  for (const o of items) drawItem(o, t, wide ? o.c : focus);
   ctx.setTransform(1, 0, 0, 1, 0, 0); finish(t); captions(t); openTitle(t); endCredits(t);
 }
 window.EV = EV.sort((a, b) => a.t - b.t); window.DUR = DUR; window.render = render; window.READY = true;
