@@ -1,0 +1,4 @@
+out-build*.log
+out/
+reenc.log
+voice.log

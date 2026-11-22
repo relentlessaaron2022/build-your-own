@@ -13,14 +13,14 @@ function buildVertical({ title, caseNo, chips, KEY }) {
   el('rect', { x: 0, y: 1221, width: 1080, height: 8, fill: C.teal, class: 'mul' }, B);
   const cn = txt(G, caseNo, { x: 540, y: 150, 'font-size': 34, 'font-family': F.mono, 'font-weight': 800, fill: C.ink, 'text-anchor': 'middle', 'letter-spacing': 4 });
   const rec = el('circle', { cx: 540 - (measure(caseNo, 34, F.mono, 800) + 4 * caseNo.length) / 2 - 30, cy: 139, r: 11, fill: C.red }, G);
-  const tl = chars(G, title, { x: 540, y: 300, size: title.length > 16 ? 86 : 100, family: F.serif, weight: 400, fill: C.ink, anchor: 'middle', shadow: { fill: C.teal, dx: 7, dy: 7 } });
+  const tl = chars(G, title, { x: 540, y: 300, size: Math.min(100, 100 * 900 / measure(title, 100, F.serif)), family: F.serif, weight: 400, fill: C.ink, anchor: 'middle', shadow: { fill: C.teal, dx: 7, dy: 7 } });
   const chip = el('g', {}, G), chipBg = el('rect', { y: -40, height: 80, rx: 10, fill: C.ink }, chip);
   const ca = txt(chip, '', { y: 16, 'font-size': 46, 'font-family': F.sans, fill: C.honey }), cb = txt(chip, '', { y: 16, 'font-size': 46, 'font-family': F.sans, fill: C.cream });
   const pr = txt(G, 'PRODUCED BY RELENTLESS AARON', { x: 540, y: 1830, 'font-size': 30, 'font-family': F.mono, 'font-weight': 800, fill: C.ink, 'text-anchor': 'middle', 'letter-spacing': 3 });
   // captions: shorter groups, bigger type
   const groups = []; let gg = []; for (const w of WD) { if (gg.length && (gg.length >= 5 || /[.,!?:;]$/.test(gg[gg.length - 1].w) || w.s - gg[gg.length - 1].e > .45)) { groups.push(gg); gg = []; } gg.push(w); } if (gg.length) groups.push(gg);
-  const CAPS = groups.map(ws => { const parts = ws.map((w, i) => [w.w + (i < ws.length - 1 ? ' ' : ''), KEY.test(norm(w.w)) ? C.honey : null]); const c = caption(G, parts, { x: 540, y: 1370, size: 62 });
-    const wd = parts.reduce((a, [s]) => a + measure(s, 62, F.sans, 400), 0) + 68; if (wd > 1000) tf(c.inner, 0, 0, 1000 / wd); show(c.g, false); return { c, t0: ws[0].s - .05, t1: ws[ws.length - 1].e + .35 }; });
+  const CAPS = groups.map((ws, gi) => { const parts = ws.map((w, i) => [w.w + (i < ws.length - 1 ? ' ' : ''), KEY.test(norm(w.w)) ? C.honey : null]); const c = caption(G, parts, { x: 540, y: 1370, size: 62 });
+    const wd = parts.reduce((a, [s]) => a + measure(s, 62, F.sans, 400), 0) + 68; if (wd > 1000) tf(c.inner, 0, 0, 1000 / wd); show(c.g, false); return { c, t0: ws[0].s - .05, t1: Math.min(ws[ws.length - 1].e + .35, groups[gi + 1] ? groups[gi + 1][0].s - .05 : 1e9) }; });
   const vfade = el('rect', { width: 1080, height: 1920, fill: C.ink, opacity: 0 }, G);
   let last = '';
   vUpdate = t => {
