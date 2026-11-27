@@ -1,0 +1,44 @@
+{
+  "offers": [
+    {
+      "id": "prompt_mastery_studio",
+      "name": "Prompt Mastery Studio",
+      "site_id": "relentlessaaron",
+      "landing_url": "https://relentlessaaron.net/prompt-mastery-studio",
+      "category": "ai_prompts",
+      "brand_key": "prompt_mastery",
+      "active": false,
+      "seed_keywords": [
+        "ChatGPT prompts for entrepreneurs",
+        "AI prompts for small business",
+        "AI productivity prompts",
+        "AI marketing prompts",
+        "prompt engineering for beginners",
+        "ChatGPT tips",
+        "AI tools for entrepreneurs"
+      ],
+      "utm_campaign": "prompt_mastery"
+    },
+    {
+      "id": "bamboo_sheets",
+      "name": "Bamboo Solid 2000 Series",
+      "site_id": "relentlessaaron",
+      "landing_url": "https://bamboo-solid-2000-series.relentless-a-2737.chatgpt.site",
+      "category": "bedding",
+      "brand_key": "bamboo_sheets",
+      "active": true,
+      "seed_keywords": [
+        "bamboo sheet sets",
+        "Queen sheet sets",
+        "King sheet sets",
+        "six-piece sheet sets",
+        "bedroom color ideas",
+        "guest bedroom bedding",
+        "bedroom refresh ideas"
+      ],
+      "utm_campaign": "bamboo_sheets",
+      "destination_note": "Use the verified public original site until the Cloudflare microsites have verified public URLs. Orders remain by phone; Beacons checkout is deferred."
+    }
+  ],
+  "note": "Primary product promotion is bamboo sheets. Prompt Mastery Studio is inactive. Sync appropriate Pinterest bedding boards and verify authorization before publishing."
+}

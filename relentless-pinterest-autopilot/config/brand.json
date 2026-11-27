@@ -1,0 +1,206 @@
+{
+  "relentless_aaron": {
+    "display_name": "Relentless Aaron",
+    "site_id": "relentlessaaron",
+    "logo": "assets/logos/relentless_aaron_logo.png",
+    "colors": {
+      "primary": "#0B0B0B",
+      "secondary": "#D4AF37",
+      "accent": "#FFFFFF",
+      "background": "#111111"
+    },
+    "typography": {
+      "headline_font": "DejaVuSans-Bold.ttf",
+      "body_font": "DejaVuSans.ttf"
+    },
+    "approved_ctas": [
+      "Read More",
+      "Get the Full Story",
+      "Save This For Later",
+      "Learn More",
+      "See How"
+    ],
+    "banned_phrases": [
+      "guaranteed",
+      "get rich quick",
+      "miracle",
+      "click here now"
+    ]
+  },
+  "prompt_mastery": {
+    "display_name": "Prompt Mastery Studio",
+    "site_id": "relentlessaaron",
+    "logo": "assets/logos/prompt_mastery_logo.png",
+    "colors": {
+      "primary": "#1A1A2E",
+      "secondary": "#16C79A",
+      "accent": "#FFFFFF",
+      "background": "#0F0F1A"
+    },
+    "typography": {
+      "headline_font": "DejaVuSans-Bold.ttf",
+      "body_font": "DejaVuSans.ttf"
+    },
+    "approved_ctas": [
+      "Get the Prompts",
+      "Save This Pin",
+      "Start Free",
+      "Grab the Guide",
+      "See the Prompts"
+    ],
+    "banned_phrases": [
+      "guaranteed",
+      "get rich quick",
+      "miracle",
+      "click here now",
+      "AI will replace you"
+    ]
+  },
+  "webfilmbooks": {
+    "display_name": "WebFilmBooks",
+    "site_id": "webfilmbooks",
+    "logo": "assets/logos/webfilmbooks_logo.png",
+    "colors": {
+      "primary": "#2B2118",
+      "secondary": "#C9A227",
+      "accent": "#F5F0E6",
+      "background": "#1C1710"
+    },
+    "typography": {
+      "headline_font": "DejaVuSans-Bold.ttf",
+      "body_font": "DejaVuSans.ttf"
+    },
+    "approved_ctas": [
+      "Read the Story",
+      "Discover the Book",
+      "Save for Later",
+      "Start Reading"
+    ],
+    "banned_phrases": [
+      "guaranteed",
+      "get rich quick",
+      "miracle",
+      "click here now"
+    ]
+  },
+  "domain_mappings": {
+    "relentlessaaron.net": "relentless_aaron",
+    "webfilmbooks.com": "webfilmbooks",
+    "bamboo-solid-2000-series.relentless-a-2737.chatgpt.site": "bamboo_sheets"
+  },
+  "bamboo_sheets": {
+    "display_name": "Bamboo Solid 2000 Series",
+    "site_id": "relentlessaaron",
+    "colors": {
+      "primary": "#203C35",
+      "secondary": "#B6C5A7",
+      "accent": "#FFFFFF",
+      "background": "#F7F4ED"
+    },
+    "typography": {
+      "headline_font": "DejaVuSans-Bold.ttf",
+      "body_font": "DejaVuSans.ttf"
+    },
+    "approved_ctas": [
+      "View Sizes and Colors",
+      "Explore the Sheet Set",
+      "Check Availability",
+      "See the Collection"
+    ],
+    "banned_phrases": [
+      "guaranteed",
+      "miracle",
+      "100% bamboo",
+      "2000 thread count",
+      "hypoallergenic",
+      "antibacterial",
+      "organic certification"
+    ],
+    "headline_templates": {
+      "list": [
+        "{topic}: Sizes, Colors, and Set Contents",
+        "{topic}: A Six-Piece Starting Point",
+        "Explore {topic} for Your Bedroom",
+        "{topic}: Plan Your Next Refresh"
+      ],
+      "curiosity": [
+        "Which {topic} Fit Your Room?",
+        "A New Color Story With {topic}",
+        "Have You Considered {topic}?",
+        "Find Your Starting Point With {topic}"
+      ],
+      "transformation": [
+        "Refresh Your Bedroom With {topic}",
+        "Build a Bedroom Palette Around {topic}",
+        "Give Your Guest Room a New Look With {topic}",
+        "Make the Bed Your Focal Point With {topic}"
+      ],
+      "problem_solution": [
+        "Choosing {topic}? Start With the Fit",
+        "Before Ordering {topic}, Check Your Size",
+        "Match {topic} to Your Existing Room",
+        "Compare Your Options for {topic}"
+      ],
+      "beginner": [
+        "New to {topic}? Explore the Collection",
+        "A First Look at {topic}",
+        "Start Your Bedroom Refresh With {topic}",
+        "Your Starting Point for {topic}"
+      ]
+    },
+    "subheadlines": [
+      "Queen and King · Six pieces per sheet set.",
+      "Explore twelve listed colors.",
+      "Call to confirm stock and ordering details.",
+      "Choose a palette that works with your room."
+    ],
+    "description_templates": [
+      "{headline}. {keyword_line} {value_line}",
+      "{value_line} Explore {keyword_line} {headline}.",
+      "Explore the Bamboo Solid 2000 Series collection. {headline}. {value_line}"
+    ],
+    "value_lines": [
+      "Each listed sheet set includes a fitted sheet, flat sheet, and four pillowcases.",
+      "Queen and King sizes are listed. Confirm mattress fit and pocket depth before ordering.",
+      "Explore twelve listed colors and ask about current stock.",
+      "Call 404-314-2100 to confirm availability, the final price, and delivery or collection."
+    ],
+    "keyword_profile": {
+      "primary": "bamboo sheet sets",
+      "secondary": [
+        "Queen sheet sets",
+        "King sheet sets",
+        "six-piece sheet sets",
+        "bedroom color ideas",
+        "guest bedroom bedding",
+        "bedroom refresh ideas",
+        "neutral bedroom bedding",
+        "bold bedroom colors"
+      ],
+      "long_tail": [
+        "how to choose sheet set sizes",
+        "sheet set colors for a guest room",
+        "what is included in a six-piece sheet set",
+        "Queen and King bedding choices",
+        "ideas for a bedroom refresh",
+        "Teal bedding for a bedroom refresh",
+        "Sage sheet sets for guest rooms",
+        "Burgundy bedding color ideas",
+        "Navy sheet sets for a King bed",
+        "Charcoal bedding for a neutral room",
+        "Blush sheet sets for a Queen bed",
+        "Taupe bedding palette ideas",
+        "Gold sheet sets for a warm bedroom",
+        "Chocolate bedding color choices",
+        "Burnt Orange bedroom palette"
+      ],
+      "intent_angles": [
+        "size and fit",
+        "color selection",
+        "set contents",
+        "guest room styling",
+        "phone ordering"
+      ]
+    }
+  }
+}
